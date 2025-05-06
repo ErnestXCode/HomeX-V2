@@ -3,6 +3,7 @@ import DataList from "../components/DataList";
 import Filter from "../components/Filter";
 import axios from "axios";
 import Footer from "../components/Footer";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
   const [AreaData, setAreaData] = useState(null);
@@ -11,21 +12,21 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(" http://localhost:5000/areas")
+      .get(`${apiBaseUrl}/areas`)
       .then((res) => setAreaData(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     axios
-      .get(" http://localhost:5000/houses")
+      .get(`${apiBaseUrl}/houses`)
       .then((res) => setFilteredHouseData(res.data))
       .catch((err) => console.log(err));
   }, [reloader]);
 
   const handleFilter = async (area) => {
     try {
-      const res = await axios.get(`http://localhost:5000/houses/area/${area}`);
+      const res = await axios.get(`${apiBaseUrl}/houses/area/${area}`);
       setFilteredHouseData(res.data);
     } catch (err) {
       console.log("ERROR:    ", err);

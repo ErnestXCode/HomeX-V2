@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 
 const DataList = ({ data, handleReset }) => {
@@ -9,7 +10,7 @@ const DataList = ({ data, handleReset }) => {
   const navigate = useNavigate();
   const handleHouse = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/houses/${id}`);
+      const res = await axios.get(`${apiBaseUrl}/houses/${id}`);
       console.log(res);
       navigate(`house/${id}`);
     } catch (err) {
@@ -19,7 +20,7 @@ const DataList = ({ data, handleReset }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/houses/${id}`);
+      const res = await axios.delete(`${apiBaseUrl}/houses/${id}`);
       console.log(res.data);
       handleReset();
     } catch (err) {
@@ -36,7 +37,7 @@ const DataList = ({ data, handleReset }) => {
       >
         <img
           className="w-screen mb-5"
-          src={`http://localhost:5000/${item.image}`}
+          src={`${apiBaseUrl}/${item.image}`}
           alt=""
         />
         <h3 className="text-blue-400 font-bold p-1 text-[1rem]">

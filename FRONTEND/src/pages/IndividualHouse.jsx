@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
   const [data, setData] = useState(null);
@@ -11,7 +12,7 @@ const IndividualHouse = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`http://localhost:5000/houses/${id}`);
+      const res = await axios.get(`${apiBaseUrl}/houses/${id}`);
       setData(res.data);
     };
     getData();
@@ -24,7 +25,7 @@ const IndividualHouse = () => {
     >
       <img
         className="w-screen"
-        src={`http://localhost:5000/${data?.image}`}
+        src={`${apiBaseUrl}/${data?.image}`}
         alt=""
       />
       <h3 className="text-blue-400 font-bold p-1 text-[1rem]">

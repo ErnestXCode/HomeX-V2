@@ -7,6 +7,7 @@ import {
   signInStart,
   signInSuccess,
 } from "../features/users/userSlice";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const LogIn = () => {
 
     try {
       const validUser = await axios.post(
-        "http://localhost:5000/login",
+        `${apiBaseUrl}/login`,
         inputData
       );
 

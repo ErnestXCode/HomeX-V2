@@ -4,11 +4,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signInFailure, signInStart, signInSuccess } from "../features/users/userSlice";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+
 
 const SignUp = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
   const dispatch  = useDispatch()
+
 
   useEffect(() => {
     nameRef.current.focus();
@@ -42,7 +46,7 @@ const SignUp = () => {
      dispatch(signInStart());
  
      try {
-      const newUser = await axios.post("http://localhost:5000/users", inputData);
+      const newUser = await axios.post(`${apiBaseUrl}/users`, inputData);
       console.log(newUser);
  
        if (newUser.status !== 200) {

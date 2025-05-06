@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PostHouse = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const PostHouse = () => {
          setErr('Must be logged in')
          return
       }
-      const res = await fetch("http://localhost:5000/houses", {
+      const res = await fetch(`${apiBaseUrl}/houses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
