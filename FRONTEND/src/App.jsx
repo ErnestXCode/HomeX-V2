@@ -1,16 +1,16 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Home from './pages/Home';
-import IndividualHouse from './pages/IndividualHouse';
-import PostHouse from './pages/PostHouse';
+import Home from './components/Home';
+import IndividualHouse from './components/IndividualHouse';
+import PostHouse from './components/PostHouse';
 import Header from './components/Header';
 import BottomNav from './components/BottomNav';
-import SignUp from './pages/SignUp';
-import AboutUs from './pages/AboutUs';
-import ContactUs from './pages/ContactUs';
+import SignUp from './components/SignUp';
+import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
 import Donations from './components/Donations';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import Help from './pages/Help';
+import Profile from './components/Profile';
+import Login from './components/LogIn';
+import Help from './components/Help';
 
 function App() {
 

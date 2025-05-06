@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import DataList from "../components/DataList";
-import Filter from "../components/Filter";
+import DataList from "./DataList";
+import Filter from "./Filter";
 import axios from "axios";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
