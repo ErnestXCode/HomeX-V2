@@ -39,7 +39,7 @@ if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath);
 }
 
-app.use("/uploads", express.static(uploadPath));
+app.use("/", express.static(uploadPath));
 
 
 app.use("/", require("./routes/user"));

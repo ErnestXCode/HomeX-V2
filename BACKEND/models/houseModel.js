@@ -6,8 +6,8 @@ const houseSchema = mongoose.Schema(
       type: String,
       required: [true, "area is required"],
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
       required: [true, "image is required"],
     },
     pricing: {

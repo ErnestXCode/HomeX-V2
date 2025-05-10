@@ -9,13 +9,14 @@ const {
 } = require("../controllers/houseController");
 const handleAuth = require("../middleware/handleAuth");
 const handleLandLord = require("../middleware/handleLandLord");
+const upload = require("../middleware/handleUploads");
 
 const router = express.Router();
 
 router
   .route("/houses")
-  .get(getAllHouses)
-  .post(createHouse);
+  .get( getAllHouses)
+  .post(upload.array('images', 3), createHouse);
 
 router
   .route("/houses/:id")

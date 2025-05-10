@@ -61,8 +61,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const deleteUserbyAdmin = async (req, res) => {
+  try {
+    const {id} = req.params;
+    await User.findByIdAndDelete(id, { new: true }); // remember to remove visibility of password
+    res.status(200).json("deleted succesfully");
+  } catch (err) {
+    res.status(403).json({ message: "Failed to delete user", err });
+  }
+};
+
 module.exports = {
   createUser,
+  deleteUserbyAdmin,
   getAllUsers,
   getCurrentUserProfile,
   updateUser,

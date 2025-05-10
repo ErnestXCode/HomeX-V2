@@ -6,54 +6,25 @@ const User = require("../models/userModel");
 const createHouse = async (req, res) => {
   const content = req.body;
   if (
-    !content.image ||
     !content.area ||
     !content.pricing ||
     !content.landMarks ||
     !content.landLord
-  )
+  ) {
     return res.status(400).json({ error: "All inputs are mandatory" });
+  }
   try {
-    let verifiedLandLord = null;
-    try {
-      verifiedLandLord = await User.findById(content.landLord);
-    } catch (err) {
-      return res.status(400).json({ message: "invalid ID" });
-    }
-    if (!verifiedLandLord) {
-      console.log("kuna shida kwa verified landlord");
-      return res.status(500).json({ error: "kwa landlord verification" });
-    }
+    const verifiedUser = await User.findById(content.landLord);
+    if (!verifiedUser) return res.status(400).json("user not authorized");
+    if (!req.files) return res.status(400).json("image required");
 
-    if (!content.image.startsWith("data:image")) {
-      return res.status(400).json({ error: "invalid image format" });
-    }
-
-    const matches = content.image.match(
-      /^data:image\/([a-zA-Z]+);base64,(.+)$/
-    );
-    if (!matches) {
-      return res.status(400).json({ error: "Malformed base64 image" });
-    }
-
-    const ext = matches[1];
-    const base64Data = matches[2];
-    const buffer = Buffer.from(base64Data, "base64");
-    const fileName = `house-${Date.now()}.${ext}`;
-    const filepath = path.resolve(__dirname, "../uploads", fileName);
-
-    fs.writeFileSync(filepath, buffer);
-
-    const newHouse = await new House({
-      ...content,
-      image: `uploads/${fileName}`,
-      landLord: verifiedLandLord._id,
-    });
+    const imagePaths = req.files.map((file) => file.filename);
+    const data = { ...content, images: imagePaths };
+    const newHouse = await new House(data);
     await newHouse.save();
-    res.status(201).json(newHouse);
-  } catch (error) {
-    console.log("error creating house", error);
-    res.status(400).json(error);
+    return res.status(200).json(newHouse);
+  } catch (err) {
+    return res.status(400).json("Could not create House");
   }
 };
 
@@ -120,10 +91,9 @@ const deleteHouse = async (req, res) => {
 
     const result = await House.findByIdAndDelete(id, { new: true });
     if (!result) return res.status(200).json({ error: "House does not exist" });
-    const imageUrl = result.image;
-
-    fs.rmSync(imageUrl);
-
+    for (let imageUrl of result.images) {
+      if (fs.existsSync(imageUrl)) fs.rmSync(imageUrl);
+    }
     res.status(200).json({ status: "successfully deleted house" });
   } catch (error) {
     console.log("error deleting house", error);
