@@ -15,7 +15,7 @@ const Dashboard = () => {
     noOfTenants: 0,
   };
   const [dashboardDisplay, setdashboardDisplay] = useState(dashboardInfo);
-  const [reloader, setReloader] = useState(true)
+  // const [reloader, setReloader] = useState(true)
 
   useEffect(() => {
     axios
@@ -47,15 +47,15 @@ const Dashboard = () => {
 
   const { AllHouses, AllUsers } = dashboardDisplay;
 
-  useEffect(() => {
-    setdashboardDisplay((prevData) => {
-      return {
-        ...prevData,
-        noOfAllUsers: dashboardDisplay?.AllUsers?.length,
-        noOfHouses: dashboardDisplay?.AllHouses?.length,
-      };
-    });
-  }, []);
+  // useEffect(() => {
+  //   setdashboardDisplay((prevData) => {
+  //     return {
+  //       ...prevData,
+  //       noOfAllUsers: dashboardDisplay?.AllUsers?.length,
+  //       noOfHouses: dashboardDisplay?.AllHouses?.length,
+  //     };
+  //   });
+  // }, []);
 
 
   const [display, setDisplay] = useState([]);
@@ -70,17 +70,17 @@ const Dashboard = () => {
     }
   };
 
-  const handleDelete = async (id) => {try {
-    const res = await axios.delete(`http://localhost:5000/users/${id}`)
-    setReloader(prevState => !prevState)
-    console.log(res)
-  } catch (err) {
-    console.log(err)
-  }
-  }
+  // const handleDelete = async (id) => {try {
+  //   const res = await axios.delete(`http://localhost:5000/users/${id}`)
+  //   setReloader(prevState => !prevState)
+  //   console.log(res)
+  // } catch (err) {
+  //   console.log(err)
+  // }
+  // }
 
   const chosenDisplay =display ?  display.map(item => <div className="bg-[#333] p-3 m-2 flex items-center" key={item._id}><p className="mr-auto">{item.area ? item.area : item.email}</p>
-  <button onClick={() => handleDelete(item._id)} className="bg-black p-2 active:bg-black/70">{item.email ? 'delete':''}</button>
+  {/* <button onClick={() => handleDelete(item._id)} className="bg-black p-2 active:bg-black/70">{item.email ? 'delete':''}</button> */}
     
   </div>) : <p>Nothing to Show here</p>
 
