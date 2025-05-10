@@ -3,9 +3,12 @@ import DataList from "./DataList";
 import Filter from "./Filter";
 import axios from "axios";
 import Footer from "./Footer";
+import Header from "./Header";
+import SideNav from "./SideNav";
+import BottomNav from "./BottomNav";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const Home = () => {
+const Listings = () => {
   const [AreaData, setAreaData] = useState(null);
   const [filteredHouseData, setFilteredHouseData] = useState(null);
   const [reloader, setReloader] = useState(false);
@@ -39,6 +42,8 @@ const Home = () => {
 
   return (
     <main className="">
+    <section className="bg-black">
+      <Header />
       <Filter
         data={AreaData}
         onHandleClick={handleFilter}
@@ -47,8 +52,11 @@ const Home = () => {
 
       <DataList data={filteredHouseData} handleReset={handleReset} />
       <Footer />
+    </section>
+    <SideNav />
+    <BottomNav />
     </main>
   );
 };
 
-export default Home;
+export default Listings;

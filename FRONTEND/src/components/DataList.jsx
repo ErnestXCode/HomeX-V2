@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-
 const DataList = ({ data, handleReset }) => {
- 
-
   const navigate = useNavigate();
   const handleHouse = async (id) => {
     try {
@@ -27,19 +24,57 @@ const DataList = ({ data, handleReset }) => {
       console.log("error", err);
     }
   };
+
+  const [index, setIndex] = useState(0);
+
+  const carouselNext = (index, itemImages) => {
+    if (index < itemImages.length - 1) {
+      setIndex((prevIdx) => prevIdx + 1);
+    }
+  };
+  const carouselPrev = (index, itemImages) => {
+    if (index <= itemImages.length - 1 && index >= 1) {
+      setIndex((prevIdx) => prevIdx - 1);
+    }
+  };
+
   const newData = data?.map((item) => {
     return (
       <div
         key={item._id}
-        className="bg-black mt-3 p-3 rounded-2xl mb-10
+        className="bg-gray-800 mt-3 p-3 rounded-2xl mb-10
         md:w-[500px] md:h-auto
         "
       >
-        <img
-          className="w-screen mb-5"
-          src={`${apiBaseUrl}/${item.image}`}
-          alt=""
-        />
+        <section className="">
+          <img
+            className="w-[100%]
+          h-70 object-cover
+          rounded-2xl
+          mb-3
+          
+
+"
+            src={`${apiBaseUrl}/${item.images[index]}`}
+            alt=""
+          />
+          <button
+            onClick={() => carouselPrev(index, item.images)}
+            className="p-4 rounded-2xl bg-black/70 text-white
+            mr-5
+             "
+          >
+            prev
+          </button>
+          <button
+            onClick={() => carouselNext(index, item.images)}
+            className="p-4 rounded-2xl bg-black/70 text-white
+            
+            "
+          >
+            next
+          </button>
+        </section>
         <h3 className="text-blue-400 font-bold p-1 text-[1rem]">
           Price:{" "}
           <span className="text-white font-semibold">{item.pricing}</span>
@@ -77,7 +112,8 @@ const DataList = ({ data, handleReset }) => {
   return (
     <main
       className="
-  md:flex md:gap-4 overflow-visible
+  md:flex md:gap-4
+  p-5
   "
     >
       {newData}

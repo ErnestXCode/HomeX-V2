@@ -18,16 +18,23 @@ const IndividualHouse = () => {
     getData();
   }, [id]);
 
+
+  
+ 
   return (
     <div
       className="bg-black mt-3 p-3 rounded-2xl min-h-30 mb-10
         md:w-[500px] md:h-auto mr-auto ml-auto"
-    >
+    ><div>
+      
       <img
-        className="w-screen"
-        src={`${apiBaseUrl}/${data?.image}`}
+        className="w-[100%]"
+        src={`${apiBaseUrl}/${data?.images[0]}`}
         alt=""
       />
+    </div>
+    {/* make better */}
+
       <h3 className="text-blue-400 font-bold p-1 text-[1rem]">
         Price: <span className="text-white font-semibold">{data?.pricing}</span>
       </h3>

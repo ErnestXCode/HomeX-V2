@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from '../features/users/userSlice'
+import styleSlice from '../features/stylings/styleSlice'
 
 const store = configureStore({
     reducer: {
-        'user': userSlice
+        'user': userSlice,
+        'customStyles': styleSlice
     }
 })
 
