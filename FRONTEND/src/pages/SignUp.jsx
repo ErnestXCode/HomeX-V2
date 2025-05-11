@@ -9,15 +9,26 @@ import {
   signInSuccess,
 } from "../features/users/userSlice";
 import WelcomeHero from "../components/WelcomeHero";
+import CustomInputBox from "../components/CustomInputBox";
+import Modal from "../components/Modal";
+import SubmitButton from "../components/SubmitButton";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
-    nameRef.current.focus();
+    nameRef.current?.focus();
   }, []);
 
   const inputDict = {
@@ -45,7 +56,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(signInStart());
-
     try {
       const newUser = await axios.post(`${apiBaseUrl}/users`, {
         ...inputData,
@@ -60,6 +70,7 @@ const SignUp = () => {
 
       const data = await newUser.data;
       console.log(data);
+      localStorage.setItem('user', JSON.stringify(data))
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (err) {
@@ -76,58 +87,42 @@ const SignUp = () => {
         className="bg-black mb-10 mt-2 p-3 flex flex-col md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
         onSubmit={handleSubmit}
       >
-        <label className="mt-2 mb-1 font-normal" htmlFor="name">
-          Name:{" "}
-        </label>
-        <input
-          ref={nameRef}
-          name="name"
-          required
+        <CustomInputBox
+          id={"name"}
+          name={"name"}
           value={inputData.name}
-          onChange={handleChange}
-          type="text"
-          id="name"
-          className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
-        <label className="mt-2 mb-1 font-normal" htmlFor="email">
-          Email:{" "}
-        </label>
-        <input
-          name="email"
-          value={inputData.email}
-          required
-          onChange={handleChange}
-          type="email"
-          id="email"
-          autoComplete="off"
-          className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
-        <label className="mt-2 mb-1 font-normal" htmlFor="phoneNumber">
-          Phone number:{" "}
-        </label>
-        <input
-          name="phoneNumber"
-          value={inputData.phoneNumber}
-          autoComplete="off"
-          required
-          onChange={handleChange}
-          type="text"
-          id="phoneNumber"
-          className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
-        <label className="mt-2 mb-1 font-normal" htmlFor="password">
-          Password:{" "}
-        </label>
-        <input
-          name="password"
-          value={inputData.password}
-          autoComplete="off"
-          required
-          onChange={handleChange}
-          type="password"
-          id="password"
-          className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
+          type={"text"}
+          onChange={(e) => handleChange(e)}
+        >
+          Name:
+        </CustomInputBox>
+        <CustomInputBox
+          id={"email"}
+          name={"email"}
+          value={inputData?.email}
+          type={"email"}
+          onChange={(e) => handleChange(e)}
+        >
+          Email:
+        </CustomInputBox>
+        <CustomInputBox
+          id={"phoneNumber"}
+          name={"phoneNumber"}
+          value={inputData?.phoneNumber}
+          type={"text"}
+          onChange={(e) => handleChange(e)}
+        >
+          Phone number:
+        </CustomInputBox>
+        <CustomInputBox
+          id={"password"}
+          name={"password"}
+          value={inputData?.password}
+          type={"password"}
+          onChange={(e) => handleChange(e)}
+        >
+          Password:
+        </CustomInputBox>
         <section className="flex items-center gap-4 mb-2">
           <input
             name="isLandlord"
@@ -144,21 +139,25 @@ const SignUp = () => {
           </label>
         </section>
         <section className="flex justify-around items-center mt-4 mb-4 gap-2">
-          <input type="checkbox" name="" id="radio"
-           required
-          className="appearance-none w-5 h-5 border-blue-400 border-2 text-white cursor-pointer rounded-full
+          <input
+            type="checkbox"
+            name=""
+            id="radio"
+            required
+            className="appearance-none w-5 h-5 border-blue-400 border-2 text-white cursor-pointer rounded-full
           checked:bg-blue-400 "
-            />
+          />
           <label htmlFor="radio">
             I have read and agree to accept{" "}
             <span className="text-blue-400 underline">
-              <Link to="/">User Agreement</Link>
+              <button onClick={openModal}>User Agreement</button>
+              <Modal isOpen={showModal} onClick={() => closeModal()}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed illum quidem, a numquam eum rerum laudantium. Maiores perferendis quidem est. Inventore aspernatur ullam optio dignissimos deleniti voluptatem iste consequuntur eum.
+              </Modal>
             </span>
           </label>
         </section>
-        <button className="bg-blue-600 mb-2 cursor-pointer hover:bg-blue-500 active:border-3 hover:text-white w-[100%] text-slate-50 border-2 border-black pt-2 pb-2 pr-3 pl-3 mr-auto ml-auto rounded-2xl font-normal">
-          Register
-        </button>
+        <SubmitButton>Register</SubmitButton>
         <p className="mt-4 font-serif text-center">
           Already have an account?{" "}
           <Link

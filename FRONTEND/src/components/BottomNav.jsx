@@ -1,32 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { selectCurrentUser } from "../features/users/userSlice";
+import NavElements from "./NavElements";
 
 const BottomNav = () => {
   const user = useSelector(selectCurrentUser);
   return (
     <nav className="bg-black/90 p-4 fixed bottom-0 mt-auto md:hidden w-screen">
       <ul className="flex gap-3 justify-around">
-        {/* use icons */}
-        <li>
-          <Link className="p-2" to="/">Home</Link>{" "}
-        </li>
+        <NavElements link={"/"}>Home</NavElements>
+
         {user?.isLandlord || user?.isAdmin ? (
-          <li>
-            <Link className="p-2" to="/post-house">Create</Link>{" "}
-          </li>
+          <NavElements link={"/post-house"}>Create</NavElements>
         ) : (
-          <li>
-            <Link className="p-2" to="/help">Help</Link>{" "}
-          </li>
+          <NavElements link={"/help"}>Help</NavElements>
         )}
-        <li>
-          <Link className="p-2" to="/about-us">About</Link>{" "}
-        </li>
-          <li>
-            <Link className="p-2" to={user ? "/profile" : '/signup'}>Account</Link>{" "}
-          </li>
+        <NavElements link={"/about-us"}>About</NavElements>
+        <NavElements link={user ? "/profile" : "/signup"}>Account</NavElements>
       </ul>
     </nav>
   );

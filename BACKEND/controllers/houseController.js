@@ -91,9 +91,7 @@ const deleteHouse = async (req, res) => {
 
     const result = await House.findByIdAndDelete(id, { new: true });
     if (!result) return res.status(200).json({ error: "House does not exist" });
-    for (let imageUrl of result.images) {
-      if (fs.existsSync(imageUrl)) fs.rmSync(imageUrl);
-    }
+    // delete images from uploads before deploying
     res.status(200).json({ status: "successfully deleted house" });
   } catch (error) {
     console.log("error deleting house", error);

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ViewButton from "./viewButton";
+import ListText from "./ListText";
+import CarouselButton from "./CarouselButton";
+import CarouselImage from "./CarouselImage";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const DataList = ({ data, handleReset }) => {
@@ -42,83 +46,33 @@ const DataList = ({ data, handleReset }) => {
     return (
       <div
         key={item._id}
-        className="bg-gray-800 mt-3 p-3 rounded-2xl mb-10
-        md:w-[500px] md:h-auto
-        "
+        className="bg-gray-800 mt-3 p-3 rounded-2xl mb-10 md:w-[500px] md:h-auto"
       >
         <section className="">
-          <img
-            className="w-[100%]
-          h-70 object-cover
-          rounded-2xl
-          mb-3
-          
-
-"
-            src={`${apiBaseUrl}/${item.images[index]}`}
-            alt=""
-          />
-          <button
-            onClick={() => carouselPrev(index, item.images)}
-            className="p-4 rounded-2xl bg-black/70 text-white
-            mr-5
-             "
-          >
+          <CarouselImage item={item} apiBaseUrl={apiBaseUrl} index={index} />
+          <CarouselButton onClick={() => carouselPrev(index, item.images)}>
             prev
-          </button>
-          <button
-            onClick={() => carouselNext(index, item.images)}
-            className="p-4 rounded-2xl bg-black/70 text-white
-            
-            "
-          >
+          </CarouselButton>
+          <CarouselButton onClick={() => carouselNext(index, item.images)}>
             next
-          </button>
+          </CarouselButton>
         </section>
-        <h3 className="text-blue-400 font-bold p-1 text-[1rem]">
-          Price:{" "}
-          <span className="text-white font-semibold">{item.pricing}</span>
-        </h3>
-        <p className="text-blue-400 font-bold p-1 text-[1rem]">
-          Area: <span className="text-white font-semibold">{item.area}</span>
-        </p>
-        <p className="text-blue-400 font-bold p-1 text-[1rem]">
-          Landmarks:{" "}
-          <span className="text-white font-semibold">{item.landMarks}</span>
-        </p>
 
-        <section className="flex">
-          <button
-            className="bg-gray-600 
-        pt-1 pb-1 pr-3 pl-3 text-center 
-        font-serif m-2 mt-3 ml-auto rounded-[10px] hover:cursor-pointer"
-            onClick={() => handleHouse(item._id)}
-          >
-            view
-          </button>
-          <button
-            onClick={() => handleDelete(item._id)}
-            className="bg-red-600 pt-1 pb-1 pr-3 pl-3 text-center 
-        font-serif m-2 mt-3 rounded-[10px] hover:cursor-pointer
-       active:border-2"
-          >
-            delete
-          </button>
+        <ListText content={item.landMarks}>Landmarks: </ListText>
+        <ListText content={item.pricing}>Price: </ListText>
+        <ListText content={item.area}>Area: </ListText>
+        <ListText content={item.landMarks}>Landmarks: </ListText>
+
+        <section className="flex justify-between m-3">
+          {/* <ViewButton onClick={() => handleHouse(item._id)}>view</ViewButton> */}
+          {/* create a modal for here */}
+          <ViewButton onClick={() => handleDelete(item._id)}>delete</ViewButton>
         </section>
       </div>
     );
   });
 
-  return (
-    <main
-      className="
-  md:flex md:gap-4
-  p-5
-  "
-    >
-      {newData}
-    </main>
-  );
+  return <main className="md:flex md:gap-4 p-5">{newData}</main>;
 };
 
 export default DataList;

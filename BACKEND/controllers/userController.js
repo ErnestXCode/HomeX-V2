@@ -14,6 +14,7 @@ const createUser = async (req, res) => {
     const userCreated = await new User(content);
     await userCreated.save();
     handleToken(res, userCreated._id);
+    // hide password
     res.status(200).json(userCreated);
   } catch (err) {
     console.log(err);
@@ -31,7 +32,6 @@ const getAllUsers = async (req, res) => {
 };
 
 const getCurrentUserProfile = async (req, res) => {
-  // previously getUserById
   try {
     const profile = req.user;
     res.status(200).json(profile);

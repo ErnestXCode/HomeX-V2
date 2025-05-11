@@ -9,12 +9,13 @@ const styleSlice = createSlice({
     name: 'customStyles',
     initialState, 
     reducers: {
-        toggleSideNav: (state) => {state.isOpen = !state.isOpen},
+        openSideNav: (state) => {state.isOpen = true},
+        closeSideNav: (state) => {state.isOpen = false},
         toggleBrowseListings: (state) => {state.isBrowseOpen = !state.isBrowseOpen}
     }
 })
 
-export const { toggleSideNav, toggleBrowseListings } = styleSlice.actions;
+export const { openSideNav, closeSideNav, toggleBrowseListings } = styleSlice.actions;
 export const selectSidebarState = (state) => state.customStyles.isOpen; 
 export const selectBrowseListingsState = (state) => state.customStyles.isBrowseOpen; 
 export default styleSlice.reducer;

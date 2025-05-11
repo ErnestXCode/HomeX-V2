@@ -2,18 +2,16 @@ const Area = require("../models/areaModel");
 
 const createArea = async (req, res) => {
   const content = req.body;
-  if (!content.area)
-    return res.status(400).json({ error: "invalid request, provide an area" });
-
   try {
     const newArea = await new Area(content);
-    newArea.save();
+    await newArea.save();
     res.status(201).json(newArea);
   } catch (error) {
     console.log("error creating area", error);
     res.status(400).json(error);
   }
 };
+// something is wrong
 
 const getArea = async (req, res) => {
   const { id } = req.params;

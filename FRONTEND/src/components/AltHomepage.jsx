@@ -1,19 +1,30 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleBrowseListings } from '../features/stylings/styleSlice'
-// import bgImage from '../assets/bg3.jpg'
+import bgImage from '../assets/bg3.jpg'
 import Header from './Header'
+import { Link } from 'react-router-dom'
 
 const AltHomepage = () => {
     const dispatch = useDispatch()
-//     const bgStyles = {
-//         backgroundImage: `url(${bgImage})`
-//     }
-//     // not working
+    const bgStyles = {
+        backgroundImage: `url(${bgImage})`
+    }
+
   return (
     <>
     <Header />
-    <div className='bg-cover bg-yellow-800 bg-blend-luminosity'>
+    <nav className="bg-black text-white sticky top-0 z-20 p-2 flex">
+      <ul className='flex items-center gap-2 m-2 mr-2'>
+        <li>
+          <Link to='/login' className='active:bg-gray-500 text-blue-500 p-2 rounded-2xl'>Log in</Link>
+        </li>
+        <li>
+          <Link to='/signup' className='active:bg-gray-500 text-blue-500 p-2 rounded-2xl'>Sign up</Link>
+        </li>
+      </ul>
+      </nav>
+    <div style={bgStyles} className='bg-cover'>
         <section className='bg-black/70 p-3'>
         <h1 className='text-5xl font-semibold'>Find your </h1>
         <h1 className='text-5xl font-semibold mb-5'>perfect Home </h1>

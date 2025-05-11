@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import DataList from "./DataList";
-import Filter from "./Filter";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
+import Filter from "./Filter";
 import Header from "./Header";
-import SideNav from "./SideNav";
 import BottomNav from "./BottomNav";
+const DataList = lazy(() => import("./DataList"));
+const SideNav = lazy(() => import("./SideNav"));
+const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Listings = () => {
@@ -42,19 +42,21 @@ const Listings = () => {
 
   return (
     <main className="">
-    <section className="bg-black">
-      <Header />
-      <Filter
-        data={AreaData}
-        onHandleClick={handleFilter}
-        handleReset={handleReset}
-      />
+      <section className="bg-black">
+        <Header />
+        <Filter
+          data={AreaData}
+          onHandleClick={handleFilter}
+          handleReset={handleReset}
+        />
+        
+        <Suspense fallback={"loading..."}>
+          <DataList data={filteredHouseData} handleReset={handleReset} />
+        </Suspense>
 
-      <DataList data={filteredHouseData} handleReset={handleReset} />
-      <Footer />
-    </section>
-    <SideNav />
-    <BottomNav />
+        <Footer />
+      </section>
+      <BottomNav />
     </main>
   );
 };

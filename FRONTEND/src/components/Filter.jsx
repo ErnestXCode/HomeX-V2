@@ -1,25 +1,17 @@
 import React from "react";
+import FilterButton from "./FilterButton";
 
 const Filter = ({ data, onHandleClick, handleReset }) => {
   const filterAreaArray = data?.map((area) => {
     return (
-      <button
-        onClick={() => onHandleClick(area.area)}
-        key={area._id}
-        className="rounded-2xl bg-black/80 p-2 pr-3 pl-3 border-2 border-blue-400 hover:cursor-pointer hover:border-blue-200"
-      >
+      <FilterButton onClick={() => onHandleClick(area.area)} key={area._id}>
         {area.area}
-      </button>
+      </FilterButton>
     );
   });
   return (
-    <section className="flex gap-3 m-3 fixed">
-      <button
-        onClick={() => handleReset()}
-        className="rounded-2xl bg-black p-2 pr-3 pl-3 border-2 border-blue-400 hover:cursor-pointer hover:border-blue-200"
-      >
-        All
-      </button>
+    <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mb-0 mt-0 p-2 sticky top-18">
+      <FilterButton onClick={() => handleReset()}>All</FilterButton>
       {filterAreaArray}
     </section>
   );

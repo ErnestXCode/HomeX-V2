@@ -11,26 +11,25 @@ const connectDB = require("./config/db");
 const app = express();
 dotenv.config()
 
-// const whiteList = ['http://localhost:5173/']
+const whiteList = ['http://localhost:5173']
 
-// const corsOptions = {
-//     origin: function(origin, callback){
-//         if(whiteList.indexOf(origin) !== -1 || !origin){
-//             callback(null, true)
-//         }
-//         else{
-//             callback(new Error('Not allowed by CORS'))
-//         }
-//     },
-//     credentials: true
-// }
+const corsOptions = {
+    origin: function(origin, callback){
+        if(whiteList.indexOf(origin) !== -1 || !origin){
+            callback(null, true)
+        }
+        else{
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    credentials: true
+}
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 
-app.use(cors());
 app.use(cookieParser());
 app.use("/", express.urlencoded({ extended: true }));
-app.use("/", express.json({ limit: "10mb" })); // important: allow large json bodies,,,,,base64 for image
+app.use("/", express.json());
 
 
 const uploadPath = path.join(__dirname, "uploads");

@@ -1,17 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Home from "./pages/Home";
-// import IndividualHouse from "./pages/IndividualHouse";
-// import PostHouse from "./pages/PostHouse";
-// import Login from "./pages/LogIn";
-// import Admin from "./pages/Admin";
-// import SignUp from "./pages/SignUp";
-// import AboutUs from "./pages/AboutUs";
-// import Profile from "./pages/Profile";
-// import ContactUs from "./pages/ContactUs";
-// import Donations from "./pages/Donations";
-// import Help from "./pages/Help";
-
 import { lazy, Suspense } from "react";
+import Trials from "./pages/Trials";
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
 const PostHouse = lazy(() => import("./pages/PostHouse"));
@@ -32,6 +21,7 @@ function App() {
           
           <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/trials" element={<Trials />}></Route>
             <Route path="/house/:id" element={<IndividualHouse />}></Route>
             <Route path="/post-house" element={<PostHouse />}></Route>
             <Route path="/login" element={<Login />}></Route>

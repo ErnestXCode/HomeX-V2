@@ -5,6 +5,7 @@ const handleToken = require("../middleware/handleToken");
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
+
   if (!email || !password) {
     return res.status(400).json({ error: "All Credentials Are Mandatory" });
   }
@@ -14,6 +15,8 @@ const loginUser = async (req, res) => {
   const verifiedPassword = await bcrypt.compare(password, user.password);
   if (!verifiedPassword)
     return res.status(400).json({ error: "invalid credentials" });
+
+  // hide password
 
   handleToken(res, user.id);
   res.status(200).json(user);

@@ -1,24 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   signInFailure,
   signInStart,
   signInSuccess,
 } from "../features/users/userSlice";
 import WelcomeHero from "../components/WelcomeHero";
+import CustomInputBox from "../components/CustomInputBox";
+import SubmitButton from "../components/SubmitButton";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.user);
+  // const { loading } = useSelector((state) => state.user);
 
   const emailRef = useRef();
 
   useEffect(() => {
-    emailRef.current.focus();
+    emailRef.current?.focus();
   }, []);
 
   const inputDict = {
@@ -42,18 +43,26 @@ const Login = () => {
     dispatch(signInStart());
 
     try {
-      const validUser = await axios.post(
-        `${apiBaseUrl}/login`,
-        inputData
-      );
+      const res = await fetch(`${apiBaseUrl}/login`, {
+        method: 'POST', 
+        credentials: 'include', 
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      });
+      // look if possible with axios
 
-      if (validUser.status !== 200) {
+      if (!res.ok) {
         dispatch(signInFailure("Failed to validate user"));
         return;
       }
 
-      const data = await validUser.data;
+      const data = await res.json();
+      localStorage.setItem('user', JSON.stringify(data))
       dispatch(signInSuccess(data));
+      console.log(data)
+  
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
@@ -63,55 +72,46 @@ const Login = () => {
 
   return (
     <>
-    <WelcomeHero />
-    <form
-      onSubmit={handleSubmit}
-      className="bg-black mb-10 mt-2 p-3 flex flex-col md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
+      <WelcomeHero />
+      <form
+        onSubmit={handleSubmit}
+        className="bg-black mb-10 mt-2 p-3 flex flex-col md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
       >
+        <CustomInputBox
+          id={"email"}
+          name={"email"}
+          value={inputData.email}
+          type={"email"}
+          onChange={(e) => handleChange(e)}
+        >
+          Email:
+        </CustomInputBox>
+        <CustomInputBox
+          id={"password"}
+          name={"password"}
+          value={inputData.password}
+          type={"password"}
+          onChange={(e) => handleChange(e)}
+        >
+          Password:
+        </CustomInputBox>
 
-      <label className="mt-2 mb-1 font-normal" htmlFor="email">
-        Email:{" "}
-      </label>
-      <input
-        ref={emailRef}
-        required
-        autoComplete="off"
-        onChange={handleChange}
-        value={inputData.email}
-        name="email"
-        type="email"
-        id="email"
-        className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
-      <label className="mt-2 mb-1 font-normal" htmlFor="password">
-        Password:{" "}
-      </label>
-      <input
-        onChange={handleChange}
-        required
-        value={inputData.password}
-        autoComplete="off"
-        name="password"
-        type="password"
-        id="password"
-        className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
-        />
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-600 mt-4 mb-2 cursor-pointer hover:bg-blue-500 active:border-3 hover:text-white w-[100%] text-slate-50 border-2 border-black pt-2 pb-2 pr-3 pl-3 mr-auto ml-auto rounded-2xl font-normal">
-        {loading ? "Logging In..." : "Log In"}
-      </button>
+        {/* disabled={loading} */}
+        {/* {loading ? "Logging In..." : "Log In"} */}
+        <SubmitButton>Log in</SubmitButton>
 
-      <p className="mt-4 font-serif text-center">
-        {" "}
-        Don't have an account?{" "}
-        <Link className="border-b-3 border-blue-500 text-blue-200" to="/signup">
-          Sign Up
-        </Link>
-      </p>
-    </form>
-        </>
+        <p className="mt-4 font-serif text-center">
+          {" "}
+          Don't have an account?{" "}
+          <Link
+            className="border-b-3 border-blue-500 text-blue-200"
+            to="/signup"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </>
   );
 };
 

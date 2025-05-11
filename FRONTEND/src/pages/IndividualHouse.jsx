@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+import CarouselImage from "../components/CarouselImage";
+import ListText from "../components/ListText";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
@@ -25,34 +27,18 @@ const IndividualHouse = () => {
     <div
       className="bg-black mt-3 p-3 rounded-2xl min-h-30 mb-10
         md:w-[500px] md:h-auto mr-auto ml-auto"
-    ><div>
-      
-      <img
-        className="w-[100%]"
-        src={`${apiBaseUrl}/${data?.images[0]}`}
-        alt=""
-      />
-    </div>
-    {/* make better */}
+    >
 
-      <h3 className="text-blue-400 font-bold p-1 text-[1rem]">
-        Price: <span className="text-white font-semibold">{data?.pricing}</span>
-      </h3>
-      <p className="text-blue-400 font-bold p-1 text-[1rem]">
-        Area: <span className="text-white font-semibold">{data?.area}</span>
-      </p>
-      <p className="text-blue-400 font-bold p-1 text-[1rem]">
-        Landmarks:{" "}
-        <span className="text-white font-semibold">{data?.landMarks}</span>
-      </p>
-      <p className="text-blue-400 font-bold p-1 text-[1rem]">
-        Landlord:{" "}
-        <span className="text-white font-semibold">{data?.landLord.name}</span>
-      </p>
-      <p className="text-blue-400 font-bold p-1 text-[1rem]">
-        Email:{" "}
-        <span className="text-white font-semibold">{data?.landLord.email}</span>
-      </p>
+        <section className="">
+          <CarouselImage item={data} apiBaseUrl={apiBaseUrl} index={0} />
+        </section>
+
+        <ListText content={data?.landMarks}>Landmarks: </ListText>
+        <ListText content={data?.pricing}>Price: </ListText>
+        <ListText content={data?.area}>Area: </ListText>
+        <ListText content={data?.landMarks}>Landmarks: </ListText>
+        <ListText content={data?.landLord.name}>Landlord: </ListText>
+        <ListText content={data?.landLord.email}>Email: </ListText>
 
       <section className="w-screen mt-4 mb-4">
         <button className="bg-blue-700 p-2 rounded-2xl pr-3 pl-3">
