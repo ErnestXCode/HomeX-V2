@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { FaBeer } from "react-icons/fa";
 
 const Modal = ({isOpen, onclose , children}) => {
   return (
@@ -22,7 +23,7 @@ const Another = () => {
   const [showModal, setShowModal] = useState(false)
   return [
     <>
-    <button onClick={() => setShowModal(true)}>Show Details</button>
+    <button onClick={() => setShowModal(true)}>Show Details <FaBeer /></button>
     <Modal isOpen={showModal} onclose={() => setShowModal(false)}>
     <h2 className='text-xl font-bold mb-2 text-black'>House Details</h2>
     </Modal>

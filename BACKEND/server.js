@@ -11,21 +11,20 @@ const connectDB = require("./config/db");
 const app = express();
 dotenv.config()
 
-const whiteList = ['http://localhost:5173']
+const whiteList = [process.env.VITE_URL];
 
 const corsOptions = {
-    origin: function(origin, callback){
-        if(whiteList.indexOf(origin) !== -1 || !origin){
-            callback(null, true)
-        }
-        else{
-            callback(new Error('Not allowed by CORS'))
+    origin: (origin, callback) => {
+        if (whiteList.includes(origin) || !origin) {
+            callback(null, true); // Allow the request
+        } else {
+            callback(new Error('Not allowed by CORS')); // Reject the request
         }
     },
     credentials: true
-}
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use("/", express.urlencoded({ extended: true }));
