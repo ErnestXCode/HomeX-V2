@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ViewButton from "./viewButton";
+import ViewButton from "./ViewButton";
 import ListText from "./ListText";
 import CarouselButton from "./CarouselButton";
 import CarouselImage from "./CarouselImage";
