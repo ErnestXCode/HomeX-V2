@@ -130,11 +130,11 @@ const SignUp = () => {
             onChange={handleCheckBoxChange}
             id="isLandlord"
             type="checkbox"
-            className="appearance-none w-7 h-7 border-blue-500 border-2 text-white cursor-pointer
+            className="appearance-none w-4 h-4 border-blue-500 border-2 text-white cursor-pointer
         checked:bg-blue-500
         "
           />
-          <label htmlFor="isLandlord" className="mt-2 mb-1 font-normal">
+          <label htmlFor="isLandlord" className="mt-2  mb-1 text-[.8rem]">
             Are you a Landlord ?{" "}
           </label>
         </section>
@@ -144,10 +144,10 @@ const SignUp = () => {
             name=""
             id="radio"
             required
-            className="appearance-none w-5 h-5 border-blue-400 border-2 text-white cursor-pointer rounded-full
+            className="appearance-none w-3  h-3 border-blue-400 border-2 text-white cursor-pointer rounded-full
           checked:bg-blue-400 "
           />
-          <label htmlFor="radio">
+          <label htmlFor="radio" className="text-[.8rem]">
             I have read and agree to accept{" "}
             <span className="text-blue-400 underline">
               <button onClick={openModal}>User Agreement</button>
@@ -158,7 +158,7 @@ const SignUp = () => {
           </label>
         </section>
         <SubmitButton>Register</SubmitButton>
-        <p className="mt-4 font-serif text-center">
+        <p className="mt-4 font-serif text-center text-[.8rem]">
           Already have an account?{" "}
           <Link
             className="border-b-3 border-blue-600 text-blue-200"

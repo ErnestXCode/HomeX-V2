@@ -3,7 +3,7 @@ import React from "react";
 const CustomInputBox = ({ name, value, onChange, type, id, children }) => {
   return (
     <>
-      <label className="mt-2 mb-1 font-normal" htmlFor={id}>
+      <label className="m-6 mt-2 mb-1 text-[.8rem]" htmlFor={id}>
         {children}
       </label>
       <input
@@ -15,7 +15,7 @@ const CustomInputBox = ({ name, value, onChange, type, id, children }) => {
         onChange={onChange}
         type={type}
         id={id}
-        className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
+        className="bg-gray-700 text-slate-50 p-1 pl-3 m-4 mb-0 mt-0 rounded-2xl"
       />
     </>
   );

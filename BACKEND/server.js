@@ -4,6 +4,8 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv')
+const compression = require('compression')
+const helmet = require('helmet')
 
 const connectDB = require("./config/db");
 
@@ -24,8 +26,9 @@ const corsOptions = {
     credentials: true
 };
 
+app.use(compression())
+// app.use(helmet())   inafanya sijui si same origin so inakata for now
 app.use(cors(corsOptions));
-
 app.use(cookieParser());
 app.use("/", express.urlencoded({ extended: true }));
 app.use("/", express.json());

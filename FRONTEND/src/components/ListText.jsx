@@ -2,9 +2,9 @@ import React from 'react'
 
 const ListText = ({content, children}) => {
   return (
-    <p className="text-blue-400 font-bold p-1 text-[1rem]">
+    <p className="text-gray-300 text-[.8rem] font-semibold p-1">
               {children}
-              <span className="text-white font-semibold">{content}</span>
+              <span className="text-white font-normal">{content}</span>
             </p>
   )
 }

@@ -8,6 +8,7 @@ const {
 } = require("../controllers/areaController");
 const handleAuth = require("../middleware/handleAuth");
 const handleAdminAuth = require("../middleware/handleLandLord");
+const handleCache = require("../middleware/handleCache");
 
 const router = express.Router();
 
