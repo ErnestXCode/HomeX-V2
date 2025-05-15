@@ -8,6 +8,7 @@ import NavElements from "./NavElements";
 import SideNavCard from "./SideNavCard";
 import SideNavLayout from "./SideNavLayout";
 import SidebarButton from "./SidebarButton";
+import { FaCross, FaCrosshairs } from "react-icons/fa";
 
 const SideNav = () => {
 
@@ -20,7 +21,7 @@ const SideNav = () => {
       onClick={() => dispatch(closeSideNav())}
     >
       <button onClick={() => dispatch(closeSideNav())} className="ml-auto">
-        X
+        <FaCrosshairs />
       </button>
       <SidebarButton white={true} link={'login'}>Log in</SidebarButton>
       <SidebarButton link={'/signup'}>Register</SidebarButton>

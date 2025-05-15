@@ -1,44 +1,37 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import axios from "axios";
 import Filter from "./Filter";
 import Header from "./Header";
 import BottomNav from "./BottomNav";
-const DataList = lazy(() => import("./DataList"));
+import { useQuery } from "@tanstack/react-query";const DataList = lazy(() => import("./DataList"));
 const SideNav = lazy(() => import("./SideNav"));
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Listings = () => {
-  const [AreaData, setAreaData] = useState(null);
-  const [filteredHouseData, setFilteredHouseData] = useState(null);
-  const [reloader, setReloader] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(`${apiBaseUrl}/areas`)
-      .then((res) => setAreaData(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+ const AreaQueryData = useQuery({
+  queryKey: ['areas'], 
+  queryFn: async() => await axios.get(`${apiBaseUrl}/areas`)
+ })
 
-  useEffect(() => {
-    axios
-      .get(`${apiBaseUrl}/houses`)
-      .then((res) => setFilteredHouseData(res.data))
-      .catch((err) => console.log(err));
-  }, [reloader]);
+ const AreaData = AreaQueryData?.data?.data
 
-  const handleFilter = async (area) => {
-    try {
-      const res = await axios.get(`${apiBaseUrl}/houses/area/${area}`);
-      setFilteredHouseData(res.data);
-    } catch (err) {
-      console.log("ERROR:    ", err);
-    }
-  };
+const HouseQueryData = useQuery({ 
+  queryKey:['houses'], 
+  queryFn: async() => await axios.get(`${apiBaseUrl}/houses`)
+})
 
-  const handleReset = () => {
-    setReloader((prevState) => !prevState);
-  };
+const HouseData = HouseQueryData?.data?.data
+
+  // const handleFilter = async (area) => {
+  //   try {
+  //     const res = await axios.get(`${apiBaseUrl}/houses/area/${area}`);
+  //     setFilteredHouseData(res.data);
+  //   } catch (err) {
+  //     console.log("ERROR:    ", err);
+  //   }
+  // };
 
   return (
     <main className="">
@@ -46,12 +39,11 @@ const Listings = () => {
         <Header />
         <Filter
           data={AreaData}
-          onHandleClick={handleFilter}
-          handleReset={handleReset}
+          // onHandleClick={handleFilter}
         />
         
         <Suspense fallback={"loading..."}>
-          <DataList data={filteredHouseData} handleReset={handleReset} />
+          <DataList data={HouseData}/>
         </Suspense>
 
         <Footer />

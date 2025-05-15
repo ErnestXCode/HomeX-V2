@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { openSideNav, toggleBrowseListings } from "../features/stylings/styleSlice";
 import { useDispatch } from "react-redux";
 import SideNav from "./SideNav";
+import { FaBars } from "react-icons/fa";
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const Header = () => {
         onClick={() => dispatch(openSideNav())}
           className="ml-auto md:hidden cursor-pointer active:bg-gray-600 p-3 rounded-2xl"
         >
-          hamburger
+          <FaBars />
           {/* hamburger haifanyi hii side ya althomepage i wonder why */}
         </button>
       </section>

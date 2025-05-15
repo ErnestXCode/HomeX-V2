@@ -15,7 +15,7 @@ const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
   return (
-    <div className="bg-black min-h-screen flex flex-col text-white">
+    <div className="bg-black min-h-screen flex flex-col text-white text-[0.8rem]">
       <Router>
         <Suspense fallback={'Loading...'}>
           
