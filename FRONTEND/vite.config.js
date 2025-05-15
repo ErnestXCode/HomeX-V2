@@ -23,12 +23,12 @@ export default defineConfig({
         display: 'standalone', // Display mode (like a native app)
         icons: [
           {
-            src: './src/assets/pwa-assets/android-launchericon-192-192.png',
+            src: './src/assets/pwa-images/android-launchericon-192-192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: './src/assets/pwa-assets/android-launchericon-512-512.png',
+            src: './src/assets/pwa-images/android-launchericon-512-512.png',
             sizes: '512x512',
             type: 'image/png',
           },

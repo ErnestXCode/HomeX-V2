@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv')
 const compression = require('compression')
 const helmet = require('helmet')
-
+// verification of data availability in the controllers -----remember
 const connectDB = require("./config/db");
 
 // const { options } = require("./routes/user");

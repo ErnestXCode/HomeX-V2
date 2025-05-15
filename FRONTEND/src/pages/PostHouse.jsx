@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import imageCompression from "browser-image-compression";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 import axios from "axios";
@@ -32,12 +33,22 @@ const PostHouse = () => {
       };
     });
   };
-  console.log(inputData)
+  console.log(inputData);
 
-  const handleimagesChange = (e) => {
+  const handleimagesChange = async (e) => {
     e.preventDefault();
     if (e.target.files.length <= 3) {
-      setImages(Array.from(e.target.files));
+      const files = Array.from(e.target.files);
+      const compressedFiles = await Promise.all(
+        files.map((file) =>
+          imageCompression(file, {
+            maxSizeMB: 0.5,
+            maxWidthOrHeight: 1024,
+            useWebWorker: true,
+          })
+        )
+      );
+      setImages(compressedFiles);
     } else {
       throw new Error("limit of 3 exceeded");
     }

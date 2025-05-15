@@ -11,21 +11,21 @@ const createHouse = async (req, res) => {
     !content.landMarks ||
     !content.landLord
   ) {
-    console.log('check 1')
+    console.log("check 1");
     return res.status(400).json({ error: "All inputs are mandatory" });
   }
   try {
     const verifiedUser = await User.findById(content.landLord);
-    console.log('check 2')
+    console.log("check 2");
 
     if (!verifiedUser) return res.status(400).json("user not authorized");
     if (!req.files) return res.status(400).json("image required");
-    console.log('check 3')
+    console.log("check 3");
 
     const imagePaths = req.files.map((file) => file.filename);
     const data = { ...content, images: imagePaths };
     const newHouse = await new House(data);
-    console.log('check 4')
+    console.log("check 4");
 
     await newHouse.save();
     return res.status(200).json(newHouse);
@@ -60,13 +60,27 @@ const getHouseByArea = async (req, res) => {
 
 const getAllHouses = async (req, res) => {
   try {
-    const houses = await House.find();
-    res.status(200).json(houses);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 3;
+
+    const houses = await House.find()
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+    
+    const total = await House.countDocuments()
+
+    res.status(200).json({
+      data: houses, 
+      hasMore : page * limit < total, 
+      nextPage: page + 1
+    });
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
   }
 };
+
 const updateHouse = async (req, res) => {
   const { id } = req.params;
   if (!id)

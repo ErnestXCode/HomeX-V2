@@ -6,7 +6,7 @@ const NavElements = ({ side, onClick, link, children }) => {
     <li className="flex">
       <Link
         className={`p-2 w-[100%]
-      ${side ? "active:bg-gray-800 rounded-2xl mt-1 pl-4" : "text-base"}
+      ${side ? "active:bg-gray-800 rounded-2xl text-[0.75rem]" : "text-base"}
      `}
         to={link}
         onClick={onClick}
