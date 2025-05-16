@@ -20,6 +20,7 @@ const Header = () => {
         <button
         onClick={() => dispatch(openSideNav())}
           className="ml-auto md:hidden cursor-pointer active:bg-gray-600 p-3 rounded-2xl"
+          aria-label="menu"
         >
           <FaBars />
           {/* hamburger haifanyi hii side ya althomepage i wonder why */}

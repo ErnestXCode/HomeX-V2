@@ -13,8 +13,8 @@ import ViewButton from "./ViewButton";
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const fetchHouses = async ({page = 1}) => {
-  const { data } = await axios.get(`${apiBaseUrl}/houses?page=${page}`);
+const fetchHouses = async ({ pageParam = 1 }) => {
+  const { data } = await axios.get(`${apiBaseUrl}/houses?page=${pageParam}`);
   return data;
 };
 
@@ -29,9 +29,10 @@ const Listings = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["houses"],
+      getNextPageParam: (lastPage) => {
+        return lastPage.hasMore ? lastPage.nextPage : undefined;
+      },
       queryFn: fetchHouses,
-      getNextPageParam: (lastPage) =>
-        lastPage.hasMore ? lastPage.nextPage : undefined,
     });
 
   const loadMoreRef = useRef();
@@ -43,14 +44,13 @@ const Listings = () => {
           fetchNextPage();
         }
       },
-      { threshold: 0 },
-      
+      { threshold: 0 }
     );
     if (loadMoreRef.current) {
       observer.observe(loadMoreRef.current);
     }
     return () => {
-      if(loadMoreRef.current) observer.unobserve(loadMoreRef.current);
+      if (loadMoreRef.current) observer.unobserve(loadMoreRef.current);
     };
   });
 
@@ -126,10 +126,7 @@ const Listings = () => {
               ))}
             </div>
           ))}
-          <div
-            ref={loadMoreRef}
-            className="h-20 text-red-600 font-bold mb-39"
-          >
+          <div ref={loadMoreRef} className="h-20 text-red-600 font-bold mb-39">
             {isFetchingNextPage && <p>Loading...</p>}
           </div>
         </Suspense>
