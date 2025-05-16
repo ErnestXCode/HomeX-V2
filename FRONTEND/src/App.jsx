@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Trials from "./pages/Trials";
+import NotFound from "./pages/NotFound";
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
 const PostHouse = lazy(() => import("./pages/PostHouse"));
@@ -32,6 +33,7 @@ function App() {
             <Route path="/donate" element={<Donations />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/help" element={<Help />}></Route>
+            <Route path="/*" element={<NotFound />}></Route>
           </Routes>
         
         </Suspense>

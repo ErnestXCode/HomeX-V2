@@ -8,13 +8,14 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
+import { QueryClient, useMutation } from "@tanstack/react-query";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PostHouse = () => {
   const navigate = useNavigate();
-  const [err] = useState("");
-  // const currentUSer = useSelector(selectCurrentUser);
+  // const [err] = useState("");
   const currentUser = useSelector(selectCurrentUser);
+  if(!currentUser) navigate('/signup')
 
   const dataDict = {
     area: "",
@@ -33,7 +34,6 @@ const PostHouse = () => {
       };
     });
   };
-  console.log(inputData);
 
   const handleimagesChange = async (e) => {
     e.preventDefault();
@@ -71,15 +71,20 @@ const PostHouse = () => {
       console.log(error);
     }
   };
+  const queryClient = new QueryClient();
+
+  useMutation({
+    mutationFn: handleSubmit,
+    onSuccess: () => {
+      queryClient.invalidateQueries("houses");
+    },
+  });
 
   return (
     <form
       onSubmit={handleSubmit}
       className="bg-black mt-2 p-3 flex flex-col mb-10 md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
     >
-      <div className="m-2 rounded-2xl p-2 bg-blue-600 text-white font-bold">
-        {err}
-      </div>
       <CustomInputBox
         id={"area"}
         value={inputData.area}
@@ -102,6 +107,12 @@ const PostHouse = () => {
         className="bg-gray-700 text-slate-50 p-2 pl-3 font-bold rounded-2xl mb-3 border-2 border-blue-600"
       />
       {/* style images input better */}
+      {images[0] && (
+        <div>
+          <img src={URL.createObjectURL(images[0])} />{" "}
+          <p>and {images.length - 1} more</p>
+        </div>
+      )}
 
       <CustomInputBox
         id={"pricing"}

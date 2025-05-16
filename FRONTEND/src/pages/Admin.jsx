@@ -9,7 +9,7 @@ const Admin = () => {
 
   return (
     <div>
-        {user?.isAdmin ? <Dashboard /> : '404 not Found'}
+        {user?.isAdmin && <Dashboard />}
     </div>
   )
 }

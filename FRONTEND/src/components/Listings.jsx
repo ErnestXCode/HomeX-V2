@@ -4,17 +4,16 @@ import Filter from "./Filter";
 import Header from "./Header";
 import BottomNav from "./BottomNav";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import ViewButton from "./ViewButton";
-const DataList = lazy(() => import("./DataList"));
-const SideNav = lazy(() => import("./SideNav"));
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const fetchHouses = async (page=1) => {
+const fetchHouses = async ({page = 1}) => {
   const { data } = await axios.get(`${apiBaseUrl}/houses?page=${page}`);
   return data;
 };
@@ -35,25 +34,25 @@ const Listings = () => {
         lastPage.hasMore ? lastPage.nextPage : undefined,
     });
 
-  const [loadMoreState, setLoadMoreState] = useState('');
+  const loadMoreRef = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log(entries)
         if (entries[0].isIntersecting && hasNextPage) {
           fetchNextPage();
         }
       },
-      { threshold: 1 }
+      { threshold: 0 },
+      
     );
-    if (loadMoreState) {
-      observer.observe(loadMoreState);
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
     }
     return () => {
-      if (loadMoreState) observer.unobserve(loadMoreState);
+      if(loadMoreRef.current) observer.unobserve(loadMoreRef.current);
     };
-  }, [loadMoreState, hasNextPage]);
+  });
 
   // const HouseData = HouseQueryData?.data?.data;
 
@@ -128,10 +127,10 @@ const Listings = () => {
             </div>
           ))}
           <div
-            className="h-12 flex justify-center items-center"
+            ref={loadMoreRef}
+            className="h-20 text-red-600 font-bold mb-39"
           >
-            {isFetchingNextPage && setLoadMoreState(<p>Loading...</p>)}
-            {loadMoreState}
+            {isFetchingNextPage && <p>Loading...</p>}
           </div>
         </Suspense>
 
