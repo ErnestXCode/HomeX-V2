@@ -1,12 +1,31 @@
-const mongoose = require('mongoose') 
+const Grid = require("gridfs-stream");
+const mongoose = require("mongoose");
 
-const connectDB = async() => {
+let gridfsBucket;
+let gfs;
+
+const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI)
-    console.log('Connected to MongoDB successfully')
-  } catch (err) {
-    throw new Error('Could not connect to Mong0DB')
-  }
-}
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const db = conn.connection;
 
-module.exports = connectDB
+    gridfsBucket = new mongoose.mongo.GridFSBucket(db.db, {
+      bucketName: "uploads",
+    });
+    gfs = Grid(db.db, mongoose.mongo);
+    gfs.collection("uploads");
+
+    console.log("Connected to MongoDB and GridFS successfully");
+    return db;
+  } catch (err) {
+    throw new Error("Could not connect to Mong0DB");
+  }
+};
+const getGFS = () => gfs;
+const getGridFSBucket = () => gridfsBucket;
+
+module.exports = {
+  connectDB,
+  getGFS,
+  getGridFSBucket,
+};
