@@ -9,6 +9,7 @@ import {
 import WelcomeHero from "../components/WelcomeHero";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
+import CustomForm from "../components/CustomForm";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Login = () => {
@@ -72,10 +73,9 @@ const Login = () => {
 
   return (
     <>
-      <WelcomeHero />
-      <form
-        onSubmit={handleSubmit}
-        className="bg-black mb-10 mt-2 p-3 flex flex-col md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
+    
+      <CustomForm
+        onSubmit={(e) => handleSubmit(e)}
       >
         <CustomInputBox
           id={"email"}
@@ -98,7 +98,10 @@ const Login = () => {
 
         {/* disabled={loading} */}
         {/* {loading ? "Logging In..." : "Log In"} */}
+        <div className="p-4">
+
         <SubmitButton>Log in</SubmitButton>
+        </div>
 
         <p className="mt-4 font-serif text-center">
           {" "}
@@ -110,7 +113,7 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-      </form>
+      </CustomForm>
     </>
   );
 };

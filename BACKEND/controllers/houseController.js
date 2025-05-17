@@ -31,9 +31,9 @@ const createHouse = async (req, res) => {
           .toBuffer();
 
         const stream = Readable.from(compressedBuffer);
-        console.log("grudfs", 'gridfsBucket');
+
         const uploadStream = getGridFSBucket().openUploadStream(
-          file.originalname + ".webp",
+          file.originalname.split('.')[0] + ".webp",
           {
             contentType: "image/webp",
           }

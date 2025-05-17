@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import BottomNav from '../components/BottomNav'
 
 const AboutUs = () => {
   return <>
@@ -14,6 +15,7 @@ const AboutUs = () => {
   <div className='bg-black opacity-70 p-4 mt-4 h-[500px]'>
     Lditate maxime quo. Dolores ad sapiente nisi! Eaque architecto itaque assumenda iusto? Quae officia tempora omnis deleniti pariatur ducimus eius odio.
   </div>
+  <BottomNav />
   </>
 }
 

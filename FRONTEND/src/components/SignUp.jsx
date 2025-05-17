@@ -14,6 +14,7 @@ import Modal from "./Modal";
 import SubmitButton from "./SubmitButton";
 import CustomForm from "./CustomForm";
 import RedirectAuth from "./RedirectAuth";
+import CustomCheckBox from "./CustomCheckBox";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
@@ -57,7 +58,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('started')
+    console.log("started");
     dispatch(signInStart());
     try {
       const newUser = await axios.post(`${apiBaseUrl}/users`, {
@@ -85,7 +86,7 @@ const SignUp = () => {
 
   return (
     <>
-      <CustomForm onSubmit={() => handleSubmit()}>
+      <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"name"}
           name={"name"}
@@ -123,31 +124,23 @@ const SignUp = () => {
           Password:
         </CustomInputBox>
         <section className="flex items-center gap-4 mb-2">
-          <input
+          <CustomCheckBox
             name="isLandlord"
             value={isLandlord}
-            onChange={handleCheckBoxChange}
+            onChange={(e) => handleCheckBoxChange(e)}
             id="isLandlord"
-            type="checkbox"
-            className="appearance-none w-4 h-4 border-blue-500 border-2 text-white cursor-pointer
-        checked:bg-blue-500
-        "
-          />
-          <label htmlFor="isLandlord" className="mt-2  mb-1 text-[.8rem]">
+          >
+            {" "}
             Are you a Landlord ?{" "}
-          </label>
+          </CustomCheckBox>
         </section>
         <section className="flex justify-around items-center mt-4 mb-4 gap-2">
-          <input
-            type="checkbox"
+          <CustomCheckBox
             name=""
             id="radio"
-            required
-            className="appearance-none w-3  h-3 border-blue-400 border-2 text-white cursor-pointer rounded-full
-          checked:bg-blue-400 "
-          />
-          <label htmlFor="radio" className="text-[.8rem]">
-            I have read and agree to accept{" "}
+          >
+            {" "}
+            I have read and agree to nnester{" "}
             <span className="text-blue-400 underline">
               <button onClick={openModal}>User Agreement</button>
               <Modal isOpen={showModal} onClick={() => closeModal()}>
@@ -157,7 +150,7 @@ const SignUp = () => {
                 dignissimos deleniti voluptatem iste consequuntur eum.
               </Modal>
             </span>
-          </label>
+          </CustomCheckBox>
         </section>
         <SubmitButton>Register</SubmitButton>
         <p className="mt-4 font-serif text-center text-[.8rem]">

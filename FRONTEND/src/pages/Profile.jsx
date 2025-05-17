@@ -7,6 +7,8 @@ import BottomNav from "../components/BottomNav";
 import ViewButton from '../components/ViewButton'
 import { Link, useNavigate } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
+import ProfileButtons from "../components/ProfileButtons";
+import ProfileButton from "../components/ProfileButtons";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
@@ -44,55 +46,64 @@ const Profile = () => {
     }
   };
 
+  const secureEmail = (email) => {
+    const emailDomain = email.split('.')[1] 
+    const hiddenEmailBody = email.slice(0, 3) + '****.' + emailDomain
+    return hiddenEmailBody
+  }
   return (
     <>
-      <section className="bg-black h-[500px] flex flex-col">
+      <section className="bg-black flex flex-col">
         <Header />
 
-        <section className="flex bg-gray-380 items-center">
+        <section className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2">
           <img
             src={profilePic}
             alt=""
-            width={80}
+            width={40}
             className="rounded-full border-3 border-gray-400 m-4 "
           />
-          <section className=" mt-3 flex-1">
-            <p className="text-2xl mb-6 font-semibold">
+          <section className=" mt-3 flex-1 ">
+            <p className=" mb-4 font-semibold">
               Welcome {user?.isAdmin ? "Admin" : ""} {user?.name}!{" "}
             </p>
-            <p className="text-blue-400 font-semibold ">
-              Email:{" "}
-              <span className="text-white font-normal font-serif ">
-                {user?.email}
+           
+              <p className="text-white font-semibold ">
+                {user?.email && secureEmail(user.email)}
                 {/* make email only show the first three then stars then .com  */}
-              </span>
-            </p>
-            <p className="text-blue-400 font-semibold ">
+              </p>
+         
+            {/* <p className="text-blue-400 font-semibold ">
               Phone number:{" "}
               <span className="text-white font-normal font-serif ">
                 {user?.phoneNumber}
               </span>
-            </p>
+            </p> */}
           </section>
         </section>
-        <section className=" flex flex-col items-start bg-gray-800 
+        <section className=" flex flex-col items-start bg-gray-950 
         p-3 m-3 rounded-2xl gap-3
         ">
-          {user?.isAdmin ? <button>
-            <Link to="/admin">Admin Dashboard</Link>
-          </button>:  <></>}
-          <button>Recently liked</button>
+          {user?.isAdmin && <ProfileButton link={'/admin'}>
+            Admin Dashboard
+          </ProfileButton>}
+          <ProfileButton link={'/'}>Recently liked</ProfileButton>
           {/* page not modal */}
-          <button>Personal information</button>
+          <ProfileButton link={'/'}>Personal information</ProfileButton>
           {/* they can add more information KYC*/}
-          <button>Change username</button>
+          <ProfileButton link={'/'}>Change username</ProfileButton>
             {/* modal */}
-          <button>Change Password</button>
+          <ProfileButton link={'/'}>Change Password</ProfileButton>
           {/* modal */}
-          <button>About us</button>
+          <ProfileButton link={'/'}>About us</ProfileButton>
+          <ProfileButton link={'/'}>Donate</ProfileButton>
+          <ProfileButton link={'/'}>Contact us</ProfileButton>
           {/* modal or link */}
+          <section className="flex w-[100%] justify-between m-2">
+          
           <ViewButton onClick={() => handleLogout()}>Log out</ViewButton>
           <ViewButton white={true} onClick={() => handleDelete()}>Delete Account</ViewButton>
+          </section>
         </section>
       </section>
       <BottomNav />

@@ -12,6 +12,9 @@ import WelcomeHero from "../components/WelcomeHero";
 import CustomInputBox from "../components/CustomInputBox";
 import Modal from "../components/Modal";
 import SubmitButton from "../components/SubmitButton";
+import BottomNav from "../components/BottomNav";
+import CustomForm from "../components/CustomForm";
+import CustomCheckBox from "../components/CustomCheckBox";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
@@ -70,7 +73,7 @@ const SignUp = () => {
 
       const data = await newUser.data;
       console.log(data);
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem("user", JSON.stringify(data));
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (err) {
@@ -82,11 +85,7 @@ const SignUp = () => {
 
   return (
     <>
-      <WelcomeHero />
-      <form
-        className="bg-black mb-10 mt-2 p-3 flex flex-col md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
-        onSubmit={handleSubmit}
-      >
+      <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"name"}
           name={"name"}
@@ -124,38 +123,34 @@ const SignUp = () => {
           Password:
         </CustomInputBox>
         <section className="flex items-center gap-4 mb-2">
-          <input
+          <CustomCheckBox
             name="isLandlord"
             value={isLandlord}
-            onChange={handleCheckBoxChange}
+            onChange={(e) => handleCheckBoxChange(e)}
             id="isLandlord"
-            type="checkbox"
-            className="appearance-none w-4 h-4 border-blue-500 border-2 text-white cursor-pointer
-        checked:bg-blue-500
-        "
-          />
-          <label htmlFor="isLandlord" className="mt-2  mb-1 text-[.8rem]">
+          >
             Are you a Landlord ?{" "}
-          </label>
+          </CustomCheckBox>
         </section>
         <section className="flex justify-around items-center mt-4 mb-4 gap-2">
-          <input
-            type="checkbox"
-            name=""
+          <CustomCheckBox
+            // name=""
             id="radio"
-            required
-            className="appearance-none w-3  h-3 border-blue-400 border-2 text-white cursor-pointer rounded-full
-          checked:bg-blue-400 "
-          />
-          <label htmlFor="radio" className="text-[.8rem]">
-            I have read and agree to accept{" "}
-            <span className="text-blue-400 underline">
-              <button onClick={openModal}>User Agreement</button>
-              <Modal isOpen={showModal} onClick={() => closeModal()}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed illum quidem, a numquam eum rerum laudantium. Maiores perferendis quidem est. Inventore aspernatur ullam optio dignissimos deleniti voluptatem iste consequuntur eum.
-              </Modal>
-            </span>
-          </label>
+            // required
+          >
+            <label htmlFor="radio" className="text-[.8rem]">
+              I have read and agree to accept{" "}
+              <span className="text-blue-400 underline">
+                <button onClick={openModal}>User Agreement</button>
+                <Modal isOpen={showModal} onClick={() => closeModal()}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed
+                  illum quidem, a numquam eum rerum laudantium. Maiores
+                  perferendis quidem est. Inventore aspernatur ullam optio
+                  dignissimos deleniti voluptatem iste consequuntur eum.
+                </Modal>
+              </span>
+            </label>
+          </CustomCheckBox>
         </section>
         <SubmitButton>Register</SubmitButton>
         <p className="mt-4 font-serif text-center text-[.8rem]">
@@ -167,7 +162,8 @@ const SignUp = () => {
             Log In
           </Link>
         </p>
-      </form>
+      </CustomForm>
+      <BottomNav />
     </>
   );
 };

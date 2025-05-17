@@ -19,6 +19,9 @@ const fetchHouses = async ({ pageParam = 1 }) => {
 };
 
 const Listings = () => {
+
+
+
   const AreaQueryData = useQuery({
     queryKey: ["areas"],
     queryFn: async () => await axios.get(`${apiBaseUrl}/areas`),
@@ -99,8 +102,6 @@ const Listings = () => {
                   <section className="">
                     <CarouselImage
                       item={item}
-                      apiBaseUrl={apiBaseUrl}
-                      index={index}
                     />
                     {/* <CarouselButton onClick={() => carouselPrev(index, item.images)}>
                       prev

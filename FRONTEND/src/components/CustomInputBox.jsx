@@ -1,6 +1,7 @@
+
 import React from "react";
 
-const CustomInputBox = ({ name, value, onChange, type, id, children }) => {
+const CustomInputBox = ({isFileInput, name, value, onChange, type, id, children }) => {
   return (
     <>
       <label className="m-6 mt-2 mb-1 text-[.8rem]" htmlFor={id}>
@@ -8,6 +9,8 @@ const CustomInputBox = ({ name, value, onChange, type, id, children }) => {
       </label>
       <input
       // ref
+        accept={isFileInput && "image/*"}
+        multiple={isFileInput && true}
         name={name}
         required
         autoComplete="off"
@@ -22,3 +25,14 @@ const CustomInputBox = ({ name, value, onChange, type, id, children }) => {
 };
 
 export default CustomInputBox;
+{/* <label className="mt-2 mb-1 font-semibold" htmlFor="images">
+        images:{" "}
+      </label>
+      <input
+        onChange={handleimagesChange}
+        accept="image/*"
+        
+        type="file"
+        id="images"
+        className="bg-gray-700 text-slate-50 p-2 pl-3 font-bold rounded-2xl mb-3 border-2 border-blue-600"
+      /> */}

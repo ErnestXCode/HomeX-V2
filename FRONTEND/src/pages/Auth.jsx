@@ -14,7 +14,7 @@ const Auth = () => {
   }
   return (
     <>
-    <WelcomeHero />
+    
   <nav className='p-2'>
     <ul className='flex gap-3 justify-around'>
       <li onClick={signupForm} className={loginClicked ? '' : 'border-b-2 border-blue-600/70'}  >

@@ -9,6 +9,8 @@ import { selectCurrentUser } from "../features/users/userSlice";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import { QueryClient, useMutation } from "@tanstack/react-query";
+import BottomNav from "../components/BottomNav";
+import CustomForm from "../components/CustomForm";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PostHouse = () => {
@@ -30,14 +32,14 @@ const PostHouse = () => {
     setInputData((prevData) => {
       return {
         ...prevData,
-        [e.target.name]: e.target.value,
+        [e.target?.name]: e.target?.value,
       };
     });
   };
 
   const handleimagesChange = async (e) => {
     e.preventDefault();
-    if (e.target.files.length <= 3) {
+    if (e.target?.files?.length <= 3) {
       const files = Array.from(e.target.files);
       const compressedFiles = await Promise.all(
         files.map((file) => {
@@ -63,7 +65,7 @@ const PostHouse = () => {
     form.append("area", inputData?.area);
     form.append("pricing", inputData?.pricing);
     form.append("landMarks", inputData?.landMarks);
-    form.append("landLord", currentUser._id);
+    form.append("landLord", currentUser?._id);
     images.forEach((file) =>
       form.append(
         "images",
@@ -91,13 +93,13 @@ const PostHouse = () => {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-black mt-2 p-3 flex flex-col mb-10 md:w-[700px] md:ml-auto md:mr-auto md:border-0 rounded-2xl"
+  <>
+    <CustomForm
+      onSubmit={(e) => handleSubmit(e)}
     >
       <CustomInputBox
         id={"area"}
-        value={inputData.area}
+        value={inputData?.area}
         name={"area"}
         type={"text"}
         onChange={(e) => handleChange(e)}
@@ -105,36 +107,31 @@ const PostHouse = () => {
         Area:
       </CustomInputBox>
 
-      <label className="mt-2 mb-1 font-semibold" htmlFor="images">
-        images:{" "}
-      </label>
-      <input
-        onChange={handleimagesChange}
-        accept="image/*"
-        multiple={true}
-        type="file"
-        id="images"
-        className="bg-gray-700 text-slate-50 p-2 pl-3 font-bold rounded-2xl mb-3 border-2 border-blue-600"
-      />
       {/* style images input better */}
-      {images[0] && (
+      {images[0] ? (
         <div>
-          <img src={URL.createObjectURL(images[0])} />{" "}
-          <p>and {images.length - 1} more</p>
           <img
-            src={URL.createObjectURL(
-              new File([images[0]], images[0].name, {
-                type: images[0].type,
-              })
-            )}
+            className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
+            src={URL.createObjectURL(images[0])}
           />{" "}
+          {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
         </div>
+      ) : (
+        <CustomInputBox
+          id={"images"}
+          name={"images"}
+          type={"file"}
+          isFileInput={true}
+          onChange={(e) => handleimagesChange(e)}
+        >
+          Images:
+        </CustomInputBox>
       )}
 
       <CustomInputBox
         id={"pricing"}
         name={"pricing"}
-        value={inputData.pricing}
+        value={inputData?.pricing}
         type={"number"}
         onChange={(e) => handleChange(e)}
       >
@@ -143,16 +140,19 @@ const PostHouse = () => {
 
       <CustomInputBox
         id={"landMarks"}
-        value={inputData.landMarks}
+        value={inputData?.landMarks}
         name={"landMarks"}
         type={"text"}
         onChange={(e) => handleChange(e)}
       >
         Landmarks:
       </CustomInputBox>
-
+      <div className="p-3 text">
       <SubmitButton>Create</SubmitButton>
-    </form>
+      </div>
+    </CustomForm>
+    <BottomNav />
+    </>
   );
 };
 

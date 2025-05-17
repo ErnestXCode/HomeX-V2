@@ -3,7 +3,7 @@ import React from 'react'
 const CustomForm = ({onSubmit, children}) => {
   return (
    <form
-        className="rounded-t-2xl mt-0 m-3 p-3 gap-1 flex flex-col"
+        className="bg-gray-950 rounded-2xl rounded-t-3xl m-4 p-3 gap-1 flex flex-col"
         onSubmit={onSubmit}
       >
         {children}

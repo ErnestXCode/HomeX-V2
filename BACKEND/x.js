@@ -1,6 +1,5 @@
-const { getGFS, getGridFSBucket } = require("./config/db");
+const express = require('express') 
 
-const x = getGFS() 
-const y = getGridFSBucket()
+const app = express()
 
-console.log(x, y)
+app.listen(5000, () => console.log('http://localhost:5000'))
