@@ -15,7 +15,7 @@ const PostHouse = () => {
   const navigate = useNavigate();
   // const [err] = useState("");
   const currentUser = useSelector(selectCurrentUser);
-  if(!currentUser) navigate('/signup')
+  if (!currentUser) navigate("/signup");
 
   const dataDict = {
     area: "",
@@ -40,13 +40,15 @@ const PostHouse = () => {
     if (e.target.files.length <= 3) {
       const files = Array.from(e.target.files);
       const compressedFiles = await Promise.all(
-        files.map((file) =>
-          imageCompression(file, {
+        files.map((file) => {
+          console.log(file);
+          const newImage = imageCompression(file, {
             maxSizeMB: 0.5,
             maxWidthOrHeight: 1024,
             useWebWorker: true,
-          })
-        )
+          });
+          return newImage;
+        })
       );
       setImages(compressedFiles);
     } else {
@@ -62,7 +64,12 @@ const PostHouse = () => {
     form.append("pricing", inputData?.pricing);
     form.append("landMarks", inputData?.landMarks);
     form.append("landLord", currentUser._id);
-    images.forEach((file) => form.append("images", file));
+    images.forEach((file) =>
+      form.append(
+        "images",
+        new File([file], Date.now() + "--" + file.name, { type: file.type })
+      )
+    );
     try {
       const response = await axios.post(`${apiBaseUrl}/houses`, form);
       console.log(response);
@@ -71,6 +78,9 @@ const PostHouse = () => {
       console.log(error);
     }
   };
+
+  // images[0] && console.log(URL.createObjectURL(images[0]))
+
   const queryClient = new QueryClient();
 
   useMutation({
@@ -111,6 +121,13 @@ const PostHouse = () => {
         <div>
           <img src={URL.createObjectURL(images[0])} />{" "}
           <p>and {images.length - 1} more</p>
+          <img
+            src={URL.createObjectURL(
+              new File([images[0]], images[0].name, {
+                type: images[0].type,
+              })
+            )}
+          />{" "}
         </div>
       )}
 

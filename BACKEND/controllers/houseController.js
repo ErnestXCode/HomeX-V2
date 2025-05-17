@@ -20,7 +20,7 @@ const createHouse = async (req, res) => {
 
     if (!verifiedUser) return res.status(400).json("user not authorized");
     if (!req.files) return res.status(400).json("image required");
-
+    console.log(req.files)
 
     const imagePaths = req.files.map((file) => file.filename);
     const data = { ...content, images: imagePaths };
