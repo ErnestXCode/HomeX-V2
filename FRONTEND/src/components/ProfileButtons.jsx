@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProfileButton = ({link, children}) => {
   return (
-    <Link to={link} className="border-b border-white/30 w-[100%] p-1 pb-2 flex items-center justify-between">
+    <Link to={link} className="border-b border-white/30 w-[100%] pt-2 pb-2 pl-0 flex items-center justify-between">
       <p>{children}</p>
       <p className="text-white/50">
       <FaArrowRight />

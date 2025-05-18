@@ -55,7 +55,7 @@ const Profile = () => {
     <>
       <section className="bg-black flex flex-col">
         <Header />
-
+        {/* use svg in the profile pic */}
         <section className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2">
           <img
             src={profilePic}

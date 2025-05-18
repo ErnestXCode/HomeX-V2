@@ -16,7 +16,7 @@ const  rateLimit  = require("express-rate-limit");
 const app = express();
 dotenv.config();
 
-const whiteList = [process.env.VITE_URL];
+const whiteList = [process.env.VITE_URL, 'http://172.26.144.1:5173', 'http://192.168.43.13:5173'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -27,7 +27,7 @@ const corsOptions = {
     }
   },
   credentials: true,
-};
+}; 
 
 app.use(compression());
 // app.use(helmet())   inafanya sijui si same origin so inakata for now
