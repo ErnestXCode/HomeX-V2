@@ -19,7 +19,7 @@ const Header = () => {
         </p>
         <button
         onClick={() => dispatch(openSideNav())}
-          className="ml-auto md:hidden cursor-pointer active:bg-gray-600 p-3 rounded-2xl"
+          className="text-base pr-4"
           aria-label="menu"
         >
           <FaBars />

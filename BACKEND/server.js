@@ -44,12 +44,12 @@ app.use(
   })
 );
 
-const limiter = rateLimit({
-  max: 100, 
-  windowMs: 60*60*1000, 
-  message: 'Too many requests from this IP, please try again in an hour'
-})
-app.use('/', limiter)
+// const limiter = rateLimit({
+//   max: 100, 
+//   windowMs: 60*60*1000, 
+//   message: 'Too many requests from this IP, please try again in an hour'
+// })
+// app.use('/', limiter)
 
 app.use("/", require("./routes/user"));
 app.use("/", require("./routes/houses"));

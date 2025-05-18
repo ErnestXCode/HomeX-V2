@@ -6,7 +6,6 @@ import BottomNav from "./BottomNav";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { useState } from "react";
 import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import ViewButton from "./ViewButton";
@@ -77,7 +76,6 @@ const Listings = () => {
     }
   };
 
-  const [index] = useState(0);
   console.log(data?.pages);
   console.log(data);
 

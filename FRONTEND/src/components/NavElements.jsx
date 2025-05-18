@@ -7,7 +7,7 @@ const NavElements = ({ side, onClick, link, children }) => {
       <Link
       aria-label={'some stuff'}
         className={`p-2 w-[100%]
-      ${side ? "active:bg-gray-800 rounded-2xl text-[0.75rem]" : "text-base"}
+      ${side ? "active:bg-gray-800 rounded-2xl text-[0.8rem]" : "text-base flex flex-col items-center"}
      `}
         to={link}
         onClick={onClick}
