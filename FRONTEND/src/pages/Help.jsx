@@ -1,16 +1,17 @@
 import React from 'react'
+import { FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 const Help = () => {
   return (
     <>
-    <nav className="bg-black p-4 text-white sticky top-0 z-20 border-b-2 border-blue-700
-        flex items-center text-center
-        "
-        
-        >
-          <p className=""><Link to='/'>Back</Link></p>
-          <h1 className="text-[1.2rem] ml-34 font-semibold">Help</h1>
+     <h1 className="text-xl p-2 font-semibold text-center border-b border-blue-600">
+            Help
+          </h1>
+          <nav className="p-3">
+            <Link to={"/"}>
+              <FaArrowLeft />
+            </Link>
           </nav>
     <section className="bg-black opacity-70 p-4 mt-4 h-[500px]">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias nemo

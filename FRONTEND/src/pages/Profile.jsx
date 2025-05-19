@@ -87,17 +87,17 @@ const Profile = () => {
           {user?.isAdmin && <ProfileButton link={'/admin'}>
             Admin Dashboard
           </ProfileButton>}
-          <ProfileButton link={'/'}>Recently liked</ProfileButton>
-          {/* page not modal */}
-          <ProfileButton link={'/'}>Personal information</ProfileButton>
+          <ProfileButton link={'/liked'}>Recently liked</ProfileButton>
+          
+          <ProfileButton link={'/personal'}>Personal information</ProfileButton>
           {/* they can add more information KYC*/}
-          <ProfileButton link={'/'}>Change username</ProfileButton>
+          <ProfileButton>Change username</ProfileButton>
             {/* modal */}
-          <ProfileButton link={'/'}>Change Password</ProfileButton>
+          <ProfileButton>Change Password</ProfileButton>
           {/* modal */}
-          <ProfileButton link={'/'}>About us</ProfileButton>
-          <ProfileButton link={'/'}>Donate</ProfileButton>
-          <ProfileButton link={'/'}>Contact us</ProfileButton>
+          <ProfileButton link={'/about-us'}>About us</ProfileButton>
+          <ProfileButton link={'/donate'}>Donate</ProfileButton>
+          <ProfileButton link={'/contact-us'}>Contact us</ProfileButton>
           {/* modal or link */}
           <section className="flex w-[100%] justify-between m-2">
           

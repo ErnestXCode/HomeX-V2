@@ -23,7 +23,7 @@ const SideNav = () => {
       <button onClick={() => dispatch(closeSideNav())} className="ml-auto">
         <FaCrosshairs />
       </button>
-      <SidebarButton white={true} link={'login'}>Log in</SidebarButton>
+      <SidebarButton white={true} link={'/login'}>Log in</SidebarButton>
       <SidebarButton link={'/signup'}>Register</SidebarButton>
 
       <SideNavCard>
@@ -52,6 +52,13 @@ const SideNav = () => {
           onClick={() => dispatch(closeSideNav())}
         >
           About us
+        </NavElements>
+        <NavElements
+        side={true}
+          link={"/help"}
+          onClick={() => dispatch(closeSideNav())}
+        >
+          Help
         </NavElements>
       </SideNavCard>
     </SideNavLayout>

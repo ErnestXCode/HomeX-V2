@@ -10,6 +10,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 const IndividualHouse = () => {
   const [data, setData] = useState(null);
   const { id } = useParams();
+  console.log(id)
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
@@ -20,7 +21,6 @@ const IndividualHouse = () => {
     getData();
   }, [id]);
 
-
   
  
   return (
@@ -30,15 +30,15 @@ const IndividualHouse = () => {
     >
 
         <section className="">
-          <CarouselImage item={data} apiBaseUrl={apiBaseUrl} index={0} />
+          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={0} />
         </section>
 
         <ListText content={data?.landMarks}>Landmarks: </ListText>
         <ListText content={data?.pricing}>Price: </ListText>
         <ListText content={data?.area}>Area: </ListText>
         <ListText content={data?.landMarks}>Landmarks: </ListText>
-        <ListText content={data?.landLord.name}>Landlord: </ListText>
-        <ListText content={data?.landLord.email}>Email: </ListText>
+        <ListText content={data?.landLord?.name}>Landlord: </ListText>
+        <ListText content={data?.landLord?.email}>Email: </ListText>
 
       <section className="w-screen mt-4 mb-4">
         <button className="bg-blue-700 p-2 rounded-2xl pr-3 pl-3">
@@ -46,7 +46,7 @@ const IndividualHouse = () => {
         </button>
         <button className="bg-blue-700 text-black font-bold p-2 pr-4 pl-4 ml-[200px] rounded-2xl text-2xl active:bg-blue-500 active:border-2">
           {user ? (
-            <a href={`tel:${data?.landLord.phoneNumber}`}>Call</a>
+            <a href={`tel:${data?.landLord?.phoneNumber}`}>Call</a>
           ) : (
             <Link to={"/login"}>Call</Link>
           )}

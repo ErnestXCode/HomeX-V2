@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import ViewButton from "./ViewButton";
+import { Link, useNavigate } from "react-router-dom";
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -19,7 +20,7 @@ const fetchHouses = async ({ pageParam = 1 }) => {
 
 const Listings = () => {
 
-
+  const navigate = useNavigate()
 
   const AreaQueryData = useQuery({
     queryKey: ["areas"],
@@ -46,7 +47,8 @@ const Listings = () => {
           fetchNextPage();
         }
       },
-      { threshold: 0 }
+      { threshold: 0, rootMargin: '500px'  } 
+      // check how to make it better
     );
     if (loadMoreRef.current) {
       observer.observe(loadMoreRef.current);
@@ -75,6 +77,7 @@ const Listings = () => {
       console.log("error", err);
     }
   };
+ 
 
   console.log(data?.pages);
   console.log(data);
@@ -101,23 +104,18 @@ const Listings = () => {
                     <CarouselImage
                       item={item}
                     />
-                    {/* <CarouselButton onClick={() => carouselPrev(index, item.images)}>
-                      prev
-                    </CarouselButton>
-                    <CarouselButton onClick={() => carouselNext(index, item.images)}>
-                      next
-                    </CarouselButton> */}
+              
                   </section>
 
-                  <ListText content={item.landMarks}>Landmarks: </ListText>
-                  <ListText content={item.pricing}>Price: </ListText>
-                  <ListText content={item.area}>Area: </ListText>
-                  <ListText content={item.landMarks}>Landmarks: </ListText>
+                  <ListText content={item?.landMarks}>Landmarks: </ListText>
+                  <ListText content={item?.pricing}>Price: </ListText>
+                  <ListText content={item?.area}>Area: </ListText>
+                  <ListText content={item?.landMarks}>Landmarks: </ListText>
 
                   <section className="flex justify-between m-3">
-                    {/* <ViewButton onClick={() => handleHouse(item._id)}>view</ViewButton> */}
+                    <Link to={`/house/${item?._id}`}>view</Link>
                     {/* create a modal for here */}
-                    <ViewButton onClick={() => handleDelete(item._id)}>
+                    <ViewButton onClick={() => handleDelete(item?._id)}>
                       delete
                     </ViewButton>
                   </section>
