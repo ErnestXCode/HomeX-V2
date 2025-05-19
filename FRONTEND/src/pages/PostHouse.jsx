@@ -147,9 +147,11 @@ const PostHouse = () => {
       >
         Landmarks:
       </CustomInputBox>
-      <div className="p-3 text">
+      <div className="mt-3">
+
       <SubmitButton>Create</SubmitButton>
       </div>
+    
     </CustomForm>
     <BottomNav />
     </>

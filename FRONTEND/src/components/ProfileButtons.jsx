@@ -9,7 +9,7 @@ const ProfileButton = ({ onClick, link, children }) => {
       onClick={onClick}
       className="border-b border-white/30 w-[100%] pt-2 pb-2 pl-0 flex items-center justify-between"
     >
-      <p>{children}</p>
+      <div>{children}</div>
       <p className="text-white/50">
         <FaArrowRight />
       </p>

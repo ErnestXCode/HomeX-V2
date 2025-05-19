@@ -122,7 +122,7 @@ const SignUp = () => {
         >
           Password:
         </CustomInputBox>
-        <section className="flex items-center gap-4 mb-2">
+        <section className="flex items-center gap-4 mb-4 mt-2">
           <CustomCheckBox
             name="isLandlord"
             value={isLandlord}
@@ -132,13 +132,13 @@ const SignUp = () => {
             Are you a Landlord ?{" "}
           </CustomCheckBox>
         </section>
-        <section className="flex justify-around items-center mt-4 mb-4 gap-2">
+        <section className="flex justify-around items-center gap-2">
           <CustomCheckBox
             // name=""
             id="radio"
             // required
           >
-            <label htmlFor="radio" className="text-[.8rem]">
+            <label htmlFor="radio" className="text-[.65rem]">
               I have read and agree to accept{" "}
               <span className="text-blue-400 underline">
                 <button onClick={openModal}>User Agreement</button>

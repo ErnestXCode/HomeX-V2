@@ -10,6 +10,7 @@ import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import ViewButton from "./ViewButton";
 import { Link, useNavigate } from "react-router-dom";
+import InitialLoader from "./InitialLoader";
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -19,8 +20,7 @@ const fetchHouses = async ({ pageParam = 1 }) => {
 };
 
 const Listings = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const AreaQueryData = useQuery({
     queryKey: ["areas"],
@@ -47,7 +47,7 @@ const Listings = () => {
           fetchNextPage();
         }
       },
-      { threshold: 0, rootMargin: '500px'  } 
+      { threshold: 0, rootMargin: "500px" }
       // check how to make it better
     );
     if (loadMoreRef.current) {
@@ -77,7 +77,6 @@ const Listings = () => {
       console.log("error", err);
     }
   };
- 
 
   console.log(data?.pages);
   console.log(data);
@@ -101,10 +100,7 @@ const Listings = () => {
                   className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10 md:w-[500px] md:h-auto"
                 >
                   <section className="">
-                    <CarouselImage
-                      item={item}
-                    />
-              
+                    <CarouselImage item={item} />
                   </section>
 
                   <ListText content={item?.landMarks}>Landmarks: </ListText>
@@ -112,19 +108,19 @@ const Listings = () => {
                   <ListText content={item?.area}>Area: </ListText>
                   <ListText content={item?.landMarks}>Landmarks: </ListText>
 
-                  <section className="flex justify-between m-3">
-                    <Link to={`/house/${item?._id}`}>view</Link>
+                  {/* <section className="flex justify-between m-3"> */}
+                    
                     {/* create a modal for here */}
                     <ViewButton onClick={() => handleDelete(item?._id)}>
                       delete
                     </ViewButton>
-                  </section>
+                  {/* </section> */}
                 </div>
               ))}
             </div>
           ))}
-          <div ref={loadMoreRef} className="h-20 text-red-600 font-bold mb-39">
-            {isFetchingNextPage && <p>Loading...</p>}
+          <div ref={loadMoreRef} className="h-20 bg-black text-white font-semibold mb-39">
+            {isFetchingNextPage && <InitialLoader />}
           </div>
         </Suspense>
 

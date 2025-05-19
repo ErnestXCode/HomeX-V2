@@ -15,7 +15,7 @@ const BottomNav = () => {
           <NavElements link={"/post-house"}><FaTools /><p className="text-[0.6rem]">Create</p></NavElements>
         ) : ''}
         <NavElements link={"/about-us"}><FaBook /><p className="text-[0.6rem]">About us</p></NavElements>
-        <NavElements link={user ? "/profile" : "/signup"}><FaPersonBooth /><p className="text-[0.6rem]">Me</p></NavElements>
+        <NavElements link={user ? "/profile" : "/auth"}><FaPersonBooth /><p className="text-[0.6rem]">Me</p></NavElements>
       </ul>
     </nav>
   );

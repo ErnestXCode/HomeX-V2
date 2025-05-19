@@ -8,6 +8,7 @@ const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
 const PostHouse = lazy(() => import("./pages/PostHouse"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Auth = lazy(() => import("./pages/Auth"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Donations = lazy(() => import("./pages/Donations"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -21,7 +22,7 @@ function App() {
   return (
     <div className="bg-black min-h-screen flex flex-col text-white text-[0.8rem]">
       <Router>
-        <Suspense fallback={<InitialLoader />}>
+        <Suspense fallback={<InitialLoader fullscreen={true}/>}>
           
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -29,6 +30,7 @@ function App() {
             <Route path="/house/:id" element={<IndividualHouse />}></Route>
             <Route path="/post-house" element={<PostHouse />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/auth" element={<Auth />}></Route>
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/about-us" element={<AboutUs />}></Route>

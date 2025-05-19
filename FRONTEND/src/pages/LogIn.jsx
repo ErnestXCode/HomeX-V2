@@ -45,12 +45,12 @@ const Login = () => {
 
     try {
       const res = await fetch(`${apiBaseUrl}/login`, {
-        method: 'POST', 
-        credentials: 'include', 
+        method: "POST",
+        credentials: "include",
         headers: {
-          'Content-Type' : 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputData)
+        body: JSON.stringify(inputData),
       });
       // look if possible with axios
 
@@ -60,10 +60,10 @@ const Login = () => {
       }
 
       const data = await res.json();
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem("user", JSON.stringify(data));
       dispatch(signInSuccess(data));
-      console.log(data)
-  
+      console.log(data);
+
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
@@ -73,10 +73,7 @@ const Login = () => {
 
   return (
     <>
-    
-      <CustomForm
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"email"}
           name={"email"}
@@ -98,8 +95,7 @@ const Login = () => {
 
         {/* disabled={loading} */}
         {/* {loading ? "Logging In..." : "Log In"} */}
-        <div className="p-4">
-
+        <div className="mt-4">
         <SubmitButton>Log in</SubmitButton>
         </div>
 

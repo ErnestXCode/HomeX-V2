@@ -24,8 +24,9 @@ const IndividualHouse = () => {
   
  
   return (
+    <>
     <div
-      className="bg-black mt-3 p-3 rounded-2xl min-h-30 mb-10
+      className="bg-black mt-3 p-3 rounded-2xl min-h-30 mb-10 overflow-hidden
         md:w-[500px] md:h-auto mr-auto ml-auto"
     >
 
@@ -53,6 +54,10 @@ const IndividualHouse = () => {
         </button>
       </section>
     </div>
+          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={1} />
+          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={2} />
+
+          </>
   );
 };
 
