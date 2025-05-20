@@ -11,7 +11,6 @@ const createArea = async (req, res) => {
     res.status(400).json(error);
   }
 };
-// something is wrong
 
 const getArea = async (req, res) => {
   const { id } = req.params;

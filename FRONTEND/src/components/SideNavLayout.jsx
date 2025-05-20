@@ -12,7 +12,7 @@ const SideNavLayout = ({onClick, children}) => {
     }
     `}>
     <div
-      className={`flex flex-col bg-gray-950 items-start fixed right-0 top-0 h-screen  min-w-70 
+      className={`flex flex-col bg-gray-950 items-start fixed right-0 top-0 h-screen min-w-70 
         p-5 transition duration-500
         ${sideBarState ? 'translate-x-0' : 'translate-x-full'}`}
         >

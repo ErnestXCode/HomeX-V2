@@ -24,7 +24,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({}, {password: false});
     res.status(201).json(users);
   } catch (err) {
     res.json({ message: "Failed to get all users", err });
@@ -34,7 +34,8 @@ const getAllUsers = async (req, res) => {
 const getCurrentUserProfile = async (req, res) => {
   try {
     const profile = req.user;
-    res.status(200).json(profile);
+    const {pwd: password, ...profileData} = profile
+    res.status(200).json(profileData);
   } catch (err) {
     res.status(404).json({ message: "User not found", err });
   }

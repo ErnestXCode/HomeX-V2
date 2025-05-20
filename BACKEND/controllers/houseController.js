@@ -5,6 +5,7 @@ const User = require("../models/userModel");
 const sharp = require("sharp");
 const { Readable } = require("stream");
 const { getGridFSBucket, getGFS } = require("../config/db");
+const { ObjectId } = require("mongodb");
 
 const createHouse = async (req, res) => {
   const content = req.body;
@@ -142,10 +143,18 @@ const updateHouse = async (req, res) => {
 const deleteHouse = async (req, res) => {
   try {
     const { id } = req.params;
-
+    
     const result = await House.findByIdAndDelete(id, { new: true });
     if (!result) return res.status(200).json({ error: "House does not exist" });
+    const imageIds = result?.images
     // delete images from uploads before deploying
+    const bucket = getGridFSBucket()
+    imageIds.forEach(async(imageId) => {
+      const imageAsObjectId = new ObjectId(imageId)
+      return await bucket.delete({_id: imageAsObjectId})
+    })
+    console.log(result)
+
     res.status(200).json({ status: "successfully deleted house" });
   } catch (error) {
     console.log("error deleting house", error);

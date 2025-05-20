@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CarouselImage from "../components/CarouselImage";
 import ListText from "../components/ListText";
+import { FaArrowLeft, FaMap, FaPhone } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
   const [data, setData] = useState(null);
   const { id } = useParams();
-  console.log(id)
+  console.log(id);
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
@@ -21,43 +22,52 @@ const IndividualHouse = () => {
     getData();
   }, [id]);
 
-  
- 
   return (
-    <>
-    <div
-      className="bg-black mt-3 p-3 rounded-2xl min-h-30 mb-10 overflow-hidden
-        md:w-[500px] md:h-auto mr-auto ml-auto"
-    >
+    <div className="bg-black mt-3 p-3 rounded-2xl min-h-screen flex flex-col">
+      <button className="p-4 sticky top-0">
+        <Link to={"/"}>
+          <FaArrowLeft />
+        </Link>
+      </button>
 
-        <section className="">
-          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={0} />
+      <CarouselImage
+        item={data?.images && data}
+        apiBaseUrl={apiBaseUrl}
+        index={0}
+      />
+      <section className="flex  justify-between bg-gray-800 p-2 m-2 rounded-xl">
+        <ListText content={data?.landLord?.name}>Hosted by </ListText>
+        <section className="flex justify-center">
+          <button className="pr-4">
+            {" "}
+            {user ? (
+              <a href={`tel:${data?.landLord?.phoneNumber}`}>
+                <FaPhone />
+              </a>
+            ) : (
+              <Link to={"/login"}>
+                <FaPhone />
+              </Link>
+            )}
+          </button>
         </section>
-
-        <ListText content={data?.landMarks}>Landmarks: </ListText>
-        <ListText content={data?.pricing}>Price: </ListText>
-        <ListText content={data?.area}>Area: </ListText>
-        <ListText content={data?.landMarks}>Landmarks: </ListText>
-        <ListText content={data?.landLord?.name}>Landlord: </ListText>
-        <ListText content={data?.landLord?.email}>Email: </ListText>
-
-      <section className="w-screen mt-4 mb-4">
-        <button className="bg-blue-700 p-2 rounded-2xl pr-3 pl-3">
-          <Link to={"/"}>GO BACK</Link>
-        </button>
-        <button className="bg-blue-700 text-black font-bold p-2 pr-4 pl-4 ml-[200px] rounded-2xl text-2xl active:bg-blue-500 active:border-2">
-          {user ? (
-            <a href={`tel:${data?.landLord?.phoneNumber}`}>Call</a>
-          ) : (
-            <Link to={"/login"}>Call</Link>
-          )}
-        </button>
       </section>
+      {/* image of the landlord or something */}
+      <ListText content={data?.pricing}>Price: </ListText>
+      <ListText content={data?.area}>Location: </ListText>
+      <ListText content={data?.landMarks}>Close to : </ListText>
+      <ListText>last verified: </ListText>
+      <ListText>Created on: </ListText>
+      {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
+            <div>
+              Abunch of amenities here
+            </div>
+      <div className="text-base flex flex-1 items-end justify-center p-4">
+        <button className="bg-gray-800 p-2 rounded-xl w-20 flex justify-center items-center gap-2">
+        <FaMap /> 
+        </button>
+      </div>
     </div>
-          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={1} />
-          <CarouselImage item={data?.images && data} apiBaseUrl={apiBaseUrl} index={2} />
-
-          </>
   );
 };
 

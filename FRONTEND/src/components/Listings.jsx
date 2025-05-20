@@ -11,6 +11,8 @@ import ListText from "./ListText";
 import ViewButton from "./ViewButton";
 import { Link, useNavigate } from "react-router-dom";
 import InitialLoader from "./InitialLoader";
+// import { useSelector } from "react-redux";
+// import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("./Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -21,6 +23,7 @@ const fetchHouses = async ({ pageParam = 1 }) => {
 
 const Listings = () => {
   const navigate = useNavigate();
+  // const user = useSelector(selectCurrentUser);
 
   const AreaQueryData = useQuery({
     queryKey: ["areas"],
@@ -69,14 +72,14 @@ const Listings = () => {
   //   }
   // };
 
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.delete(`${apiBaseUrl}/houses/${id}`);
-      console.log(res.data);
-    } catch (err) {
-      console.log("error", err);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const res = await axios.delete(`${apiBaseUrl}/houses/${id}`);
+  //     console.log(res.data);
+  //   } catch (err) {
+  //     console.log("error", err);
+  //   }
+  // };
 
   console.log(data?.pages);
   console.log(data);
@@ -90,36 +93,40 @@ const Listings = () => {
           // onHandleClick={handleFilter}
         />
 
-        <Suspense fallback={"loading..."}>
+        <Suspense fallback={<InitialLoader />}>
           {/* <DataList data={HouseData} /> */}
           {data?.pages.map((group, i) => (
             <div key={i} className="ml-3 mr-3">
               {group.data.map((item) => (
                 <div
                   key={item._id}
-                  className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10 md:w-[500px] md:h-auto"
+                  className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
                 >
                   <section className="">
                     <CarouselImage item={item} />
                   </section>
 
-                  <ListText content={item?.landMarks}>Landmarks: </ListText>
+                  <ListText content={item?.area}>Location: </ListText>
                   <ListText content={item?.pricing}>Price: </ListText>
-                  <ListText content={item?.area}>Area: </ListText>
                   <ListText content={item?.landMarks}>Landmarks: </ListText>
 
                   {/* <section className="flex justify-between m-3"> */}
-                    
-                    {/* create a modal for here */}
-                    <ViewButton onClick={() => handleDelete(item?._id)}>
-                      delete
+
+                  <div className="flex justify-end m-1">
+                    <ViewButton onClick={() => navigate(`house/${item._id}`)}>
+                      view
                     </ViewButton>
-                  {/* </section> */}
+                  </div>
+
+                  {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
                 </div>
               ))}
             </div>
           ))}
-          <div ref={loadMoreRef} className="h-20 bg-black text-white font-semibold mb-39">
+          <div
+            ref={loadMoreRef}
+            className="h-20 bg-black text-white font-semibold mb-39"
+          >
             {isFetchingNextPage && <InitialLoader />}
           </div>
         </Suspense>

@@ -31,32 +31,13 @@ const DataList = ({ data, handleReset }) => {
 
   const [index] = useState(0);
 
-  // const carouselNext = (index, itemImages) => {
-  //   if (index < itemImages.length - 1) {
-  //     setIndex((prevIdx) => prevIdx + 1);
-  //   }
-  // };
-  // const carouselPrev = (index, itemImages) => {
-  //   if (index <= itemImages.length - 1 && index >= 1) {
-  //     setIndex((prevIdx) => prevIdx - 1);
-  //   }
-  // };
-
   const newData = data?.map((item) => {
     return (
       <div
         key={item._id}
         className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10 md:w-[500px] md:h-auto"
       >
-        <section className="">
-          <CarouselImage item={item} apiBaseUrl={apiBaseUrl} index={index} />
-          {/* <CarouselButton onClick={() => carouselPrev(index, item.images)}>
-            prev
-          </CarouselButton>
-          <CarouselButton onClick={() => carouselNext(index, item.images)}>
-            next
-          </CarouselButton> */}
-        </section>
+        <CarouselImage item={item} apiBaseUrl={apiBaseUrl} index={index} />
 
         <ListText content={item.landMarks}>Landmarks: </ListText>
         <ListText content={item.pricing}>Price: </ListText>
