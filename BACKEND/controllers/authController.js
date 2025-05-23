@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 // const loginUser = async (req, res) => {
 //   const { email, password } = req.body;
@@ -31,6 +31,7 @@ const jwt = require('jsonwebtoken')
 // };
 
 const loginUser = async (req, res) => {
+  const cookies = req.cookies;
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -50,35 +51,63 @@ const loginUser = async (req, res) => {
   const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: "60s",
   });
-  const refreshToken = jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: "7d",
-  });
+  const newRefreshToken = jwt.sign(
+    { userId },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: "2d",
+    }
+  );
 
-  foundUser.refreshToken = refreshToken;
+  const newRefreshTokenArray = !cookies?.jwt
+    ? foundUser.refreshToken
+    : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
+
+  if (cookies?.jwt){
+
+    const refreshToken = cookies.jwt
+    const foundToken = await User.findOne({refreshToken})
+    if(!foundToken) {
+      console.log('attempted refresh token reuse at login')
+      newRefreshTokenArray = []
+    }
+
+    res.cookie("jwt", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+    });}
+
+  foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
   const result = await foundUser.save();
-  
+
   console.log(result);
 
-  res.cookie("jwt", refreshToken, {
-    httpOnly: true,
-    // look what samesite does maybe its important
-    sameSite: "None",
-    secure: process.env.NODE_ENV !== "development",
-    maxAge: 2 * 24 * 60 * 60 * 1000,
-  }).status(200).json({ accessToken });
+  res
+    .cookie("jwt", newRefreshToken, {
+      httpOnly: true,
+      // look what samesite does maybe its important
+      secure: process.env.NODE_ENV !== "development",
+      maxAge: 2 * 24 * 60 * 60 * 1000,
+    })
+    .status(200)
+    .json({ accessToken });
 };
 
 const logOutUser = async (req, res) => {
   // delete accessToken on client side
 
   const refreshToken = req.cookies?.jwt;
-  if (!refreshToken) return res.sendStatus(204); // no content
+  console.log(refreshToken)
+  if (!refreshToken) return res.status(204).json('bye'); // no content
 
   // find user in db with the refreshToken and clear cookie if user is not found pia
   const foundUser = await User.findOne({ refreshToken });
   if (!foundUser) return res.sendStatus(204);
 
-  foundUser.refreshToken = "";
+  foundUser.refreshToken = foundUser.refreshToken.filter(
+    (token) => token !== refreshToken
+  );
+
   const result = await foundUser.save();
   console.log(result);
 

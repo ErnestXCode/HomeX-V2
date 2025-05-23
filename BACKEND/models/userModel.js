@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema(
       landlord: Number,
       admin: Number,
     },
-    refreshToken: String
+    refreshToken: [String]
   },
   {
     timestamps: true,

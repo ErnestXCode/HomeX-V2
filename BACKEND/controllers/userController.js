@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 const User = require("../models/userModel");
 
@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     content.password = await bcrypt.hash(content.password, salt);
     const userCreated = await new User(content);
     const result = await userCreated.save();
-    console.log(result)
+    console.log(result);
     res.status(200).json(userCreated);
   } catch (err) {
     console.log(err);
@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, {password: false});
+    const users = await User.find({}, { password: false });
     res.status(201).json(users);
   } catch (err) {
     res.json({ message: "Failed to get all users", err });
@@ -37,7 +37,7 @@ const getAllUsers = async (req, res) => {
 const getCurrentUserProfile = async (req, res) => {
   try {
     const profile = req.user;
-    const {pwd: password, ...profileData} = profile
+    const { pwd: password, ...profileData } = profile;
     res.status(200).json(profileData);
   } catch (err) {
     res.status(404).json({ message: "User not found", err });
@@ -59,7 +59,13 @@ const deleteUser = async (req, res) => {
   try {
     const id = req.user._id;
     await User.findByIdAndDelete(id, { new: true });
-    res.status(200).json("deleted succesfully");
+    res
+      .cookie("jwt", "", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV !== "development",
+      })
+      .status(200)
+      .json("deleted succesfully");
   } catch (err) {
     res.status(403).json({ message: "Failed to delete user", err });
   }
@@ -67,7 +73,7 @@ const deleteUser = async (req, res) => {
 
 const deleteUserbyAdmin = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     await User.findByIdAndDelete(id, { new: true }); // remember to remove visibility of password
     res.status(200).json("deleted succesfully");
   } catch (err) {
