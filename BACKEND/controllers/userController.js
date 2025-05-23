@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+
 const User = require("../models/userModel");
 
 const createUser = async (req, res) => {
@@ -11,9 +13,11 @@ const createUser = async (req, res) => {
     return res.status(400).json({ error: "All inputs are mandatory" });
   try {
     // look for duplicate and retiurn something 409 conflict
+    const salt = await bcrypt.genSalt();
+    content.password = await bcrypt.hash(content.password, salt);
     const userCreated = await new User(content);
-    await userCreated.save();
-    // hide password
+    const result = await userCreated.save();
+    console.log(result)
     res.status(200).json(userCreated);
   } catch (err) {
     console.log(err);

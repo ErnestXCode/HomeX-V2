@@ -28,7 +28,6 @@ const houseSchema = mongoose.Schema(
   }
 );
 
-// houseSchema.createIndex({area: 1})
 
 const House = mongoose.model("House", houseSchema);
 

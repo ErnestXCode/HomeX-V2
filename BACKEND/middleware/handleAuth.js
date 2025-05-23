@@ -10,7 +10,8 @@ const handleAuth = async (req, res, next) => {
     if (!decoded)
       return res.status(400).json("Not Authorized, invalid token");
 
-    const authorizedUser = await User.findOne({name : decoded.username}); //bad because names are not unique, make it better with ids
+    const authorizedUser = await User.findById(decoded.userId); //bad because names are not unique, make it better with ids
+    if(!authorizedUser) return res.sendStatus(404)
     req.user = authorizedUser._doc; //because its ot an index i think
     console.log(authorizedUser)
     next();

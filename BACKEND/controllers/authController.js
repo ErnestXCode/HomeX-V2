@@ -1,6 +1,34 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
+
+// const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   if (!email || !password) {
+//     return res.status(400).json({ error: "All Credentials Are Mandatory" });
+//   }
+//   const user = await User.findOne({ email });
+//   if (!user) return res.status(400).json({ error: "User Does Not Exist" });
+
+//   const verifiedPassword = await bcrypt.compare(password, user.password);
+//   if (!verifiedPassword)
+//     return res.status(400).json({ error: "invalid credentials" });
+
+//   const userId = user._id;
+
+//   const token = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+//     expiresIn: "30d",
+//   });
+//   res
+//     .cookie("jwt", token, {
+//       httpOnly: true,
+//       secure: process.env.NODE_ENV !== "development",
+//       maxAge: 2 * 24 * 60 * 60 * 1000,
+//     })
+//     .status(200)
+//     .json(user);
+// };
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -12,38 +40,32 @@ const loginUser = async (req, res) => {
   const foundUser = await User.findOne({ email });
   if (!foundUser) return res.status(400).json({ error: "User Does Not Exist" });
 
+  const userId = foundUser._id;
+
   const verifiedPassword = await bcrypt.compare(password, foundUser.password);
   console.log("verifiedPassword", verifiedPassword);
   if (!verifiedPassword)
     return res.status(400).json({ error: "invalid credentials" });
-  
-  const accessToken = jwt.sign(
-    { username: foundUser.name },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: "60s",
-    }
-  );
-  const refreshToken = jwt.sign(
-    { username: foundUser.name },
-    process.env.REFRESH_TOKEN_SECRET,
-    {
-      expiresIn: "7d",
-    }
-  );
+
+  const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "60s",
+  });
+  const refreshToken = jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: "7d",
+  });
 
   foundUser.refreshToken = refreshToken;
   const result = await foundUser.save();
+  
   console.log(result);
 
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
     // look what samesite does maybe its important
-    sameSite: 'None',
+    sameSite: "None",
     secure: process.env.NODE_ENV !== "development",
     maxAge: 2 * 24 * 60 * 60 * 1000,
-  });
-  res.status(200).json({ accessToken });
+  }).status(200).json({ accessToken });
 };
 
 const logOutUser = async (req, res) => {

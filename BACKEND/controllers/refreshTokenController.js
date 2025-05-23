@@ -10,15 +10,13 @@ const handleRefreshToken = async (req, res) => {
   const user = await User.findOne({ refreshToken }); // look for a person whho has the refresh token
   if (!user) return res.status(400).json({ error: "User Does Not Exist" });
 
+  const userId = user._id;
+
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
     if (err) return res.sendStatus(403);
-    const accessToken = jwt.sign(
-      { username: decoded.username },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "60s",
-      }
-    );
+    const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "60s",
+    });
     res.json({ accessToken });
   });
 };
