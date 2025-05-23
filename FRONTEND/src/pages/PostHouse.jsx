@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 // import { useSelector } from "react-redux";
@@ -19,10 +19,17 @@ const PostHouse = () => {
   const currentUser = useSelector(selectCurrentUser);
   if (!currentUser) navigate("/signup");
 
+  const areaRef = useRef();
+
+  useEffect(() => {
+    areaRef?.current.focus();
+  }, []);
+
   const dataDict = {
     area: "",
     pricing: "",
     landMarks: "",
+    amenities: "",
   };
   const [images, setImages] = useState([]);
 
@@ -62,9 +69,19 @@ const PostHouse = () => {
     e.preventDefault();
 
     const form = new FormData();
+
+    const landMarkArray = [];
+    const amenitiesArray = [];
+    const splitLandMarks = inputData?.landMarks.split(",");
+    const splitAmenities = inputData?.amenities.split(",");
+    splitLandMarks.forEach((landMark) => landMarkArray.push(landMark));
+    splitAmenities.forEach((amenity) => amenitiesArray.push(amenity));
+
+    landMarkArray.forEach((landMark) => form.append("landMarks", landMark));
+    amenitiesArray.forEach((amenity) => form.append("amenities", amenity));
+
     form.append("area", inputData?.area);
     form.append("pricing", inputData?.pricing);
-    form.append("landMarks", inputData?.landMarks);
     form.append("landLord", currentUser?._id);
     images.forEach((file) =>
       form.append(
@@ -93,67 +110,73 @@ const PostHouse = () => {
   });
 
   return (
-  <>
-    <CustomForm
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <CustomInputBox
-        id={"area"}
-        value={inputData?.area}
-        name={"area"}
-        type={"text"}
-        onChange={(e) => handleChange(e)}
-      >
-        Area:
-      </CustomInputBox>
-
-      {/* style images input better */}
-      {images[0] ? (
-        <div>
-          <img
-            className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
-            src={URL.createObjectURL(images[0])}
-          />{" "}
-          {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
-        </div>
-      ) : (
+    <>
+      <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
-          id={"images"}
-          name={"images"}
-          type={"file"}
-          isFileInput={true}
-          onChange={(e) => handleimagesChange(e)}
+          id={"area"}
+          inputRef={areaRef}
+          value={inputData?.area}
+          name={"area"}
+          type={"text"}
+          onChange={(e) => handleChange(e)}
         >
-          Images:
+          Area:
         </CustomInputBox>
-      )}
 
-      <CustomInputBox
-        id={"pricing"}
-        name={"pricing"}
-        value={inputData?.pricing}
-        type={"number"}
-        onChange={(e) => handleChange(e)}
-      >
-        Pricing:
-      </CustomInputBox>
+        {/* style images input better */}
+        {images[0] ? (
+          <div>
+            <img
+              className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
+              src={URL.createObjectURL(images[0])}
+            />{" "}
+            {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
+          </div>
+        ) : (
+          <CustomInputBox
+            id={"images"}
+            name={"images"}
+            type={"file"}
+            isFileInput={true}
+            onChange={(e) => handleimagesChange(e)}
+          >
+            Images:
+          </CustomInputBox>
+        )}
 
-      <CustomInputBox
-        id={"landMarks"}
-        value={inputData?.landMarks}
-        name={"landMarks"}
-        type={"text"}
-        onChange={(e) => handleChange(e)}
-      >
-        Landmarks:
-      </CustomInputBox>
-      <div className="mt-3">
+        <CustomInputBox
+          id={"pricing"}
+          name={"pricing"}
+          value={inputData?.pricing}
+          type={"number"}
+          onChange={(e) => handleChange(e)}
+        >
+          Pricing:
+        </CustomInputBox>
+        <CustomInputBox
+          id={"amenities"}
+          name={"amenities"}
+          value={inputData?.amenities}
+          type={"text"}
+          onChange={(e) => handleChange(e)}
+        >
+          Amenities:
+        </CustomInputBox>
 
-      <SubmitButton>Create</SubmitButton>
-      </div>
-    
-    </CustomForm>
-    <BottomNav />
+        <CustomInputBox
+          id={"landMarks"}
+          value={inputData?.landMarks}
+          name={"landMarks"}
+          type={"text"}
+          onChange={(e) => handleChange(e)}
+        >
+          Landmarks:
+        </CustomInputBox>
+        <div className="mt-3">
+          <SubmitButton>Create</SubmitButton>
+        </div>
+      </CustomForm>
+      <BottomNav />
     </>
   );
 };

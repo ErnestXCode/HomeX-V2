@@ -88,6 +88,7 @@ const SignUp = () => {
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"name"}
+        inputRef={nameRef}
           name={"name"}
           value={inputData.name}
           type={"text"}

@@ -76,6 +76,7 @@ const Login = () => {
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"email"}
+          inputRef={emailRef}
           name={"email"}
           value={inputData.email}
           type={"email"}

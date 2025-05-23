@@ -11,6 +11,7 @@ import ListText from "./ListText";
 import ViewButton from "./ViewButton";
 import { Link, useNavigate } from "react-router-dom";
 import InitialLoader from "./InitialLoader";
+import ListingsPlaceholder from "./ListingsPlaceholder";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("./Footer"));
@@ -93,8 +94,9 @@ const Listings = () => {
           // onHandleClick={handleFilter}
         />
 
-        <Suspense fallback={<InitialLoader />}>
+        <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}
+          
           {data?.pages.map((group, i) => (
             <div key={i} className="ml-3 mr-3">
               {group.data.map((item) => (
@@ -125,9 +127,9 @@ const Listings = () => {
           ))}
           <div
             ref={loadMoreRef}
-            className="h-20 bg-black text-white font-semibold mb-39"
+            className="bg-black text-white font-semibold mb-39"
           >
-            {isFetchingNextPage && <InitialLoader />}
+            {isFetchingNextPage && <ListingsPlaceholder />}
           </div>
         </Suspense>
 

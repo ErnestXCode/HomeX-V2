@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser, selectCurrentUser } from "../features/users/userSlice";
-import profilePic from "../assets/profile.jfif";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import ViewButton from "../components/ViewButton";
@@ -10,6 +9,7 @@ import SubmitButton from "../components/SubmitButton";
 import ProfileButtons from "../components/ProfileButtons";
 
 import ProfileButton from "../components/ProfileButtons";
+import { FaCreditCard, FaDigitalTachograph, FaHeart, FaMoneyBillAlt, FaPenAlt, FaTeamspeak, FaUser } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
@@ -58,12 +58,12 @@ const Profile = () => {
         <Header />
         {/* use svg in the profile pic */}
         <section className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2">
-          <img
-            src={profilePic}
+          <div
+            // src={profilePic}
             alt=""
             width={40}
-            className="rounded-full border-3 border-gray-400 m-4 "
-          />
+            className="rounded-full size-10 bg-gray-600 m-4"
+          ></div>
           <section className=" mt-3 flex-1 ">
             <p className=" mb-4 font-semibold">
               Welcome {user?.isAdmin ? "Admin" : ""} {user?.name}!{" "}
@@ -88,19 +88,61 @@ const Profile = () => {
         "
         >
           {user?.isAdmin && (
-            <ProfileButton link={"/admin"}>Admin Dashboard</ProfileButton>
+            <ProfileButton link={"/admin"}>
+              <div className='flex  gap-2 items-center'><FaDigitalTachograph />
+              Admin Dashboard
+              </div>
+            
+            </ProfileButton>
           )}
-          <ProfileButton link={"/liked"}>Recently liked</ProfileButton>
+          <ProfileButton link={"/liked"}>
+          <div className='flex  gap-2 items-center'><FaHeart />
+          Recently liked
+          </div>
+          
+          </ProfileButton>
 
-          <ProfileButton link={"/personal"}>Personal information</ProfileButton>
+          <ProfileButton link={"/personal"}>
+          <div className='flex  gap-2 items-center'><FaUser />
+          Personal information
+          </div>
+          
+          </ProfileButton>
           {/* they can add more information KYC*/}
-          <ProfileButton>Change username</ProfileButton>
+          <ProfileButton>
+            <div className='flex  gap-2 items-center'><FaPenAlt />
+            Change username
+            </div>
+
+
+          </ProfileButton>
           {/* modal */}
-          <ProfileButton>Change Password</ProfileButton>
+          <ProfileButton>
+            <div className='flex  gap-2 items-center'><FaCreditCard />
+            Change Password
+            </div>
+
+
+          </ProfileButton>
           {/* modal */}
-          <ProfileButton link={"/about-us"}>About us</ProfileButton>
-          <ProfileButton link={"/donate"}>Donate</ProfileButton>
-          <ProfileButton link={"/contact-us"}>Contact us</ProfileButton>
+          <ProfileButton link={"/about-us"}>
+          <div className='flex  gap-2 items-center'><FaTeamspeak />
+          About us
+          </div>
+          
+          </ProfileButton>
+          <ProfileButton link={"/donate"}>
+          <div className='flex  gap-2 items-center'><FaMoneyBillAlt />
+          Donate
+          </div>
+          
+          </ProfileButton>
+          <ProfileButton link={"/contact-us"}>
+          <div className="flex gap-2 items-center"><FaUser />
+          Contact us
+          </div>
+          
+          </ProfileButton>
           {/* modal or link */}
           <section className="flex w-[100%] justify-between m-2">
             <ViewButton onClick={() => handleLogout()}>Log out</ViewButton>

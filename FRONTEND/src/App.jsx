@@ -6,6 +6,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
 const PostHouse = lazy(() => import("./pages/PostHouse"));
+const PostHouseNext = lazy(() => import("./pages/PostHouseNext"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Auth = lazy(() => import("./pages/Auth"));
@@ -29,6 +30,7 @@ function App() {
             <Route path="/trials" element={<Trials />}></Route>
             <Route path="/house/:id" element={<IndividualHouse />}></Route>
             <Route path="/post-house" element={<PostHouse />}></Route>
+            <Route path="/post-house-2" element={<PostHouseNext />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/auth" element={<Auth />}></Route>
             <Route path="/admin" element={<Admin />}></Route>

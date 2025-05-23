@@ -1,10 +1,10 @@
-import React from "react";
 import InitialLoader from "../components/InitialLoader";
+import ListText from "../components/ListText";
+
 
 const Trials = () => {
-  
   return (
-  <InitialLoader />
+    <InitialLoader />
   );
 };
 

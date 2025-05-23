@@ -8,7 +8,7 @@ import NavElements from "./NavElements";
 import SideNavCard from "./SideNavCard";
 import SideNavLayout from "./SideNavLayout";
 import SidebarButton from "./SidebarButton";
-import { FaCross, FaCrosshairs } from "react-icons/fa";
+import { FaUser, FaCrosshairs, FaHome, FaLandmark, FaLanguage, FaSpeakerDeck, FaHeadphonesAlt, FaBook, FaHandsHelping } from "react-icons/fa";
 
 const SideNav = () => {
 
@@ -28,37 +28,55 @@ const SideNav = () => {
 
       <SideNavCard>
         <NavElements side={true} link={"/"} onClick={() => dispatch(closeSideNav())}>
-          Home
+          <div className="flex items-center gap-2">
+          <FaHome />Home
+
+          </div>
         </NavElements>
         <NavElements side={true} link={""} onClick={() => dispatch(closeSideNav())}>
-          Language
+          <div className="flex items-center gap-2">
+          <FaLanguage />Language
+
+          </div>
         </NavElements>
       </SideNavCard>
 
       <SideNavCard>
         <NavElements side={true} link={""} onClick={() => dispatch(closeSideNav())}>
-          Announcements
+          <div className="flex items-center gap-2">
+          <FaSpeakerDeck />Announcements
+
+          </div>
         </NavElements>
         <NavElements
         side={true}
           link={"/contact-us"}
           onClick={() => dispatch(closeSideNav())}
         >
-          Contact us
+          <div className="flex items-center gap-2">
+          <FaHeadphonesAlt />Contact us
+
+          </div>
         </NavElements>
         <NavElements
         side={true}
           link={"/about-us"}
           onClick={() => dispatch(closeSideNav())}
         >
-          About us
+          <div className="flex items-center gap-2">
+          <FaBook />About us
+
+          </div>
         </NavElements>
         <NavElements
         side={true}
           link={"/help"}
           onClick={() => dispatch(closeSideNav())}
         >
-          Help
+          <div className="flex items-center gap-2">
+          <FaHandsHelping />Help
+
+          </div>
         </NavElements>
       </SideNavCard>
     </SideNavLayout>

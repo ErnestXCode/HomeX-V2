@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
+import PWA_JSON_FILE from './config/icons.json'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,31 +16,20 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate", // Automatically update the service worker
+      registerType: "autoUpdate", 
       workbox: {
-        globPatterns: ["**/*.{html,js,css,png,jpg,jpeg,svg}"], // Files to cache
+        globPatterns: ["**/*.{html,js,css,png,jpg,jpeg,svg}"], 
       },
       manifest: {
-        name: "My PWA App", // Name of your app
-        short_name: "PWA", // Short name for app on home screen
+        name: "HomeX", 
+        short_name: "HomeX", 
         description:
-          "A Progressive Web App built with Vite, React, and Tailwind CSS",
-        theme_color: "#333", // Theme color of the app
-        background_color: "#333", // Background color of the app
-        start_url: "/", // Start URL of the PWA
-        display: "standalone", // Display mode (like a native app)
-        icons: [
-          {
-            src: "./src/assets/pwa-images/android-launchericon-192-192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "./src/assets/pwa-images/android-launchericon-512-512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
+          "HomeX description",
+        theme_color: "#333", 
+        background_color: "#333", 
+        start_url: "/",
+        display: "standalone", 
+        icons: PWA_JSON_FILE.icons
       },
     }),
   ],

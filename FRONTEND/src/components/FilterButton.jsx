@@ -4,7 +4,11 @@ const FilterButton = ({onClick, children}) => {
   return (
     <button
         onClick={onClick}
-        className="min-w-fit rounded-2xl bg-black p-1 text-[.8rem] pr-3 pl-3 border-2 border-blue-400/70 hover:cursor-pointer hover:border-blue-200"
+        className="min-w-fit rounded-xl bg-black/60 border-1
+      p-1.5
+      border-blue-100
+       flex items-center justify-center
+        text-[.75rem]"
         >
         {children}
       </button>
