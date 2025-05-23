@@ -1,5 +1,4 @@
 const User = require("../models/userModel");
-const handleToken = require("../middleware/handleToken");
 
 const createUser = async (req, res) => {
   const content = req.body;
@@ -11,9 +10,9 @@ const createUser = async (req, res) => {
   )
     return res.status(400).json({ error: "All inputs are mandatory" });
   try {
+    // look for duplicate and retiurn something 409 conflict
     const userCreated = await new User(content);
     await userCreated.save();
-    handleToken(res, userCreated._id);
     // hide password
     res.status(200).json(userCreated);
   } catch (err) {
@@ -55,7 +54,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const id = req.user._id;
-    await User.findByIdAndDelete(id, { new: true }); // remember to remove visibility of password
+    await User.findByIdAndDelete(id, { new: true });
     res.status(200).json("deleted succesfully");
   } catch (err) {
     res.status(403).json({ message: "Failed to delete user", err });

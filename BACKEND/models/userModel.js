@@ -21,14 +21,15 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "password is required"],
     },
-    isLandlord: {
-      type: Boolean,
-      default: false,
+    roles: {
+      tenant: {
+        type: Number,
+        default: 2001,
+      },
+      landlord: Number,
+      admin: Number,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    }, 
+    refreshToken: String
   },
   {
     timestamps: true,

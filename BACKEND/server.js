@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const compression = require("compression");
 const helmet = require("helmet");
-const session = require("express-session");
 // verification of data availability in the controllers -----remember
 const { connectDB, getGFS, getGridFSBucket } = require("./config/db");
 const  rateLimit  = require("express-rate-limit");
@@ -16,7 +15,7 @@ const  rateLimit  = require("express-rate-limit");
 const app = express();
 dotenv.config();
 
-const whiteList = [process.env.VITE_URL, 'http://172.26.144.1:5173', 'http://192.168.43.13:5173'];
+const whiteList = [process.env.VITE_URL];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -36,13 +35,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
 
 // const limiter = rateLimit({
 //   max: 100, 
@@ -51,11 +43,12 @@ app.use(
 // })
 // app.use('/', limiter)
 
-app.use("/", require("./routes/user"));
 app.use("/", require("./routes/houses"));
 app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/images"));
+app.use("/", require("./routes/user"));
 app.use("/", require("./routes/auth"));
+app.use("/", require("./routes/refresh"));
 
 (async () => {
   await connectDB();
