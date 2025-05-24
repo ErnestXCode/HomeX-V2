@@ -8,17 +8,18 @@ const {
 } = require("../controllers/areaController");
 const handleAuth = require("../middleware/handleAuth");
 const verifyRoles = require("../middleware/verifyRoles");
+const ROLES_LIST = require("../config/roles_list");
 
 const router = express.Router();
 
 router
   .route("/areas")
   .get(getAllAreas)
-  .post(handleAuth, verifyRoles(["admin"]), createArea);
+  .post(handleAuth, verifyRoles(ROLES_LIST.admin), createArea);
 router
   .route("/areas/:id")
   .get(handleAuth, getArea)
-  .put(handleAuth, verifyRoles(["admin"]), updateArea)
-  .delete(handleAuth, verifyRoles(["admin"]), deleteArea);
+  .put(handleAuth, verifyRoles(ROLES_LIST.admin), updateArea)
+  .delete(handleAuth, verifyRoles(ROLES_LIST.admin), deleteArea);
 
 module.exports = router;

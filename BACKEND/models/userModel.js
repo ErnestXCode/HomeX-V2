@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const ROLES_LIST = require("../config/roles_list");
 
 const userSchema = mongoose.Schema(
   {
@@ -24,7 +25,7 @@ const userSchema = mongoose.Schema(
     roles: {
       tenant: {
         type: Number,
-        default: 2001,
+        default: ROLES_LIST.tenant,
       },
       landlord: Number,
       admin: Number,

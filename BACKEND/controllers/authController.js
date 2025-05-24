@@ -63,24 +63,26 @@ const loginUser = async (req, res) => {
     ? foundUser.refreshToken
     : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
 
-  if (cookies?.jwt){
-
-    const refreshToken = cookies.jwt
-    const foundToken = await User.findOne({refreshToken})
-    if(!foundToken) {
-      console.log('attempted refresh token reuse at login')
-      newRefreshTokenArray = []
+  if (cookies?.jwt) {
+    const refreshToken = cookies.jwt;
+    const foundToken = await User.findOne({ refreshToken });
+    if (!foundToken) {
+      console.log("attempted refresh token reuse at login");
+      newRefreshTokenArray = [];
     }
 
     res.cookie("jwt", "", {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
-    });}
+    });
+  }
 
   foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
   const result = await foundUser.save();
 
   console.log(result);
+
+  const roles = Object.values(foundUser.roles);
 
   res
     .cookie("jwt", newRefreshToken, {
@@ -90,15 +92,15 @@ const loginUser = async (req, res) => {
       maxAge: 2 * 24 * 60 * 60 * 1000,
     })
     .status(200)
-    .json({ accessToken });
+    .json({ roles, accessToken });
 };
 
 const logOutUser = async (req, res) => {
   // delete accessToken on client side
 
   const refreshToken = req.cookies?.jwt;
-  console.log(refreshToken)
-  if (!refreshToken) return res.status(204).json('bye'); // no content
+  console.log(refreshToken);
+  if (!refreshToken) return res.sendStatus(204) // no content
 
   // find user in db with the refreshToken and clear cookie if user is not found pia
   const foundUser = await User.findOne({ refreshToken });

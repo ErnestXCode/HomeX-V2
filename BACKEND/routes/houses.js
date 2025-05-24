@@ -10,6 +10,7 @@ const {
 const handleAuth = require("../middleware/handleAuth");
 const upload = require("../middleware/handleUploads");
 const verifyRoles = require("../middleware/verifyRoles");
+const ROLES_LIST = require("../config/roles_list");
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router
   .get(getAllHouses)
   .post(
     handleAuth,
-    verifyRoles(["admin", "landlord"]),
+    verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
     upload.array("images", 3),
     createHouse
   );
@@ -26,8 +27,16 @@ router
 router
   .route("/houses/:id")
   .get(getHouseById)
-  .put(handleAuth, verifyRoles(["admin", "landlord"]), updateHouse)
-  .delete(handleAuth, verifyRoles(["admin", "landlord"]), deleteHouse); //landlord middleware
+  .put(
+    handleAuth,
+    verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
+    updateHouse
+  )
+  .delete(
+    handleAuth,
+    verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
+    deleteHouse
+  ); //landlord middleware
 
 router.route("/houses/area/:area").get(getHouseByArea);
 
