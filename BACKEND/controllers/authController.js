@@ -112,9 +112,11 @@ const logOutUser = async (req, res) => {
   console.log(result);
 
   res
-    .cookie("jwt", "", {
+    .clearCookie("jwt", "", {
       httpOnly: true,
+      // look what samesite does maybe its important
       secure: process.env.NODE_ENV !== "development",
+      maxAge: 2 * 24 * 60 * 60 * 1000,
     })
     .status(200)
     .json({ message: "Logged Out Successfully" });
