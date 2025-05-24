@@ -2,15 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
-  signInFailure,
-  signInStart,
+
   signInSuccess,
 } from "../features/users/userSlice";
 import WelcomeHero from "../components/WelcomeHero";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import CustomForm from "../components/CustomForm";
-const apiBaseUrl = import.meta.env.VITE_API_URL;
+import axios from "../api/axios";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -41,33 +40,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signInStart());
 
     try {
-      const res = await fetch(`${apiBaseUrl}/login`, {
-        method: "POST",
-        credentials: "include",
+      const response = await axios.post("/login", JSON.stringify(inputData), {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputData),
+        withCredentials: true,
       });
-      // look if possible with axios
-
-      if (!res.ok) {
-        dispatch(signInFailure("Failed to validate user"));
-        return;
-      }
-
-      const data = await res.json();
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(signInSuccess(data));
-      console.log(data);
+      localStorage.setItem('user', JSON.stringify(response.data))
+      dispatch(signInSuccess(response.data));
+      console.log(response.data); 
+      // data.data.accessToken
 
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
-      dispatch(signInFailure(err.message));
     }
   };
 
@@ -79,7 +67,7 @@ const Login = () => {
           inputRef={emailRef}
           name={"email"}
           value={inputData.email}
-          type={"email"}
+          type={"text"} // correct later
           onChange={(e) => handleChange(e)}
         >
           Email:
@@ -97,7 +85,7 @@ const Login = () => {
         {/* disabled={loading} */}
         {/* {loading ? "Logging In..." : "Log In"} */}
         <div className="mt-4">
-        <SubmitButton>Log in</SubmitButton>
+          <SubmitButton>Log in</SubmitButton>
         </div>
 
         <p className="mt-4 font-serif text-center">

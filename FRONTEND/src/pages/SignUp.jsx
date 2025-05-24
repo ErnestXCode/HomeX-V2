@@ -1,26 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {
-  signInFailure,
-  signInStart,
-  signInSuccess,
-} from "../features/users/userSlice";
-import WelcomeHero from "../components/WelcomeHero";
 import CustomInputBox from "../components/CustomInputBox";
 import Modal from "../components/Modal";
 import SubmitButton from "../components/SubmitButton";
 import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
 import CustomCheckBox from "../components/CustomCheckBox";
-const apiBaseUrl = import.meta.env.VITE_API_URL;
+import axios from '../api/axios'
 
 const SignUp = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
-  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -58,28 +49,24 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signInStart());
     try {
-      const newUser = await axios.post(`${apiBaseUrl}/users`, {
+      const newUser = await axios.post('/users', {
+        // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
         ...inputData,
         isLandlord,
       });
       console.log(newUser);
 
       if (newUser.status !== 200) {
-        dispatch(signInFailure("Failed to create user"));
         return;
       }
 
       const data = await newUser.data;
-      console.log(data);
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(signInSuccess(data));
+      console.log(data)
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
 
-      dispatch(signInFailure(err.message));
     }
   };
 

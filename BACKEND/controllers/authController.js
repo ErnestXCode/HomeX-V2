@@ -82,7 +82,7 @@ const loginUser = async (req, res) => {
 
   console.log(result);
 
-  const roles = Object.values(foundUser.roles);
+  const roles = Object.values(foundUser.roles).filter(Boolean);
 
   res
     .cookie("jwt", newRefreshToken, {
