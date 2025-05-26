@@ -10,6 +10,7 @@ import {
   FaTools,
 } from "react-icons/fa";
 
+
 const BottomNav = () => {
   const user = useSelector(selectCurrentUser);
   return (
@@ -29,7 +30,7 @@ const BottomNav = () => {
           <FaBook />
           <p className="text-[0.6rem]">About us</p>
         </NavElements>
-        <NavElements link={user ? "/profile" : "/auth"}>
+        <NavElements link={user !== null ? "/profile" : "/login"}>
           <FaPersonBooth />
           <p className="text-[0.6rem]">Me</p>
         </NavElements>

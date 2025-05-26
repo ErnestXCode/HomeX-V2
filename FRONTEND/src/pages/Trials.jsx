@@ -1,11 +1,11 @@
-import InitialLoader from "../components/InitialLoader";
-import ListText from "../components/ListText";
-
+import React from 'react'
 
 const Trials = () => {
   return (
-    <InitialLoader />
-  );
-};
+    <div>
+      'hekki'
+    </div>
+  )
+}
 
-export default Trials;
+export default Trials

@@ -1,5 +1,4 @@
-import React, { lazy, Suspense } from "react";
-import axios from "axios";
+import React, { lazy, Suspense, useState } from "react";
 import Filter from "./Filter";
 import Header from "./Header";
 import BottomNav from "./BottomNav";
@@ -12,34 +11,53 @@ import ViewButton from "./ViewButton";
 import { Link, useNavigate } from "react-router-dom";
 import InitialLoader from "./InitialLoader";
 import ListingsPlaceholder from "./ListingsPlaceholder";
+import axios from "../api/axios";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("./Footer"));
-const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const fetchHouses = async ({ pageParam = 1 }) => {
-  const { data } = await axios.get(`${apiBaseUrl}/houses?page=${pageParam}`);
-  return data;
-};
+// const fetchHouses = async ({ pageParam = 1 }) => {
+//   const { data } = await axios.get(`/houses?page=${pageParam}`);
+//   return data;
+// };
 
 const Listings = () => {
   const navigate = useNavigate();
   // const user = useSelector(selectCurrentUser);
+  const [listState, setListState] = useState("");
+
+  const handleFilter = async (area) => {
+    try {
+      setListState(area);
+     
+    } catch (err) {
+    console.log(err)
+    }
+  };
 
   const AreaQueryData = useQuery({
     queryKey: ["areas"],
-    queryFn: async () => await axios.get(`${apiBaseUrl}/areas`),
+    queryFn: async () => await axios.get(`/areas`),
   });
 
   const AreaData = AreaQueryData?.data?.data;
 
+  
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["houses"],
       getNextPageParam: (lastPage) => {
         return lastPage.hasMore ? lastPage.nextPage : undefined;
       },
-      queryFn: fetchHouses,
+      queryFn: async ({ pageParam = 1 }) => {
+       
+        const { data } = listState
+          ? await axios.get(`/houses?page=${pageParam}&area=${listState}`)
+          : await axios.get(`/houses?page=${pageParam}`);
+     
+        // list state is not updating in this place
+        return data;
+      },
     });
 
   const loadMoreRef = useRef();
@@ -64,39 +82,25 @@ const Listings = () => {
 
   // const HouseData = HouseQueryData?.data?.data;
 
-  // const handleFilter = async (area) => {
-  //   try {
-  //     const res = await axios.get(`${apiBaseUrl}/houses/area/${area}`);
-  //     setFilteredHouseData(res.data);
-  //   } catch (err) {
-  //     console.log("ERROR:    ", err);
-  //   }
-  // };
-
   // const handleDelete = async (id) => {
   //   try {
   //     const res = await axios.delete(`${apiBaseUrl}/houses/${id}`);
-  //     console.log(res.data);
+  //     (res.data);
   //   } catch (err) {
-  //     console.log("error", err);
+  //     ("error", err);
   //   }
   // };
 
-  console.log(data?.pages);
-  console.log(data);
 
   return (
     <main className="">
       <section className="bg-black">
         <Header />
-        <Filter
-          data={AreaData}
-          // onHandleClick={handleFilter}
-        />
+        <Filter data={AreaData} onHandleClick={handleFilter} />
 
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}
-          
+
           {data?.pages.map((group, i) => (
             <div key={i} className="ml-3 mr-3">
               {group.data.map((item) => (
@@ -129,7 +133,7 @@ const Listings = () => {
             ref={loadMoreRef}
             className="bg-black text-white font-semibold mb-39"
           >
-            {isFetchingNextPage && <ListingsPlaceholder />}
+            {isFetchingNextPage && <InitialLoader notFullPage={true}/>}
           </div>
         </Suspense>
 

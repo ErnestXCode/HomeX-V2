@@ -31,6 +31,7 @@ const userSchema = mongoose.Schema(
       admin: Number,
     },
     refreshToken: [String]
+   
   },
   {
     timestamps: true,

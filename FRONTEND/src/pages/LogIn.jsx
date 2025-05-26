@@ -10,6 +10,7 @@ import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import CustomForm from "../components/CustomForm";
 import axios from "../api/axios";
+import SecondaryHeader from "../components/SecondaryHeader";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,6 @@ const Login = () => {
         },
         withCredentials: true,
       });
-      localStorage.setItem('user', JSON.stringify(response.data))
       dispatch(signInSuccess(response.data));
       console.log(response.data); 
       // data.data.accessToken
@@ -61,6 +61,7 @@ const Login = () => {
 
   return (
     <>
+    <SecondaryHeader>Login</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"email"}
@@ -70,7 +71,7 @@ const Login = () => {
           type={"text"} // correct later
           onChange={(e) => handleChange(e)}
         >
-          Email:
+          Email
         </CustomInputBox>
         <CustomInputBox
           id={"password"}
@@ -79,7 +80,7 @@ const Login = () => {
           type={"password"}
           onChange={(e) => handleChange(e)}
         >
-          Password:
+          Password
         </CustomInputBox>
 
         {/* disabled={loading} */}
@@ -88,7 +89,7 @@ const Login = () => {
           <SubmitButton>Log in</SubmitButton>
         </div>
 
-        <p className="mt-4 font-serif text-center">
+        <p className="font-serif text-center">
           {" "}
           Don't have an account?{" "}
           <Link

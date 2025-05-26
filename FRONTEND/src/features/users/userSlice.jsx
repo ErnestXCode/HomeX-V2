@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: JSON.parse(localStorage.getItem("user")) || null,
-  loading: false,
-  error: null,
+  currentUser: {}
 };
 
 const userSlice = createSlice({
@@ -11,8 +9,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signInSuccess: (state, action) => {
-      state.loading = false;
-      state.error = null;
       state.currentUser = action.payload;
     },
     logOutUser: (state) => {

@@ -8,6 +8,7 @@ import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
 import CustomCheckBox from "../components/CustomCheckBox";
 import axios from '../api/axios'
+import SecondaryHeader from "../components/SecondaryHeader";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const SignUp = () => {
       const newUser = await axios.post('/users', {
         // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
         ...inputData,
-        isLandlord,
+        roles: {admin : 1950}
       });
       console.log(newUser);
 
@@ -72,6 +73,7 @@ const SignUp = () => {
 
   return (
     <>
+    <SecondaryHeader>Register</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"name"}
@@ -81,7 +83,7 @@ const SignUp = () => {
           type={"text"}
           onChange={(e) => handleChange(e)}
         >
-          Name:
+          Name
         </CustomInputBox>
         <CustomInputBox
           id={"email"}
@@ -90,7 +92,7 @@ const SignUp = () => {
           type={"email"}
           onChange={(e) => handleChange(e)}
         >
-          Email:
+          Email
         </CustomInputBox>
         <CustomInputBox
           id={"phoneNumber"}
@@ -99,7 +101,7 @@ const SignUp = () => {
           type={"text"}
           onChange={(e) => handleChange(e)}
         >
-          Phone number:
+          Phone number
         </CustomInputBox>
         <CustomInputBox
           id={"password"}
@@ -108,7 +110,7 @@ const SignUp = () => {
           type={"password"}
           onChange={(e) => handleChange(e)}
         >
-          Password:
+          Password
         </CustomInputBox>
         <section className="flex items-center gap-4 mb-4 mt-2">
           <CustomCheckBox
@@ -141,7 +143,7 @@ const SignUp = () => {
           </CustomCheckBox>
         </section>
         <SubmitButton>Register</SubmitButton>
-        <p className="mt-4 font-serif text-center text-[.8rem]">
+        <p className="font-serif text-center text-[.8rem]">
           Already have an account?{" "}
           <Link
             className="border-b-3 border-blue-600 text-blue-200"

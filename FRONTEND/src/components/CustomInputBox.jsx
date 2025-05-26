@@ -19,6 +19,7 @@ const CustomInputBox = ({
         ref={inputRef}
         accept={isFileInput && "image/*"}
         multiple={isFileInput && true}
+        placeholder={children}
         name={name}
         required
         autoComplete="off"

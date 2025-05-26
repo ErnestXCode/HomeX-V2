@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CustomInputBox from "../components/CustomInputBox";
@@ -11,6 +10,8 @@ import SubmitButton from "../components/SubmitButton";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
+import axios, { axiosPrivate } from "../api/axios";
+import SecondaryHeader from "../components/SecondaryHeader";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PostHouse = () => {
@@ -90,7 +91,7 @@ const PostHouse = () => {
       )
     );
     try {
-      const response = await axios.post(`${apiBaseUrl}/houses`, form);
+      const response = await axios.post(`/houses`, form, {withCredentials : true});
       console.log(response);
       navigate("/");
     } catch (error) {
@@ -120,7 +121,7 @@ const PostHouse = () => {
           type={"text"}
           onChange={(e) => handleChange(e)}
         >
-          Area:
+          Location
         </CustomInputBox>
 
         {/* style images input better */}
@@ -140,7 +141,7 @@ const PostHouse = () => {
             isFileInput={true}
             onChange={(e) => handleimagesChange(e)}
           >
-            Images:
+            Images
           </CustomInputBox>
         )}
 
@@ -151,7 +152,7 @@ const PostHouse = () => {
           type={"number"}
           onChange={(e) => handleChange(e)}
         >
-          Pricing:
+          Pricing
         </CustomInputBox>
         <CustomInputBox
           id={"amenities"}
@@ -160,7 +161,7 @@ const PostHouse = () => {
           type={"text"}
           onChange={(e) => handleChange(e)}
         >
-          Amenities:
+          Amenities
         </CustomInputBox>
 
         <CustomInputBox
@@ -170,8 +171,9 @@ const PostHouse = () => {
           type={"text"}
           onChange={(e) => handleChange(e)}
         >
-          Landmarks:
+          Landmarks
         </CustomInputBox>
+        {/* i dont think we will need landmarks when we have maps */}
         <div className="mt-3">
           <SubmitButton>Create</SubmitButton>
         </div>

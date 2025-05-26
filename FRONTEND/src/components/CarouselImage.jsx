@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ListingsPlaceholder from "./ListingsPlaceholder";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const CarouselImage = ({ item }) => {
@@ -13,6 +14,7 @@ const CarouselImage = ({ item }) => {
         src={`${apiBaseUrl}/images/${item?.images[index]}`}
         alt=""
         loading="lazy"
+        fallback={<ListingsPlaceholder />}
         // pointerEvents='None'
       />
       <div className="flex absolute bottom-2 w-full justify-center gap-1">

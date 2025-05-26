@@ -1,16 +1,12 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import SecondaryHeader from "../components/SecondaryHeader";
 
 const Donations = () => {
   return (
     <>
-    <h1 className="text-xl p-2 font-semibold text-center border-b border-blue-600">Donate</h1>
-    <nav className="p-3">
-      <Link to={'/'}>
-      <FaArrowLeft />
-      </Link>
-    </nav>
+   <SecondaryHeader>Donate</SecondaryHeader>
     <section>
         
       <p className="bg-black opacity-70 p-4 mt-4 h-[500px]">

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logOutUser, selectCurrentUser } from "../features/users/userSlice";
+import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import ViewButton from "../components/ViewButton";
@@ -9,53 +9,136 @@ import SubmitButton from "../components/SubmitButton";
 import ProfileButtons from "../components/ProfileButtons";
 
 import ProfileButton from "../components/ProfileButtons";
-import { FaCreditCard, FaDigitalTachograph, FaHeart, FaMoneyBillAlt, FaPenAlt, FaTeamspeak, FaUser } from "react-icons/fa";
+import {
+  FaCreditCard,
+  FaDigitalTachograph,
+  FaHeart,
+  FaMoneyBillAlt,
+  FaPenAlt,
+  FaTeamspeak,
+  FaUser,
+} from "react-icons/fa";
+import useRefreshToken from "../hooks/useRefreshToken";
+import Modal from "../components/Modal";
+import CustomForm from "../components/CustomForm";
+import CustomInputBox from "../components/CustomInputBox";
+
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
-  const user = useSelector(selectCurrentUser);
+  const userInfo = useSelector(selectCurrentUser);
+
+  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       const res = await fetch(`${apiBaseUrl}/logout`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
       });
-      const data = await res.json();
-      localStorage.clear();
-      dispatch(logOutUser());
+      await res.json();
+      // dispatch(signInSuccess(null));
       navigate("/");
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
+
   const handleDelete = async () => {
     try {
       const res = await fetch(`${apiBaseUrl}/profile`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo?.accessToken}`,
+        },
         credentials: "include",
       });
-      const data = await res.json();
-      localStorage.clear();
-      dispatch(logOutUser());
+      await res.json();
+      // dispatch(signInSuccess(null));
       navigate("/");
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    const handleProfileData = async () => {
+      try {
+        if (userInfo.accessToken) {
+          console.log("userinfo apparently exists", userInfo.accessToken);
+        } else {
+          const data = await refresh();
+          const roles = data?.roles;
+          const accessToken = data?.accessToken;
+
+          console.log(
+            "data from our so called hook but when in the profile",
+            data
+          );
+
+          if (!accessToken)
+            throw new Error("no accestoken for profile to use in useEffect");
+
+          dispatch(signInSuccess({ roles, accessToken }));
+          console.log(
+            "This is in useEffect userinfo (profile) after dispatching",
+            userInfo
+          );
+        }
+
+        const response = await fetch(`${apiBaseUrl}/profile`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.accessToken}`,
+          },
+          credentials: "include",
+        });
+
+        const data = await response.json();
+        setUser(data);
+      } catch (err) {
+        console.log("error", err);
+      }
+    };
+
+    handleProfileData();
+  }, [userInfo?.accessToken]);
+
+  console.log("userInfo from profile", userInfo);
+
+  const refresh = useRefreshToken();
 
   const secureEmail = (email) => {
     const emailDomain = email.split(".")[1];
     const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
     return hiddenEmailBody;
   };
+
+  const [usernameState, setUsernameState] = useState(false);
+  const [passwordState, setPasswordState] = useState(false);
+  const [visibilityState, setVisibilityState] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) {
+        setVisibilityState(false);
+      }
+    });
+  }, []);
+
   return (
     <>
-      <section className="bg-black flex flex-col pb-10 ">
+      <section className="bg-black flex flex-col pb-10">
         <Header />
+        <div className=" m-2 flex items-center justify-center z-20 gap-3 fixed top-2 right-50 left-50">
+          <div className="size-6 bg-gray-700 p-5 rounded-full"></div>
+          <p>{user?.name}</p>
+        </div>
         {/* use svg in the profile pic */}
         <section className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2">
           <div
@@ -89,59 +172,77 @@ const Profile = () => {
         >
           {user?.isAdmin && (
             <ProfileButton link={"/admin"}>
-              <div className='flex  gap-2 items-center'><FaDigitalTachograph />
-              Admin Dashboard
+              <div className="flex  gap-2 items-center">
+                <FaDigitalTachograph />
+                Admin Dashboard
               </div>
-            
             </ProfileButton>
           )}
           <ProfileButton link={"/liked"}>
-          <div className='flex  gap-2 items-center'><FaHeart />
-          Recently liked
-          </div>
-          
+            <div className="flex  gap-2 items-center">
+              <FaHeart />
+              Recently liked
+            </div>
           </ProfileButton>
 
           <ProfileButton link={"/personal"}>
-          <div className='flex  gap-2 items-center'><FaUser />
-          Personal information
-          </div>
-          
+            <div className="flex  gap-2 items-center">
+              <FaUser />
+              Personal information
+            </div>
           </ProfileButton>
           {/* they can add more information KYC*/}
-          <ProfileButton>
-            <div className='flex  gap-2 items-center'><FaPenAlt />
-            Change username
-            </div>
 
+          <div onClick={() => setUsernameState(true)} className=" w-full">
+            <ProfileButton>
+              <div className="flex  gap-2 items-center">
+                <FaPenAlt />
+                Change username
+              </div>
+            </ProfileButton>
+          </div>
+          <Modal isOpen={usernameState} onClick={() => setUsernameState(false)}>
+            <CustomForm>
+              <CustomInputBox>Enter new username</CustomInputBox>
+              <SubmitButton>Set new username</SubmitButton>
+            </CustomForm>
+          </Modal>
 
-          </ProfileButton>
-          {/* modal */}
-          <ProfileButton>
-            <div className='flex  gap-2 items-center'><FaCreditCard />
-            Change Password
-            </div>
+          <div onClick={() => setPasswordState(true)} className=" w-full">
+            <ProfileButton>
+              <div className="flex  gap-2 items-center">
+                <FaCreditCard />
+                Change Password
+              </div>
+            </ProfileButton>
+          </div>
+          <Modal isOpen={passwordState} onClick={() => setPasswordState(false)}>
+            <CustomForm>
+              <CustomInputBox>Enter old password</CustomInputBox>
+              <CustomInputBox>Enter new password</CustomInputBox>
+              <CustomInputBox>Confirm new password</CustomInputBox>
+              <SubmitButton>Set new password</SubmitButton>
+            </CustomForm>
+          </Modal>
 
-
-          </ProfileButton>
           {/* modal */}
           <ProfileButton link={"/about-us"}>
-          <div className='flex  gap-2 items-center'><FaTeamspeak />
-          About us
-          </div>
-          
+            <div className="flex  gap-2 items-center">
+              <FaTeamspeak />
+              About us
+            </div>
           </ProfileButton>
           <ProfileButton link={"/donate"}>
-          <div className='flex  gap-2 items-center'><FaMoneyBillAlt />
-          Donate
-          </div>
-          
+            <div className="flex  gap-2 items-center">
+              <FaMoneyBillAlt />
+              Donate
+            </div>
           </ProfileButton>
           <ProfileButton link={"/contact-us"}>
-          <div className="flex gap-2 items-center"><FaUser />
-          Contact us
-          </div>
-          
+            <div className="flex gap-2 items-center">
+              <FaUser />
+              Contact us
+            </div>
           </ProfileButton>
           {/* modal or link */}
           <section className="flex w-[100%] justify-between m-2">

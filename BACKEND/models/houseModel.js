@@ -5,6 +5,7 @@ const houseSchema = mongoose.Schema(
     area: {
       type: String,
       required: [true, "area is required"],
+      index: true
     },
     images: {
       type: [String],
@@ -13,6 +14,7 @@ const houseSchema = mongoose.Schema(
     pricing: {
       type: String,
       required: [true, "pricing is required"],
+      index: true
     },
     landMarks: {
       type: String,

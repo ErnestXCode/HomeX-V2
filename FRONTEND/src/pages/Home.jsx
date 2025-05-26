@@ -1,5 +1,6 @@
-import React from 'react'
-import Listings from '../components/Listings'
+import React, { lazy, Suspense } from 'react'
+import InitialLoader from '../components/InitialLoader'
+const Listings = lazy(() => import('../components/Listings'))
 // import AltHomepage from '../components/AltHomepage'
 // import { useSelector } from 'react-redux'
 // import { selectBrowseListingsState } from '../features/stylings/styleSlice'
@@ -8,10 +9,9 @@ import Listings from '../components/Listings'
 const Home = () => {
   // const browseListings = useSelector(selectBrowseListingsState)
   return (
-    <div>
-      {/* {browseListings ? <Listings />: <AltHomepage />} */}
+    <Suspense fallback={<InitialLoader />}>
       <Listings />
-    </div>
+    </Suspense>
   )
 }
 

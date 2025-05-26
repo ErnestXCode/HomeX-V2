@@ -4,7 +4,6 @@ const {
   createHouse,
   updateHouse,
   deleteHouse,
-  getHouseByArea,
   getHouseById,
 } = require("../controllers/houseController");
 const handleAuth = require("../middleware/handleAuth");
@@ -18,8 +17,8 @@ router
   .route("/houses")
   .get(getAllHouses)
   .post(
-    handleAuth,
-    verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
+    // handleAuth,
+    // verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
     upload.array("images", 3),
     createHouse
   );
@@ -38,6 +37,5 @@ router
     deleteHouse
   ); //landlord middleware
 
-router.route("/houses/area/:area").get(getHouseByArea);
 
 module.exports = router;
