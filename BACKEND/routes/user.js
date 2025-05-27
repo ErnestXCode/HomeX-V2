@@ -6,6 +6,7 @@ const {
   deleteUser,
   getCurrentUserProfile,
   deleteUserbyAdmin,
+  addShortLists,
 } = require("../controllers/userController");
 const handleAuth = require("../middleware/handleAuth");
 const verifyRoles = require("../middleware/verifyRoles");
@@ -25,6 +26,7 @@ router
 router
   .route("/profile") // no need for users/:id due to req.user_id
   .get(handleAuth, getCurrentUserProfile)
+  .post(handleAuth, addShortLists)
   .put(handleAuth, updateUser)
   .delete(handleAuth, deleteUser);
 

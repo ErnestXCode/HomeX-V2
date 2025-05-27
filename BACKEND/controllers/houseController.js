@@ -59,14 +59,13 @@ const createHouse = async (req, res) => {
     // const imagePaths = req.files.map((file) => file.filename);
 
     const data = { ...content, images: imageIds, landLord: verifiedUser._id };
-   
+
     const newHouse = await new House(data);
     try {
       await newHouse.save();
     } catch (err) {
-      console.log('err kwa house', err)
+      console.log("err kwa house", err);
     }
-
 
     return res.status(200).json(newHouse);
   } catch (err) {
@@ -86,6 +85,30 @@ const getHouseById = async (req, res) => {
   }
 };
 
+const getShortLists = async (req, res) => {
+  try {
+    const page = parseInt(req.query?.page) || 1;
+    const limit = parseInt(req.query?.limit) || 3;
+    const housesArray = req.user.shortLists;
+    if (!housesArray) return res.sendStatus(204);
+
+    // const houses = await House.find()
+    //       .sort({ createdAt: -1 })
+    //       .skip((page - 1) * limit)
+    //       .limit(limit);
+
+
+
+   const allShortListsData = await Promise.all(housesArray.map(async(houseId) => await House.findById(houseId)))
+    console.log('allshortListsData', allShortListsData.length)
+    // const houses = allShortListsData.sort({ createdAt: -1 })
+     res.status(200).json(allShortListsData)
+  } catch (error) {
+    console.log("error getting all houses", error);
+    res.status(400).json(error);
+  }
+};
+
 const getAllHouses = async (req, res) => {
   try {
     const page = parseInt(req.query?.page) || 1;
@@ -93,20 +116,17 @@ const getAllHouses = async (req, res) => {
     const area = req.query?.area;
     const pricing = req.query?.price;
 
-    const houses = area
-      ? await House.find({ area })
-          .sort({ createdAt: -1 })
-          .skip((page - 1) * limit)
-          .limit(limit)
-      : pricing
-      ? await House.find({ pricing })
-          .sort({ createdAt: -1 })
-          .skip((page - 1) * limit)
-          .limit(limit)
-      : await House.find()
-          .sort({ createdAt: -1 })
-          .skip((page - 1) * limit)
-          .limit(limit);
+    const houses =
+      area !== 'All'
+        ? await House.find({ area })
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+        : await House.find()
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit);
+
 
     const total = await House.countDocuments();
 
@@ -173,4 +193,5 @@ module.exports = {
   getAllHouses,
   updateHouse,
   deleteHouse,
+  getShortLists,
 };

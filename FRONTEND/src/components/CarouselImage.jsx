@@ -13,8 +13,7 @@ const CarouselImage = ({ item }) => {
         className="w-[100%] h-64 object-cover rounded-2xl mb-2"
         src={`${apiBaseUrl}/images/${item?.images[index]}`}
         alt=""
-        loading="lazy"
-        fallback={<ListingsPlaceholder />}
+        // falback
         // pointerEvents='None'
       />
       <div className="flex absolute bottom-2 w-full justify-center gap-1">

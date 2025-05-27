@@ -1,7 +1,7 @@
 const ROLES_LIST = {
-    'admin': 1950,
-    'landlord': 9923, 
-    'tenant': 2004
-}
+  admin: process.env.ADMIN_ROLE_CONSTANT,
+  landlord: process.env.LANDLORD_ROLE_CONSTANT,
+  tenant: process.env.TENANT_ROLE_CONSTANT,
+};
 
-module.exports = ROLES_LIST
+module.exports = ROLES_LIST;

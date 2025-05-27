@@ -20,26 +20,26 @@ const useAxiosPrivate = () => {
       (err) => Promise.reject(err)
     );
 
-    // const responseIntercept = axiosPrivate.interceptors.response.use(
-    //   (response) => response,
-    //   async (err) => {
-    //     const prevRequest = err?.config;
-    //     if (
-    //       err.response?.data?.message === "jwt expired" &&
-    //       !prevRequest.sent
-    //     ) {
-    //       prevRequest.sent = true; // custom property
-    //       const newAccessToken = await refresh();
-    //       prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-    //       return axiosPrivate(prevRequest);
-    //     }
-    //     return Promise.reject(err);
-    //   }
-    // );
+    const responseIntercept = axiosPrivate.interceptors.response.use(
+      (response) => response,
+      async (err) => {
+        const prevRequest = err?.config;
+        if (
+          err.response?.data?.message === "jwt expired" &&
+          !prevRequest.sent
+        ) {
+          prevRequest.sent = true; // custom property
+          const newAccessToken = await refresh();
+          prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return axiosPrivate(prevRequest);
+        }
+        return Promise.reject(err);
+      }
+    );
 
     return () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
-      // axiosPrivate.interceptors.response.eject(responseIntercept);
+      axiosPrivate.interceptors.response.eject(responseIntercept);
     };
   }, [refresh, userInfo]);
   return axiosPrivate;

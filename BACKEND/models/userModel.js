@@ -30,7 +30,11 @@ const userSchema = mongoose.Schema(
       landlord: Number,
       admin: Number,
     },
-    refreshToken: [String]
+    refreshToken: [String], 
+    shortLists: {
+      type: [mongoose.Schema.Types.ObjectId], 
+      ref: 'House'
+    }
    
   },
   {

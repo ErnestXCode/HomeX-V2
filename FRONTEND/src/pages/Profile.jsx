@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
 import Header from "../components/Header";
@@ -10,9 +10,12 @@ import ProfileButtons from "../components/ProfileButtons";
 
 import ProfileButton from "../components/ProfileButtons";
 import {
+  FaBookmark,
   FaCreditCard,
   FaDigitalTachograph,
   FaHeart,
+  FaList,
+  FaListAlt,
   FaMoneyBillAlt,
   FaPenAlt,
   FaTeamspeak,
@@ -48,47 +51,39 @@ const Profile = () => {
     }
   };
 
-  const handleDelete = async () => {
-    try {
-      const res = await fetch(`${apiBaseUrl}/profile`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo?.accessToken}`,
-        },
-        credentials: "include",
-      });
-      await res.json();
-      // dispatch(signInSuccess(null));
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleDelete = async () => {
+  //   try {
+  //     const res = await fetch(`${apiBaseUrl}/profile`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${userInfo?.accessToken}`,
+  //       },
+  //       credentials: "include",
+  //     });
+  //     await res.json();
+  //     // dispatch(signInSuccess(null));
+  //     navigate("/");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   useEffect(() => {
     const handleProfileData = async () => {
       try {
-        if (userInfo.accessToken) {
-          console.log("userinfo apparently exists", userInfo.accessToken);
-        } else {
+        if (!userInfo.accessToken || userInfo?.shortLists) {
           const data = await refresh();
+          console.log('data from refresh useEffect where accessToken doesnt exist', data)
           const roles = data?.roles;
           const accessToken = data?.accessToken;
-
-          console.log(
-            "data from our so called hook but when in the profile",
-            data
-          );
 
           if (!accessToken)
             throw new Error("no accestoken for profile to use in useEffect");
 
-          dispatch(signInSuccess({ roles, accessToken }));
-          console.log(
-            "This is in useEffect userinfo (profile) after dispatching",
-            userInfo
-          );
+          dispatch(signInSuccess({ data }));
         }
+        
+      
 
         const response = await fetch(`${apiBaseUrl}/profile`, {
           method: "GET",
@@ -100,6 +95,7 @@ const Profile = () => {
         });
 
         const data = await response.json();
+        console.log(data.shortLists)
         setUser(data);
       } catch (err) {
         console.log("error", err);
@@ -108,8 +104,6 @@ const Profile = () => {
 
     handleProfileData();
   }, [userInfo?.accessToken]);
-
-  console.log("userInfo from profile", userInfo);
 
   const refresh = useRefreshToken();
 
@@ -122,25 +116,37 @@ const Profile = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [passwordState, setPasswordState] = useState(false);
   const [visibilityState, setVisibilityState] = useState(true);
+  const visibilityRef = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) {
         setVisibilityState(false);
+        console.log("intersecting");
+      } else {
+        setVisibilityState(true);
       }
     });
-  }, []);
+    observer.observe(visibilityRef.current);
+  });
 
   return (
     <>
-      <section className="bg-black flex flex-col pb-10">
+      <section className="bg-black flex flex-col pb-10 ">
         <Header />
-        <div className=" m-2 flex items-center justify-center z-20 gap-3 fixed top-2 right-50 left-50">
+        <div
+          className={`m-2 flex items-center justify-center z-20 gap-3 fixed top-2 right-50 left-50 transition-opacity duration-500 ${
+            visibilityState ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <div className="size-6 bg-gray-700 p-5 rounded-full"></div>
           <p>{user?.name}</p>
         </div>
         {/* use svg in the profile pic */}
-        <section className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2">
+        <section
+          ref={visibilityRef}
+          className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2"
+        >
           <div
             // src={profilePic}
             alt=""
@@ -180,8 +186,8 @@ const Profile = () => {
           )}
           <ProfileButton link={"/liked"}>
             <div className="flex  gap-2 items-center">
-              <FaHeart />
-              Recently liked
+              <FaBookmark />
+              Shortlist
             </div>
           </ProfileButton>
 
@@ -244,13 +250,29 @@ const Profile = () => {
               Contact us
             </div>
           </ProfileButton>
+          <ProfileButton link={"/contact-us"}>
+            <div className="flex gap-2 items-center">
+              <FaUser />
+              Contact us
+            </div>
+          </ProfileButton>
+          <ProfileButton link={"/contact-us"}>
+            <div className="flex gap-2 items-center">
+              <FaUser />
+              Contact us
+            </div>
+          </ProfileButton>
           {/* modal or link */}
-          <section className="flex w-[100%] justify-between m-2">
-            <ViewButton onClick={() => handleLogout()}>Log out</ViewButton>
-            <ViewButton white={true} onClick={() => handleDelete()}>
+
+          <button
+            className="w-full bg-blue-600/80 p-2 rounded-2xl text-white text-base font-semibold mt-4"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+          {/* <ViewButton white={true} onClick={() => handleDelete()}>
               Delete Account
-            </ViewButton>
-          </section>
+            </ViewButton> */}
         </section>
       </section>
       <BottomNav />
