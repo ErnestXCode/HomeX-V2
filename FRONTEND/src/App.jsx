@@ -6,6 +6,7 @@ import RequireAuth from "./components/requireAuth";
 import PersistLogin from "./components/PersistLogin";
 // import PersistLogin from "./components/PersistLogin";
 const Trials = lazy(() => import("./pages/Trials"));
+const LandLordPosts = lazy(() => import("./pages/landLordPosts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
@@ -43,22 +44,22 @@ function App() {
             <Route path="unauthorized" element={<NotFound />}></Route>
 
             {/* protected routes */}
-           
-              {/* <Route element={<RequireAuth allowedRoles={[2004]} />}> */}
-                <Route path="liked" element={<RecentlyLiked />}></Route>
-                <Route path="profile" element={<Profile />}></Route>
-                <Route path="personal" element={<PersonalInfo />}></Route>
-              {/* </Route> */}
 
-              {/* <Route element={<RequireAuth allowedRoles={[9923, 1950]} />}> */}
-                <Route path="post-house" element={<PostHouse />}></Route>
-                <Route path="post-house-2" element={<PostHouseNext />}></Route>
-              {/* </Route> */}
+            {/* <Route element={<RequireAuth allowedRoles={[2004]} />}> */}
+            <Route path="liked" element={<RecentlyLiked />}></Route>
+            <Route path="profile" element={<Profile />}></Route>
+            <Route path="personal" element={<PersonalInfo />}></Route>
+            <Route path="landlord-posts" element={<LandLordPosts />}></Route>
+            {/* </Route> */}
 
-              {/* <Route element={<RequireAuth allowedRoles={[1950]} />}> */}
-                <Route path="admin" element={<Admin />}></Route>
-              {/* </Route> */}
-           
+            {/* <Route element={<RequireAuth allowedRoles={[9923, 1950]} />}> */}
+            <Route path="post-house" element={<PostHouse />}></Route>
+            <Route path="post-house-2" element={<PostHouseNext />}></Route>
+            {/* </Route> */}
+
+            {/* <Route element={<RequireAuth allowedRoles={[1950]} />}> */}
+            <Route path="admin" element={<Admin />}></Route>
+            {/* </Route> */}
           </Route>
 
           {/* catch all */}

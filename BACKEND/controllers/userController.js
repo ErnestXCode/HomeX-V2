@@ -2,13 +2,21 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel");
+const { validationResult } = require("express-validator");
 
 const createUser = async (req, res) => {
+
+  // const result = validationResult()
+
   const content = req.body;
   const { name, email, phoneNumber, password } = content;
 
   if (!name || !email || !phoneNumber || !password)
     return res.status(400).json({ error: "All inputs are mandatory" });
+
+
+
+
 
   try {
     // look for duplicate and retiurn something 409 conflict
@@ -37,12 +45,13 @@ const createUser = async (req, res) => {
     });
     await userCreated.save();
 
-    res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      sameSite: "Lax",
-      secure: process.env.NODE_ENV !== "development",
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-    })
+    res
+      .cookie("jwt", refreshToken, {
+        httpOnly: true,
+        sameSite: "Lax",
+        secure: process.env.NODE_ENV !== "development",
+        maxAge: 2 * 24 * 60 * 60 * 1000,
+      })
       .status(200)
       .json({ roles, accessToken });
   } catch (err) {
@@ -54,14 +63,20 @@ const createUser = async (req, res) => {
 const addShortLists = async (req, res) => {
   const user = await User.findById(req.user._id);
   if (!user) return res.sendStatus(401);
+
   const shortList = req.body.houseId;
   if (!shortList) return res.sendStatus(204);
+
   console.log("shortList", shortList);
+
   const shortListsArray = user.shortLists;
   console.log("shortlistArray", shortListsArray);
+
   user.shortLists = [...shortListsArray, shortList];
   console.log("user again ", user);
+
   const result = await user.save();
+
   console.log(result);
   res.status(200).json(result);
 };
@@ -100,7 +115,7 @@ const deleteUser = async (req, res) => {
   try {
     const id = req.user._id;
     const roles = req.user.roles;
-    // make sure you cant delete an admin 
+    // make sure you cant delete an admin
 
     await User.findByIdAndDelete(id, { new: true });
     res.clearCookie("jwt", {

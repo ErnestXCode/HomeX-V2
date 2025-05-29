@@ -19,6 +19,7 @@ import {
   FaMoneyBillAlt,
   FaPenAlt,
   FaTeamspeak,
+  FaToolbox,
   FaUser,
 } from "react-icons/fa";
 import useRefreshToken from "../hooks/useRefreshToken";
@@ -74,7 +75,7 @@ const Profile = () => {
         if (!userInfo.accessToken || userInfo?.shortLists) {
           const data = await refresh();
           console.log('data from refresh useEffect where accessToken doesnt exist', data)
-          const roles = data?.roles;
+          // const roles = data?.roles;
           const accessToken = data?.accessToken;
 
           if (!accessToken)
@@ -142,9 +143,9 @@ const Profile = () => {
           <div className="size-6 bg-gray-700 p-5 rounded-full"></div>
           <p>{user?.name}</p>
         </div>
-        {/* use svg in the profile pic */}
+        use svg in the profile pic
         <section
-          ref={visibilityRef}
+         
           className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2"
         >
           <div
@@ -163,15 +164,16 @@ const Profile = () => {
               {/* make email only show the first three then stars then .com  */}
             </p>
 
-            {/* <p className="text-blue-400 font-semibold ">
+            <p className="text-blue-400 font-semibold ">
               Phone number:{" "}
               <span className="text-white font-normal font-serif ">
                 {user?.phoneNumber}
               </span>
-            </p> */}
+            </p> 
           </section>
-        </section>
-        <section
+        </section> 
+        
+        <section  ref={visibilityRef}
           className=" flex flex-col items-start bg-gray-950 
         p-3 m-3 rounded-2xl gap-3
         "
@@ -188,6 +190,12 @@ const Profile = () => {
             <div className="flex  gap-2 items-center">
               <FaBookmark />
               Shortlist
+            </div>
+          </ProfileButton>
+          <ProfileButton link={"/landlord-posts"}>
+            <div className="flex  gap-2 items-center">
+              <FaToolbox />
+              Created
             </div>
           </ProfileButton>
 
@@ -242,18 +250,6 @@ const Profile = () => {
             <div className="flex  gap-2 items-center">
               <FaMoneyBillAlt />
               Donate
-            </div>
-          </ProfileButton>
-          <ProfileButton link={"/contact-us"}>
-            <div className="flex gap-2 items-center">
-              <FaUser />
-              Contact us
-            </div>
-          </ProfileButton>
-          <ProfileButton link={"/contact-us"}>
-            <div className="flex gap-2 items-center">
-              <FaUser />
-              Contact us
             </div>
           </ProfileButton>
           <ProfileButton link={"/contact-us"}>

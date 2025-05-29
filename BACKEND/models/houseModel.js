@@ -12,7 +12,7 @@ const houseSchema = mongoose.Schema(
       required: [true, "image is required"],
     },
     pricing: {
-      type: String,
+      type: Number,
       required: [true, "pricing is required"],
       index: true
     },

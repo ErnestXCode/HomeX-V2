@@ -31,6 +31,10 @@ const IndividualHouse = () => {
 
   console.log(data);
 
+  const f = new Intl.DateTimeFormat(undefined, {
+    style: 'short'
+  })
+
   return (
     <div className="bg-black p-3 pt-1 rounded-2xl min-h-screen flex flex-col">
       <button className="p-4 fixed top-0 z-70 bg-black/40 rounded-full m-2">
@@ -72,7 +76,7 @@ const IndividualHouse = () => {
 
       {data?.landMarks.map(landMark => <div className='bg-gray-800/40 p-2 rounded-xl'>{landMark}</div>)}
       </div> */}
-      <ListText content={data?.createdAt}>Posted on: </ListText>
+      <ListText content={data?.createdAt.split('T')[0]}>Posted on: </ListText>
       <ListText>last verified on: N/A</ListText>
       {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
       <div>

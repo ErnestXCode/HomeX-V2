@@ -72,26 +72,26 @@ const loginUser = async (req, res) => {
 
 const logOutUser = async (req, res) => {
   // delete accessToken on client side
-  // const refreshToken = req.cookies?.jwt;
-  // if (!refreshToken) return res.sendStatus(204); // no content
-  // // find user in db with the refreshToken and clear cookie if user is not found pia
-  // const foundUser = await User.findOne({ refreshToken });
-  // if (!foundUser) return res.sendStatus(204);
-  // // foundUser.refreshToken = foundUser.refreshToken.filter(
-  // //   (token) => token !== refreshToken
-  // // );
-  // const result = await foundUser.save();
-  // // cookie is not clearing
-  // res
-  //   // .cookie("jwt", "", {
-  //   //   httpOnly: true,
-  //   //   // look what samesite: 'Lax', does maybe its important
-  //   //   sameSite: "Lax",
-  //   //   secure: process.env.NODE_ENV !== "development",
-  //   //   maxAge: 2 * 24 * 60 * 60 * 1000,
-  //   // })
-  //   .status(200)
-  //   .json({ message: "Logged Out Successfully" });
+  const refreshToken = req.cookies?.jwt;
+  if (!refreshToken) return res.sendStatus(204); // no content
+  // find user in db with the refreshToken and clear cookie if user is not found pia
+  const foundUser = await User.findOne({ refreshToken });
+  if (!foundUser) return res.sendStatus(204);
+  // foundUser.refreshToken = foundUser.refreshToken.filter(
+  //   (token) => token !== refreshToken
+  // );
+  // const result = await foundUser.updateOne();
+  // cookie is not clearing
+  res
+    .clearCookie("jwt",{
+      httpOnly: true,
+      // look what samesite: 'Lax', does maybe its important
+      sameSite: "Lax",
+      secure: process.env.NODE_ENV !== "development",
+      maxAge: 2 * 24 * 60 * 60 * 1000,
+    })
+    .status(200)
+    .json({ message: "Logged Out Successfully" });
 };
 
 module.exports = { loginUser, logOutUser };

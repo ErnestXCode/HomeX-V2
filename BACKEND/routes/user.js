@@ -11,13 +11,19 @@ const {
 const handleAuth = require("../middleware/handleAuth");
 const verifyRoles = require("../middleware/verifyRoles");
 const ROLES_LIST = require("../config/roles_list");
+const { body } = require("express-validator");
 
 const router = express.Router();
 
 router
   .route("/users")
   .get(handleAuth, verifyRoles(ROLES_LIST.admin), getAllUsers)
-  .post(createUser);
+  .post(
+    // body("email").notEmpty().withMessage("email must not be empty").isEmail(),
+    // with meassage for after any function
+    // body("password").notEmpty().withMessage("password must not be empty").isLength({min: 5}) ,
+    createUser
+  );
 
 router
   .route("/users/:id")

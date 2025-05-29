@@ -97,12 +97,12 @@ const getShortLists = async (req, res) => {
     //       .skip((page - 1) * limit)
     //       .limit(limit);
 
-
-
-   const allShortListsData = await Promise.all(housesArray.map(async(houseId) => await House.findById(houseId)))
-    console.log('allshortListsData', allShortListsData.length)
+    const allShortListsData = await Promise.all(
+      housesArray.map(async (houseId) => await House.findById(houseId))
+    );
+    console.log("allshortListsData", allShortListsData.length);
     // const houses = allShortListsData.sort({ createdAt: -1 })
-     res.status(200).json(allShortListsData)
+    res.status(200).json(allShortListsData);
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
@@ -117,7 +117,7 @@ const getAllHouses = async (req, res) => {
     const pricing = req.query?.price;
 
     const houses =
-      area !== 'All'
+      area !== "All"
         ? await House.find({ area })
             .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
@@ -127,7 +127,6 @@ const getAllHouses = async (req, res) => {
             .skip((page - 1) * limit)
             .limit(limit);
 
-
     const total = await House.countDocuments();
 
     res.status(200).json({
@@ -135,10 +134,38 @@ const getAllHouses = async (req, res) => {
       hasMore: page * limit < total,
       nextPage: page + 1,
     });
+    // console.time();
+    // const houses = await House.aggregate([
+
+    //   { $group: { _id: "$landLord", avgPrice: { $avg: '$pricing' } } },
+      
+    //   // {$out: 'newCollection'} for storing in new collection
+
+    //   // {$project :{area: 1, priceType: {$type: '$pricing'}}}
+
+
+    //   // { $group: { _id: "$landLord", count: { $sum: 1 } } },
+    //   // {$match: {pricing: {$gte: 300}}},
+    //   // // {$group: {_id: '$area'}},
+    //   // // {$count: 'documentsCountedByMe'}
+    // ]);
+    // console.timeEnd();
+
+    // res.json(houses);
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
   }
+};
+
+const getLAndlordsHouses = async (req, res) => {
+  const user = req.user;
+  const userId = user?._id;
+  const landLordListings = await House.aggregate([
+    { $match: { landLord: userId } },
+  ]);
+  console.log("landLordListings", landLordListings);
+  res.json(landLordListings).status(200);
 };
 
 const updateHouse = async (req, res) => {
@@ -194,4 +221,5 @@ module.exports = {
   updateHouse,
   deleteHouse,
   getShortLists,
+  getLAndlordsHouses,
 };

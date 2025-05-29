@@ -5,12 +5,12 @@ const handleRefreshToken = async (req, res) => {
   const refreshToken = req.cookies?.jwt;
   console.log("refreshToken from refresh", refreshToken);
   if (!refreshToken) return res.json("ii kitu si iitikie sasa").status(401); // unauthorized
-  // res.clearCookie("jwt", {
-  //   sameSite: "Lax",
-  //   httpOnly: true,
-  //   secure: process.env.NODE_ENV !== "development",
-  //   maxAge: new Date(0),
-  // });
+  res.clearCookie("jwt", {
+    sameSite: "Lax",
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    maxAge: 2 * 24 * 60 * 60 * 1000,
+  });
 
   const user = await User.findOne({ refreshToken });
   // refreshToken is an array and were looking for a stringp
@@ -18,7 +18,7 @@ const handleRefreshToken = async (req, res) => {
 
   const userId = user?._id;
   const email = user?.email;
-  if(!email) return res.json('no email found')
+  if (!email) return res.json("no email found");
 
   // detected refresh token reuse
 
@@ -35,12 +35,16 @@ const handleRefreshToken = async (req, res) => {
   //   );
   // }
 
-  // const newRefreshTokenArray = user?.refreshToken.filter(
-  //   (token) => token !== refreshToken
-  // );
+  const newRefreshTokenArray = user?.refreshToken.filter(
+    (token) => token !== refreshToken
+  );
 
-  const goodRefreshToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-  if(!goodRefreshToken) return res.json({message: 'good refresh token ni mbaya'}).status(409)
+  // const goodRefreshToken = jwt.verify(
+  //   refreshToken,
+  //   process.env.REFRESH_TOKEN_SECRET
+  // );
+  // if (!goodRefreshToken)
+  //   return res.json({ message: "good refresh token ni mbaya" }).status(409);
 
   // async (err, decoded) => {
   //   if (err) {
@@ -55,19 +59,23 @@ const handleRefreshToken = async (req, res) => {
     expiresIn: "2d",
   });
 
-  // const newRefreshToken = jwt.sign(
-  //   { email },
-  //   process.env.REFRESH_TOKEN_SECRET,
-  //   {
-  //     expiresIn: "2d",
-  //   }
-  // );
+  const newRefreshToken = jwt.sign(
+    { email },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: "2d",
+    }
+  );
+
+  const oldRefreshToken = refreshToken
 
   // user.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-  // const result = await User.findByIdAndUpdate(userId, {
-  //   $push: { refreshToken: newRefreshToken },
-  // });
-  // console.log(result);
+
+  // bado sijatoa refreshToken ilikua inatumika
+  const result = await User.findByIdAndUpdate(userId, {
+    $push: { refreshToken: newRefreshToken },
+  });
+  console.log(result);
 
   const roles = Object.values(user.roles).filter(Boolean);
   const shortLists = user.shortLists;

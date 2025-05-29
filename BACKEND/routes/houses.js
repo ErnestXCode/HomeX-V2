@@ -5,7 +5,8 @@ const {
   updateHouse,
   deleteHouse,
   getHouseById,
-  getShortLists
+  getShortLists,
+  getLAndlordsHouses
 } = require("../controllers/houseController");
 const handleAuth = require("../middleware/handleAuth");
 const upload = require("../middleware/handleUploads");
@@ -25,6 +26,7 @@ router
   );
 
 router.route('/shortlists').get(handleAuth, getShortLists)
+router.route('/landlordHouses').get(handleAuth, getLAndlordsHouses)
 
 router
   .route("/houses/:id")

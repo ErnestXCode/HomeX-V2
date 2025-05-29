@@ -11,7 +11,7 @@ import ViewButton from "../components/ViewButton";
 import { Link, useNavigate } from "react-router-dom";
 import InitialLoader from "../components/InitialLoader";
 import ListingsPlaceholder from "../components/ListingsPlaceholder";
-import FilterButton from "../components//FilterButton";
+import FilterButton from "../components/FilterButton";
 import axios from "../api/axios";
 import {
   FaBookmark,
@@ -31,7 +31,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 //   return data;
 // };
 
-const RecentlyLiked = () => {
+const LandLordPOsts = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(selectCurrentUser);
 
@@ -57,7 +57,7 @@ console.log('userInfo shortlists')
 console.log(userInfo)
     const fetchShortLists = async() => {
    try {
-       const res = await fetch(`${apiBaseUrl}/shortlists`, {
+       const res = await fetch(`${apiBaseUrl}/landlordHouses`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -161,4 +161,4 @@ console.log(userInfo)
   );
 };
 
-export default RecentlyLiked;
+export default LandLordPOsts;

@@ -1145,3 +1145,1709 @@ OPTIONS /shortlists 204 0 - 0.225 ms Tue, 27 May 2025 13:39:15 GMT -
 GET /shortlists 200 - - 11.726 ms Tue, 27 May 2025 13:39:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
 OPTIONS /shortlists 204 0 - 0.311 ms Tue, 27 May 2025 13:39:16 GMT -
 GET /shortlists 200 - - 10.154 ms Tue, 27 May 2025 13:39:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+OPTIONS /profile 204 0 - 6.382 ms Tue, 27 May 2025 13:39:58 GMT -
+OPTIONS /profile 204 0 - 0.732 ms Tue, 27 May 2025 13:39:58 GMT -
+GET /profile 200 - - 58.707 ms Tue, 27 May 2025 13:39:58 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+GET /profile 200 - - 34.408 ms Tue, 27 May 2025 13:39:58 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+OPTIONS /shortlists 204 0 - 0.860 ms Tue, 27 May 2025 13:40:00 GMT -
+OPTIONS /shortlists 204 0 - 0.489 ms Tue, 27 May 2025 13:40:00 GMT -
+GET /shortlists 200 - - 58.373 ms Tue, 27 May 2025 13:40:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+GET /shortlists 200 - - 81.842 ms Tue, 27 May 2025 13:40:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+GET /images/6833d9464876b842d71132f7 200 - - 43.951 ms Tue, 27 May 2025 13:40:01 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 45.529 ms Tue, 27 May 2025 13:40:01 GMT -
+GET /images/683396145835395370085466 200 - - 45.801 ms Tue, 27 May 2025 13:40:01 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 64.196 ms Tue, 27 May 2025 13:40:01 GMT -
+GET /areas 200 - - 16.705 ms Tue, 27 May 2025 13:40:25 GMT -
+GET /houses?page=1&area=All 200 946 - 27.966 ms Tue, 27 May 2025 13:40:25 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 28.479 ms Tue, 27 May 2025 13:40:25 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 20.916 ms Tue, 27 May 2025 13:40:25 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 13.101 ms Tue, 27 May 2025 13:40:25 GMT -
+GET /houses?page=1&area=Munyaka 200 849 - 15.019 ms Tue, 27 May 2025 13:40:27 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.564 ms Tue, 27 May 2025 13:40:27 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 17.710 ms Tue, 27 May 2025 13:40:27 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 18.131 ms Tue, 27 May 2025 13:40:27 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.930 ms Tue, 27 May 2025 13:40:29 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 8.660 ms Tue, 27 May 2025 13:40:29 GMT -
+GET /houses?page=1&area=All 200 946 - 18.654 ms Tue, 27 May 2025 13:40:29 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 7.069 ms Tue, 27 May 2025 13:40:31 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 7.448 ms Tue, 27 May 2025 13:40:32 GMT -
+GET /houses?page=2&area=All 200 885 - 19.465 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /houses?page=3&area=All 200 866 - 14.194 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/683396145835395370085466 200 - - 8.982 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/6833963f5835395370085478 200 - - 21.345 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 20.583 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 8.491 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 19.190 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 26.896 ms Tue, 27 May 2025 13:40:35 GMT -
+GET /houses?page=4&area=All 200 786 - 9.133 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /houses?page=5&area=All 200 807 - 12.606 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 8.288 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 16.218 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 21.072 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/undefined 500 26 - 2.619 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/682969710042c7655077ecba 200 - - 27.104 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 25.057 ms Tue, 27 May 2025 13:40:37 GMT -
+GET /houses?page=6&area=All 200 826 - 6.360 ms Tue, 27 May 2025 13:40:39 GMT -
+GET /houses?page=7&area=All 200 309 - 11.736 ms Tue, 27 May 2025 13:40:39 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 24.448 ms Tue, 27 May 2025 13:40:39 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 24.195 ms Tue, 27 May 2025 13:40:39 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 24.991 ms Tue, 27 May 2025 13:40:39 GMT -
+GET /images/6827fe9ffd7a53528ac5b550 200 - - 12.954 ms Tue, 27 May 2025 13:40:39 GMT -
+OPTIONS /profile 204 0 - 0.523 ms Tue, 27 May 2025 13:40:43 GMT -
+OPTIONS /profile 204 0 - 0.239 ms Tue, 27 May 2025 13:40:43 GMT -
+GET /profile 200 - - 10.544 ms Tue, 27 May 2025 13:40:43 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+GET /profile 200 - - 6.811 ms Tue, 27 May 2025 13:40:43 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDgzNTIzOTIsImV4cCI6MTc0ODUyNTE5Mn0.GmtzW7UZg4_xX1CrCv9_lVsjH-XyCGjl3NfM0GHG8po
+GET /houses?page=1&area=All 200 946 - 31.876 ms Tue, 27 May 2025 13:45:03 GMT -
+GET /areas 200 - - 14.932 ms Tue, 27 May 2025 13:45:03 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 29.461 ms Tue, 27 May 2025 13:45:04 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 51.236 ms Tue, 27 May 2025 13:45:04 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 52.849 ms Tue, 27 May 2025 13:45:04 GMT -
+GET /areas 304 - - 7.900 ms Tue, 27 May 2025 13:45:09 GMT -
+GET /houses?page=1&area=All 304 - - 47.064 ms Tue, 27 May 2025 13:45:09 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 16.079 ms Tue, 27 May 2025 13:45:13 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 15.031 ms Tue, 27 May 2025 13:45:15 GMT -
+GET /houses?page=2&area=All 200 885 - 9.555 ms Tue, 27 May 2025 13:45:15 GMT -
+GET /houses?page=3&area=All 200 866 - 33.292 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/6833963f5835395370085478 200 - - 30.228 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/683396145835395370085466 200 - - 28.374 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 29.385 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 37.718 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 37.144 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 57.137 ms Tue, 27 May 2025 13:45:16 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 15.322 ms Tue, 27 May 2025 13:45:52 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 14.663 ms Tue, 27 May 2025 13:45:55 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 9.406 ms Tue, 27 May 2025 13:45:56 GMT -
+GET /areas 200 - - 7.749 ms Tue, 27 May 2025 13:46:25 GMT -
+GET /houses?page=1&area=All 200 946 - 50.334 ms Tue, 27 May 2025 13:46:26 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 145.141 ms Tue, 27 May 2025 13:46:26 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 146.081 ms Tue, 27 May 2025 13:46:26 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 153.347 ms Tue, 27 May 2025 13:46:26 GMT -
+GET /houses?page=2&area=All 200 885 - 26.080 ms Tue, 27 May 2025 13:46:33 GMT -
+GET /houses?page=2&area=All 200 885 - 17.447 ms Tue, 27 May 2025 13:46:33 GMT -
+GET /images/6833963f5835395370085478 200 - - 31.879 ms Tue, 27 May 2025 13:46:33 GMT -
+GET /images/683396145835395370085466 200 - - 30.240 ms Tue, 27 May 2025 13:46:33 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 20.132 ms Tue, 27 May 2025 13:46:33 GMT -
+GET /areas 200 - - 9.252 ms Tue, 27 May 2025 13:46:38 GMT -
+GET /houses?page=1&area=All 200 946 - 49.749 ms Tue, 27 May 2025 13:46:38 GMT -
+GET /houses?page=2&area=All 200 885 - 14.335 ms Tue, 27 May 2025 13:46:38 GMT -
+GET /areas 200 - - 8.426 ms Tue, 27 May 2025 13:46:41 GMT -
+GET /houses?page=1&area=All 200 946 - 30.937 ms Tue, 27 May 2025 13:46:41 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 29.636 ms Tue, 27 May 2025 13:46:42 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 37.036 ms Tue, 27 May 2025 13:46:42 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 37.119 ms Tue, 27 May 2025 13:46:42 GMT -
+GET /areas 200 - - 8.589 ms Tue, 27 May 2025 13:47:20 GMT -
+GET /houses?page=1&area=All 200 946 - 11.342 ms Tue, 27 May 2025 13:47:20 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 56.692 ms Tue, 27 May 2025 13:47:22 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 58.389 ms Tue, 27 May 2025 13:47:22 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 58.197 ms Tue, 27 May 2025 13:47:22 GMT -
+GET /houses?page=2&area=All 200 885 - 44.013 ms Tue, 27 May 2025 13:47:29 GMT -
+GET /houses?page=2&area=All 200 885 - 24.762 ms Tue, 27 May 2025 13:47:29 GMT -
+GET /images/6833963f5835395370085478 200 - - 29.185 ms Tue, 27 May 2025 13:47:31 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 23.678 ms Tue, 27 May 2025 13:47:31 GMT -
+GET /images/683396145835395370085466 200 - - 20.233 ms Tue, 27 May 2025 13:47:31 GMT -
+GET /houses?page=3&area=All 200 866 - 22.050 ms Tue, 27 May 2025 13:47:37 GMT -
+GET /houses?page=3&area=All 200 866 - 14.525 ms Tue, 27 May 2025 13:47:37 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 29.743 ms Tue, 27 May 2025 13:47:39 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 19.841 ms Tue, 27 May 2025 13:47:39 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 18.788 ms Tue, 27 May 2025 13:47:39 GMT -
+GET /images/682c328a0f283ea82d93c14c 200 - - 19.168 ms Tue, 27 May 2025 13:47:41 GMT -
+GET /houses?page=4&area=All 200 786 - 11.007 ms Tue, 27 May 2025 13:47:49 GMT -
+GET /houses?page=4&area=All 200 786 - 10.666 ms Tue, 27 May 2025 13:47:49 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 37.794 ms Tue, 27 May 2025 13:47:51 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 43.576 ms Tue, 27 May 2025 13:47:51 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 39.946 ms Tue, 27 May 2025 13:47:51 GMT -
+GET /houses?page=5&area=All 200 807 - 21.519 ms Tue, 27 May 2025 13:47:54 GMT -
+GET /houses?page=5&area=All 200 807 - 15.793 ms Tue, 27 May 2025 13:47:54 GMT -
+GET /images/undefined 500 26 - 1.052 ms Tue, 27 May 2025 13:47:56 GMT -
+GET /images/682969710042c7655077ecba 200 - - 104.481 ms Tue, 27 May 2025 13:47:56 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 117.270 ms Tue, 27 May 2025 13:47:56 GMT -
+GET /refresh 401 25 - 2.082 ms Tue, 27 May 2025 13:48:11 GMT -
+GET /refresh 401 25 - 2.485 ms Tue, 27 May 2025 13:48:31 GMT -
+GET /areas 200 - - 4.262 ms Tue, 27 May 2025 13:48:35 GMT -
+GET /houses?page=1&area=All 200 946 - 11.193 ms Tue, 27 May 2025 13:48:35 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 47.283 ms Tue, 27 May 2025 13:48:36 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 30.445 ms Tue, 27 May 2025 13:48:36 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 45.529 ms Tue, 27 May 2025 13:48:36 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 10.414 ms Tue, 27 May 2025 13:48:39 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 6.787 ms Tue, 27 May 2025 13:48:41 GMT -
+GET /houses?page=2&area=All 200 885 - 8.924 ms Tue, 27 May 2025 13:48:43 GMT -
+GET /houses?page=2&area=All 200 885 - 8.219 ms Tue, 27 May 2025 13:48:43 GMT -
+GET /images/6833963f5835395370085478 200 - - 14.866 ms Tue, 27 May 2025 13:48:44 GMT -
+GET /images/683396145835395370085466 200 - - 18.430 ms Tue, 27 May 2025 13:48:44 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 16.550 ms Tue, 27 May 2025 13:48:44 GMT -
+GET /houses?page=3&area=All 200 866 - 7.777 ms Tue, 27 May 2025 13:48:47 GMT -
+GET /houses?page=3&area=All 200 866 - 8.444 ms Tue, 27 May 2025 13:48:47 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 12.166 ms Tue, 27 May 2025 13:48:47 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 14.494 ms Tue, 27 May 2025 13:48:47 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 11.231 ms Tue, 27 May 2025 13:48:47 GMT -
+GET /houses?page=4&area=All 200 786 - 8.864 ms Tue, 27 May 2025 13:48:51 GMT -
+GET /houses?page=4&area=All 200 786 - 9.916 ms Tue, 27 May 2025 13:48:51 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 17.305 ms Tue, 27 May 2025 13:48:51 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 16.201 ms Tue, 27 May 2025 13:48:51 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 15.814 ms Tue, 27 May 2025 13:48:51 GMT -
+GET /houses?page=5&area=All 200 807 - 6.596 ms Tue, 27 May 2025 13:48:54 GMT -
+GET /houses?page=5&area=All 200 807 - 8.590 ms Tue, 27 May 2025 13:48:54 GMT -
+GET /images/undefined 500 26 - 1.037 ms Tue, 27 May 2025 13:48:55 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 19.654 ms Tue, 27 May 2025 13:48:55 GMT -
+GET /images/682969710042c7655077ecba 200 - - 24.255 ms Tue, 27 May 2025 13:48:55 GMT -
+GET /houses?page=6&area=All 200 826 - 8.324 ms Tue, 27 May 2025 13:48:56 GMT -
+GET /houses?page=6&area=All 200 826 - 6.937 ms Tue, 27 May 2025 13:48:56 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 14.302 ms Tue, 27 May 2025 13:48:57 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 13.737 ms Tue, 27 May 2025 13:48:57 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 9.149 ms Tue, 27 May 2025 13:48:57 GMT -
+GET /houses?page=7&area=All 200 309 - 7.611 ms Tue, 27 May 2025 13:49:00 GMT -
+GET /houses?page=7&area=All 200 309 - 6.320 ms Tue, 27 May 2025 13:49:00 GMT -
+GET /images/6827fe9ffd7a53528ac5b550 200 - - 13.698 ms Tue, 27 May 2025 13:49:01 GMT -
+GET /images/6827fea0fd7a53528ac5b552 200 - - 23.116 ms Tue, 27 May 2025 13:49:03 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.013 ms Tue, 27 May 2025 13:49:12 GMT -
+GET /areas 200 - - 4.807 ms Tue, 27 May 2025 13:50:00 GMT -
+GET /houses?page=1&area=All 200 946 - 7.043 ms Tue, 27 May 2025 13:50:00 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 35.267 ms Tue, 27 May 2025 13:50:02 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 34.626 ms Tue, 27 May 2025 13:50:02 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 33.940 ms Tue, 27 May 2025 13:50:02 GMT -
+GET /houses?page=2&area=All 200 885 - 15.133 ms Tue, 27 May 2025 13:50:10 GMT -
+GET /houses?page=2&area=All 200 885 - 8.818 ms Tue, 27 May 2025 13:50:10 GMT -
+GET /images/6833963f5835395370085478 200 - - 24.309 ms Tue, 27 May 2025 13:50:12 GMT -
+GET /images/683396145835395370085466 200 - - 18.593 ms Tue, 27 May 2025 13:50:12 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 18.020 ms Tue, 27 May 2025 13:50:12 GMT -
+GET /images/6833d14c4876b842d71131ed 200 - - 6.185 ms Tue, 27 May 2025 13:50:12 GMT -
+GET /houses?page=3&area=All 200 866 - 6.770 ms Tue, 27 May 2025 13:50:15 GMT -
+GET /houses?page=3&area=All 200 866 - 35.877 ms Tue, 27 May 2025 13:50:15 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 15.344 ms Tue, 27 May 2025 13:50:18 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 20.942 ms Tue, 27 May 2025 13:50:18 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 18.755 ms Tue, 27 May 2025 13:50:18 GMT -
+GET /houses?page=1&area=Munyaka 200 849 - 7.461 ms Tue, 27 May 2025 13:50:32 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.404 ms Tue, 27 May 2025 13:50:34 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 14.031 ms Tue, 27 May 2025 13:50:34 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 6.403 ms Tue, 27 May 2025 13:50:34 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 5.985 ms Tue, 27 May 2025 13:50:39 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 6.891 ms Tue, 27 May 2025 13:50:40 GMT -
+GET /houses?page=3&area=Munyaka 200 39 - 7.099 ms Tue, 27 May 2025 13:50:42 GMT -
+GET /houses?page=3&area=Munyaka 200 39 - 7.666 ms Tue, 27 May 2025 13:50:42 GMT -
+GET /houses?page=4&area=Munyaka 200 39 - 6.107 ms Tue, 27 May 2025 13:50:44 GMT -
+GET /houses?page=4&area=Munyaka 200 39 - 6.652 ms Tue, 27 May 2025 13:50:44 GMT -
+GET /houses?page=5&area=Munyaka 200 39 - 5.869 ms Tue, 27 May 2025 13:50:46 GMT -
+GET /houses?page=5&area=Munyaka 200 39 - 5.982 ms Tue, 27 May 2025 13:50:46 GMT -
+GET /houses?page=6&area=Munyaka 200 39 - 28.108 ms Tue, 27 May 2025 13:50:48 GMT -
+GET /houses?page=6&area=Munyaka 200 39 - 27.075 ms Tue, 27 May 2025 13:50:48 GMT -
+GET /houses?page=7&area=Munyaka 200 40 - 5.841 ms Tue, 27 May 2025 13:50:50 GMT -
+GET /houses?page=7&area=Munyaka 200 40 - 6.483 ms Tue, 27 May 2025 13:50:51 GMT -
+GET /areas 200 - - 113.361 ms Thu, 29 May 2025 01:46:47 GMT -
+GET /houses?page=1&area=All 200 946 - 78.660 ms Thu, 29 May 2025 01:46:47 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 23.470 ms Thu, 29 May 2025 01:46:48 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 22.941 ms Thu, 29 May 2025 01:46:48 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 23.342 ms Thu, 29 May 2025 01:46:48 GMT -
+GET /refresh 200 333 - 169.737 ms Thu, 29 May 2025 01:46:50 GMT -
+GET /refresh 200 333 - 170.491 ms Thu, 29 May 2025 01:46:50 GMT -
+OPTIONS /profile 204 0 - 0.707 ms Thu, 29 May 2025 01:46:50 GMT -
+GET /profile 200 - - 9.832 ms Thu, 29 May 2025 01:46:50 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMyMTAsImV4cCI6MTc0ODY1NjAxMH0.Bl9uHyzpqo3o2cNKtrNC51HlOxmZ1G-46GaksxADnmM
+GET /refresh 200 333 - 47.709 ms Thu, 29 May 2025 01:46:55 GMT -
+GET /refresh 200 333 - 31.166 ms Thu, 29 May 2025 01:46:55 GMT -
+OPTIONS /profile 204 0 - 0.441 ms Thu, 29 May 2025 01:46:55 GMT -
+GET /profile 200 - - 10.551 ms Thu, 29 May 2025 01:46:55 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMyMTUsImV4cCI6MTc0ODY1NjAxNX0.VyZrMmhHlXiEvStfU1lV6nIrzzhg7YoXVct12oQ7D7I
+OPTIONS /logout 204 0 - 2.464 ms Thu, 29 May 2025 01:49:05 GMT -
+POST /logout 200 37 - 804.061 ms Thu, 29 May 2025 01:49:05 GMT -
+GET /areas 200 - - 18.577 ms Thu, 29 May 2025 01:49:06 GMT -
+GET /houses?page=1&area=All 200 946 - 55.611 ms Thu, 29 May 2025 01:49:06 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 35.224 ms Thu, 29 May 2025 01:49:07 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 32.924 ms Thu, 29 May 2025 01:49:07 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 33.389 ms Thu, 29 May 2025 01:49:07 GMT -
+OPTIONS /profile 204 0 - 0.493 ms Thu, 29 May 2025 01:49:09 GMT -
+OPTIONS /profile 204 0 - 0.604 ms Thu, 29 May 2025 01:49:09 GMT -
+GET /profile 200 - - 25.486 ms Thu, 29 May 2025 01:49:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMyMTUsImV4cCI6MTc0ODY1NjAxNX0.VyZrMmhHlXiEvStfU1lV6nIrzzhg7YoXVct12oQ7D7I
+GET /profile 200 - - 18.887 ms Thu, 29 May 2025 01:49:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMyMTUsImV4cCI6MTc0ODY1NjAxNX0.VyZrMmhHlXiEvStfU1lV6nIrzzhg7YoXVct12oQ7D7I
+GET /refresh 401 25 - 251.980 ms Thu, 29 May 2025 01:49:17 GMT -
+GET /refresh 401 25 - 3.660 ms Thu, 29 May 2025 01:49:17 GMT -
+OPTIONS /login 204 0 - 0.526 ms Thu, 29 May 2025 01:49:36 GMT -
+POST /login 200 333 - 944.268 ms Thu, 29 May 2025 01:49:37 GMT -
+GET /areas 200 - - 9.506 ms Thu, 29 May 2025 01:49:38 GMT -
+GET /houses?page=1&area=All 200 946 - 35.057 ms Thu, 29 May 2025 01:49:38 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 102.964 ms Thu, 29 May 2025 01:49:38 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 113.499 ms Thu, 29 May 2025 01:49:38 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 112.093 ms Thu, 29 May 2025 01:49:38 GMT -
+GET /areas 200 - - 10.674 ms Thu, 29 May 2025 01:49:47 GMT -
+GET /houses?page=1&area=All 200 946 - 43.938 ms Thu, 29 May 2025 01:49:47 GMT -
+GET /refresh 200 333 - 17.052 ms Thu, 29 May 2025 01:49:49 GMT -
+GET /refresh 200 333 - 39.726 ms Thu, 29 May 2025 01:49:49 GMT -
+OPTIONS /profile 204 0 - 0.545 ms Thu, 29 May 2025 01:49:49 GMT -
+GET /profile 200 - - 10.225 ms Thu, 29 May 2025 01:49:49 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+OPTIONS /shortlists 204 0 - 0.602 ms Thu, 29 May 2025 01:49:51 GMT -
+OPTIONS /shortlists 204 0 - 0.312 ms Thu, 29 May 2025 01:49:51 GMT -
+GET /shortlists 200 - - 29.147 ms Thu, 29 May 2025 01:49:51 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /shortlists 200 - - 27.626 ms Thu, 29 May 2025 01:49:51 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /images/6833d9464876b842d71132f7 200 - - 9.492 ms Thu, 29 May 2025 01:49:51 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 10.644 ms Thu, 29 May 2025 01:49:51 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.945 ms Thu, 29 May 2025 01:49:51 GMT -
+GET /images/683396145835395370085466 200 - - 27.756 ms Thu, 29 May 2025 01:49:51 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 7.183 ms Thu, 29 May 2025 01:49:56 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 8.436 ms Thu, 29 May 2025 01:49:57 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.050 ms Thu, 29 May 2025 01:50:03 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 7.331 ms Thu, 29 May 2025 01:50:04 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 7.549 ms Thu, 29 May 2025 01:50:05 GMT -
+GET /images/6833d14c4876b842d71131ed 200 - - 5.073 ms Thu, 29 May 2025 01:50:07 GMT -
+GET /images/6833d14c4876b842d71131ef 200 - - 6.636 ms Thu, 29 May 2025 01:50:08 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 8.025 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 10.322 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 8.720 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.739 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 14.888 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 18.846 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /areas 200 - - 8.933 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /houses?page=1&area=All 200 946 - 12.491 ms Thu, 29 May 2025 01:50:20 GMT -
+GET /images/undefined 500 26 - 1.565 ms Thu, 29 May 2025 01:50:23 GMT -
+GET /images/undefined 500 26 - 1.169 ms Thu, 29 May 2025 01:50:23 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 41.045 ms Thu, 29 May 2025 01:50:23 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 22.416 ms Thu, 29 May 2025 01:50:23 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.316 ms Thu, 29 May 2025 01:50:23 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 8.115 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 13.543 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 13.939 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 29.455 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 29.092 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 14.132 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /areas 200 - - 6.122 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /houses?page=1&area=All 200 946 - 10.725 ms Thu, 29 May 2025 01:51:43 GMT -
+GET /houses?page=2&area=All 200 885 - 31.328 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /houses?page=2&area=All 200 885 - 26.750 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /houses?page=2&area=All 200 885 - 12.521 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /images/683396145835395370085466 200 - - 7.521 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /images/6833963f5835395370085478 200 - - 19.682 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 54.249 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /houses?page=3&area=All 200 866 - 14.213 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /houses?page=3&area=All 200 866 - 14.132 ms Thu, 29 May 2025 01:51:50 GMT -
+GET /houses?page=3&area=All 200 866 - 8.798 ms Thu, 29 May 2025 01:51:51 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 18.539 ms Thu, 29 May 2025 01:51:51 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 17.500 ms Thu, 29 May 2025 01:51:51 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 18.412 ms Thu, 29 May 2025 01:51:51 GMT -
+GET /houses?page=4&area=All 200 786 - 12.480 ms Thu, 29 May 2025 01:51:52 GMT -
+GET /houses?page=4&area=All 200 786 - 12.770 ms Thu, 29 May 2025 01:51:52 GMT -
+GET /houses?page=4&area=All 200 786 - 9.794 ms Thu, 29 May 2025 01:51:52 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 20.798 ms Thu, 29 May 2025 01:51:52 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 22.888 ms Thu, 29 May 2025 01:51:52 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 21.857 ms Thu, 29 May 2025 01:51:52 GMT -
+OPTIONS /profile 204 0 - 0.603 ms Thu, 29 May 2025 01:52:01 GMT -
+OPTIONS /profile 204 0 - 0.624 ms Thu, 29 May 2025 01:52:01 GMT -
+GET /profile 200 - - 9.405 ms Thu, 29 May 2025 01:52:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /profile 200 - - 9.145 ms Thu, 29 May 2025 01:52:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+OPTIONS /profile 204 0 - 0.473 ms Thu, 29 May 2025 01:53:47 GMT -
+GET /profile 200 - - 8.995 ms Thu, 29 May 2025 01:53:47 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+OPTIONS /profile 204 0 - 0.551 ms Thu, 29 May 2025 01:53:47 GMT -
+GET /profile 200 - - 8.985 ms Thu, 29 May 2025 01:53:47 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+OPTIONS /profile 204 0 - 0.420 ms Thu, 29 May 2025 01:54:08 GMT -
+GET /profile 200 - - 8.333 ms Thu, 29 May 2025 01:54:08 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+OPTIONS /profile 204 0 - 1.037 ms Thu, 29 May 2025 01:54:08 GMT -
+GET /profile 200 - - 8.331 ms Thu, 29 May 2025 01:54:08 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /images/6833d9464876b842d71132f7 200 - - 7.064 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 8.805 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 5.946 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833963f5835395370085478 200 - - 6.968 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/683396145835395370085466 200 - - 9.405 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 20.617 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 15.970 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 124.064 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 104.631 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 90.212 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 86.285 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 107.893 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 41.723 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 21.697 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /areas 200 - - 6.812 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 19.883 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /houses?page=1&area=All 200 946 - 20.898 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/6833963f5835395370085478 200 - - 31.273 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/683396145835395370085466 200 - - 20.744 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 19.021 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 18.020 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /houses?page=2&area=All 200 885 - 14.574 ms Thu, 29 May 2025 01:55:56 GMT -
+GET /houses?page=3&area=All 200 866 - 11.843 ms Thu, 29 May 2025 01:55:57 GMT -
+GET /houses?page=4&area=All 200 786 - 6.332 ms Thu, 29 May 2025 01:55:57 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 8.034 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 8.601 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 8.464 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833963f5835395370085478 200 - - 8.363 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/683396145835395370085466 200 - - 8.000 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 6.665 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 7.116 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 7.258 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 6.246 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 5.589 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 7.462 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 5.986 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.850 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 13.515 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 30.373 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/6833963f5835395370085478 200 - - 33.029 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/683396145835395370085466 200 - - 30.950 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 30.986 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 34.807 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 18.544 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 33.703 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /areas 200 - - 8.134 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /houses?page=1&area=All 200 946 - 16.046 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 21.930 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 12.526 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 11.177 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /houses?page=2&area=All 200 885 - 10.181 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /houses?page=3&area=All 200 866 - 6.440 ms Thu, 29 May 2025 01:56:12 GMT -
+GET /houses?page=4&area=All 200 786 - 5.529 ms Thu, 29 May 2025 01:56:12 GMT -
+OPTIONS /profile 204 0 - 0.383 ms Thu, 29 May 2025 01:56:19 GMT -
+OPTIONS /profile 204 0 - 0.290 ms Thu, 29 May 2025 01:56:19 GMT -
+GET /profile 200 - - 10.340 ms Thu, 29 May 2025 01:56:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /profile 200 - - 7.706 ms Thu, 29 May 2025 01:56:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODMzODksImV4cCI6MTc0ODY1NjE4OX0.WhvWYCdc-NkUNZVPgwlo_R3MN6XFnfMSM9TL-jNNbkY
+GET /refresh 200 333 - 452.940 ms Thu, 29 May 2025 02:01:58 GMT -
+GET /refresh 200 333 - 484.607 ms Thu, 29 May 2025 02:01:58 GMT -
+OPTIONS /profile 204 0 - 0.888 ms Thu, 29 May 2025 02:01:59 GMT -
+GET /profile 200 - - 18.766 ms Thu, 29 May 2025 02:01:59 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODQxMTgsImV4cCI6MTc0ODY1NjkxOH0.PF5yEzGs-pS9AwYSpjOKj0q2tnozSlndPFNpEQOprec
+GET /refresh 200 333 - 213.055 ms Thu, 29 May 2025 02:02:08 GMT -
+GET /refresh 200 333 - 296.649 ms Thu, 29 May 2025 02:02:08 GMT -
+OPTIONS /profile 204 0 - 0.789 ms Thu, 29 May 2025 02:02:09 GMT -
+GET /profile 200 - - 10.620 ms Thu, 29 May 2025 02:02:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG55eXl5NTU1NUBnbWFpbC5jb20iLCJpYXQiOjE3NDg0ODQxMjgsImV4cCI6MTc0ODY1NjkyOH0.mj6fdVSVU6iCdzfJqboZFTHQEj4TIjED8yoEhRvHg7A
+OPTIONS /users 204 0 - 3.232 ms Thu, 29 May 2025 02:04:16 GMT -
+POST /users 200 193 - 526.026 ms Thu, 29 May 2025 02:04:16 GMT -
+GET /areas 200 - - 22.835 ms Thu, 29 May 2025 02:04:17 GMT -
+GET /houses?page=1&area=All 200 946 - 26.016 ms Thu, 29 May 2025 02:04:17 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 30.794 ms Thu, 29 May 2025 02:04:17 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 35.669 ms Thu, 29 May 2025 02:04:17 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 36.968 ms Thu, 29 May 2025 02:04:17 GMT -
+GET /refresh 500 - - 137.651 ms Thu, 29 May 2025 02:04:21 GMT -
+GET /refresh 500 - - 131.945 ms Thu, 29 May 2025 02:04:21 GMT -
+OPTIONS /shortlists 204 0 - 0.542 ms Thu, 29 May 2025 02:04:27 GMT -
+GET /shortlists 400 54 - 13.101 ms Thu, 29 May 2025 02:04:27 GMT Bearer undefined
+OPTIONS /shortlists 204 0 - 1.066 ms Thu, 29 May 2025 02:04:27 GMT -
+GET /shortlists 400 54 - 23.881 ms Thu, 29 May 2025 02:04:27 GMT Bearer undefined
+OPTIONS /login 204 0 - 4.413 ms Thu, 29 May 2025 02:06:28 GMT -
+POST /login 200 214 - 151.895 ms Thu, 29 May 2025 02:06:28 GMT -
+GET /areas 200 - - 22.063 ms Thu, 29 May 2025 02:06:29 GMT -
+GET /houses?page=1&area=All 200 946 - 34.005 ms Thu, 29 May 2025 02:06:29 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 36.147 ms Thu, 29 May 2025 02:06:29 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 36.617 ms Thu, 29 May 2025 02:06:29 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 34.599 ms Thu, 29 May 2025 02:06:29 GMT -
+GET /refresh 500 - - 58.405 ms Thu, 29 May 2025 02:06:35 GMT -
+GET /refresh 500 - - 45.117 ms Thu, 29 May 2025 02:06:35 GMT -
+GET /refresh 401 25 - 12.820 ms Thu, 29 May 2025 02:08:12 GMT -
+GET /refresh 401 25 - 20.884 ms Thu, 29 May 2025 02:08:12 GMT -
+GET /refresh 401 25 - 3.930 ms Thu, 29 May 2025 02:08:13 GMT -
+OPTIONS /login 204 0 - 0.745 ms Thu, 29 May 2025 02:08:25 GMT -
+POST /login 200 214 - 296.385 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /areas 200 - - 21.456 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /houses?page=1&area=All 200 946 - 34.953 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 33.704 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 35.382 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 29.126 ms Thu, 29 May 2025 02:08:26 GMT -
+GET /refresh 200 214 - 30.768 ms Thu, 29 May 2025 02:08:34 GMT -
+GET /refresh 200 214 - 74.330 ms Thu, 29 May 2025 02:08:34 GMT -
+OPTIONS /profile 204 0 - 0.428 ms Thu, 29 May 2025 02:08:34 GMT -
+GET /profile 200 - - 15.492 ms Thu, 29 May 2025 02:08:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ1MTQsImV4cCI6MTc0ODY1NzMxNH0.zpSjmGeXzuonMsQNhovZjH_wduGTHfzUDWD52jh30Vs
+OPTIONS /profile 204 0 - 3.987 ms Thu, 29 May 2025 02:09:28 GMT -
+OPTIONS /profile 204 0 - 0.330 ms Thu, 29 May 2025 02:09:28 GMT -
+GET /profile 200 - - 34.883 ms Thu, 29 May 2025 02:09:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ1MTQsImV4cCI6MTc0ODY1NzMxNH0.zpSjmGeXzuonMsQNhovZjH_wduGTHfzUDWD52jh30Vs
+GET /profile 200 - - 17.700 ms Thu, 29 May 2025 02:09:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ1MTQsImV4cCI6MTc0ODY1NzMxNH0.zpSjmGeXzuonMsQNhovZjH_wduGTHfzUDWD52jh30Vs
+GET /refresh 500 - - 94.186 ms Thu, 29 May 2025 02:09:50 GMT -
+GET /refresh 500 - - 99.129 ms Thu, 29 May 2025 02:09:50 GMT -
+GET /refresh 401 25 - 23.302 ms Thu, 29 May 2025 02:10:18 GMT -
+GET /refresh 401 25 - 129.981 ms Thu, 29 May 2025 02:10:18 GMT -
+OPTIONS /login 204 0 - 0.779 ms Thu, 29 May 2025 02:10:27 GMT -
+POST /login 200 214 - 253.930 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /areas 200 - - 19.749 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /houses?page=1&area=All 200 946 - 21.823 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 52.821 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 51.035 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 52.425 ms Thu, 29 May 2025 02:10:28 GMT -
+GET /areas 200 - - 15.248 ms Thu, 29 May 2025 02:10:36 GMT -
+GET /houses?page=1&area=All 200 946 - 81.044 ms Thu, 29 May 2025 02:10:36 GMT -
+GET /refresh 200 214 - 52.232 ms Thu, 29 May 2025 02:10:39 GMT -
+GET /refresh 200 214 - 126.042 ms Thu, 29 May 2025 02:10:39 GMT -
+OPTIONS /profile 204 0 - 0.533 ms Thu, 29 May 2025 02:10:39 GMT -
+GET /profile 200 - - 15.541 ms Thu, 29 May 2025 02:10:39 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /images/6833d9464876b842d71132f7 200 - - 8.448 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 9.101 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.095 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 14.253 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 23.149 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 21.163 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /areas 200 - - 53.692 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /houses?page=1&area=All 200 946 - 58.449 ms Thu, 29 May 2025 02:10:42 GMT -
+GET /houses?page=2&area=All 200 885 - 23.260 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /houses?page=2&area=All 200 885 - 17.095 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /houses?page=2&area=All 200 885 - 15.748 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /images/6833963f5835395370085478 200 - - 25.309 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /images/683396145835395370085466 200 - - 24.128 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 24.160 ms Thu, 29 May 2025 02:10:55 GMT -
+GET /houses?page=3&area=All 200 866 - 19.681 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /houses?page=3&area=All 200 866 - 19.720 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /houses?page=3&area=All 200 866 - 13.354 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 27.978 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 28.389 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 27.594 ms Thu, 29 May 2025 02:10:56 GMT -
+GET /houses?page=4&area=All 200 786 - 18.593 ms Thu, 29 May 2025 02:10:57 GMT -
+GET /houses?page=4&area=All 200 786 - 18.921 ms Thu, 29 May 2025 02:10:57 GMT -
+GET /houses?page=4&area=All 200 786 - 13.320 ms Thu, 29 May 2025 02:10:58 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 24.277 ms Thu, 29 May 2025 02:10:58 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 25.176 ms Thu, 29 May 2025 02:10:58 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 26.748 ms Thu, 29 May 2025 02:10:58 GMT -
+GET /houses?page=5&area=All 200 807 - 10.870 ms Thu, 29 May 2025 02:10:59 GMT -
+GET /houses?page=5&area=All 200 807 - 12.099 ms Thu, 29 May 2025 02:10:59 GMT -
+GET /houses?page=5&area=All 200 807 - 14.706 ms Thu, 29 May 2025 02:10:59 GMT -
+GET /images/undefined 500 26 - 1.285 ms Thu, 29 May 2025 02:10:59 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 20.165 ms Thu, 29 May 2025 02:10:59 GMT -
+GET /images/682969710042c7655077ecba 200 - - 25.285 ms Thu, 29 May 2025 02:10:59 GMT -
+OPTIONS /profile 204 0 - 0.744 ms Thu, 29 May 2025 02:11:01 GMT -
+POST /profile 200 - - 120.218 ms Thu, 29 May 2025 02:11:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /houses?page=6&area=All 200 826 - 18.566 ms Thu, 29 May 2025 02:11:03 GMT -
+GET /houses?page=6&area=All 200 826 - 15.944 ms Thu, 29 May 2025 02:11:03 GMT -
+GET /houses?page=6&area=All 200 826 - 10.797 ms Thu, 29 May 2025 02:11:03 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 18.981 ms Thu, 29 May 2025 02:11:04 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 21.388 ms Thu, 29 May 2025 02:11:04 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 22.668 ms Thu, 29 May 2025 02:11:04 GMT -
+OPTIONS /profile 204 0 - 0.478 ms Thu, 29 May 2025 02:11:09 GMT -
+POST /profile 200 - - 74.232 ms Thu, 29 May 2025 02:11:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /profile 204 0 - 0.420 ms Thu, 29 May 2025 02:11:11 GMT -
+OPTIONS /profile 204 0 - 0.699 ms Thu, 29 May 2025 02:11:11 GMT -
+GET /profile 200 - - 10.708 ms Thu, 29 May 2025 02:11:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /profile 200 - - 9.568 ms Thu, 29 May 2025 02:11:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /shortlists 204 0 - 0.464 ms Thu, 29 May 2025 02:11:15 GMT -
+OPTIONS /shortlists 204 0 - 0.496 ms Thu, 29 May 2025 02:11:15 GMT -
+GET /shortlists 200 504 - 18.676 ms Thu, 29 May 2025 02:11:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /shortlists 200 504 - 15.608 ms Thu, 29 May 2025 02:11:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /images/68296bfa0042c7655077ed09 200 - - 15.457 ms Thu, 29 May 2025 02:11:15 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 12.284 ms Thu, 29 May 2025 02:11:15 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 34.350 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 12.437 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 21.330 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833963f5835395370085478 200 - - 34.837 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 13.612 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/683396145835395370085466 200 - - 28.553 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 23.224 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 18.694 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 33.892 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 36.253 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 30.144 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 30.645 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682969710042c7655077ecba 200 - - 19.963 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/undefined 500 26 - 1.364 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 30.678 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 38.343 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 28.092 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 14.908 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 32.119 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 32.167 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833963f5835395370085478 200 - - 49.469 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 59.953 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 32.047 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/683396145835395370085466 200 - - 74.025 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /areas 200 - - 19.748 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /houses?page=1&area=All 200 946 - 26.003 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 102.726 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 109.924 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 25.031 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 25.311 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 14.896 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 19.287 ms Thu, 29 May 2025 02:11:54 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 29.993 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /images/undefined 500 26 - 0.996 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /images/682969710042c7655077ecba 200 - - 36.550 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /houses?page=2&area=All 200 885 - 63.994 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /houses?page=3&area=All 200 866 - 47.224 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /houses?page=4&area=All 200 786 - 7.117 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /houses?page=5&area=All 200 807 - 9.445 ms Thu, 29 May 2025 02:11:55 GMT -
+GET /houses?page=6&area=All 200 826 - 7.022 ms Thu, 29 May 2025 02:11:55 GMT -
+OPTIONS /profile 204 0 - 0.330 ms Thu, 29 May 2025 02:11:56 GMT -
+POST /profile 200 - - 56.908 ms Thu, 29 May 2025 02:11:56 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /profile 204 0 - 0.438 ms Thu, 29 May 2025 02:12:01 GMT -
+OPTIONS /profile 204 0 - 0.485 ms Thu, 29 May 2025 02:12:01 GMT -
+GET /profile 200 - - 11.260 ms Thu, 29 May 2025 02:12:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /profile 200 - - 10.139 ms Thu, 29 May 2025 02:12:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /shortlists 204 0 - 0.375 ms Thu, 29 May 2025 02:12:03 GMT -
+OPTIONS /shortlists 204 0 - 0.755 ms Thu, 29 May 2025 02:12:03 GMT -
+GET /shortlists 200 810 - 20.057 ms Thu, 29 May 2025 02:12:03 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /shortlists 200 810 - 19.434 ms Thu, 29 May 2025 02:12:03 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /images/68296bfa0042c7655077ed09 200 - - 8.592 ms Thu, 29 May 2025 02:12:03 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 10.751 ms Thu, 29 May 2025 02:12:03 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.063 ms Thu, 29 May 2025 02:12:03 GMT -
+OPTIONS /profile 204 0 - 0.379 ms Thu, 29 May 2025 02:12:09 GMT -
+OPTIONS /profile 204 0 - 2.050 ms Thu, 29 May 2025 02:12:09 GMT -
+GET /profile 200 - - 11.638 ms Thu, 29 May 2025 02:12:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /profile 200 - - 7.557 ms Thu, 29 May 2025 02:12:09 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /shortlists 204 0 - 0.432 ms Thu, 29 May 2025 02:12:11 GMT -
+OPTIONS /shortlists 204 0 - 0.356 ms Thu, 29 May 2025 02:12:11 GMT -
+GET /shortlists 200 810 - 27.937 ms Thu, 29 May 2025 02:12:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /shortlists 200 810 - 47.171 ms Thu, 29 May 2025 02:12:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /images/68296bfa0042c7655077ed09 200 - - 59.119 ms Thu, 29 May 2025 02:12:11 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 20.226 ms Thu, 29 May 2025 02:12:11 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 26.327 ms Thu, 29 May 2025 02:12:11 GMT -
+GET /images/undefined 500 26 - 1.038 ms Thu, 29 May 2025 02:12:13 GMT -
+GET /images/undefined 500 26 - 1.179 ms Thu, 29 May 2025 02:12:13 GMT -
+GET /houses/68296bfa0042c7655077ed0b 200 227 - 30.093 ms Thu, 29 May 2025 02:12:13 GMT -
+GET /houses/68296bfa0042c7655077ed0b 200 227 - 18.727 ms Thu, 29 May 2025 02:12:13 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 11.884 ms Thu, 29 May 2025 02:12:13 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.170 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 6.978 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 6.238 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833963f5835395370085478 200 - - 6.858 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/683396145835395370085466 200 - - 6.722 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 7.151 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 6.598 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 5.816 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 7.096 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 5.750 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 7.315 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 6.976 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682969710042c7655077ecba 200 - - 7.712 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 6.946 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/undefined 500 26 - 0.623 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 14.646 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 9.399 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 9.489 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 9.627 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 14.788 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 41.877 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 31.057 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/6833963f5835395370085478 200 - - 46.837 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/683396145835395370085466 200 - - 37.956 ms Thu, 29 May 2025 02:12:22 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 25.772 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 25.181 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 28.076 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 18.606 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 35.324 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=1&area=All 200 946 - 20.621 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /areas 200 - - 10.652 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 56.660 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/undefined 500 26 - 1.050 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 63.788 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/682969710042c7655077ecba 200 - - 81.617 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 39.379 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 44.468 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 69.283 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=2&area=All 200 885 - 54.327 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=3&area=All 200 866 - 35.868 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=4&area=All 200 786 - 6.812 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=5&area=All 200 807 - 5.601 ms Thu, 29 May 2025 02:12:23 GMT -
+GET /houses?page=6&area=All 200 826 - 7.471 ms Thu, 29 May 2025 02:12:23 GMT -
+OPTIONS /profile 204 0 - 0.314 ms Thu, 29 May 2025 02:12:27 GMT -
+POST /profile 200 - - 83.497 ms Thu, 29 May 2025 02:12:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /profile 204 0 - 0.361 ms Thu, 29 May 2025 02:12:30 GMT -
+GET /profile 200 - - 8.762 ms Thu, 29 May 2025 02:12:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /profile 204 0 - 0.418 ms Thu, 29 May 2025 02:12:30 GMT -
+GET /profile 200 - - 6.803 ms Thu, 29 May 2025 02:12:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /shortlists 204 0 - 0.420 ms Thu, 29 May 2025 02:12:31 GMT -
+OPTIONS /shortlists 204 0 - 0.301 ms Thu, 29 May 2025 02:12:31 GMT -
+GET /shortlists 200 - - 18.740 ms Thu, 29 May 2025 02:12:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /shortlists 200 - - 29.875 ms Thu, 29 May 2025 02:12:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /images/68296bfa0042c7655077ed09 200 - - 9.075 ms Thu, 29 May 2025 02:12:32 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 9.755 ms Thu, 29 May 2025 02:12:32 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.071 ms Thu, 29 May 2025 02:12:32 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 7.599 ms Thu, 29 May 2025 02:12:32 GMT -
+GET /images/undefined 500 26 - 0.927 ms Thu, 29 May 2025 02:12:36 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 16.337 ms Thu, 29 May 2025 02:12:36 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 14.540 ms Thu, 29 May 2025 02:12:36 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 9.720 ms Thu, 29 May 2025 02:12:36 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.330 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 7.534 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 7.571 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833963f5835395370085478 200 - - 6.961 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/683396145835395370085466 200 - - 7.442 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 6.551 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 7.869 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 8.318 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 8.625 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 6.575 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 6.941 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 6.673 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682969710042c7655077ecba 200 - - 6.485 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 6.713 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/undefined 500 26 - 1.134 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 8.799 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 8.892 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 6.585 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.962 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 10.313 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833963f5835395370085478 200 - - 25.668 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/683396145835395370085466 200 - - 22.485 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 22.587 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 38.234 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 12.933 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 13.306 ms Thu, 29 May 2025 02:12:40 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 57.355 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 65.734 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 64.161 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 31.705 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=1&area=All 200 946 - 14.662 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /areas 200 - - 8.191 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=2&area=All 200 885 - 33.296 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/682969710042c7655077ecba 200 - - 50.529 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 43.801 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 49.616 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 45.688 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 44.954 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/undefined 500 26 - 1.302 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=3&area=All 200 866 - 10.193 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=4&area=All 200 786 - 7.771 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=5&area=All 200 807 - 8.156 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /houses?page=6&area=All 200 826 - 6.701 ms Thu, 29 May 2025 02:12:41 GMT -
+GET /images/undefined 500 26 - 1.309 ms Thu, 29 May 2025 02:13:48 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 19.309 ms Thu, 29 May 2025 02:13:48 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 15.095 ms Thu, 29 May 2025 02:13:48 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 10.687 ms Thu, 29 May 2025 02:13:48 GMT -
+GET /images/undefined 500 26 - 1.239 ms Thu, 29 May 2025 02:14:38 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 22.478 ms Thu, 29 May 2025 02:14:38 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 26.029 ms Thu, 29 May 2025 02:14:38 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 32.988 ms Thu, 29 May 2025 02:14:38 GMT -
+GET /images/undefined 500 26 - 1.047 ms Thu, 29 May 2025 02:15:16 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 37.712 ms Thu, 29 May 2025 02:15:16 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 22.395 ms Thu, 29 May 2025 02:15:16 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 156.358 ms Thu, 29 May 2025 02:15:16 GMT -
+GET /images/undefined 500 26 - 0.861 ms Thu, 29 May 2025 02:16:01 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 58.314 ms Thu, 29 May 2025 02:16:01 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 48.468 ms Thu, 29 May 2025 02:16:01 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 68.731 ms Thu, 29 May 2025 02:16:02 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 22.318 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 27.247 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 38.887 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/6833963f5835395370085478 200 - - 37.058 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 25.351 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/683396145835395370085466 200 - - 41.622 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 35.424 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 29.590 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 27.925 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 19.668 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 10.498 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682969710042c7655077ecba 200 - - 23.166 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 27.260 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 23.452 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/undefined 500 26 - 1.014 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 11.566 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 21.818 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 14.329 ms Thu, 29 May 2025 02:16:45 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 24.784 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 24.288 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 26.701 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/6833963f5835395370085478 200 - - 27.879 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/683396145835395370085466 200 - - 28.327 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 36.058 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 26.927 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 30.419 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=1&area=All 200 946 - 19.272 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /areas 200 - - 14.832 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 42.856 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 54.791 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=2&area=All 200 885 - 19.405 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 27.034 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 27.511 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/682969710042c7655077ecba 200 - - 31.191 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 15.122 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 11.503 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 10.482 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /images/undefined 500 26 - 0.995 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=3&area=All 200 866 - 42.409 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=4&area=All 200 786 - 9.813 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=5&area=All 200 807 - 9.026 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=6&area=All 200 826 - 7.173 ms Thu, 29 May 2025 02:16:46 GMT -
+GET /houses?page=7&area=All 200 309 - 10.127 ms Thu, 29 May 2025 02:16:52 GMT -
+GET /houses?page=7&area=All 200 309 - 10.065 ms Thu, 29 May 2025 02:16:52 GMT -
+GET /houses?page=7&area=All 200 309 - 8.958 ms Thu, 29 May 2025 02:16:52 GMT -
+GET /images/6827fe9ffd7a53528ac5b550 200 - - 12.692 ms Thu, 29 May 2025 02:16:52 GMT -
+POST /houses 200 301 - 4407.591 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 21.447 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 30.103 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 35.236 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/6833963f5835395370085478 200 - - 34.949 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/683396145835395370085466 200 - - 39.312 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 38.776 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 49.715 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 53.435 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 34.562 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 28.000 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 45.562 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 41.043 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/undefined 500 26 - 1.458 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682969710042c7655077ecba 200 - - 41.886 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 46.057 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 56.632 ms Thu, 29 May 2025 02:18:12 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 43.927 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 51.886 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6827fe9ffd7a53528ac5b550 200 - - 76.268 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 67.066 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 66.667 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 60.814 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6833963f5835395370085478 200 - - 74.188 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/683396145835395370085466 200 - - 93.508 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /areas 200 - - 38.142 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /houses?page=1&area=All 200 945 - 165.054 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 38.822 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 84.894 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 63.164 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 48.502 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 52.986 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 36.960 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 42.580 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /houses?page=2&area=All 200 897 - 82.684 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/undefined 500 26 - 1.048 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/682969710042c7655077ecba 200 - - 22.956 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 25.050 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 26.902 ms Thu, 29 May 2025 02:18:13 GMT -
+GET /houses?page=3&area=All 200 858 - 8.574 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /houses?page=4&area=All 200 832 - 6.718 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /houses?page=5&area=All 200 841 - 7.835 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /houses?page=6&area=All 200 746 - 10.462 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /houses?page=7&area=All 200 608 - 6.358 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 11.212 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 10.902 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 6.864 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 6.823 ms Thu, 29 May 2025 02:18:16 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 7.651 ms Thu, 29 May 2025 02:18:17 GMT -
+GET /images/undefined 500 26 - 1.081 ms Thu, 29 May 2025 02:18:17 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 10.914 ms Thu, 29 May 2025 02:18:17 GMT -
+OPTIONS /profile 204 0 - 0.586 ms Thu, 29 May 2025 02:18:38 GMT -
+OPTIONS /profile 204 0 - 0.337 ms Thu, 29 May 2025 02:18:38 GMT -
+GET /profile 200 - - 9.900 ms Thu, 29 May 2025 02:18:38 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /profile 200 - - 7.011 ms Thu, 29 May 2025 02:18:38 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+OPTIONS /profile 204 0 - 0.373 ms Thu, 29 May 2025 02:19:52 GMT -
+OPTIONS /profile 204 0 - 0.937 ms Thu, 29 May 2025 02:19:52 GMT -
+GET /profile 200 - - 8.819 ms Thu, 29 May 2025 02:19:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /profile 200 - - 11.856 ms Thu, 29 May 2025 02:19:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg0ODQ2MzksImV4cCI6MTc0ODY1NzQzOX0.UyhoB01GJNvclKr4YXSlCrWeVoG-Ngb6VXAlCELb_5Y
+GET /areas 200 - - 8.015 ms Thu, 29 May 2025 02:24:23 GMT -
+GET /houses?page=1&area=All 200 945 - 11.821 ms Thu, 29 May 2025 02:24:23 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 24.190 ms Thu, 29 May 2025 02:24:24 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 21.786 ms Thu, 29 May 2025 02:24:24 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 19.915 ms Thu, 29 May 2025 02:24:24 GMT -
+GET /houses?page=2&area=All 200 897 - 9.779 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /houses?page=3&area=All 200 858 - 9.265 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/6833963f5835395370085478 200 - - 17.038 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 21.021 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/683396145835395370085466 200 - - 20.151 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 8.012 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 12.271 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 12.853 ms Thu, 29 May 2025 02:24:25 GMT -
+GET /houses?page=4&area=All 200 832 - 7.345 ms Thu, 29 May 2025 02:24:26 GMT -
+GET /houses?page=5&area=All 200 841 - 13.958 ms Thu, 29 May 2025 02:24:26 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 14.458 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 15.942 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 26.350 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 5.747 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /images/682969710042c7655077ecba 200 - - 7.986 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 7.797 ms Thu, 29 May 2025 02:24:27 GMT -
+GET /houses?page=6&area=All 200 746 - 6.816 ms Thu, 29 May 2025 02:24:28 GMT -
+GET /houses?page=7&area=All 200 608 - 6.423 ms Thu, 29 May 2025 02:24:28 GMT -
+GET /images/undefined 500 26 - 1.053 ms Thu, 29 May 2025 02:24:29 GMT -
+GET /images/68281933447bec2627a0b9c2 200 - - 26.802 ms Thu, 29 May 2025 02:24:29 GMT -
+GET /images/68281419aabdb135de2f981d 200 - - 21.553 ms Thu, 29 May 2025 02:24:29 GMT -
+GET /images/682800b9f6d95346e1ecd34a 200 - - 7.867 ms Thu, 29 May 2025 02:24:29 GMT -
+GET /images/6827fe9ffd7a53528ac5b550 200 - - 8.064 ms Thu, 29 May 2025 02:24:29 GMT -
+GET /areas 200 - - 40.428 ms Thu, 29 May 2025 02:25:40 GMT -
+GET /houses?page=1&area=All 200 945 - 31.889 ms Thu, 29 May 2025 02:25:40 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 35.545 ms Thu, 29 May 2025 02:25:40 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 36.010 ms Thu, 29 May 2025 02:25:40 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 34.189 ms Thu, 29 May 2025 02:25:40 GMT -
+GET /houses?page=1&area=Center 200 340 - 21.060 ms Thu, 29 May 2025 02:25:50 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 11.407 ms Thu, 29 May 2025 02:25:50 GMT -
+GET /houses?page=2&area=Center 200 39 - 11.031 ms Thu, 29 May 2025 02:25:50 GMT -
+GET /houses?page=3&area=Center 200 39 - 10.188 ms Thu, 29 May 2025 02:25:50 GMT -
+GET /houses?page=4&area=Center 200 39 - 10.769 ms Thu, 29 May 2025 02:25:51 GMT -
+GET /houses?page=5&area=Center 200 39 - 13.934 ms Thu, 29 May 2025 02:25:51 GMT -
+GET /houses?page=6&area=Center 200 39 - 8.764 ms Thu, 29 May 2025 02:25:51 GMT -
+GET /houses?page=7&area=Center 200 40 - 13.153 ms Thu, 29 May 2025 02:25:51 GMT -
+GET /houses?page=7&area=Center 200 40 - 13.513 ms Thu, 29 May 2025 02:25:51 GMT -
+GET /houses?page=1&area=Munyaka 200 849 - 13.105 ms Thu, 29 May 2025 02:25:54 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 28.393 ms Thu, 29 May 2025 02:25:54 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 27.215 ms Thu, 29 May 2025 02:25:54 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 26.871 ms Thu, 29 May 2025 02:25:54 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 12.752 ms Thu, 29 May 2025 02:25:56 GMT -
+GET /houses?page=3&area=Munyaka 200 39 - 12.676 ms Thu, 29 May 2025 02:25:56 GMT -
+GET /houses?page=4&area=Munyaka 200 39 - 9.503 ms Thu, 29 May 2025 02:25:56 GMT -
+GET /houses?page=5&area=Munyaka 200 39 - 11.100 ms Thu, 29 May 2025 02:25:56 GMT -
+GET /houses?page=6&area=Munyaka 200 39 - 8.420 ms Thu, 29 May 2025 02:25:57 GMT -
+GET /houses?page=7&area=Munyaka 200 40 - 14.042 ms Thu, 29 May 2025 02:25:57 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 7.448 ms Thu, 29 May 2025 02:25:58 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 12.873 ms Thu, 29 May 2025 02:25:58 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 13.380 ms Thu, 29 May 2025 02:25:58 GMT -
+GET /houses?page=1&area=All 200 945 - 10.207 ms Thu, 29 May 2025 02:25:58 GMT -
+GET /houses?page=2&area=All 200 897 - 23.147 ms Thu, 29 May 2025 02:25:58 GMT -
+GET /houses?page=3&area=All 200 858 - 19.085 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 7.124 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/6833963f5835395370085478 200 - - 29.306 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/683396145835395370085466 200 - - 30.903 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 7.617 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 16.478 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 18.081 ms Thu, 29 May 2025 02:25:59 GMT -
+GET /houses?page=1&area=Thika%20Rd 200 39 - 31.140 ms Thu, 29 May 2025 02:26:01 GMT -
+GET /houses?page=2&area=Thika%20Rd 200 39 - 13.476 ms Thu, 29 May 2025 02:26:01 GMT -
+GET /houses?page=3&area=Thika%20Rd 200 39 - 16.868 ms Thu, 29 May 2025 02:26:01 GMT -
+GET /houses?page=4&area=Thika%20Rd 200 39 - 10.863 ms Thu, 29 May 2025 02:26:01 GMT -
+GET /houses?page=5&area=Thika%20Rd 200 39 - 7.465 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=6&area=Thika%20Rd 200 39 - 8.740 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=7&area=Thika%20Rd 200 40 - 12.472 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 9.284 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=1&area=Center 200 340 - 10.822 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=2&area=Center 200 39 - 8.845 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=3&area=Center 200 39 - 6.363 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=4&area=Center 200 39 - 5.226 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=5&area=Center 200 39 - 5.162 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=6&area=Center 200 39 - 6.110 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /houses?page=7&area=Center 200 40 - 5.560 ms Thu, 29 May 2025 02:26:02 GMT -
+GET /areas 304 - - 34.693 ms Thu, 29 May 2025 06:36:13 GMT -
+GET /houses?page=1&area=All 304 - - 37.065 ms Thu, 29 May 2025 06:36:13 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 19.303 ms Thu, 29 May 2025 06:36:13 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 20.093 ms Thu, 29 May 2025 06:36:13 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 19.895 ms Thu, 29 May 2025 06:36:13 GMT -
+GET /areas 304 - - 11.884 ms Thu, 29 May 2025 06:36:22 GMT -
+GET /houses?page=1&area=All 304 - - 23.751 ms Thu, 29 May 2025 06:36:22 GMT -
+GET /houses?page=2&area=All 200 897 - 15.301 ms Thu, 29 May 2025 06:36:24 GMT -
+GET /houses?page=3&area=All 200 858 - 18.172 ms Thu, 29 May 2025 06:36:24 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 28.253 ms Thu, 29 May 2025 06:36:24 GMT -
+GET /images/6833963f5835395370085478 200 - - 32.368 ms Thu, 29 May 2025 06:36:24 GMT -
+GET /images/683396145835395370085466 200 - - 34.767 ms Thu, 29 May 2025 06:36:24 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 27.043 ms Thu, 29 May 2025 06:36:25 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 29.397 ms Thu, 29 May 2025 06:36:25 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 47.435 ms Thu, 29 May 2025 06:36:25 GMT -
+GET /houses?page=4&area=All 200 832 - 9.689 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /houses?page=5&area=All 200 841 - 11.100 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 16.714 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 17.396 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 19.400 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 19.505 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/682969710042c7655077ecba 200 - - 19.547 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /images/6828cf8ca521e5d9b0cfa46a 200 - - 19.495 ms Thu, 29 May 2025 06:36:29 GMT -
+GET /houses?page=1&area=All 200 945 - 24.626 ms Thu, 29 May 2025 06:36:38 GMT -
+GET /areas 200 - - 14.701 ms Thu, 29 May 2025 06:36:38 GMT -
+GET /houses?page=2&area=All 200 897 - 23.781 ms Thu, 29 May 2025 06:36:38 GMT -
+GET /houses?page=3&area=All 200 858 - 43.130 ms Thu, 29 May 2025 06:36:39 GMT -
+GET /houses?page=4&area=All 200 832 - 12.497 ms Thu, 29 May 2025 06:36:39 GMT -
+GET /houses?page=5&area=All 200 841 - 29.628 ms Thu, 29 May 2025 06:36:39 GMT -
+GET /refresh 200 321 - 72.853 ms Thu, 29 May 2025 06:36:43 GMT -
+GET /refresh 200 321 - 94.458 ms Thu, 29 May 2025 06:36:43 GMT -
+OPTIONS /profile 204 0 - 0.727 ms Thu, 29 May 2025 06:36:43 GMT -
+GET /profile 200 - - 10.533 ms Thu, 29 May 2025 06:36:43 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDIsImV4cCI6MTc0ODY3MzQwMn0.Z8-4fHlRnM6BVy5mGdLvhbyGGMtLPr9KmiM_BdebW7E
+OPTIONS /profile 204 0 - 0.497 ms Thu, 29 May 2025 06:36:43 GMT -
+GET /profile 200 - - 10.412 ms Thu, 29 May 2025 06:36:43 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+OPTIONS /profile 204 0 - 0.454 ms Thu, 29 May 2025 06:36:50 GMT -
+OPTIONS /profile 204 0 - 0.865 ms Thu, 29 May 2025 06:36:50 GMT -
+GET /profile 200 - - 12.439 ms Thu, 29 May 2025 06:36:50 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+GET /profile 200 - - 9.564 ms Thu, 29 May 2025 06:36:50 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+OPTIONS /shortlists 204 0 - 0.388 ms Thu, 29 May 2025 06:36:52 GMT -
+OPTIONS /shortlists 204 0 - 0.426 ms Thu, 29 May 2025 06:36:52 GMT -
+GET /shortlists 200 - - 40.799 ms Thu, 29 May 2025 06:36:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+GET /shortlists 200 - - 56.518 ms Thu, 29 May 2025 06:36:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+GET /images/68296bfa0042c7655077ed09 200 - - 10.377 ms Thu, 29 May 2025 06:36:52 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 14.305 ms Thu, 29 May 2025 06:36:52 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.039 ms Thu, 29 May 2025 06:36:52 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 8.956 ms Thu, 29 May 2025 06:36:52 GMT -
+OPTIONS /profile 204 0 - 0.381 ms Thu, 29 May 2025 06:36:57 GMT -
+OPTIONS /profile 204 0 - 0.458 ms Thu, 29 May 2025 06:36:57 GMT -
+GET /profile 200 - - 11.982 ms Thu, 29 May 2025 06:36:57 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+GET /profile 200 - - 10.087 ms Thu, 29 May 2025 06:36:57 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MDMsImV4cCI6MTc0ODY3MzQwM30.e8B0qDu4QDCTHsbACQbbw9DkB4VIuAG2GDbDDicpT44
+GET /refresh 200 321 - 290.546 ms Thu, 29 May 2025 06:37:17 GMT -
+GET /refresh 200 321 - 552.517 ms Thu, 29 May 2025 06:37:17 GMT -
+OPTIONS /profile 204 0 - 0.299 ms Thu, 29 May 2025 06:37:17 GMT -
+GET /profile 200 - - 8.798 ms Thu, 29 May 2025 06:37:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.453 ms Thu, 29 May 2025 06:38:14 GMT -
+OPTIONS /profile 204 0 - 0.563 ms Thu, 29 May 2025 06:38:14 GMT -
+GET /profile 200 - - 13.385 ms Thu, 29 May 2025 06:38:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+GET /profile 200 - - 10.244 ms Thu, 29 May 2025 06:38:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.465 ms Thu, 29 May 2025 06:38:22 GMT -
+OPTIONS /profile 204 0 - 0.562 ms Thu, 29 May 2025 06:38:22 GMT -
+GET /profile 200 - - 12.254 ms Thu, 29 May 2025 06:38:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+GET /profile 200 - - 9.832 ms Thu, 29 May 2025 06:38:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.416 ms Thu, 29 May 2025 06:41:35 GMT -
+OPTIONS /profile 204 0 - 0.504 ms Thu, 29 May 2025 06:41:35 GMT -
+GET /profile 200 - - 17.188 ms Thu, 29 May 2025 06:41:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+GET /profile 200 - - 12.342 ms Thu, 29 May 2025 06:41:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.384 ms Thu, 29 May 2025 06:41:36 GMT -
+GET /profile 200 - - 7.931 ms Thu, 29 May 2025 06:41:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.401 ms Thu, 29 May 2025 06:41:40 GMT -
+GET /profile 200 - - 6.528 ms Thu, 29 May 2025 06:41:40 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.755 ms Thu, 29 May 2025 06:41:42 GMT -
+GET /profile 200 - - 8.554 ms Thu, 29 May 2025 06:41:42 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.495 ms Thu, 29 May 2025 06:44:04 GMT -
+GET /profile 200 - - 8.790 ms Thu, 29 May 2025 06:44:04 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.608 ms Thu, 29 May 2025 06:44:11 GMT -
+GET /profile 200 - - 6.997 ms Thu, 29 May 2025 06:44:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.383 ms Thu, 29 May 2025 06:44:11 GMT -
+GET /profile 200 - - 7.609 ms Thu, 29 May 2025 06:44:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.436 ms Thu, 29 May 2025 06:44:11 GMT -
+GET /profile 200 - - 9.001 ms Thu, 29 May 2025 06:44:11 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.598 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 8.151 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.425 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 7.012 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.434 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 7.481 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.404 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 6.291 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.488 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 6.072 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.418 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 6.273 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.498 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 7.042 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.755 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 5.360 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.501 ms Thu, 29 May 2025 06:44:12 GMT -
+GET /profile 200 - - 9.869 ms Thu, 29 May 2025 06:44:12 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.358 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 5.758 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.553 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 6.088 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.336 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 6.534 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.543 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 5.918 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.438 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 6.082 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.405 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 5.525 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.371 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 4.743 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.460 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 4.378 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.328 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 5.323 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.413 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 6.385 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.367 ms Thu, 29 May 2025 06:44:13 GMT -
+GET /profile 200 - - 7.299 ms Thu, 29 May 2025 06:44:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.379 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 6.200 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.401 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 4.579 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.556 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 5.652 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.404 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 9.443 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.402 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 6.116 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.409 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 6.584 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.410 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 5.852 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.440 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 5.025 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.363 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 7.004 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.242 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 4.481 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.370 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 5.746 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.377 ms Thu, 29 May 2025 06:44:14 GMT -
+GET /profile 200 - - 5.571 ms Thu, 29 May 2025 06:44:14 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.395 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 5.421 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.328 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 5.272 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.358 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 6.841 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.365 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 5.824 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.343 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 4.748 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.397 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 4.441 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.351 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 4.974 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.391 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 6.844 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.346 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 6.554 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.396 ms Thu, 29 May 2025 06:44:15 GMT -
+GET /profile 200 - - 6.513 ms Thu, 29 May 2025 06:44:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.435 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 6.777 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.404 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 7.799 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.349 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.449 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.388 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.625 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.330 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.962 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.410 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 6.689 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.317 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.518 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.384 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.316 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.329 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.511 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.352 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 4.913 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.306 ms Thu, 29 May 2025 06:44:16 GMT -
+GET /profile 200 - - 5.806 ms Thu, 29 May 2025 06:44:16 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.164 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 5.057 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.335 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 9.059 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.435 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 4.374 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.445 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 5.228 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.341 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 7.253 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.397 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 6.991 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.376 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 6.870 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.428 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 6.372 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 1.780 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 7.824 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.371 ms Thu, 29 May 2025 06:44:17 GMT -
+GET /profile 200 - - 5.954 ms Thu, 29 May 2025 06:44:17 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.545 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 7.046 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.328 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.714 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.284 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.084 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.324 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 4.646 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.390 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 4.473 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.312 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.496 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.451 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.562 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.334 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.791 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.686 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 7.110 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.548 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.425 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.498 ms Thu, 29 May 2025 06:44:18 GMT -
+GET /profile 200 - - 5.180 ms Thu, 29 May 2025 06:44:18 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.394 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 4.363 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.292 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 4.457 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.401 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 4.376 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.350 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 4.126 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.578 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 4.620 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.325 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 5.287 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.423 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 5.333 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.421 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 7.261 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.362 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 6.459 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.488 ms Thu, 29 May 2025 06:44:19 GMT -
+GET /profile 200 - - 6.198 ms Thu, 29 May 2025 06:44:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.443 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.590 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.728 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.450 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.463 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 7.991 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.382 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.522 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.388 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.019 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.323 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 7.447 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.450 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.588 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.409 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 6.390 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.443 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.862 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.296 ms Thu, 29 May 2025 06:44:20 GMT -
+GET /profile 200 - - 5.927 ms Thu, 29 May 2025 06:44:20 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.288 ms Thu, 29 May 2025 06:44:21 GMT -
+GET /profile 200 - - 5.950 ms Thu, 29 May 2025 06:44:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.649 ms Thu, 29 May 2025 06:44:21 GMT -
+GET /profile 200 - - 6.958 ms Thu, 29 May 2025 06:44:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.775 ms Thu, 29 May 2025 06:44:21 GMT -
+GET /profile 200 - - 6.500 ms Thu, 29 May 2025 06:44:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.422 ms Thu, 29 May 2025 06:44:21 GMT -
+GET /profile 200 - - 7.916 ms Thu, 29 May 2025 06:44:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.554 ms Thu, 29 May 2025 06:44:21 GMT -
+GET /profile 200 - - 9.334 ms Thu, 29 May 2025 06:44:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.501 ms Thu, 29 May 2025 06:44:22 GMT -
+GET /profile 200 - - 11.262 ms Thu, 29 May 2025 06:44:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.622 ms Thu, 29 May 2025 06:44:22 GMT -
+GET /profile 200 - - 7.963 ms Thu, 29 May 2025 06:44:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.440 ms Thu, 29 May 2025 06:44:22 GMT -
+GET /profile 200 - - 9.035 ms Thu, 29 May 2025 06:44:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.707 ms Thu, 29 May 2025 06:44:23 GMT -
+GET /profile 200 - - 7.196 ms Thu, 29 May 2025 06:44:23 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.409 ms Thu, 29 May 2025 06:44:23 GMT -
+GET /profile 200 - - 10.136 ms Thu, 29 May 2025 06:44:23 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.371 ms Thu, 29 May 2025 06:44:23 GMT -
+GET /profile 200 - - 7.517 ms Thu, 29 May 2025 06:44:23 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.473 ms Thu, 29 May 2025 06:44:23 GMT -
+GET /profile 200 - - 10.426 ms Thu, 29 May 2025 06:44:23 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.379 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 4.578 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.324 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 4.114 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.461 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 5.604 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.306 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 6.933 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.394 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 6.584 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.254 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 5.811 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.428 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 5.916 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.335 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 7.562 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.313 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 6.861 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.424 ms Thu, 29 May 2025 06:44:24 GMT -
+GET /profile 200 - - 7.377 ms Thu, 29 May 2025 06:44:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.358 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 5.296 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.288 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 6.157 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.309 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 5.876 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.307 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 5.206 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.287 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 4.579 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.381 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 6.482 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.442 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 6.893 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.334 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 7.442 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.340 ms Thu, 29 May 2025 06:44:25 GMT -
+GET /profile 200 - - 7.068 ms Thu, 29 May 2025 06:44:25 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.369 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 7.339 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.400 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 8.893 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.373 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 5.953 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.417 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 5.173 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.540 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 8.906 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.523 ms Thu, 29 May 2025 06:44:26 GMT -
+GET /profile 200 - - 7.255 ms Thu, 29 May 2025 06:44:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.530 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 6.159 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.352 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 6.443 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.387 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 6.498 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.359 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 4.941 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.391 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 6.292 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.488 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 6.470 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.412 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 5.913 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.253 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 7.347 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.496 ms Thu, 29 May 2025 06:44:27 GMT -
+GET /profile 200 - - 4.439 ms Thu, 29 May 2025 06:44:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.425 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 8.418 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.348 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 6.621 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.363 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 6.745 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.344 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 7.223 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.291 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 6.934 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 4.775 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 5.771 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.466 ms Thu, 29 May 2025 06:44:28 GMT -
+GET /profile 200 - - 6.455 ms Thu, 29 May 2025 06:44:28 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.395 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 6.083 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.340 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 6.167 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.325 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 4.856 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.315 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 5.930 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.475 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 5.264 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.403 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 4.659 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.405 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 6.603 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.392 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 6.374 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.402 ms Thu, 29 May 2025 06:44:29 GMT -
+GET /profile 200 - - 8.215 ms Thu, 29 May 2025 06:44:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.330 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 6.964 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.423 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 6.433 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.391 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 6.033 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.433 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 7.117 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.398 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 6.106 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.380 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 4.857 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.466 ms Thu, 29 May 2025 06:44:30 GMT -
+GET /profile 200 - - 6.258 ms Thu, 29 May 2025 06:44:30 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.398 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 7.917 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.444 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 6.135 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.588 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 6.311 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.278 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 3.994 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.422 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 4.657 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.320 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 5.090 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.343 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 5.330 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.387 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 5.699 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.322 ms Thu, 29 May 2025 06:44:31 GMT -
+GET /profile 200 - - 5.637 ms Thu, 29 May 2025 06:44:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.364 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 6.000 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.421 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 4.595 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.313 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 6.216 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.470 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 6.181 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.354 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 5.484 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.311 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 5.785 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.311 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 5.549 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.379 ms Thu, 29 May 2025 06:44:32 GMT -
+GET /profile 200 - - 6.935 ms Thu, 29 May 2025 06:44:32 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.386 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 7.277 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.269 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 6.408 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.324 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 7.064 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.333 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 6.744 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.346 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 6.564 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.320 ms Thu, 29 May 2025 06:44:33 GMT -
+GET /profile 200 - - 6.807 ms Thu, 29 May 2025 06:44:33 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.322 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 6.346 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.272 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 6.652 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.384 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 5.991 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.386 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 7.135 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.371 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 5.677 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.301 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 7.069 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.310 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 5.728 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.315 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 4.219 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.296 ms Thu, 29 May 2025 06:44:34 GMT -
+GET /profile 200 - - 5.068 ms Thu, 29 May 2025 06:44:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.450 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 4.688 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.332 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 6.007 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.356 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 5.020 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.307 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 5.627 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.420 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 4.754 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.449 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 7.069 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.308 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 6.712 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.368 ms Thu, 29 May 2025 06:44:35 GMT -
+GET /profile 200 - - 4.116 ms Thu, 29 May 2025 06:44:35 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.403 ms Thu, 29 May 2025 06:44:36 GMT -
+GET /profile 200 - - 6.083 ms Thu, 29 May 2025 06:44:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.388 ms Thu, 29 May 2025 06:44:36 GMT -
+GET /profile 200 - - 6.087 ms Thu, 29 May 2025 06:44:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.651 ms Thu, 29 May 2025 06:44:36 GMT -
+GET /profile 200 - - 6.785 ms Thu, 29 May 2025 06:44:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.841 ms Thu, 29 May 2025 06:44:36 GMT -
+GET /profile 200 - - 6.781 ms Thu, 29 May 2025 06:44:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.257 ms Thu, 29 May 2025 06:44:36 GMT -
+GET /profile 200 - - 6.289 ms Thu, 29 May 2025 06:44:36 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.376 ms Thu, 29 May 2025 06:44:37 GMT -
+GET /profile 200 - - 6.096 ms Thu, 29 May 2025 06:44:37 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.418 ms Thu, 29 May 2025 06:44:37 GMT -
+GET /profile 200 - - 6.525 ms Thu, 29 May 2025 06:44:37 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.303 ms Thu, 29 May 2025 06:44:37 GMT -
+GET /profile 200 - - 6.665 ms Thu, 29 May 2025 06:44:37 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.359 ms Thu, 29 May 2025 06:44:38 GMT -
+GET /profile 200 - - 18.871 ms Thu, 29 May 2025 06:44:38 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.420 ms Thu, 29 May 2025 06:44:38 GMT -
+GET /profile 200 - - 10.295 ms Thu, 29 May 2025 06:44:38 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.315 ms Thu, 29 May 2025 06:44:38 GMT -
+GET /profile 200 - - 6.344 ms Thu, 29 May 2025 06:44:38 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDA2MzcsImV4cCI6MTc0ODY3MzQzN30.R3-9oZiMOAId37hDle_Uyh-xyGYpEOifLrpz-2lG2UQ
+OPTIONS /profile 204 0 - 0.326 ms Thu, 29 May 2025 06:44:48 GMT -
+OPTIONS /profile 204 0 - 0.244 ms Thu, 29 May 2025 06:44:48 GMT -
+GET /profile 400 54 - 76.643 ms Thu, 29 May 2025 06:44:48 GMT Bearer undefined
+GET /profile 400 54 - 38.940 ms Thu, 29 May 2025 06:44:48 GMT Bearer undefined
+GET /refresh 200 321 - 182.573 ms Thu, 29 May 2025 06:46:19 GMT -
+OPTIONS /profile 204 0 - 0.359 ms Thu, 29 May 2025 06:46:19 GMT -
+GET /profile 200 - - 6.639 ms Thu, 29 May 2025 06:46:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDExNzksImV4cCI6MTc0ODY3Mzk3OX0.1DGVIqzgVsWT2uWyWoQI57M2wxwnmlZlWZL48FgFjNY
+OPTIONS /profile 204 0 - 0.383 ms Thu, 29 May 2025 06:46:34 GMT -
+OPTIONS /profile 204 0 - 0.334 ms Thu, 29 May 2025 06:46:34 GMT -
+GET /profile 200 - - 8.300 ms Thu, 29 May 2025 06:46:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDExNzksImV4cCI6MTc0ODY3Mzk3OX0.1DGVIqzgVsWT2uWyWoQI57M2wxwnmlZlWZL48FgFjNY
+GET /profile 200 - - 12.126 ms Thu, 29 May 2025 06:46:34 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDExNzksImV4cCI6MTc0ODY3Mzk3OX0.1DGVIqzgVsWT2uWyWoQI57M2wxwnmlZlWZL48FgFjNY
+GET /refresh 200 321 - 128.044 ms Thu, 29 May 2025 07:09:52 GMT -
+GET /refresh 200 321 - 216.529 ms Thu, 29 May 2025 07:09:52 GMT -
+OPTIONS /profile 204 0 - 0.351 ms Thu, 29 May 2025 07:09:52 GMT -
+GET /profile 200 - - 6.128 ms Thu, 29 May 2025 07:09:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MDI1OTIsImV4cCI6MTc0ODY3NTM5Mn0.2tmfGc6cKk1fPZiiiSz1hdHoEvfAsT-ObH39OL5scs4
+GET /houses 200 29 - 5.577 ms Thu, 29 May 2025 08:19:26 GMT -
+GET /houses 200 29 - 10.876 ms Thu, 29 May 2025 08:21:08 GMT -
+GET /houses 200 29 - 6.529 ms Thu, 29 May 2025 08:26:38 GMT -
+GET /houses 200 29 - 7.949 ms Thu, 29 May 2025 08:27:07 GMT -
+GET /houses 400 2 - 17.940 ms Thu, 29 May 2025 08:27:20 GMT -
+GET /houses 400 2 - 5.776 ms Thu, 29 May 2025 08:27:22 GMT -
+GET /houses 400 2 - 5.533 ms Thu, 29 May 2025 08:27:23 GMT -
+GET /houses 400 2 - 5.448 ms Thu, 29 May 2025 08:27:24 GMT -
+GET /houses 400 2 - 15.458 ms Thu, 29 May 2025 08:27:36 GMT -
+GET /houses 400 2 - 3.121 ms Thu, 29 May 2025 08:27:38 GMT -
+GET /houses 400 2 - 17.565 ms Thu, 29 May 2025 08:27:51 GMT -
+GET /houses 200 - - 38.484 ms Thu, 29 May 2025 08:28:12 GMT -
+GET /houses 200 812 - 30.816 ms Thu, 29 May 2025 08:28:59 GMT -
+GET /houses 200 268 - 136.266 ms Thu, 29 May 2025 08:33:29 GMT -
+GET /houses 400 192 - 203.942 ms Thu, 29 May 2025 08:34:08 GMT -
+GET /houses 400 192 - 23.871 ms Thu, 29 May 2025 08:34:22 GMT -
+GET /houses 400 192 - 22.596 ms Thu, 29 May 2025 08:34:26 GMT -
+GET /houses 400 193 - 22.843 ms Thu, 29 May 2025 08:34:39 GMT -
+GET /houses 200 773 - 143.641 ms Thu, 29 May 2025 08:35:23 GMT -
+GET /houses 200 773 - 27.865 ms Thu, 29 May 2025 08:36:05 GMT -
+GET /houses 200 773 - 19.600 ms Thu, 29 May 2025 08:36:50 GMT -
+GET /houses 200 29 - 113.585 ms Thu, 29 May 2025 08:48:39 GMT -
+GET /houses 200 29 - 75.038 ms Thu, 29 May 2025 08:52:46 GMT -
+GET /houses 200 2 - 187.585 ms Thu, 29 May 2025 08:53:30 GMT -
+GET /houses 200 29 - 68.937 ms Thu, 29 May 2025 08:54:00 GMT -
+GET /houses 200 - - 33.852 ms Thu, 29 May 2025 08:54:11 GMT -
+GET /houses 200 2 - 57.416 ms Thu, 29 May 2025 08:55:13 GMT -
+GET /houses 200 2 - 19.855 ms Thu, 29 May 2025 08:55:42 GMT -
+GET /houses 200 2 - 5.715 ms Thu, 29 May 2025 08:55:44 GMT -
+GET /houses 200 2 - 7.903 ms Thu, 29 May 2025 08:55:49 GMT -
+GET /houses 200 2 - 4.377 ms Thu, 29 May 2025 08:55:50 GMT -
+GET /houses 200 2 - 4.635 ms Thu, 29 May 2025 08:55:50 GMT -
+GET /houses 200 2 - 6.258 ms Thu, 29 May 2025 08:55:50 GMT -
+GET /houses 200 2 - 4.148 ms Thu, 29 May 2025 08:55:50 GMT -
+GET /houses 200 2 - 4.442 ms Thu, 29 May 2025 08:55:50 GMT -
+GET /houses 200 2 - 5.671 ms Thu, 29 May 2025 08:55:51 GMT -
+GET /houses 200 2 - 5.597 ms Thu, 29 May 2025 08:55:51 GMT -
+GET /houses 200 2 - 5.243 ms Thu, 29 May 2025 08:55:51 GMT -
+GET /houses 200 2 - 4.917 ms Thu, 29 May 2025 08:55:51 GMT -
+GET /houses 200 2 - 4.789 ms Thu, 29 May 2025 08:55:51 GMT -
+GET /houses 400 2 - 13.148 ms Thu, 29 May 2025 08:57:12 GMT -
+GET /houses 400 2 - 43.606 ms Thu, 29 May 2025 08:57:41 GMT -
+GET /houses 400 2 - 14.847 ms Thu, 29 May 2025 08:57:55 GMT -
+GET /houses 400 2 - 14.606 ms Thu, 29 May 2025 08:58:31 GMT -
+GET /houses 200 - - 78.711 ms Thu, 29 May 2025 08:58:59 GMT -
+GET /houses 200 - - 52.254 ms Thu, 29 May 2025 08:59:27 GMT -
+GET /areas 304 - - 26.788 ms Thu, 29 May 2025 09:02:50 GMT -
+GET /houses?page=1&area=All 200 - - 16.724 ms Thu, 29 May 2025 09:02:50 GMT -
+GET /areas 200 - - 11.335 ms Thu, 29 May 2025 09:03:08 GMT -
+GET /houses?page=1&area=All 200 - - 15.389 ms Thu, 29 May 2025 09:03:08 GMT -
+GET /areas 200 - - 10.468 ms Thu, 29 May 2025 09:03:22 GMT -
+GET /houses?page=1&area=All 200 - - 72.764 ms Thu, 29 May 2025 09:03:23 GMT -
+GET /areas 200 - - 11.766 ms Thu, 29 May 2025 09:04:22 GMT -
+GET /houses?page=1&area=All 200 - - 35.084 ms Thu, 29 May 2025 09:04:22 GMT -
+GET /areas 200 - - 8.250 ms Thu, 29 May 2025 09:04:23 GMT -
+GET /houses?page=1&area=All 200 - - 120.380 ms Thu, 29 May 2025 09:04:23 GMT -
+GET /areas 200 - - 8.104 ms Thu, 29 May 2025 09:04:42 GMT -
+GET /houses?page=1&area=All 200 - - 27.971 ms Thu, 29 May 2025 09:04:42 GMT -
+GET /areas 200 - - 24.110 ms Thu, 29 May 2025 09:05:17 GMT -
+GET /houses?page=1&area=All 200 939 - 19.299 ms Thu, 29 May 2025 09:05:17 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 62.531 ms Thu, 29 May 2025 09:05:17 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 87.926 ms Thu, 29 May 2025 09:05:17 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 92.790 ms Thu, 29 May 2025 09:05:17 GMT -
+GET /houses?page=2&area=All 200 891 - 17.054 ms Thu, 29 May 2025 09:05:21 GMT -
+GET /houses?page=2&area=All 200 891 - 14.093 ms Thu, 29 May 2025 09:05:21 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 24.835 ms Thu, 29 May 2025 09:05:21 GMT -
+GET /images/683396145835395370085466 200 - - 45.331 ms Thu, 29 May 2025 09:05:21 GMT -
+GET /images/6833963f5835395370085478 200 - - 53.772 ms Thu, 29 May 2025 09:05:21 GMT -
+GET /images/undefined 500 26 - 1.177 ms Thu, 29 May 2025 09:05:25 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 48.872 ms Thu, 29 May 2025 09:05:25 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 43.930 ms Thu, 29 May 2025 09:05:25 GMT -
+GET /images/undefined 500 26 - 1.205 ms Thu, 29 May 2025 09:05:52 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 22.508 ms Thu, 29 May 2025 09:05:52 GMT -
+GET /houses/6833d9464876b842d71132fd 200 - - 24.720 ms Thu, 29 May 2025 09:05:52 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 9.237 ms Thu, 29 May 2025 09:05:52 GMT -
+GET /images/6833d9464876b842d71132f9 200 - - 43.062 ms Thu, 29 May 2025 09:06:08 GMT -
+GET /images/6833d9464876b842d71132fb 200 - - 6.309 ms Thu, 29 May 2025 09:06:10 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 5.233 ms Thu, 29 May 2025 09:06:15 GMT -
+GET /houses?page=1&area=All 200 939 - 223.187 ms Thu, 29 May 2025 09:45:55 GMT -
+GET /areas 200 - - 220.602 ms Thu, 29 May 2025 09:45:55 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 41.494 ms Thu, 29 May 2025 09:45:55 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 39.527 ms Thu, 29 May 2025 09:45:55 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 38.044 ms Thu, 29 May 2025 09:45:55 GMT -
+GET /refresh 200 321 - 369.605 ms Thu, 29 May 2025 09:45:59 GMT -
+GET /refresh 200 321 - 511.464 ms Thu, 29 May 2025 09:45:59 GMT -
+OPTIONS /profile 204 0 - 0.898 ms Thu, 29 May 2025 09:45:59 GMT -
+GET /profile 200 - - 13.424 ms Thu, 29 May 2025 09:45:59 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.616 ms Thu, 29 May 2025 09:46:01 GMT -
+OPTIONS /landlordHouses 204 0 - 0.427 ms Thu, 29 May 2025 09:46:01 GMT -
+GET /landlordHouses 200 2 - 19.306 ms Thu, 29 May 2025 09:46:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 2 - 13.047 ms Thu, 29 May 2025 09:46:01 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 0.632 ms Thu, 29 May 2025 09:46:04 GMT -
+OPTIONS /profile 204 0 - 0.547 ms Thu, 29 May 2025 09:46:04 GMT -
+GET /profile 200 - - 10.925 ms Thu, 29 May 2025 09:46:04 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 10.408 ms Thu, 29 May 2025 09:46:04 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+POST /houses 200 273 - 2699.617 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 11.171 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.976 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 8.750 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 10.986 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 15.976 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 15.824 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /areas 200 - - 18.702 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /houses?page=1&area=All 200 916 - 21.835 ms Thu, 29 May 2025 09:46:43 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 27.287 ms Thu, 29 May 2025 09:46:43 GMT -
+OPTIONS /profile 204 0 - 0.796 ms Thu, 29 May 2025 09:46:50 GMT -
+OPTIONS /profile 204 0 - 0.230 ms Thu, 29 May 2025 09:46:50 GMT -
+GET /profile 200 - - 11.290 ms Thu, 29 May 2025 09:46:50 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 12.800 ms Thu, 29 May 2025 09:46:50 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.726 ms Thu, 29 May 2025 09:46:51 GMT -
+OPTIONS /landlordHouses 204 0 - 0.446 ms Thu, 29 May 2025 09:46:52 GMT -
+GET /landlordHouses 200 2 - 14.317 ms Thu, 29 May 2025 09:46:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 2 - 13.829 ms Thu, 29 May 2025 09:46:52 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 2.896 ms Thu, 29 May 2025 09:48:19 GMT -
+OPTIONS /profile 204 0 - 0.288 ms Thu, 29 May 2025 09:48:19 GMT -
+GET /profile 200 - - 27.268 ms Thu, 29 May 2025 09:48:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 106.801 ms Thu, 29 May 2025 09:48:19 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.871 ms Thu, 29 May 2025 09:48:21 GMT -
+OPTIONS /landlordHouses 204 0 - 0.580 ms Thu, 29 May 2025 09:48:21 GMT -
+GET /landlordHouses 200 2 - 63.154 ms Thu, 29 May 2025 09:48:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 2 - 46.416 ms Thu, 29 May 2025 09:48:21 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 0.586 ms Thu, 29 May 2025 09:48:24 GMT -
+OPTIONS /profile 204 0 - 0.599 ms Thu, 29 May 2025 09:48:24 GMT -
+GET /profile 200 - - 14.163 ms Thu, 29 May 2025 09:48:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 10.677 ms Thu, 29 May 2025 09:48:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+POST /houses 200 217 - 63.866 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 20.095 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 15.443 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 11.272 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 26.951 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 30.651 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 79.580 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /areas 200 - - 60.475 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /houses?page=1&area=All 200 830 - 63.382 ms Thu, 29 May 2025 09:48:48 GMT -
+GET /images/undefined 500 26 - 1.781 ms Thu, 29 May 2025 09:48:49 GMT -
+OPTIONS /profile 204 0 - 0.415 ms Thu, 29 May 2025 09:48:57 GMT -
+POST /profile 200 - - 811.611 ms Thu, 29 May 2025 09:48:58 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 1.024 ms Thu, 29 May 2025 09:48:59 GMT -
+OPTIONS /profile 204 0 - 0.539 ms Thu, 29 May 2025 09:48:59 GMT -
+GET /profile 200 - - 10.818 ms Thu, 29 May 2025 09:48:59 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 10.581 ms Thu, 29 May 2025 09:48:59 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /shortlists 204 0 - 0.411 ms Thu, 29 May 2025 09:49:01 GMT -
+OPTIONS /shortlists 204 0 - 0.464 ms Thu, 29 May 2025 09:49:01 GMT -
+GET /shortlists 200 - - 90.074 ms Thu, 29 May 2025 09:49:02 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /shortlists 200 - - 82.172 ms Thu, 29 May 2025 09:49:02 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /images/6833d9464876b842d71132f7 200 - - 10.743 ms Thu, 29 May 2025 09:49:02 GMT -
+GET /images/undefined 500 26 - 1.345 ms Thu, 29 May 2025 09:49:02 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 38.981 ms Thu, 29 May 2025 09:49:02 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 79.370 ms Thu, 29 May 2025 09:49:02 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 89.499 ms Thu, 29 May 2025 09:49:02 GMT -
+GET /images/undefined 500 26 - 1.442 ms Thu, 29 May 2025 09:49:13 GMT -
+GET /images/undefined 500 26 - 1.443 ms Thu, 29 May 2025 09:49:13 GMT -
+GET /houses/68382d80d5426066ebb22648 200 - - 35.567 ms Thu, 29 May 2025 09:49:13 GMT -
+GET /houses/68382d80d5426066ebb22648 200 - - 18.730 ms Thu, 29 May 2025 09:49:13 GMT -
+GET /images/undefined 500 26 - 1.360 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 13.552 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 9.442 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /images/undefined 500 26 - 1.291 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 23.930 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 23.396 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /houses?page=1&area=All 200 830 - 16.445 ms Thu, 29 May 2025 09:49:17 GMT -
+GET /areas 200 - - 11.227 ms Thu, 29 May 2025 09:49:17 GMT -
+OPTIONS /profile 204 0 - 0.470 ms Thu, 29 May 2025 09:49:24 GMT -
+OPTIONS /profile 204 0 - 0.407 ms Thu, 29 May 2025 09:49:24 GMT -
+GET /profile 200 - - 12.019 ms Thu, 29 May 2025 09:49:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 9.596 ms Thu, 29 May 2025 09:49:24 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.489 ms Thu, 29 May 2025 09:49:26 GMT -
+OPTIONS /landlordHouses 204 0 - 0.525 ms Thu, 29 May 2025 09:49:26 GMT -
+GET /landlordHouses 200 2 - 21.877 ms Thu, 29 May 2025 09:49:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 2 - 14.926 ms Thu, 29 May 2025 09:49:26 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 5.351 ms Thu, 29 May 2025 09:50:27 GMT -
+OPTIONS /profile 204 0 - 0.638 ms Thu, 29 May 2025 09:50:27 GMT -
+GET /profile 200 - - 67.149 ms Thu, 29 May 2025 09:50:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 16.170 ms Thu, 29 May 2025 09:50:27 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.861 ms Thu, 29 May 2025 09:50:29 GMT -
+OPTIONS /landlordHouses 204 0 - 0.524 ms Thu, 29 May 2025 09:50:29 GMT -
+GET /landlordHouses 200 2 - 29.903 ms Thu, 29 May 2025 09:50:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 2 - 42.938 ms Thu, 29 May 2025 09:50:29 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 5.524 ms Thu, 29 May 2025 09:52:13 GMT -
+OPTIONS /profile 204 0 - 0.644 ms Thu, 29 May 2025 09:52:13 GMT -
+GET /profile 200 - - 69.897 ms Thu, 29 May 2025 09:52:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 44.029 ms Thu, 29 May 2025 09:52:13 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /landlordHouses 204 0 - 0.861 ms Thu, 29 May 2025 09:52:14 GMT -
+OPTIONS /landlordHouses 204 0 - 0.908 ms Thu, 29 May 2025 09:52:14 GMT -
+GET /landlordHouses 200 795 - 65.892 ms Thu, 29 May 2025 09:52:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /landlordHouses 200 795 - 110.121 ms Thu, 29 May 2025 09:52:15 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /images/6837c3e33fdb797b877c93d3 200 - - 25.515 ms Thu, 29 May 2025 09:52:15 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 21.502 ms Thu, 29 May 2025 09:52:15 GMT -
+GET /images/undefined 500 26 - 1.388 ms Thu, 29 May 2025 09:52:15 GMT -
+GET /images/undefined 500 26 - 0.823 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 12.245 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 12.419 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /images/undefined 500 26 - 1.568 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 22.486 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 22.651 ms Thu, 29 May 2025 09:52:25 GMT -
+GET /areas 200 - - 19.841 ms Thu, 29 May 2025 09:52:26 GMT -
+GET /houses?page=1&area=All 200 830 - 68.916 ms Thu, 29 May 2025 09:52:26 GMT -
+GET /houses?page=2&area=All 200 940 - 18.941 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /houses?page=2&area=All 200 940 - 17.618 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /houses?page=2&area=All 200 940 - 12.796 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 10.729 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 9.835 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 9.838 ms Thu, 29 May 2025 09:52:27 GMT -
+GET /houses?page=3&area=All 200 879 - 44.684 ms Thu, 29 May 2025 09:52:28 GMT -
+GET /houses?page=3&area=All 200 879 - 40.490 ms Thu, 29 May 2025 09:52:28 GMT -
+GET /houses?page=3&area=All 200 879 - 14.189 ms Thu, 29 May 2025 09:52:28 GMT -
+GET /images/6833963f5835395370085478 200 - - 22.981 ms Thu, 29 May 2025 09:52:29 GMT -
+GET /images/683396145835395370085466 200 - - 26.454 ms Thu, 29 May 2025 09:52:29 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 24.668 ms Thu, 29 May 2025 09:52:29 GMT -
+GET /houses?page=4&area=All 200 860 - 27.068 ms Thu, 29 May 2025 09:52:29 GMT -
+GET /houses?page=4&area=All 200 860 - 26.650 ms Thu, 29 May 2025 09:52:29 GMT -
+GET /houses?page=4&area=All 200 860 - 10.002 ms Thu, 29 May 2025 09:52:30 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 20.100 ms Thu, 29 May 2025 09:52:30 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 34.549 ms Thu, 29 May 2025 09:52:30 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 38.736 ms Thu, 29 May 2025 09:52:30 GMT -
+OPTIONS /profile 204 0 - 0.714 ms Thu, 29 May 2025 09:52:31 GMT -
+OPTIONS /profile 204 0 - 0.467 ms Thu, 29 May 2025 09:52:31 GMT -
+GET /profile 200 - - 12.909 ms Thu, 29 May 2025 09:52:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 8.377 ms Thu, 29 May 2025 09:52:31 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+OPTIONS /profile 204 0 - 0.698 ms Thu, 29 May 2025 09:53:22 GMT -
+OPTIONS /profile 204 0 - 0.523 ms Thu, 29 May 2025 09:53:22 GMT -
+GET /profile 200 - - 16.771 ms Thu, 29 May 2025 09:53:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /profile 200 - - 8.319 ms Thu, 29 May 2025 09:53:22 GMT Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ind1aWV3QGRrc3Uudm8iLCJpYXQiOjE3NDg1MTE5NTksImV4cCI6MTc0ODY4NDc1OX0.yyK5s_QRDhgtmOYuQip_bBF4T0rIRUMnTCbhNpBci_w
+GET /images/undefined 500 26 - 1.196 ms Thu, 29 May 2025 09:53:26 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 14.333 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 11.179 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 25.310 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 14.921 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 29.364 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833963f5835395370085478 200 - - 14.270 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/683396145835395370085466 200 - - 17.601 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 13.001 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 17.033 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 13.191 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 11.719 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 54.675 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 48.046 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 57.051 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/undefined 500 26 - 1.218 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833963f5835395370085478 200 - - 70.688 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 86.989 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 79.715 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /areas 200 - - 12.535 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /houses?page=1&area=All 200 830 - 25.352 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/683396145835395370085466 200 - - 46.619 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 43.630 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 20.000 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 23.216 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 16.220 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /houses?page=2&area=All 200 940 - 28.267 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /houses?page=3&area=All 200 879 - 10.835 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /houses?page=4&area=All 200 860 - 11.227 ms Thu, 29 May 2025 09:53:27 GMT -
+GET /houses?page=1&area=Center 200 338 - 13.024 ms Thu, 29 May 2025 09:53:35 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 7.627 ms Thu, 29 May 2025 09:53:35 GMT -
+GET /houses?page=2&area=Center 200 39 - 12.746 ms Thu, 29 May 2025 09:53:35 GMT -
+GET /houses?page=3&area=Center 200 39 - 10.376 ms Thu, 29 May 2025 09:53:35 GMT -
+GET /houses?page=4&area=Center 200 39 - 11.245 ms Thu, 29 May 2025 09:53:35 GMT -
+GET /houses?page=5&area=Center 200 39 - 7.203 ms Thu, 29 May 2025 09:53:36 GMT -
+GET /houses?page=6&area=Center 200 39 - 42.757 ms Thu, 29 May 2025 09:53:36 GMT -
+GET /houses?page=6&area=Center 200 39 - 26.503 ms Thu, 29 May 2025 09:53:36 GMT -
+GET /houses?page=7&area=Center 200 39 - 16.505 ms Thu, 29 May 2025 09:53:36 GMT -
+GET /houses?page=8&area=Center 200 40 - 7.282 ms Thu, 29 May 2025 09:53:36 GMT -
+GET /houses?page=1&area=Munyaka 200 843 - 10.770 ms Thu, 29 May 2025 09:53:37 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 8.993 ms Thu, 29 May 2025 09:53:37 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 12.960 ms Thu, 29 May 2025 09:53:37 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 12.249 ms Thu, 29 May 2025 09:53:37 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 11.322 ms Thu, 29 May 2025 09:53:38 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 10.036 ms Thu, 29 May 2025 09:53:38 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 13.434 ms Thu, 29 May 2025 09:53:38 GMT -
+GET /houses?page=3&area=Munyaka 200 39 - 8.442 ms Thu, 29 May 2025 09:53:38 GMT -
+GET /houses?page=4&area=Munyaka 200 39 - 13.194 ms Thu, 29 May 2025 09:53:39 GMT -
+GET /houses?page=5&area=Munyaka 200 39 - 9.386 ms Thu, 29 May 2025 09:53:39 GMT -
+GET /houses?page=6&area=Munyaka 200 39 - 10.364 ms Thu, 29 May 2025 09:53:39 GMT -
+GET /houses?page=7&area=Munyaka 200 39 - 10.230 ms Thu, 29 May 2025 09:53:39 GMT -
+GET /houses?page=8&area=Munyaka 200 40 - 9.857 ms Thu, 29 May 2025 09:53:39 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 9.458 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=1&area=Center 200 338 - 9.613 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=2&area=Center 200 39 - 10.229 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=3&area=Center 200 39 - 8.021 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=4&area=Center 200 39 - 7.664 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=5&area=Center 200 39 - 5.668 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=6&area=Center 200 39 - 9.618 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=7&area=Center 200 39 - 6.668 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /houses?page=8&area=Center 200 40 - 5.644 ms Thu, 29 May 2025 09:54:00 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 7.126 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=1&area=Munyaka 200 843 - 84.324 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 127.821 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 127.145 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=2&area=Munyaka 200 39 - 18.810 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=3&area=Munyaka 200 39 - 21.564 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=4&area=Munyaka 200 39 - 9.962 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=5&area=Munyaka 200 39 - 12.956 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=6&area=Munyaka 200 39 - 8.339 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=7&area=Munyaka 200 39 - 7.130 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /houses?page=8&area=Munyaka 200 40 - 6.921 ms Thu, 29 May 2025 09:54:04 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 8.606 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 8.615 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/6833d9464876b842d71132f7 200 - - 7.770 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/6833d2144876b842d7113212 200 - - 6.436 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/6833d14c4876b842d71131eb 200 - - 7.102 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/6833963f5835395370085478 200 - - 8.600 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/683396145835395370085466 200 - - 6.734 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/682c328a0f283ea82d93c14a 200 - - 7.512 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/682c25a07087d0aa819ff7de 200 - - 9.614 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/682a5ce6ced3896794ea893e 200 - - 18.882 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/682a5cafced3896794ea8924 200 - - 13.487 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /images/undefined 500 26 - 1.091 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /houses?page=1&area=All 200 830 - 16.200 ms Thu, 29 May 2025 09:54:08 GMT -
+GET /houses?page=2&area=All 200 940 - 40.726 ms Thu, 29 May 2025 09:54:09 GMT -
+GET /houses?page=3&area=All 200 879 - 14.277 ms Thu, 29 May 2025 09:54:09 GMT -
+GET /houses?page=4&area=All 200 860 - 7.889 ms Thu, 29 May 2025 09:54:09 GMT -
+GET /houses?page=5&area=All 200 780 - 14.825 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /houses?page=5&area=All 200 780 - 10.909 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /houses?page=5&area=All 200 780 - 9.349 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /images/68296bfa0042c7655077ed09 200 - - 8.779 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /images/68296af50042c7655077ece5 200 - - 8.332 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /images/682a559b90e2c7eae109c2eb 200 - - 7.890 ms Thu, 29 May 2025 09:54:11 GMT -
+GET /houses?page=1&area=All 200 830 - 256.832 ms Thu, 29 May 2025 12:12:15 GMT -
+GET /houses?page=2&area=All 200 940 - 8.427 ms Thu, 29 May 2025 12:12:15 GMT -
+GET /areas 200 - - 513.941 ms Thu, 29 May 2025 12:12:15 GMT -
+GET /houses?page=3&area=All 200 879 - 614.557 ms Thu, 29 May 2025 12:12:15 GMT -
+GET /areas 200 - - 7.397 ms Thu, 29 May 2025 12:12:20 GMT -
+GET /houses?page=1&area=All 200 830 - 16.384 ms Thu, 29 May 2025 12:12:20 GMT -
+GET /images/undefined 500 26 - 1.044 ms Thu, 29 May 2025 12:12:20 GMT -
+GET /images/68382d03896a9dd06a797fdd 200 - - 133.346 ms Thu, 29 May 2025 12:12:20 GMT -
+GET /images/6837c3e33fdb797b877c93d3 200 - - 133.511 ms Thu, 29 May 2025 12:12:20 GMT -
+GET /areas 200 - - 9.679 ms Thu, 29 May 2025 12:12:40 GMT -
+GET /houses?page=1&area=All 200 830 - 13.211 ms Thu, 29 May 2025 12:12:40 GMT -
+GET /houses 200 490 - 22.416 ms Thu, 29 May 2025 12:15:19 GMT -
+GET /houses 200 425 - 18.997 ms Thu, 29 May 2025 12:17:03 GMT -
+GET /houses 200 25 - 36.785 ms Thu, 29 May 2025 12:19:31 GMT -
+GET /houses 200 25 - 17.380 ms Thu, 29 May 2025 12:20:11 GMT -
+GET /houses 200 272 - 33.532 ms Thu, 29 May 2025 12:20:21 GMT -
+GET /houses 200 308 - 136.592 ms Thu, 29 May 2025 12:23:00 GMT -
+GET /houses 200 - - 49.068 ms Thu, 29 May 2025 12:25:04 GMT -
+GET /houses 400 261 - 179.315 ms Thu, 29 May 2025 12:26:15 GMT -
+GET /houses 200 - - 415.774 ms Thu, 29 May 2025 12:26:52 GMT -
+GET /houses 400 236 - 125.945 ms Thu, 29 May 2025 12:28:17 GMT -
+GET /houses 400 236 - 44.614 ms Thu, 29 May 2025 12:28:18 GMT -
+GET /houses 400 237 - 51.985 ms Thu, 29 May 2025 12:28:33 GMT -
+GET /houses 200 2 - 971.917 ms Thu, 29 May 2025 12:30:04 GMT -
+GET /houses 200 2 - 437.662 ms Thu, 29 May 2025 12:30:06 GMT -
+GET /houses 200 2 - 269.037 ms Thu, 29 May 2025 12:30:31 GMT -

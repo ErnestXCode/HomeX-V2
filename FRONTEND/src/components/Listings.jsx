@@ -152,7 +152,7 @@ const Listings = () => {
 
           {data?.pages.map((group, i) => (
             <div key={i} className="ml-3 mr-3">
-              {group.data.map((item) => (
+              {group?.data?.map((item) => (
                 <div
                   key={item._id}
                   className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
