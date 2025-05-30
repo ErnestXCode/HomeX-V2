@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser, selectCurrentUser } from "../features/users/userSlice";
 import Header from "../components/Header";
@@ -14,7 +14,31 @@ import { FaAngleRight, FaCreditCard, FaDigitalTachograph, FaHeart, FaMoneyBillAl
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PersonalInfo = () => {
-  const user = useSelector(selectCurrentUser)
+  const userInfo = useSelector(selectCurrentUser)
+  const [user, setUser] = useState()
+    useEffect(() => {
+      const handleProfileData = async () => {
+        try {
+  
+          const response = await fetch(`${apiBaseUrl}/profile`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userInfo?.accessToken}`,
+            },
+            credentials: "include",
+          });
+  
+          const data = await response.json();
+          console.log(data.shortLists)
+          setUser(data);
+        } catch (err) {
+          console.log("error", err);
+        }
+      };
+  
+      handleProfileData();
+    }, [userInfo?.accessToken]);
   return (
     <>
       <section className="bg-black flex flex-col pb-10 ">

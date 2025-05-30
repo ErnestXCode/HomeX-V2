@@ -12,7 +12,7 @@ const useRefreshToken = () => {
       const { data } = await axios.get("/refresh", { withCredentials: true });
       const roles = data?.roles;
       const accessToken = data?.accessToken;
-      console.log('from custom hook', data)
+      console.log(data)
 
       dispatch(signInSuccess({ roles, accessToken }));
     };

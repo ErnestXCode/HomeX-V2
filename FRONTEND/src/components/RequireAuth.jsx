@@ -10,7 +10,8 @@ const RequireAuth = ({ allowedRoles }) => {
 
   if (!roles)
     return <Navigate to="/login" state={{ from: location }} replace />;
-  return roles.find((role) => allowedRoles.includes(role)) ? (
+  return roles.find((role) => allowedRoles.includes(role.toString())) ? (
+    // make it not compare strings to numbers
     <Outlet />
   ) : currentUser ? (
     <Navigate to="/unauthorized" state={{ from: location }} replace />

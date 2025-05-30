@@ -72,19 +72,6 @@ const Profile = () => {
   useEffect(() => {
     const handleProfileData = async () => {
       try {
-        if (!userInfo.accessToken || userInfo?.shortLists) {
-          const data = await refresh();
-          console.log('data from refresh useEffect where accessToken doesnt exist', data)
-          // const roles = data?.roles;
-          const accessToken = data?.accessToken;
-
-          if (!accessToken)
-            throw new Error("no accestoken for profile to use in useEffect");
-
-          dispatch(signInSuccess({ data }));
-        }
-        
-      
 
         const response = await fetch(`${apiBaseUrl}/profile`, {
           method: "GET",
@@ -106,7 +93,6 @@ const Profile = () => {
     handleProfileData();
   }, [userInfo?.accessToken]);
 
-  const refresh = useRefreshToken();
 
   const secureEmail = (email) => {
     const emailDomain = email.split(".")[1];
@@ -143,7 +129,7 @@ const Profile = () => {
           <div className="size-6 bg-gray-700 p-5 rounded-full"></div>
           <p>{user?.name}</p>
         </div>
-        use svg in the profile pic
+      
         <section
          
           className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2"

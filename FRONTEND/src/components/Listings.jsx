@@ -2,11 +2,7 @@ import React, { lazy, Suspense, useState } from "react";
 import Filter from "./Filter";
 import Header from "./Header";
 import BottomNav from "./BottomNav";
-import {
-  QueryClient,
-  useInfiniteQuery,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useEffect } from "react";
 import CarouselImage from "./CarouselImage";
@@ -33,7 +29,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 const Listings = () => {
   const navigate = useNavigate();
   // const user = useSelector(selectCurrentUser);
-  const [listState, setListState] = useState('All');
+  const [listState, setListState] = useState("All");
 
   useEffect(() => {
     console.log("stuff");
@@ -106,10 +102,10 @@ const Listings = () => {
   // };
 
   const userInfo = useSelector(selectCurrentUser);
-  const [blueIcon, setBlueIcon] = useState(false)
+  const [blueIcon, setBlueIcon] = useState(false);
 
   const handleShortLists = async (house) => {
-    setBlueIcon(prevState => !prevState)
+    setBlueIcon((prevState) => !prevState);
     const response = await fetch(`${apiBaseUrl}/profile`, {
       method: "POST",
       credentials: "include",
@@ -117,7 +113,7 @@ const Listings = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo?.accessToken}`,
       },
-      body: JSON.stringify({houseId : house._id}),
+      body: JSON.stringify({ houseId: house._id }),
     });
     const json = response.json();
     const data = json.data;
@@ -125,8 +121,8 @@ const Listings = () => {
   };
 
   const handleReset = () => {
-    setListState('All')
-  }
+    setListState("All");
+  };
 
   return (
     <main className="">
@@ -147,7 +143,11 @@ const Listings = () => {
           })}
         </section>
 
-        <Suspense fallback={<ListingsPlaceholder />}>
+        <Suspense
+          fallback={[1, 2, 3].map((i) => (
+            <ListingsPlaceholder />
+          ))}
+        >
           {/* <DataList data={HouseData} /> */}
 
           {data?.pages.map((group, i) => (
@@ -160,33 +160,33 @@ const Listings = () => {
                   <section className="">
                     <CarouselImage item={item} />
                   </section>
-                <section className="flex justify-between mt-4">
-                  <section>
+                  <section className="flex justify-between mt-4">
+                    <section>
+                      <ListText content={item?.area}>Location: </ListText>
+                      <ListText content={item?.pricing}>Price: </ListText>
+                      <ListText content={item?.landMarks}>Landmarks: </ListText>
+                    </section>
 
-                  <ListText content={item?.area}>Location: </ListText>
-                  <ListText content={item?.pricing}>Price: </ListText>
-                  <ListText content={item?.landMarks}>Landmarks: </ListText>
+                    {/* <section className="flex justify-between m-3"> */}
+                    <section className="flex flex-col items-end gap-2  m-1 mt-2">
+                      <button
+                        onClick={() => handleShortLists(item)}
+                        className={`flex items-center p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800 ${
+                          blueIcon ? "text-blue-600" : "text-white"
+                        }`}
+                      >
+                        <FaBookmark />
+                        <p className="text-white">Shortlist</p>
+                      </button>
+                      <button
+                        onClick={() => navigate(`house/${item._id}`)}
+                        className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800"
+                      >
+                        <FaStreetView />
+                        <p>View</p>
+                      </button>
+                    </section>
                   </section>
-
-                  {/* <section className="flex justify-between m-3"> */}
-                  <section className="flex flex-col items-end gap-2  m-1 mt-2">
-                    <button
-                      onClick={() => handleShortLists(item)}
-                    
-                      className={`flex items-center p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800 ${blueIcon ? 'text-blue-600' : 'text-white'}`}
-                    >
-                      <FaBookmark />
-                      <p className="text-white">Shortlist</p>
-                    </button>
-                    <button
-                      onClick={() => navigate(`house/${item._id}`)}
-                      className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800"
-                    >
-                      <FaStreetView />
-                      <p>View</p>
-                    </button>
-                  </section>
-                </section>
 
                   {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
                 </div>

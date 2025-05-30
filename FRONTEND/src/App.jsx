@@ -2,9 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
 import Layout from "./components/Layout";
-import RequireAuth from "./components/requireAuth";
+import RequireAuth from "./components/requireAuth"; // tengeneza apa inaanza na small letter
 import PersistLogin from "./components/PersistLogin";
-// import PersistLogin from "./components/PersistLogin";
 const Trials = lazy(() => import("./pages/Trials"));
 const LandLordPosts = lazy(() => import("./pages/landLordPosts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -24,8 +23,16 @@ const Admin = lazy(() => import("./pages/Admin"));
 const RecentlyLiked = lazy(() => import("./pages/RecentlyLiked"));
 const PersonalInfo = lazy(() => import("./pages/PersonalInfo"));
 
+const ROLES = {
+  admin: import.meta.env.VITE_ADMIN_ROLE_CONSTANT,
+  landlord: import.meta.env.VITE_LANDLORD_ROLE_CONSTANT,
+  tenant: import.meta.env.VITE_TENANT_ROLE_CONSTANT,
+};
+
 function App() {
   return (
+    <div className="bg-black">
+
     <Router>
       <Suspense fallback={<InitialLoader fullscreen={true} />}>
         <Routes>
@@ -44,29 +51,37 @@ function App() {
             <Route path="unauthorized" element={<NotFound />}></Route>
 
             {/* protected routes */}
+            <Route element={<PersistLogin />}>
+              <Route element={<RequireAuth allowedRoles={[ROLES.tenant]} />}>
+                <Route path="liked" element={<RecentlyLiked />}></Route>
+                <Route path="profile" element={<Profile />}></Route>
+                <Route path="personal" element={<PersonalInfo />}></Route>
+                <Route
+                  path="landlord-posts"
+                  element={<LandLordPosts />}
+                ></Route>
+              </Route>
 
-            {/* <Route element={<RequireAuth allowedRoles={[2004]} />}> */}
-            <Route path="liked" element={<RecentlyLiked />}></Route>
-            <Route path="profile" element={<Profile />}></Route>
-            <Route path="personal" element={<PersonalInfo />}></Route>
-            <Route path="landlord-posts" element={<LandLordPosts />}></Route>
-            {/* </Route> */}
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[ROLES.admin, ROLES.landlord]} />
+                }
+              >
+                <Route path="post-house" element={<PostHouse />}></Route>
+                <Route path="post-house-2" element={<PostHouseNext />}></Route>
+              </Route>
 
-            {/* <Route element={<RequireAuth allowedRoles={[9923, 1950]} />}> */}
-            <Route path="post-house" element={<PostHouse />}></Route>
-            <Route path="post-house-2" element={<PostHouseNext />}></Route>
-            {/* </Route> */}
-
-            {/* <Route element={<RequireAuth allowedRoles={[1950]} />}> */}
-            <Route path="admin" element={<Admin />}></Route>
-            {/* </Route> */}
+              <Route element={<RequireAuth allowedRoles={[ROLES.admin]} />}>
+                <Route path="admin" element={<Admin />}></Route>
+              </Route>
+            </Route>
           </Route>
-
           {/* catch all */}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Suspense>
     </Router>
+    </div>
   );
 }
 

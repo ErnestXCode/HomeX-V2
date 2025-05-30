@@ -53,7 +53,7 @@ const Login = () => {
       console.log(response.data); 
       // data.data.accessToken
 
-      navigate("/");
+      navigate('/');
     } catch (err) {
       console.error("Error:", err.message);
     }
@@ -61,7 +61,7 @@ const Login = () => {
 
   return (
     <>
-    <SecondaryHeader>Login</SecondaryHeader>
+    <SecondaryHeader>Log in</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"email"}
