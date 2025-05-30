@@ -14,10 +14,12 @@ import ListingsPlaceholder from "../components/ListingsPlaceholder";
 import FilterButton from "../components/FilterButton";
 import axios from "../api/axios";
 import {
+  FaBookDead,
   FaBookmark,
   FaDumpster,
   FaRemoveFormat,
   FaStreetView,
+  FaTicketAlt,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
@@ -136,8 +138,12 @@ console.log(userInfo)
                     <p>View</p>
                   </button>
                   <button className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800">
-                    <FaDumpster />
-                    <p>Remove</p>
+                    <FaTicketAlt />
+                    <p>Verify vacancy</p>
+                  </button>
+                  <button className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800">
+                    <FaBookDead />
+                    <p>Mark as taken</p>
                   </button>
                 </div>
 
