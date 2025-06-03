@@ -21,6 +21,7 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+import SecondaryHeader from "../components/SecondaryHeader";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("../components/Footer"));
@@ -107,7 +108,7 @@ console.log(userInfo)
   return (
     <main className="">
       <section className="bg-black">
-        <Header />
+        <SecondaryHeader>Shortlists</SecondaryHeader>
 
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}

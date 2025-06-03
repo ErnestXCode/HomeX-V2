@@ -4,14 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CarouselImage from "../components/CarouselImage";
 import ListText from "../components/ListText";
-import {
-  FaAngleLeft,
-  FaArrowLeft,
-  FaMap,
-  FaPhoneAlt,
-  FaUser,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaAngleLeft, FaMap, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import { axiosPrivate } from "../api/axios";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -28,12 +21,8 @@ const IndividualHouse = () => {
     };
     getData();
   }, [id]);
-
+  const [date, setDate] = useState(null);
   console.log(data);
-
-  const f = new Intl.DateTimeFormat(undefined, {
-    style: 'short'
-  })
 
   return (
     <div className="bg-black p-3 pt-1 rounded-2xl min-h-screen flex flex-col">
@@ -68,24 +57,73 @@ const IndividualHouse = () => {
         </section>
       </section>
       {/* image of the landlord or something */}
-      <ListText content={data?.pricing}>Price: </ListText>
-      <ListText content={data?.area}>Location: </ListText>
-      {/* <ListText content={data?.landMarks}>Close to : </ListText> */}
-      Close to:
-      {/* <div className="flex justify-around">
+      <section className="flex flex-col p-3 gap-1">
+        <ListText content={data?.pricing}>Price: </ListText>
+        <ListText content={data?.area}>Location: </ListText>
+        {/* <ListText content={data?.landMarks}>Close to : </ListText> */}
+
+        {/* <div className="flex justify-around">
 
       {data?.landMarks.map(landMark => <div className='bg-gray-800/40 p-2 rounded-xl'>{landMark}</div>)}
       </div> */}
-      <ListText content={data?.createdAt}>Posted on: </ListText>
-      <ListText>last verified on: N/A</ListText>
-      {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
-      <div>
-        Amenities:
-        <div className="flex flex-col p-2 pt-1 gap-1 bg-gray-800/40">
-          {/* {data?.amenities.map(amenity => <div className="">{amenity}</div>)} */}
-          some Array
+        <section className="flex gap-2 mt-2 p-1">
+          <p>Posted on: </p>
+          <p>
+            {date === null
+              ? setDate(
+                  new Intl.DateTimeFormat(undefined, {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  }).format(new Date(data && data?.createdAt))
+                )
+              : date}
+          </p>
+        </section>
+        <ListText>last verified on: N/A</ListText>
+        {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
+        <div className="flex flex-col gap-2">
+          <p className="m-4 mb-1 text-base">Amenities</p>
+          <div className="flex flex-col p-3 rounded-xl gap-1 bg-gray-800/40">
+            {/* {data?.amenities.map(amenity => <div className="">{amenity}</div>)} */}
+            <p>
+              <span className="text-base text-gray-400 ">Lorem</span> ipsum.
+            </p>
+            <p>
+              <span className="text-base text-gray-400 ">Maxime</span> qui!
+            </p>
+            <p>
+              <span className="text-base text-gray-400 ">Quaerat</span>{" "}
+              consequatur.
+            </p>
+            <p>
+              <span className="text-base text-gray-400 ">Natus</span> itaque!
+            </p>
+            <p>
+              <span className="text-base text-gray-400 ">Natus</span>{" "}
+              praesentium
+            </p>
+            <p>
+              {" "}
+              <span className="text-base text-gray-400 ">Laudantium</span> sunt.
+            </p>
+            <p>
+              {" "}
+              <span className="text-base text-gray-400 ">Ullam</span> eius?
+            </p>
+            <p>
+              {" "}
+              <span className="text-base text-gray-400 ">Eos</span> sapiente!
+            </p>
+            <p>
+              <span className="text-base text-gray-400 ">Maiores</span> aut.
+            </p>
+            <p>
+              {" "}
+              <span className="text-base text-gray-400 ">Quis</span> tempore.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
       <div className="text-base flex flex-1 items-end justify-center p-4 sticky bottom-0">
         <button className="bg-gray-800 p-2 rounded-xl w-20 flex justify-center items-center gap-2">
           <FaMap />

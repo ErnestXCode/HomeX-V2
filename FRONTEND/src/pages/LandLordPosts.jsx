@@ -23,6 +23,7 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+import SecondaryHeader from "../components/SecondaryHeader";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("../components/Footer"));
@@ -67,7 +68,7 @@ console.log(userInfo)
         },
         credentials: "include",
       })
-      setData(await res.json())
+      setData((await res.json()).reverse())
    } catch (err) {
     console.log(err)
    }
@@ -109,7 +110,7 @@ console.log(userInfo)
   return (
     <main className="">
       <section className="bg-black">
-        <Header />
+        <SecondaryHeader>Posts</SecondaryHeader>
 
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}
@@ -132,16 +133,20 @@ console.log(userInfo)
                 <div className="flex flex-col items-end gap-2  m-1 mt-2">
                   <button
                     onClick={() => navigate(`../house/${item._id}`)}
-                    className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800"
+                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
                   >
                     <FaStreetView />
                     <p>View</p>
                   </button>
-                  <button className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800">
+                  <button 
+                  // onClick set status to vacant
+                  className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
                     <FaTicketAlt />
                     <p>Verify vacancy</p>
                   </button>
-                  <button className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800">
+                  <button 
+                  // onClick set status to taken
+                  className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
                     <FaBookDead />
                     <p>Mark as taken</p>
                   </button>

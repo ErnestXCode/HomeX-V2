@@ -66,8 +66,9 @@ const addShortLists = async (req, res) => {
 
   const shortList = req.body.houseId;
   if (!shortList) return res.sendStatus(204);
+  const shortlistArray = user.shortLists
+if(shortlistArray.includes(shortList)) return res.json('duplicate')
 
-  console.log("shortList", shortList);
 
   const shortListsArray = user.shortLists;
   console.log("shortlistArray", shortListsArray);

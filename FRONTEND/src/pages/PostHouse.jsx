@@ -10,9 +10,8 @@ import SubmitButton from "../components/SubmitButton";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
-import axios, { axiosPrivate } from "../api/axios";
+import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
-const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PostHouse = () => {
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ const PostHouse = () => {
           console.log(file);
           const newImage = imageCompression(file, {
             maxSizeMB: 0.5,
-            maxWidthOrHeight: 1024,
+            maxWidthOrHeight: 1024, //made it smaller from
             useWebWorker: true,
           });
           return newImage;
@@ -91,7 +90,9 @@ const PostHouse = () => {
       )
     );
     try {
-      const response = await axios.post(`/houses`, form, {withCredentials : true});
+      const response = await axios.post(`/houses`, form, {
+        withCredentials: true,
+      });
       console.log(response);
       navigate("/");
     } catch (error) {
@@ -110,8 +111,11 @@ const PostHouse = () => {
     },
   });
 
+
+
   return (
-    <>
+    <section className="pb-10">
+      <SecondaryHeader>Create</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"area"}
@@ -179,7 +183,7 @@ const PostHouse = () => {
         </div>
       </CustomForm>
       <BottomNav />
-    </>
+    </section>
   );
 };
 

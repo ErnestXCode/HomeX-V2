@@ -5,7 +5,7 @@ const houseSchema = mongoose.Schema(
     area: {
       type: String,
       required: [true, "area is required"],
-      index: true
+      index: true,
     },
     images: {
       type: [String],
@@ -14,7 +14,7 @@ const houseSchema = mongoose.Schema(
     pricing: {
       type: Number,
       required: [true, "pricing is required"],
-      index: true
+      index: true,
     },
     landMarks: {
       type: String,
@@ -24,12 +24,19 @@ const houseSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    status: {
+      type: String,
+      enum: ["taken", "possibly_taken", "vacant"],
+      default: "vacant",
+    },
+    coords: {
+      type: Object
+    }
   },
   {
     timestamps: true,
   }
 );
-
 
 const House = mongoose.model("House", houseSchema);
 

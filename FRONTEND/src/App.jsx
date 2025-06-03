@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
-import Layout from "./components/Layout";
-import RequireAuth from "./components/requireAuth"; // tengeneza apa inaanza na small letter
-import PersistLogin from "./components/PersistLogin";
+const RequireAuth = lazy(() => import("./components/requireAuth"));
+const PersistLogin = lazy(() => import("./components/PersistLogin"));
 const Trials = lazy(() => import("./pages/Trials"));
 const LandLordPosts = lazy(() => import("./pages/landLordPosts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -13,7 +12,6 @@ const PostHouse = lazy(() => import("./pages/PostHouse"));
 const PostHouseNext = lazy(() => import("./pages/PostHouseNext"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
-const Auth = lazy(() => import("./pages/Auth"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Donations = lazy(() => import("./pages/Donations"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -31,56 +29,57 @@ const ROLES = {
 
 function App() {
   return (
-    <div className="bg-black">
+    <div className="bg-black min-h-screen flex flex-col text-white text-[0.8rem]">
+      <Router>
+        <Suspense fallback={<InitialLoader fullscreen={true} />}>
+          <Routes>
+            
+              {/* public routes */}
+              <Route index element={<Home />}></Route>
+              <Route path="trials" element={<Trials />}></Route>
+              <Route path="house/:id" element={<IndividualHouse />}></Route>
+              <Route path="login" element={<Login />}></Route>
+              <Route path="about-us" element={<AboutUs />}></Route>
+              <Route path="contact-us" element={<ContactUs />}></Route>
+              <Route path="donate" element={<Donations />}></Route>
+              <Route path="signup" element={<SignUp />}></Route>
+              <Route path="help" element={<Help />}></Route>
+              <Route path="unauthorized" element={<NotFound />}></Route>
 
-    <Router>
-      <Suspense fallback={<InitialLoader fullscreen={true} />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            {/* public routes */}
-            <Route index element={<Home />}></Route>
-            <Route path="trials" element={<Trials />}></Route>
-            <Route path="house/:id" element={<IndividualHouse />}></Route>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="auth" element={<Auth />}></Route>
-            <Route path="about-us" element={<AboutUs />}></Route>
-            <Route path="contact-us" element={<ContactUs />}></Route>
-            <Route path="donate" element={<Donations />}></Route>
-            <Route path="signup" element={<SignUp />}></Route>
-            <Route path="help" element={<Help />}></Route>
-            <Route path="unauthorized" element={<NotFound />}></Route>
+              {/* protected routes */}
+              <Route element={<PersistLogin />}>
+                <Route element={<RequireAuth allowedRoles={[ROLES.tenant]} />}>
+                  <Route path="liked" element={<RecentlyLiked />}></Route>
+                  <Route path="profile" element={<Profile />}></Route>
+                  <Route path="personal" element={<PersonalInfo />}></Route>
+                  <Route
+                    path="landlord-posts"
+                    element={<LandLordPosts />}
+                  ></Route>
+                </Route>
 
-            {/* protected routes */}
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[ROLES.tenant]} />}>
-                <Route path="liked" element={<RecentlyLiked />}></Route>
-                <Route path="profile" element={<Profile />}></Route>
-                <Route path="personal" element={<PersonalInfo />}></Route>
                 <Route
-                  path="landlord-posts"
-                  element={<LandLordPosts />}
-                ></Route>
-              </Route>
+                  element={
+                    <RequireAuth allowedRoles={[ROLES.admin, ROLES.landlord]} />
+                  }
+                >
+                  <Route path="post-house" element={<PostHouse />}></Route>
+                  <Route
+                    path="post-house-2"
+                    element={<PostHouseNext />}
+                  ></Route>
+                </Route>
 
-              <Route
-                element={
-                  <RequireAuth allowedRoles={[ROLES.admin, ROLES.landlord]} />
-                }
-              >
-                <Route path="post-house" element={<PostHouse />}></Route>
-                <Route path="post-house-2" element={<PostHouseNext />}></Route>
+                <Route element={<RequireAuth allowedRoles={[ROLES.admin]} />}>
+                  <Route path="admin" element={<Admin />}></Route>
+                </Route>
               </Route>
-
-              <Route element={<RequireAuth allowedRoles={[ROLES.admin]} />}>
-                <Route path="admin" element={<Admin />}></Route>
-              </Route>
-            </Route>
-          </Route>
-          {/* catch all */}
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </Suspense>
-    </Router>
+            
+            {/* catch all */}
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+        </Suspense>
+      </Router>
     </div>
   );
 }

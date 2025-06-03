@@ -1,9 +1,32 @@
 import React, { useState } from "react";
-import ListingsPlaceholder from "./ListingsPlaceholder";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../features/users/userSlice";
+import { FaBookmark } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const CarouselImage = ({ item }) => {
   const [index, setIndex] = useState(0);
+  const [blueIcon, setBlueIcon] = useState(false)
+  const userInfo = useSelector(selectCurrentUser)
+
+
+   const handleShortLists = async (house) => {
+          setBlueIcon((prevState) => !prevState);
+          const response = await fetch(`${apiBaseUrl}/profile`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userInfo?.accessToken}`,
+            },
+            body: JSON.stringify({ houseId: house._id }),
+          });
+          const json = response.json();
+          const data = json.data;
+          console.log(data);
+          console.log(data);
+        };
+
 
   return (
     <div className="relative">
@@ -26,6 +49,15 @@ const CarouselImage = ({ item }) => {
             ></div>
           ))}
       </div>
+
+      <button
+        onClick={() => handleShortLists(item)}
+        className={`absolute top-5 right-5 text-base ${
+          blueIcon ? "text-blue-600" : "text-white/50"
+        }`}
+      >
+        <FaBookmark />
+      </button>
     </div>
   );
 };

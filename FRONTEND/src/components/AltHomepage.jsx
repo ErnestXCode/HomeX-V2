@@ -1,30 +1,32 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleBrowseListings } from '../features/stylings/styleSlice'
-import bgImage from '../assets/bg3.jpg'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectBrowseListingsState, toggleBrowseListings } from '../features/stylings/styleSlice'
 import Header from './Header'
 import { Link } from 'react-router-dom'
+import Listings from './Listings'
 
 const AltHomepage = () => {
     const dispatch = useDispatch()
-    const bgStyles = {
-        backgroundImage: `url(${bgImage})`
-    }
+    const displayState = useSelector(selectBrowseListingsState)
 
   return (
     <>
+   
+    {
+      displayState ? <Listings /> : (
+       <>
     <Header />
-    <nav className="bg-black text-white sticky top-0 z-20 p-2 flex">
-      <ul className='flex items-center gap-2 m-2 mr-2'>
+      <nav className="bg-black text-white sticky top-0 z-20 p-2 flex">
+      <ul className='flex items-center gap-2 ml-auto text-white font-semibold'>
         <li>
-          <Link to='/login' className='active:bg-gray-500 text-blue-500 p-2 rounded-2xl'>Log in</Link>
+          <Link to='/login' className='active:bg-gray-500  p-2 rounded-2xl'>Log in</Link>
         </li>
         <li>
-          <Link to='/signup' className='active:bg-gray-500 text-blue-500 p-2 rounded-2xl'>Sign up</Link>
+          <Link to='/signup' className='active:bg-gray-500  p-2 rounded-2xl'>Register</Link>
         </li>
       </ul>
       </nav>
-    <div style={bgStyles} className='bg-cover'>
+    <div className='bg-cover'>
         <section className='bg-black/70 p-3'>
         <h1 className='text-5xl font-semibold'>Find your </h1>
         <h1 className='text-5xl font-semibold mb-5'>perfect Home </h1>
@@ -33,6 +35,11 @@ const AltHomepage = () => {
         </section>
     </div>
     </>
+    )
+    }
+    
+    </>
+  
   )
 }
 

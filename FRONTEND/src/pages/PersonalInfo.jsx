@@ -1,15 +1,11 @@
 
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { logOutUser, selectCurrentUser } from "../features/users/userSlice";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import ViewButton from "../components/ViewButton";
-import { Link, useNavigate } from "react-router-dom";
-import SubmitButton from "../components/SubmitButton";
-import ProfileButtons from "../components/ProfileButtons";
-
-import ProfileButton from "../components/ProfileButtons";
+import { Link } from "react-router-dom";
 import { FaAngleRight, FaCreditCard, FaDigitalTachograph, FaHeart, FaMoneyBillAlt, FaPenAlt, FaTeamspeak, FaUser } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 

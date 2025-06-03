@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import NavElements from "./NavElements";
 import {
-  FaAddressBook,
+
   FaBook,
   FaHome,
   FaPersonBooth,

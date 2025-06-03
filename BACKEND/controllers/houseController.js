@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 const sharp = require("sharp");
 const { Readable } = require("stream");
 const { getGridFSBucket, getGFS } = require("../config/db");
-const { ObjectId } = require("mongodb");
+const mongoose = require("mongoose");
 
 const createHouse = async (req, res) => {
   const content = req.body;
@@ -28,7 +28,7 @@ const createHouse = async (req, res) => {
     for (const file of req.files) {
       try {
         const compressedBuffer = await sharp(file.buffer)
-          .resize({ width: 1000 })
+          // .resize({ width: 1000 })
           .webp({ quality: 70 })
           .toBuffer();
 
@@ -59,6 +59,7 @@ const createHouse = async (req, res) => {
     // const imagePaths = req.files.map((file) => file.filename);
 
     const data = { ...content, images: imageIds, landLord: verifiedUser._id };
+    console.log(data.coords)
 
     const newHouse = await new House(data);
     try {
@@ -102,7 +103,7 @@ const getShortLists = async (req, res) => {
     );
     console.log("allshortListsData", allShortListsData.length);
     // const houses = allShortListsData.sort({ createdAt: -1 })
-    res.status(200).json(allShortListsData);
+    res.status(200).json(allShortListsData.reverse());
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
@@ -202,8 +203,12 @@ const deleteHouse = async (req, res) => {
     // delete images from uploads before deploying
     const bucket = getGridFSBucket();
     imageIds.forEach(async (imageId) => {
-      const imageAsObjectId = new ObjectId(imageId);
-      return await bucket.delete({ _id: imageAsObjectId });
+      const imageAsObjectId = new mongoose.Types.ObjectId(imageId);
+      try {
+         await bucket.delete({ _id: imageAsObjectId });
+      } catch (err) {
+        console.log('err deleting image', imageId)
+      }
     });
     console.log(result);
 

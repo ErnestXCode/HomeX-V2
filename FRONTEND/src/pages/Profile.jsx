@@ -1,28 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import ViewButton from "../components/ViewButton";
 import { Link, useNavigate } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
-import ProfileButtons from "../components/ProfileButtons";
 
 import ProfileButton from "../components/ProfileButtons";
 import {
   FaBookmark,
   FaCreditCard,
   FaDigitalTachograph,
-  FaHeart,
-  FaList,
-  FaListAlt,
   FaMoneyBillAlt,
   FaPenAlt,
   FaTeamspeak,
   FaToolbox,
   FaUser,
 } from "react-icons/fa";
-import useRefreshToken from "../hooks/useRefreshToken";
 import Modal from "../components/Modal";
 import CustomForm from "../components/CustomForm";
 import CustomInputBox from "../components/CustomInputBox";
@@ -33,7 +27,6 @@ const Profile = () => {
   const userInfo = useSelector(selectCurrentUser);
 
   const [user, setUser] = useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -72,7 +65,6 @@ const Profile = () => {
   useEffect(() => {
     const handleProfileData = async () => {
       try {
-
         const response = await fetch(`${apiBaseUrl}/profile`, {
           method: "GET",
           headers: {
@@ -83,7 +75,7 @@ const Profile = () => {
         });
 
         const data = await response.json();
-        console.log(data.shortLists)
+        console.log(data.shortLists);
         setUser(data);
       } catch (err) {
         console.log("error", err);
@@ -93,73 +85,44 @@ const Profile = () => {
     handleProfileData();
   }, [userInfo?.accessToken]);
 
-
-  const secureEmail = (email) => {
-    const emailDomain = email.split(".")[1];
-    const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
-    return hiddenEmailBody;
-  };
+  // const secureEmail = (email) => {
+  //   const emailDomain = email.split(".")[1];
+  //   const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
+  //   return hiddenEmailBody;
+  // };
 
   const [usernameState, setUsernameState] = useState(false);
   const [passwordState, setPasswordState] = useState(false);
-  const [visibilityState, setVisibilityState] = useState(true);
+  // const [visibilityState, setVisibilityState] = useState(true);
   const visibilityRef = useRef();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries[0].isIntersecting) {
-        setVisibilityState(false);
-        console.log("intersecting");
-      } else {
-        setVisibilityState(true);
-      }
-    });
-    observer.observe(visibilityRef.current);
-  });
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     if (!entries[0].isIntersecting) {
+  //       setVisibilityState(false);
+  //       console.log("intersecting");
+  //     } else {
+  //       setVisibilityState(true);
+  //     }
+  //   });
+  //   observer.observe(visibilityRef.current);
+  // });
 
   return (
     <>
       <section className="bg-black flex flex-col pb-10 ">
         <Header />
-        <div
-          className={`m-2 flex items-center justify-center z-20 gap-3 fixed top-2 right-50 left-50 transition-opacity duration-500 ${
-            visibilityState ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <div className="size-6 bg-gray-700 p-5 rounded-full"></div>
-          <p>{user?.name}</p>
-        </div>
-      
         <section
-         
-          className="flex bg-gray-950 items-center m-4 mt-2 mb-2 p-2"
+          className={
+            "items-center p-4 flex flex-col  justify-center gap-3 transition-opacity duration-500"
+          }
         >
-          <div
-            // src={profilePic}
-            alt=""
-            width={40}
-            className="rounded-full size-10 bg-gray-600 m-4"
-          ></div>
-          <section className=" mt-3 flex-1 ">
-            <p className=" mb-4 font-semibold">
-              Welcome {user?.isAdmin ? "Admin" : ""} {user?.name}!{" "}
-            </p>
+          <div className=" bg-gray-700 p-10 rounded-full"></div>
+          <p>{user?.name}</p>
+        </section>
 
-            <p className="text-white font-semibold ">
-              {user?.email && secureEmail(user.email)}
-              {/* make email only show the first three then stars then .com  */}
-            </p>
-
-            <p className="text-blue-400 font-semibold ">
-              Phone number:{" "}
-              <span className="text-white font-normal font-serif ">
-                {user?.phoneNumber}
-              </span>
-            </p> 
-          </section>
-        </section> 
-        
-        <section  ref={visibilityRef}
+        <section
+          ref={visibilityRef}
           className=" flex flex-col items-start bg-gray-950 
         p-3 m-3 rounded-2xl gap-3
         "

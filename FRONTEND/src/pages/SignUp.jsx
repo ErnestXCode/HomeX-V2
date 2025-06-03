@@ -7,8 +7,9 @@ import SubmitButton from "../components/SubmitButton";
 import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
 import CustomCheckBox from "../components/CustomCheckBox";
-import axios from '../api/axios'
+import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
+const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -51,33 +52,33 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newUser = await axios.post('/users', {
+      const newUser = await axios.post("/users", {
         // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
         ...inputData,
-        roles: {admin : 1950}
+        roles: isLandlord && {landlord: landLord_role},
       });
-      console.log(newUser);
+      console.log('newUser', newUser, 'landlord_role', landLord_role);
+      // make backend signup work more like login
 
       if (newUser.status !== 200) {
         return;
       }
 
       const data = await newUser.data;
-      console.log(data)
+      console.log(data);
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
-
     }
   };
 
   return (
     <>
-    <SecondaryHeader>Register</SecondaryHeader>
+      <SecondaryHeader>Register</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"name"}
-        inputRef={nameRef}
+          inputRef={nameRef}
           name={"name"}
           value={inputData.name}
           type={"text"}
