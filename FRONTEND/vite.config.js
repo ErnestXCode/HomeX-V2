@@ -29,6 +29,18 @@ export default defineConfig({
         start_url: "/",
         display: "standalone",
         icons: PWA_JSON_FILE.icons,
+        screenshots: [
+          {
+            src: "/screenshots/screenshot_1.jpg",
+            sizes: "540x720",
+            type: "image/jpg",
+          },
+          {
+            src: "/screenshots/screenshot_2.jpg",
+            sizes: "540x720",
+            type: "image/jpg",
+          },
+        ],
       },
     }),
   ],
