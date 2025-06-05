@@ -32,12 +32,12 @@ export default defineConfig({
         screenshots: [
           {
             src: "/screenshots/screenshot_1.jpg",
-            sizes: "540x720",
+            sizes: "160x211",
             type: "image/jpg",
           },
           {
             src: "/screenshots/screenshot_2.jpg",
-            sizes: "540x720",
+            sizes: "160x211",
             type: "image/jpg",
           },
         ],
