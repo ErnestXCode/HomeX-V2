@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useState } from "react";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import { QueryClient, useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useEffect } from "react";
 import CarouselImage from "../components/CarouselImage";
@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router-dom";
 import InitialLoader from "../components/InitialLoader";
 import ListingsPlaceholder from "../components/ListingsPlaceholder";
 import FilterButton from "../components/FilterButton";
-import axios from "../api/axios";
 import {
   FaBookDead,
   FaBookmark,
@@ -34,7 +33,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 //   return data;
 // };
 
-const LandLordPOsts = () => {
+const LandlordPosts = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(selectCurrentUser);
 
@@ -172,4 +171,4 @@ console.log(userInfo)
   );
 };
 
-export default LandLordPOsts;
+export default LandlordPosts;

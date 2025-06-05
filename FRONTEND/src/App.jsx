@@ -1,10 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
-const RequireAuth = lazy(() => import("./components/requireAuth"));
+const RequireAuthentication = lazy(() =>
+  import("./components/RequireAuthentication")
+);
+//
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
 const Trials = lazy(() => import("./pages/Trials"));
-const LandLordPosts = lazy(() => import("./pages/landLordPosts")); // tengeneza apa inaanza na small letter
+const LandlordPosts = lazy(() => import("./pages/LandlordPosts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
@@ -33,48 +36,52 @@ function App() {
       <Router>
         <Suspense fallback={<InitialLoader fullscreen={true} />}>
           <Routes>
-            
-              {/* public routes */}
-              <Route index element={<Home />}></Route>
-              <Route path="trials" element={<Trials />}></Route>
-              <Route path="house/:id" element={<IndividualHouse />}></Route>
-              <Route path="login" element={<Login />}></Route>
-              <Route path="about-us" element={<AboutUs />}></Route>
-              <Route path="contact-us" element={<ContactUs />}></Route>
-              <Route path="donate" element={<Donations />}></Route>
-              <Route path="signup" element={<SignUp />}></Route>
-              <Route path="help" element={<Help />}></Route>
-              <Route path="unauthorized" element={<NotFound />}></Route>
+            {/* public routes */}
+            <Route index element={<Home />}></Route>
+            <Route path="trials" element={<Trials />}></Route>
+            <Route path="house/:id" element={<IndividualHouse />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="about-us" element={<AboutUs />}></Route>
+            <Route path="contact-us" element={<ContactUs />}></Route>
+            <Route path="donate" element={<Donations />}></Route>
+            <Route path="signup" element={<SignUp />}></Route>
+            <Route path="help" element={<Help />}></Route>
+            <Route path="unauthorized" element={<NotFound />}></Route>
 
-              {/* protected routes */}
-              <Route element={<PersistLogin />}>
-                <Route element={<RequireAuth allowedRoles={[ROLES.tenant]} />}>
-                  <Route path="liked" element={<RecentlyLiked />}></Route>
-                  <Route path="profile" element={<Profile />}></Route>
-                  <Route path="personal" element={<PersonalInfo />}></Route>
-                  <Route
-                    path="landlord-posts"
-                    element={<LandLordPosts />}
-                  ></Route>
-                </Route>
-
+            {/* protected routes */}
+            <Route element={<PersistLogin />}>
+              <Route
+                element={
+                  <RequireAuthentication allowedRoles={[ROLES.tenant]} />
+                }
+              >
+                <Route path="liked" element={<RecentlyLiked />}></Route>
+                <Route path="profile" element={<Profile />}></Route>
+                <Route path="personal" element={<PersonalInfo />}></Route>
                 <Route
-                  element={
-                    <RequireAuth allowedRoles={[ROLES.admin, ROLES.landlord]} />
-                  }
-                >
-                  <Route path="post-house" element={<PostHouse />}></Route>
-                  <Route
-                    path="post-house-2"
-                    element={<PostHouseNext />}
-                  ></Route>
-                </Route>
-
-                <Route element={<RequireAuth allowedRoles={[ROLES.admin]} />}>
-                  <Route path="admin" element={<Admin />}></Route>
-                </Route>
+                  path="landlord-posts"
+                  element={<LandlordPosts />}
+                ></Route>
               </Route>
-            
+
+              <Route
+                element={
+                  <RequireAuthentication
+                    allowedRoles={[ROLES.admin, ROLES.landlord]}
+                  />
+                }
+              >
+                <Route path="post-house" element={<PostHouse />}></Route>
+                <Route path="post-house-2" element={<PostHouseNext />}></Route>
+              </Route>
+
+              <Route
+                element={<RequireAuthentication allowedRoles={[ROLES.admin]} />}
+              >
+                <Route path="admin" element={<Admin />}></Route>
+              </Route>
+            </Route>
+
             {/* catch all */}
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
