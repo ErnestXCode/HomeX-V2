@@ -31,14 +31,12 @@ export default defineConfig({
         icons: PWA_JSON_FILE.icons,
         screenshots: [
           {
-            src: "/screenshots/screenshot_1.jpg",
-            sizes: "160x211",
-            type: "image/jpg",
+            src: "/pwa-assets/windows11/Square150x150Logo.scale-400.png",
+            sizes: "600x600",
           },
           {
-            src: "/screenshots/screenshot_2.jpg",
-            sizes: "160x211",
-            type: "image/jpg",
+            src: "/pwa-assets/windows11/Square150x150Logo.scale-400.png",
+            sizes: "600x600",
           },
         ],
       },
