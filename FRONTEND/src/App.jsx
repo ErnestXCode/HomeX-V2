@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
+// import Posts from "./pages/Posts";
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
 );
-//
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
 const Trials = lazy(() => import("./pages/Trials"));
-const LandlordPosts = lazy(() => import("./pages/LandlordPosts")); // tengeneza apa inaanza na small letter
+const Posts = lazy(() => import("./pages/Posts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
@@ -60,7 +60,7 @@ function App() {
                 <Route path="personal" element={<PersonalInfo />}></Route>
                 <Route
                   path="landlord-posts"
-                  element={<LandlordPosts />}
+                  element={<Posts />}
                 ></Route>
               </Route>
 
