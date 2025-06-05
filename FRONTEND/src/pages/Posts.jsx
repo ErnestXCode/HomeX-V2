@@ -68,7 +68,7 @@ console.log(userInfo)
         },
         credentials: "include",
       })
-      setData((await res.json()).reverse())
+      setData((await res.json()))
    } catch (err) {
     console.log(err)
    }
