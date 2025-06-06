@@ -30,6 +30,8 @@ const CarouselImage = ({ item }) => {
 
   return (
     <div className="relative">
+      <div>
+
       <img
         onClick={() => setIndex((prev) => (prev + 1) % item?.images?.length)}
         // make it stop responding to other images outside from listings
@@ -38,7 +40,8 @@ const CarouselImage = ({ item }) => {
         alt=""
         // falback
         // pointerEvents='None'
-      />
+        />
+        </div>
       <div className="flex absolute bottom-2 w-full justify-center gap-1">
         {item?.images?.length > 1 &&
           item?.images.map((_, idx) => (

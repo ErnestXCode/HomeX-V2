@@ -99,6 +99,10 @@ const Listings = () => {
     setListState("All");
   };
 
+  const f = new Intl.NumberFormat(undefined, {
+    currency: "KSH",
+  });
+
   return (
     <main className="">
       <section className="bg-black">
@@ -132,9 +136,16 @@ const Listings = () => {
                 </section>
                 <section className="flex justify-between mt-4">
                   <section>
-                    <ListText content={item?.area}>Location: </ListText>
-                    <ListText content={item?.pricing}>Price: </ListText>
-                    <ListText content={item?.status}>status: </ListText>
+                    <ListText content={item?.area}></ListText>
+                    <ListText content={f.format(item?.pricing)}>
+                      <span className="font-semibold text-gray-400">Ksh </span>{" "}
+                    </ListText>
+                    <ListText content={item?.numOfHouses}>
+                      <span className="font-semibold text-gray-400">
+                        Rooms available:{" "}
+                      </span>{" "}
+                    </ListText>
+                    <ListText content={item?.status}></ListText>
                   </section>
 
                   {/* <section className="flex justify-between m-3"> */}

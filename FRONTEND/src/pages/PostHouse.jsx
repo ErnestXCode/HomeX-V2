@@ -27,9 +27,10 @@ const PostHouse = () => {
 
   const dataDict = {
     area: "",
-    pricing: "",
+    pricing: 0,
     landMarks: "",
     amenities: "",
+    numOfHouses: 0
   };
   const [images, setImages] = useState([]);
 
@@ -77,12 +78,15 @@ const PostHouse = () => {
     splitLandMarks.forEach((landMark) => landMarkArray.push(landMark));
     splitAmenities.forEach((amenity) => amenitiesArray.push(amenity));
 
+    
+
     landMarkArray.forEach((landMark) => form.append("landMarks", landMark));
     amenitiesArray.forEach((amenity) => form.append("amenities", amenity));
 
     form.append("area", inputData?.area);
     form.append("pricing", inputData?.pricing);
     form.append("landLord", currentUser?._id);
+    form.append("numOfHouses", inputData?.numOfHouses);
     images.forEach((file) =>
       form.append(
         "images",
@@ -157,6 +161,16 @@ const PostHouse = () => {
           onChange={(e) => handleChange(e)}
         >
           Pricing
+        </CustomInputBox>
+        <CustomInputBox
+          id={"numOfHouses"}
+          name={"numOfHouses"}
+          value={inputData?.numOfHouses}
+          type={"number"}
+          onChange={(e) => handleChange(e)}  
+          // put a maximum amount of rooms a landlord can post or something
+        >
+          num of houses
         </CustomInputBox>
         <CustomInputBox
           id={"amenities"}

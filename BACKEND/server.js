@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const { connectDB, getGFS, getGridFSBucket } = require("./config/db");
 const  rateLimit  = require("express-rate-limit");
 const morgan = require("morgan");
+const cron = require('node-cron')
 // const { setTimeout } = require("timers/promises");
 
 // const { options } = require("./routes/user");
@@ -44,6 +45,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+
+app.use("/", require("./routes/houses"));
+app.use("/", require("./routes/areas"));
+app.use("/", require("./routes/images"));
+app.use("/", require("./routes/refresh"));
+
 // const limiter = rateLimit(
 //   max: 100, 
 //   windowMs: 60*60*1000, 
@@ -51,10 +58,6 @@ app.use(express.json());
 // })
 // app.use('/', limiter)
 
-app.use("/", require("./routes/houses"));
-app.use("/", require("./routes/areas"));
-app.use("/", require("./routes/images"));
-app.use("/", require("./routes/refresh"));
 app.use("/", require("./routes/auth"));
 app.use("/", require("./routes/user"));
 

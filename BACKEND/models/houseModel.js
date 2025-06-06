@@ -24,6 +24,10 @@ const houseSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    numOfHouses: {
+      type: Number, 
+      required: [true, 'number of houses required']
+    },
     status: {
       type: String,
       enum: ["taken", "possibly_taken", "vacant"],

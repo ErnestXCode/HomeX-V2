@@ -6,9 +6,11 @@ const sharp = require("sharp");
 const { Readable } = require("stream");
 const { getGridFSBucket, getGFS } = require("../config/db");
 const mongoose = require("mongoose");
+const cron = require("node-cron");
 
 const createHouse = async (req, res) => {
   const content = req.body;
+  console.log(content)
   // if (
   //   !content.area ||
   //   !content.pricing ||
@@ -58,14 +60,33 @@ const createHouse = async (req, res) => {
 
     // const imagePaths = req.files.map((file) => file.filename);
 
-    const data = { ...content, images: imageIds, landLord: verifiedUser._id };
-    console.log(data.coords)
+    const data = { ...content, images: imageIds, landLord: verifiedUser._id }
+    console.log(data.coords);
 
-    const newHouse = await new House(data);
+    const newHouse = await new House(data)
+
+    await newHouse.save()
+
     try {
-      await newHouse.save();
+      const d = new Date()
+      const date = d.getDate()
+      const hour = d.getHours()
+      const min = d.getMinutes();
+
+     // ${hour} ${date} 
+      // this wil run every month on the day this house was created i want every week or something
+      cron.schedule(`${min + 1} * * * *`, async () => {
+        const Id = newHouse._id;
+        const updatedStatusHouse = await House.findByIdAndUpdate(
+          Id,
+          { status: "possibly_taken" },
+          { new: true }
+        );
+        console.log("updatedHouse", updatedStatusHouse);
+      });
     } catch (err) {
-      console.log("err kwa house", err);
+      console.log("error kwa cron", err);
+      res.status(500).json("shida kwa cron");
     }
 
     return res.status(200).json(newHouse);
@@ -89,7 +110,7 @@ const getHouseById = async (req, res) => {
 const getShortLists = async (req, res) => {
   try {
     const page = parseInt(req.query?.page) || 1;
-    const limit = parseInt(req.query?.limit) || 3;
+    const limit = parseInt(req.query?.limit) || 10;
     const housesArray = req.user.shortLists;
     if (!housesArray) return res.sendStatus(204);
 
@@ -113,7 +134,7 @@ const getShortLists = async (req, res) => {
 const getAllHouses = async (req, res) => {
   try {
     const page = parseInt(req.query?.page) || 1;
-    const limit = parseInt(req.query?.limit) || 3;
+    const limit = parseInt(req.query?.limit) || 10;
     const area = req.query?.area;
     const pricing = req.query?.price;
 
@@ -139,11 +160,10 @@ const getAllHouses = async (req, res) => {
     // const houses = await House.aggregate([
 
     //   { $group: { _id: "$landLord", avgPrice: { $avg: '$pricing' } } },
-      
+
     //   // {$out: 'newCollection'} for storing in new collection
 
     //   // {$project :{area: 1, priceType: {$type: '$pricing'}}}
-
 
     //   // { $group: { _id: "$landLord", count: { $sum: 1 } } },
     //   // {$match: {pricing: {$gte: 300}}},
@@ -205,9 +225,9 @@ const deleteHouse = async (req, res) => {
     imageIds.forEach(async (imageId) => {
       const imageAsObjectId = new mongoose.Types.ObjectId(imageId);
       try {
-         await bucket.delete({ _id: imageAsObjectId });
+        await bucket.delete({ _id: imageAsObjectId });
       } catch (err) {
-        console.log('err deleting image', imageId)
+        console.log("err deleting image", imageId);
       }
     });
     console.log(result);
