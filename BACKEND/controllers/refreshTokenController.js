@@ -1,9 +1,10 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose')
 
 const handleRefreshToken = async (req, res) => {
   const refreshToken = req.cookies?.jwt;
-  console.log("refreshToken from refresh", refreshToken);
+  console.log("cookies", req.cookies);
   if (!refreshToken) return res.json("ii kitu si iitikie sasa").status(401); // unauthorized
   res.clearCookie("jwt", {
     sameSite: "Lax",
@@ -12,9 +13,26 @@ const handleRefreshToken = async (req, res) => {
     maxAge: 2 * 24 * 60 * 60 * 1000,
   });
 
-  const user = await User.findOne({ refreshToken });
+  
+
+  // const user = await User.findById(new mongoose.Types.ObjectId('6844a8f2e467484e53846034'));
+  const user = await User.findOne({refreshToken}).exec()
+  console.log('user', user, 'refresh', refreshToken)
   // refreshToken is an array and were looking for a stringp
-  if (!user) return res.json({ message: "USER AKONA SHIDA" });
+  if (!user) {
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      async (err, decoded) => {
+        if (err) return res.sendStatus(403);
+        const hackedUser = await User.findOne({email : decoded.email}).exec()
+        if(!hackedUser) console.log('ni kama im hacked user')
+        const UpdatedHackedUser = await User.findByIdAndUpdate(hackedUser._id, {refreshToken : [] }, {new : true})
+        if(!UpdatedHackedUser) console.log('ni kama im hakuna updated one')
+          console.log(UpdatedHackedUser)
+      }
+    )
+  }
 
   const userId = user?._id;
   const email = user?.email;
@@ -22,37 +40,9 @@ const handleRefreshToken = async (req, res) => {
 
   // detected refresh token reuse
 
-  // if (!user) {
-  //   jwt.verify(
-  //     refreshToken,
-  //     process.env.REFRESH_TOKEN_SECRET,
-  //     async (err, decoded) => {
-  //       if (err) return res.sendStatus(403);
-  //       const hackedUser = await User.findById(decoded.userId);
-  //       hackedUser.refreshToken = [];
-  //       await hackedUser.save();
-  //     }
-  //   );
-  // }
-
   const newRefreshTokenArray = user?.refreshToken.filter(
     (token) => token !== refreshToken
   );
-
-  // const goodRefreshToken = jwt.verify(
-  //   refreshToken,
-  //   process.env.REFRESH_TOKEN_SECRET
-  // );
-  // if (!goodRefreshToken)
-  //   return res.json({ message: "good refresh token ni mbaya" }).status(409);
-
-  // async (err, decoded) => {
-  //   if (err) {
-  //     // user.refreshToken = [...newRefreshTokenArray];
-  //     const result = await user.save();
-  //     console.log("from error", result);
-  //     return res.sendStatus(403);
-  //   }
 
   // refresh token is still valid
   const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
@@ -67,21 +57,19 @@ const handleRefreshToken = async (req, res) => {
     }
   );
 
-  const oldRefreshToken = refreshToken
-
-  // user.refreshToken = [...newRefreshTokenArray, newRefreshToken];
+  const newArray = [...newRefreshTokenArray, newRefreshToken];
 
   // bado sijatoa refreshToken ilikua inatumika
   const result = await User.findByIdAndUpdate(userId, {
-    $push: { refreshToken: newRefreshToken },
-  });
+    refreshToken: newArray,
+  }, {new: true});
   console.log(result);
 
   const roles = Object.values(user.roles).filter(Boolean);
   const shortLists = user.shortLists;
 
   res
-    .cookie("jwt", refreshToken, {
+    .cookie("jwt", newRefreshToken, {
       httpOnly: true,
       // look what be its important
       sameSite: "Lax",
@@ -90,14 +78,7 @@ const handleRefreshToken = async (req, res) => {
     })
     .json({ roles, accessToken, shortLists })
     .status(200);
-  // why is it displaying jwt twice
-
-  // THIS IS THE ERROR WHEN I USE THIS REFRESH TWICE INN A ROW IN FRONTEND, but no issue when using it with postman and thunderclient
-  // VersionError: No matching document found for id "6832639170366391392c60ff" version 25 modifiedPaths "refreshToken"
-  //     at generateVersionError (C:\Users\HP\Desktop\HomeX\node_modules\mongoose\lib\model.js:572:10)
-  //     at model.save (C:\Users\HP\Desktop\HomeX\node_modules\mongoose\lib\model.js:630:28)
-  //     at handleRefreshToken (C:\Users\HP\Desktop\HomeX\BACKEND\controllers\refreshTokenController.js:69:37)
-  //     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+  
 };
 
 module.exports = { handleRefreshToken };

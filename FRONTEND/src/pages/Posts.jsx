@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense, useState } from "react";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
@@ -56,24 +55,24 @@ const Posts = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-console.log('userInfo shortlists')
-console.log(userInfo)
-    const fetchShortLists = async() => {
-   try {
-       const res = await fetch(`${apiBaseUrl}/landlordHouses`, {
-        method: 'GET',
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo.accessToken}`,
-        },
-        credentials: "include",
-      })
-      setData((await res.json()))
-   } catch (err) {
-    console.log(err)
-   }
-    }
-    fetchShortLists()
+    console.log("userInfo shortlists");
+    console.log(userInfo);
+    const fetchShortLists = async () => {
+      try {
+        const res = await fetch(`${apiBaseUrl}/landlordHouses`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.accessToken}`,
+          },
+          credentials: "include",
+        });
+        setData(await res.json());
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchShortLists();
   }, []);
 
   console.log(data);
@@ -107,10 +106,29 @@ console.log(userInfo)
   //   }
   // };
 
+  const handleTaken = async (id) => {
+    // make an api call
+    try {
+      const res = await fetch(`${apiBaseUrl}/verify?id=${id}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo?.accessToken}`,
+        },
+      });
+
+      const data = await res.json();
+      console.log(data);
+      navigate(-1);
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
   return (
     <main className="">
       <section className="bg-black">
-        <SecondaryHeader>Posts</SecondaryHeader>
 
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}
@@ -131,25 +149,31 @@ console.log(userInfo)
 
                 {/* <section className="flex justify-between m-3"> */}
                 <div className="flex flex-col items-end gap-2  m-1 mt-2">
-                  <button
+                  <div
                     onClick={() => navigate(`../house/${item._id}`)}
                     className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
                   >
                     <FaStreetView />
                     <p>View</p>
-                  </button>
-                  <button 
-                  // onClick set status to vacant
-                  className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
+                  </div>
+                  <div
+                    // onClick set status to vacant
+                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
+                  >
                     <FaTicketAlt />
-                    <p>Verify vacancy</p>
-                  </button>
-                  <button 
-                  // onClick set status to taken
-                  className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
+                    <Link to={`/verify-vacancy/${item?._id}`}>
+                      Verify vacancy
+                    </Link>
+                  </div>
+                  <div
+                    // onClick set status to taken
+                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
+                  >
                     <FaBookDead />
-                    <p>Mark as taken</p>
-                  </button>
+                    <div onClick={() => handleTaken(item._id)}>
+                      Mark as taken
+                    </div>
+                  </div>
                 </div>
 
                 {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}

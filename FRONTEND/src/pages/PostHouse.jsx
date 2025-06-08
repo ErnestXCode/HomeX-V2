@@ -6,6 +6,7 @@ import imageCompression from "browser-image-compression";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CustomInputBox from "../components/CustomInputBox";
+import CustomCheckBox from "../components/CustomCheckBox";
 import SubmitButton from "../components/SubmitButton";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import BottomNav from "../components/BottomNav";
@@ -25,12 +26,19 @@ const PostHouse = () => {
     areaRef?.current.focus();
   }, []);
 
+  const amenitiesObj = {
+    wifi: false,
+    water: false,
+    bathroom: false,
+    shower: false,
+  };
+
+  const [amenities, setAmenities] = useState(amenitiesObj);
+
   const dataDict = {
     area: "",
-    pricing: 0,
-    landMarks: "",
-    amenities: "",
-    numOfHouses: 0
+    pricing: "",
+    numOfHouses: "",
   };
   const [images, setImages] = useState([]);
 
@@ -44,6 +52,8 @@ const PostHouse = () => {
       };
     });
   };
+
+  const [coords, setCoords] = useState(null);
 
   const handleimagesChange = async (e) => {
     e.preventDefault();
@@ -61,32 +71,43 @@ const PostHouse = () => {
         })
       );
       setImages(compressedFiles);
+
+      const success = (pos) => {
+        const coordinates = {
+          lat: pos.coords.latitude,
+          long: pos.coords.longitude,
+        };
+        console.log(pos);
+        setCoords(coordinates);
+      };
+      const error = (err) => {
+        console.log(err);
+      };
+
+      navigator.geolocation.getCurrentPosition(success, error, {
+        enableHighAccuracy: true,
+      });
+
+      console.log(coords);
     } else {
       throw new Error("limit of 3 exceeded");
     }
   };
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const form = new FormData();
-
-    const landMarkArray = [];
-    const amenitiesArray = [];
-    const splitLandMarks = inputData?.landMarks.split(",");
-    const splitAmenities = inputData?.amenities.split(",");
-    splitLandMarks.forEach((landMark) => landMarkArray.push(landMark));
-    splitAmenities.forEach((amenity) => amenitiesArray.push(amenity));
-
-    
-
-    landMarkArray.forEach((landMark) => form.append("landMarks", landMark));
-    amenitiesArray.forEach((amenity) => form.append("amenities", amenity));
 
     form.append("area", inputData?.area);
     form.append("pricing", inputData?.pricing);
     form.append("landLord", currentUser?._id);
     form.append("numOfHouses", inputData?.numOfHouses);
+    form.append("coords", JSON.stringify(coords));
     images.forEach((file) =>
       form.append(
         "images",
@@ -115,7 +136,16 @@ const PostHouse = () => {
     },
   });
 
+  const handleCheckBoxChange = (e) => {
+    setAmenities((prevData) => {
+      return {
+        ...prevData,
 
+        [e.target.value]: e.target.checked,
+      };
+    });
+  };
+  
 
   return (
     <section className="pb-10">
@@ -167,33 +197,28 @@ const PostHouse = () => {
           name={"numOfHouses"}
           value={inputData?.numOfHouses}
           type={"number"}
-          onChange={(e) => handleChange(e)}  
+          onChange={(e) => handleChange(e)}
           // put a maximum amount of rooms a landlord can post or something
         >
           num of houses
         </CustomInputBox>
-        <CustomInputBox
-          id={"amenities"}
-          name={"amenities"}
-          value={inputData?.amenities}
-          type={"text"}
-          onChange={(e) => handleChange(e)}
-        >
-          Amenities
-        </CustomInputBox>
-
-        <CustomInputBox
-          id={"landMarks"}
-          value={inputData?.landMarks}
-          name={"landMarks"}
-          type={"text"}
-          onChange={(e) => handleChange(e)}
-        >
-          Landmarks
-        </CustomInputBox>
+        <label htmlFor="">Amenities</label>
+        <div className="flex flex-col w-50 gap-2">
+          {Object.keys(amenities).map((amenity) => (
+            <CustomCheckBox
+              onChange={(e) => handleCheckBoxChange(e)}
+              id={amenity}
+              name={amenity}
+              value={amenity}
+              type={"checkbox"}
+            >
+              {amenity}
+            </CustomCheckBox>
+          ))}
+        </div>
         {/* i dont think we will need landmarks when we have maps */}
         <div className="mt-3">
-          <SubmitButton>Create</SubmitButton>
+          <SubmitButton isDisabled={loading}>Create</SubmitButton>
         </div>
       </CustomForm>
       <BottomNav />

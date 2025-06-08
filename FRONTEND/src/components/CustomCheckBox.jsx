@@ -10,7 +10,7 @@ const CustomCheckBox = ({
   children,
 }) => {
   return (
-    <div className="text-[.8rem] flex  items-center gap-3 justify-center w-[100%]
+    <div className="text-[.8rem] flex items-center gap-3 justify-center w-[100%]
     ">
         <label htmlFor={id} className="">
           {children}

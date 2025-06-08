@@ -51,6 +51,8 @@ app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/images"));
 app.use("/", require("./routes/refresh"));
 
+
+
 // const limiter = rateLimit(
 //   max: 100, 
 //   windowMs: 60*60*1000, 

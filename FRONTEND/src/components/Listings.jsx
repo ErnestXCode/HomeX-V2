@@ -73,7 +73,7 @@ const Listings = () => {
           fetchNextPage();
         }
       },
-      { threshold: 0, rootMargin: "500px" }
+      { threshold: 0, rootMargin: "2000px" }
       // check how to make it better
     );
     if (loadMoreRef.current) {
@@ -100,8 +100,15 @@ const Listings = () => {
   };
 
   const f = new Intl.NumberFormat(undefined, {
+    style: 'currency',
     currency: "KSH",
   });
+
+  const f_2 = new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'medium', 
+    timeStyle: 'short',
+   
+  })
 
   return (
     <main className="">
@@ -130,6 +137,9 @@ const Listings = () => {
               <div
                 key={item._id}
                 className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
+          // onClick={() => navigate(`house/${item._id}`)} 
+          
+
               >
                 <section className="">
                   <CarouselImage item={item} />
@@ -138,26 +148,19 @@ const Listings = () => {
                   <section>
                     <ListText content={item?.area}></ListText>
                     <ListText content={f.format(item?.pricing)}>
-                      <span className="font-semibold text-gray-400">Ksh </span>{" "}
+                     
                     </ListText>
                     <ListText content={item?.numOfHouses}>
                       <span className="font-semibold text-gray-400">
                         Rooms available:{" "}
                       </span>{" "}
                     </ListText>
-                    <ListText content={item?.status}></ListText>
                   </section>
-
+              <p className={`flex items-center h-fit pt-1.5 pb-1.5 pr-4 pl-4 text-center rounded-2xl  ${item?.status === 'possibly_taken' ? 'bg-yellow-400/50' : item?.status === 'taken' ? 'bg-red-700/50' : 'bg-green-600/50'}`}>
+                    {item?.status}
+              </p>
                   {/* <section className="flex justify-between m-3"> */}
-                  <section className="flex flex-col items-end gap-2  m-1 mt-2">
-                    <button
-                      onClick={() => navigate(`house/${item._id}`)}
-                      className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800"
-                    >
-                      <FaStreetView />
-                      <p>View</p>
-                    </button>
-                  </section>
+                 
                 </section>
 
                 {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}

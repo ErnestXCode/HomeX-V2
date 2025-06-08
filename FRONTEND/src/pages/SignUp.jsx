@@ -9,7 +9,11 @@ import CustomForm from "../components/CustomForm";
 import CustomCheckBox from "../components/CustomCheckBox";
 import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
+import { useDispatch } from "react-redux";
+import { signInSuccess } from "../features/users/userSlice";
 const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
+const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
+const tenant_role = import.meta.env.VITE_TENANT_ROLE_CONSTANT;
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -49,23 +53,32 @@ const SignUp = () => {
     setIsLandLord((prevState) => !prevState);
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const newUser = await axios.post("/users", {
-        // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
-        ...inputData,
-        roles: isLandlord && {landlord: landLord_role},
-      });
-      console.log('newUser', newUser, 'landlord_role', landLord_role);
-      // make backend signup work more like login
+      const newUser = await axios.post(
+        "/users",
+        JSON.stringify({
+          ...inputData,
+          roles: isLandlord && {
+            landlord: landLord_role,
+            admin: admin_role,
+          },
+        }),
+        {
+          // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-      if (newUser.status !== 200) {
-        return;
-      }
+      dispatch(signInSuccess(newUser.data));
 
-      const data = await newUser.data;
-      console.log(data);
       navigate("/");
     } catch (err) {
       console.error("Error:", err.message);

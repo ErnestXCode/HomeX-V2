@@ -5,12 +5,16 @@ import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import { Link, useNavigate } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
+import RecentlyLiked from "./RecentlyLiked";
+import Posts from "./Posts";
 
 import ProfileButton from "../components/ProfileButtons";
 import {
   FaBookmark,
+  FaCamera,
   FaCreditCard,
   FaDigitalTachograph,
+  FaHandsHelping,
   FaMoneyBillAlt,
   FaPenAlt,
   FaTeamspeak,
@@ -20,6 +24,7 @@ import {
 import Modal from "../components/Modal";
 import CustomForm from "../components/CustomForm";
 import CustomInputBox from "../components/CustomInputBox";
+import SecondaryHeader from "../components/SecondaryHeader";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -107,120 +112,127 @@ const Profile = () => {
   //   });
   //   observer.observe(visibilityRef.current);
   // });
-
+  const [profileState, setProfileState] = useState("info");
   return (
     <>
-      <section className="bg-black flex flex-col pb-10 ">
-        <Header />
-        <section
-          className={
-            "items-center p-4 flex flex-col  justify-center gap-3 transition-opacity duration-500"
-          }
-        >
-          <div className=" bg-gray-700 p-10 rounded-full"></div>
-          <p>{user?.name}</p>
+      {" "}
+      <SecondaryHeader>{profileState}</SecondaryHeader>
+      <section
+        className={
+          "items-center p-4 flex flex-col  justify-center gap-3 transition-opacity duration-500"
+        }
+      >
+        <section className=" bg-gray-700 p-10 rounded-full relative">
+          <div className="absolute bottom-0 right-0 bg-gray-500 p-2 rounded-full">
+            <FaCamera />
+          </div>
         </section>
 
-        <section
-          ref={visibilityRef}
-          className=" flex flex-col items-start bg-gray-950 
-        p-3 m-3 rounded-2xl gap-3
-        "
-        >
-          {user?.isAdmin && (
-            <ProfileButton link={"/admin"}>
-              <div className="flex  gap-2 items-center">
-                <FaDigitalTachograph />
-                Admin Dashboard
-              </div>
-            </ProfileButton>
-          )}
-          <ProfileButton link={"/liked"}>
-            <div className="flex  gap-2 items-center">
-              <FaBookmark />
-              Shortlist
-            </div>
-          </ProfileButton>
-          <ProfileButton link={"/landlord-posts"}>
-            <div className="flex  gap-2 items-center">
-              <FaToolbox />
-              Created
-            </div>
-          </ProfileButton>
-
-          <ProfileButton link={"/personal"}>
-            <div className="flex  gap-2 items-center">
-              <FaUser />
-              Personal information
-            </div>
-          </ProfileButton>
-          {/* they can add more information KYC*/}
-
-          <div onClick={() => setUsernameState(true)} className=" w-full">
-            <ProfileButton>
+        <section className="flex items-center gap-3">
+          <p>{user?.name}</p>
+          <section className="text-white/70">
+            <div onClick={() => setUsernameState(true)}>
               <div className="flex  gap-2 items-center">
                 <FaPenAlt />
-                Change username
               </div>
-            </ProfileButton>
-          </div>
-          <Modal isOpen={usernameState} onClick={() => setUsernameState(false)}>
-            <CustomForm>
-              <CustomInputBox>Enter new username</CustomInputBox>
-              <SubmitButton>Set new username</SubmitButton>
-            </CustomForm>
-          </Modal>
-
-          <div onClick={() => setPasswordState(true)} className=" w-full">
-            <ProfileButton>
-              <div className="flex  gap-2 items-center">
-                <FaCreditCard />
-                Change Password
-              </div>
-            </ProfileButton>
-          </div>
-          <Modal isOpen={passwordState} onClick={() => setPasswordState(false)}>
-            <CustomForm>
-              <CustomInputBox>Enter old password</CustomInputBox>
-              <CustomInputBox>Enter new password</CustomInputBox>
-              <CustomInputBox>Confirm new password</CustomInputBox>
-              <SubmitButton>Set new password</SubmitButton>
-            </CustomForm>
-          </Modal>
-
-          {/* modal */}
-          <ProfileButton link={"/about-us"}>
-            <div className="flex  gap-2 items-center">
-              <FaTeamspeak />
-              About us
             </div>
-          </ProfileButton>
-          <ProfileButton link={"/donate"}>
-            <div className="flex  gap-2 items-center">
-              <FaMoneyBillAlt />
-              Donate
-            </div>
-          </ProfileButton>
-          <ProfileButton link={"/contact-us"}>
-            <div className="flex gap-2 items-center">
-              <FaUser />
-              Contact us
-            </div>
-          </ProfileButton>
-          {/* modal or link */}
-
-          <button
-            className="w-full bg-blue-600/80 p-2 rounded-2xl text-white text-base font-semibold mt-4"
-            onClick={handleLogout}
-          >
-            Log out
-          </button>
-          {/* <ViewButton white={true} onClick={() => handleDelete()}>
-              Delete Account
-            </ViewButton> */}
+            <Modal
+              isOpen={usernameState}
+              onClick={() => setUsernameState(false)}
+            >
+              <CustomForm>
+                <CustomInputBox>Enter new username</CustomInputBox>
+                <SubmitButton>Set new username</SubmitButton>
+              </CustomForm>
+            </Modal>
+          </section>
         </section>
       </section>
-      <BottomNav />
+      <nav className="sticky top-0 bg-black z-30 p-2">
+        <ul className="flex items-center justify-around p-2">
+          <li
+            className="cursor-pointer"
+            onClick={() => setProfileState("info")}
+          >
+            Info
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() => setProfileState("shortlist")}
+          >
+            Shortlists
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() => setProfileState("posts")}
+          >
+            Posts
+          </li>
+        </ul>
+      </nav>
+      {profileState === "info" ? (
+        <>
+          <section className="bg-black flex flex-col pb-10 ">
+            <section
+              ref={visibilityRef}
+              className=" flex flex-col items-start bg-gray-950 
+        p-3 m-3 rounded-2xl gap-3
+        "
+            >
+              <ProfileButton link={"/admin"}>
+                <div className="flex  gap-2 items-center">
+                  <FaDigitalTachograph />
+                  Admin Dashboard
+                </div>
+              </ProfileButton>
+
+              <ProfileButton link={"/personal"}>
+                <div className="flex  gap-2 items-center">
+                  <FaUser />
+                  Personal information
+                </div>
+              </ProfileButton>
+              {/* they can add more information KYC*/}
+
+              {/* modal */}
+              <ProfileButton link={"/about-us"}>
+                <div className="flex  gap-2 items-center">
+                  <FaTeamspeak />
+                  About us
+                </div>
+              </ProfileButton>
+              <ProfileButton link={"/donate"}>
+                <div className="flex  gap-2 items-center">
+                  <FaMoneyBillAlt />
+                  Donate
+                </div>
+              </ProfileButton>
+              <ProfileButton link={"/contact-us"}>
+                <div className="flex gap-2 items-center">
+                  <FaUser />
+                  Contact us
+                </div>
+              </ProfileButton>
+              <ProfileButton link={"/help"}>
+                <div className="flex gap-2 items-center">
+                  <FaHandsHelping />
+                  Help
+                </div>
+              </ProfileButton>
+              {/* modal or link */}
+
+              {/* <ViewButton white={true} onClick={() => handleDelete()}>
+              Delete Account
+            </ViewButton> */}
+            </section>
+          </section>
+          <BottomNav />
+        </>
+      ) : profileState === "shortlist" ? (
+        <RecentlyLiked />
+      ) : (
+        <Posts />
+      )}
     </>
   );
 };

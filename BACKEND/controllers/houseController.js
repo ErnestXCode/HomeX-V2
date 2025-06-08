@@ -10,7 +10,7 @@ const cron = require("node-cron");
 
 const createHouse = async (req, res) => {
   const content = req.body;
-  console.log(content)
+  console.log(content);
   // if (
   //   !content.area ||
   //   !content.pricing ||
@@ -30,7 +30,7 @@ const createHouse = async (req, res) => {
     for (const file of req.files) {
       try {
         const compressedBuffer = await sharp(file.buffer)
-          // .resize({ width: 1000 })
+          .resize({ width: 1000 })
           .webp({ quality: 70 })
           .toBuffer();
 
@@ -60,20 +60,29 @@ const createHouse = async (req, res) => {
 
     // const imagePaths = req.files.map((file) => file.filename);
 
-    const data = { ...content, images: imageIds, landLord: verifiedUser._id }
-    console.log(data.coords);
+    const globalDate = new Date();
 
-    const newHouse = await new House(data)
+    const data = {
+      ...content,
+      images: imageIds,
+      landLord: verifiedUser._id,
+      coords: JSON.parse(content.coords),
+      updatedStatusAt: globalDate,
+    };
 
-    await newHouse.save()
+    const newHouse = await new House(data);
+
+    console.log(newHouse.coords)
+
+    await newHouse.save();
 
     try {
-      const d = new Date()
-      const date = d.getDate()
-      const hour = d.getHours()
+      const d = globalDate;
+      const date = d.getDate();
+      const hour = d.getHours();
       const min = d.getMinutes();
 
-     // ${hour} ${date} 
+      // ${hour} ${date}
       // this wil run every month on the day this house was created i want every week or something
       cron.schedule(`${min + 1} * * * *`, async () => {
         const Id = newHouse._id;
@@ -93,6 +102,41 @@ const createHouse = async (req, res) => {
   } catch (err) {
     return res.status(400).json("Could not create House");
   }
+};
+
+const updateHouseStatus = async (req, res) => {
+  const user = req.user;
+  console.log("user", user);
+  console.log("query", req.query);
+  const HouseId = new mongoose.Types.ObjectId(req.query.id);
+  if (!HouseId) return res.json("hakuna houseId").status(400);
+  console.log("body", req.body);
+  const { numOfHouses } = req.body;
+  if (!numOfHouses) return res.json("hakuna numofhouses").status(400);
+  const house = await House.findByIdAndUpdate(
+    HouseId,
+    {
+      status: "vacant",
+      numOfHouses,
+      updatedStatusAt: new Date(),
+    },
+    { new: true }
+  );
+
+  const d = new Date();
+  const min = d.getMinutes();
+
+  cron.schedule(`${min + 1} * * * *`, async () => {
+    await House.findByIdAndUpdate(
+      HouseId,
+      {
+        status: "possibly_taken",
+      },
+      { new: true }
+    );
+  });
+  console.log(house);
+  res.json("success updating house").status(201);
 };
 
 const getHouseById = async (req, res) => {
@@ -129,6 +173,17 @@ const getShortLists = async (req, res) => {
     console.log("error getting all houses", error);
     res.status(400).json(error);
   }
+};
+
+const markAsTaken = async (req, res) => {
+  const { id } = req.query;
+  const takenHouse = await House.findByIdAndUpdate(
+    id,
+    { status: "taken" },
+    { new: true }
+  );
+  if (!takenHouse) return res.json("imekataa kupata takenhouse");
+  res.status(200).json("imeitikia");
 };
 
 const getAllHouses = async (req, res) => {
@@ -184,6 +239,7 @@ const getLAndlordsHouses = async (req, res) => {
   const userId = user?._id;
   const landLordListings = await House.aggregate([
     { $match: { landLord: userId } },
+    { $sort: { createdAt: -1 } },
   ]);
   console.log("landLordListings", landLordListings);
   res.json(landLordListings).status(200);
@@ -247,4 +303,6 @@ module.exports = {
   deleteHouse,
   getShortLists,
   getLAndlordsHouses,
+  updateHouseStatus,
+  markAsTaken,
 };

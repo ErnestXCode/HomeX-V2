@@ -5,7 +5,6 @@ const User = require("../models/userModel");
 const { validationResult } = require("express-validator");
 
 const createUser = async (req, res) => {
-
   // const result = validationResult()
 
   const content = req.body;
@@ -13,10 +12,6 @@ const createUser = async (req, res) => {
 
   if (!name || !email || !phoneNumber || !password)
     return res.status(400).json({ error: "All inputs are mandatory" });
-
-
-
-
 
   try {
     // look for duplicate and retiurn something 409 conflict
@@ -26,8 +21,7 @@ const createUser = async (req, res) => {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const roles = Object.values(content.roles).filter(Boolean);
-    if (!roles) return res.json("invalid or no roles").status(409);
+    // if (!roles) return res.json("invalid or no roles").status(409);
 
     const refreshToken = jwt.sign({ email }, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: "2d",
@@ -43,8 +37,10 @@ const createUser = async (req, res) => {
       password: hashedPassword,
       refreshToken,
     });
-    await userCreated.save();
+    const createdUser = await userCreated.save();
+    console.log('createdUser', createdUser)
 
+    const roles = Object.values(userCreated.roles).filter(Boolean);
     res
       .cookie("jwt", refreshToken, {
         httpOnly: true,
@@ -66,9 +62,8 @@ const addShortLists = async (req, res) => {
 
   const shortList = req.body.houseId;
   if (!shortList) return res.sendStatus(204);
-  const shortlistArray = user.shortLists
-if(shortlistArray.includes(shortList)) return res.json('duplicate')
-
+  const shortlistArray = user.shortLists;
+  if (shortlistArray.includes(shortList)) return res.json("duplicate");
 
   const shortListsArray = user.shortLists;
   console.log("shortlistArray", shortListsArray);

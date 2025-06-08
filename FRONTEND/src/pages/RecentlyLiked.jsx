@@ -108,7 +108,6 @@ console.log(userInfo)
   return (
     <main className="">
       <section className="bg-black">
-        <SecondaryHeader>Shortlists</SecondaryHeader>
 
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}

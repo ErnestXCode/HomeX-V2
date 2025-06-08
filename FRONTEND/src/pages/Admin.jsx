@@ -9,9 +9,7 @@ const Admin = () => {
    console.log(user)
 
   return (
-    <div>
-        {user?.isAdmin ? <Dashboard /> : <NotFound />}
-    </div>
+    <Dashboard />
   )
 }
 

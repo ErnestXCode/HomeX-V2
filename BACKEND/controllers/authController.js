@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const loginUser = async (req, res) => {
   // const cookies = req.cookies;
   const { email, password } = req.body;
+  const cookies = req.cookies;
 
   if (!email || !password) {
     return res.status(400).json({ error: "All Credentials Are Mandatory" });
@@ -30,32 +31,33 @@ const loginUser = async (req, res) => {
 
   // i wonder after how long i shoud require them to log back in , security is important but id rather not annoy customers
 
-  // let newRefreshTokenArray = foundUser.refreshToken;
+  let newRefreshTokenArray = !cookies?.jwt
+    ? foundUser.refreshToken
+    : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
 
-  // let newRefreshTokenArray = !cookies?.jwt
-  //   ? foundUser.refreshToken
-  //   : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
+  if (cookies?.jwt) {
+    const refreshToken = cookies.jwt;
+    const foundToken = await User.findOne({ refreshToken });
+    if (!foundToken) {
+      console.log("attempted refresh token reuse at login");
+      newRefreshTokenArray = [];
+    }
 
-  // if (cookies?.jwt) {
-  //   const refreshToken = cookies.jwt;
-  //   const foundToken = await User.findOne({ refreshToken });
-  //   if (!foundToken) {
-  //     console.log("attempted refresh token reuse at login");
-  //     newRefreshTokenArray = [];
-  //   }
+    res.cookie("jwt", "", {
+      httpOnly: true,
 
-  //   res.cookie("jwt", "", {
-  //     httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+    });
+  }
 
-  //     secure: process.env.NODE_ENV !== "development",
-  //   });
-  // }
-
-  // const newArray = [...newRefreshTokenArray, newRefreshToken];
-  const result = await User.findByIdAndUpdate(foundUser._id, {
-    $push: { refreshToken: newRefreshToken },
-  });
-  console.log("result from refresh backend", result);
+  const newArray = [...newRefreshTokenArray, newRefreshToken];
+  await User.findByIdAndUpdate(
+    foundUser._id,
+    { refreshToken: newArray },
+    {
+      new: true,
+    }
+  );
 
   const roles = Object.values(foundUser.roles).filter(Boolean);
   const shortLists = foundUser.shortLists;
@@ -77,13 +79,17 @@ const logOutUser = async (req, res) => {
   // find user in db with the refreshToken and clear cookie if user is not found pia
   const foundUser = await User.findOne({ refreshToken });
   if (!foundUser) return res.sendStatus(204);
-  // foundUser.refreshToken = foundUser.refreshToken.filter(
-  //   (token) => token !== refreshToken
-  // );
-  // const result = await foundUser.updateOne();
+  const newArray = foundUser.refreshToken.filter(
+    (token) => token !== refreshToken
+  );
+  await foundUser.findByIdAndUpdate(
+    foundUser._id,
+    { refreshToken: newArray },
+    { new: true }
+  );
   // cookie is not clearing
   res
-    .clearCookie("jwt",{
+    .clearCookie("jwt", {
       httpOnly: true,
       // look what samesite: 'Lax', does maybe its important
       sameSite: "Lax",

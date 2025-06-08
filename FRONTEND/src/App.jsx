@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
+import VerifyStatus from "./components/VerifyStatus";
 // import Posts from "./pages/Posts";
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
 );
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
+const ImagesPage = lazy(() => import("./pages/ImagesPage"));
 const Trials = lazy(() => import("./pages/Trials"));
 const Posts = lazy(() => import("./pages/Posts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -40,6 +42,7 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="trials" element={<Trials />}></Route>
             <Route path="house/:id" element={<IndividualHouse />}></Route>
+            <Route path="images/:id" element={<ImagesPage />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="about-us" element={<AboutUs />}></Route>
             <Route path="contact-us" element={<ContactUs />}></Route>
@@ -58,10 +61,6 @@ function App() {
                 <Route path="liked" element={<RecentlyLiked />}></Route>
                 <Route path="profile" element={<Profile />}></Route>
                 <Route path="personal" element={<PersonalInfo />}></Route>
-                <Route
-                  path="landlord-posts"
-                  element={<Posts />}
-                ></Route>
               </Route>
 
               <Route
@@ -73,10 +72,12 @@ function App() {
               >
                 <Route path="post-house" element={<PostHouse />}></Route>
                 <Route path="post-house-2" element={<PostHouseNext />}></Route>
+                <Route path="landlord-posts" element={<Posts />}></Route>
+                <Route path="verify-vacancy/:id" element={<VerifyStatus />}></Route>
               </Route>
 
               <Route
-                element={<RequireAuthentication allowedRoles={[ROLES.admin]} />}
+                element={<RequireAuthentication allowedRoles={[ROLES.admin, ROLES.landlord]} />}
               >
                 <Route path="admin" element={<Admin />}></Route>
               </Route>

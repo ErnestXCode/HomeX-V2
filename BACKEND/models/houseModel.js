@@ -18,24 +18,48 @@ const houseSchema = mongoose.Schema(
     },
     landMarks: {
       type: String,
-      required: [true, "landMarks is required"],
     },
     landLord: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
     numOfHouses: {
-      type: Number, 
-      required: [true, 'number of houses required']
+      type: Number,
+      required: [true, "number of houses required"],
     },
     status: {
       type: String,
       enum: ["taken", "possibly_taken", "vacant"],
       default: "vacant",
     },
+    amenities: {
+      wifi: {
+        type: Boolean,
+        default: false,
+      },
+      water: {
+        type: Boolean,
+        default: false,
+      },
+      bathroom: {
+        type: Boolean,
+        default: false,
+      },
+      shower: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    updatedStatusAt: { type: Date },
     coords: {
-      type: Object
-    }
+      type: Object,
+      lat: {
+        type: Number,
+      },
+      long: {
+        type: Number,
+      },
+    },
   },
   {
     timestamps: true,
