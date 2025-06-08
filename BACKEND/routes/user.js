@@ -14,10 +14,10 @@ const ROLES_LIST = require("../config/roles_list");
 const { body } = require("express-validator");
 
 const router = express.Router();
-
+// handleAuth, verifyRoles(ROLES_LIST.admin), 
 router
   .route("/users")
-  .get(handleAuth, verifyRoles(ROLES_LIST.admin), getAllUsers)
+  .get(getAllUsers)
   .post(
     // body("email").notEmpty().withMessage("email must not be empty").isEmail(),
     // with meassage for after any function

@@ -46,11 +46,17 @@ const IndividualHouse = () => {
   if (!updatedStatusAt) return;
   const amenities = data?.amenities;
   if (!amenities) return;
+  const phoneNumber = data?.landLord?.phoneNumber;
+  if (!phoneNumber) return;
 
   const f_2 = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
   });
+
+  const handleWhatsappRedirect = (phone) => {
+    window.open(`https://wa.me/${phone}`);
+  };
 
   return (
     <>
@@ -80,18 +86,21 @@ const IndividualHouse = () => {
                 <button className="pr-4">
                   {" "}
                   {userInfo ? (
-                    <a href={`tel:${data?.landLord?.phoneNumber}`}>
+                    <a className="text-gray-300" href={`tel:${phoneNumber}`}>
                       <FaPhoneAlt />
                     </a>
                   ) : (
-                    <Link to={"/login"}>
+                    <Link className="text-gray-300" to={"/login"}>
                       <FaPhoneAlt />
                     </Link>
                   )}
                 </button>
-                <div className="text-[1.1rem]">
+                <button
+                  onClick={() => handleWhatsappRedirect(phoneNumber)}
+                  className="text-[1.15rem] text-green-500"
+                >
                   <FaWhatsapp />
-                </div>
+                </button>
               </section>
             </section>
           </section>
@@ -114,7 +123,7 @@ const IndividualHouse = () => {
                 {Object.keys(amenities).map((amenity, i) => {
                   console.log(i, amenity, Object.values(amenities)[i]);
                   return (
-                    <div className="text-base flex items-center justify-between">
+                    <div className=" flex items-center justify-between">
                       {amenity}{" "}
                       <span className="text-[0.9rem]">
                         {Object.values(amenities)[i] ? "yes" : "no"}

@@ -11,7 +11,7 @@ const handleAuth = async (req, res, next) => {
     if (!decoded)
       return res.status(400).json("Not Authorized, invalid token");
 
-    const authorizedUser = await User.findOne({email : decoded.email}, {password: false}); 
+    const authorizedUser = await User.findOne({email : decoded.email}); 
     if(!authorizedUser) return res.sendStatus(404)
     req.user = authorizedUser._doc; 
     next();

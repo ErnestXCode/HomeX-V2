@@ -49,6 +49,14 @@ const houseSchema = mongoose.Schema(
         type: Boolean,
         default: false,
       },
+      security: {
+        type: Boolean,
+        default: false,
+      },
+      electricity: {
+        type: Boolean,
+        default: false,
+      },
     },
     updatedStatusAt: { type: Date },
     coords: {

@@ -3,6 +3,9 @@ import { FaAngleLeft } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const ImagesPage = ({ images, onClick }) => {
+  const handleImage = (url) => {
+    window.open(url);
+  };
   return (
     <div className="flex flex-col">
       <button
@@ -13,7 +16,11 @@ const ImagesPage = ({ images, onClick }) => {
       </button>
       <section className="w-full flex-1 flex flex-col gap-2">
         {images.map((image) => (
-          <img src={`${apiBaseUrl}/images/${image}`} alt="" />
+          <img
+            onClick={() => handleImage(`${apiBaseUrl}/images/${image}`)}
+            src={`${apiBaseUrl}/images/${image}`}
+            alt=""
+          />
         ))}
       </section>
     </div>

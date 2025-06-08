@@ -31,6 +31,8 @@ const PostHouse = () => {
     water: false,
     bathroom: false,
     shower: false,
+    security: false,
+    electricity: false,
   };
 
   const [amenities, setAmenities] = useState(amenitiesObj);

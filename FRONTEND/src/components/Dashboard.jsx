@@ -6,6 +6,8 @@ import CustomInputBox from "./CustomInputBox";
 import SubmitButton from "./SubmitButton";
 import ViewButton from "./ViewButton";
 import BottomNav from "./BottomNav";
+import { selectCurrentUser } from "../features/users/userSlice";
+import { useSelector } from "react-redux";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Dashboard = () => {
@@ -28,10 +30,21 @@ const Dashboard = () => {
   const handleChange = (e) => {
     setArea(e.target?.value);
   };
+
+  const userInfo = useSelector(selectCurrentUser);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${apiBaseUrl}/areas`, { area });
+      const res = await axios.post(
+        `${apiBaseUrl}/areas`,
+        { area },
+        {
+          withCredentials: true,
+          headers: {
+            Authrization: `Bearer ${userInfo.accessToken}`,
+          },
+        }
+      );
       const data = res?.data;
       console.log("successful", data);
     } catch (err) {

@@ -38,7 +38,7 @@ const createUser = async (req, res) => {
       refreshToken,
     });
     const createdUser = await userCreated.save();
-    console.log('createdUser', createdUser)
+    console.log("createdUser", createdUser);
 
     const roles = Object.values(userCreated.roles).filter(Boolean);
     res
@@ -99,8 +99,35 @@ const updateUser = async (req, res) => {
   try {
     const content = req.user;
     const id = content._id;
-    const userInfo = req.body;
-    await User.findByIdAndUpdate(id, { ...content, userInfo }, { new: true });
+    const { name, oldPassword, newPassword } = req.body;
+    console.log("oldPassword, newPassword", oldPassword, newPassword);
+    let password = null;
+
+    if (oldPassword) {
+      const foundUser = await bcrypt.compare(oldPassword, content.password);
+      console.log(foundUser);
+      if (!foundUser) {
+        console.log("no match found for password");
+        return res.json("no match found for password");
+      }
+
+      // change password after veryifing existence
+      const salt = await bcrypt.genSalt();
+      password = await bcrypt.hash(newPassword, salt);
+    }
+
+    const updates = {
+      name: name || content.name,
+      password: password || content.password,
+    };
+
+    console.log(updates);
+    const result = await User.findByIdAndUpdate(
+      id,
+      { ...updates },
+      { new: true }
+    );
+    console.log(result);
     res.status(200).json("updated succesfully");
   } catch (err) {
     res.status(404).json({ message: "Failed to update user", err });

@@ -1,9 +1,10 @@
 import React from "react";
+import {FaCrosshairs } from "react-icons/fa";
 
 const Modal = ({ isOpen, onClick, children }) => {
   return (
-    <div
-      onClick={onClick}
+    <section
+      // onClick={onClick}
       className={`bg-black/50 fixed inset-0 flex flex-col justify-end 
     transition-opacity duration-300 ${
       isOpen
@@ -14,15 +15,18 @@ const Modal = ({ isOpen, onClick, children }) => {
     >
       <div
         className={`
-       text-white text-[.9rem]  mb-auto mt-auto  
-      p-4 pl-6 pr-6 transition-transform duration-300  ${
-        isOpen ? "translate-y-0" : "translate-y-full"
-      }
-      `}
+          text-white text-[.9rem]  mb-auto mt-auto  
+          p-4 pl-6 pr-6 transition-transform duration-300  ${
+            isOpen ? "translate-y-0" : "translate-y-full"
+          }
+            `}
       >
+        <button onClick={onClick} className="w-full flex justify-end pr-5 pb-2">
+          <FaCrosshairs />
+        </button>
         {children}
       </div>
-    </div>
+    </section>
   );
 };
 

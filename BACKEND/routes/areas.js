@@ -11,11 +11,11 @@ const verifyRoles = require("../middleware/verifyRoles");
 const ROLES_LIST = require("../config/roles_list");
 
 const router = express.Router();
-
+// handleAuth, verifyRoles(ROLES_LIST.admin), 
 router
-  .route("/areas")
-  .get(getAllAreas)
-  .post(handleAuth, verifyRoles(ROLES_LIST.admin), createArea);
+.route("/areas")
+.get(getAllAreas)
+.post(createArea);
 router
   .route("/areas/:id")
   .get(handleAuth, getArea)

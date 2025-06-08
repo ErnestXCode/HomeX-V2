@@ -21,6 +21,7 @@ import CustomForm from "../components/CustomForm";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import SecondaryHeader from "../components/SecondaryHeader";
+import axios from "../api/axios";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PersonalInfo = () => {
@@ -49,13 +50,66 @@ const PersonalInfo = () => {
     handleProfileData();
   }, [userInfo?.accessToken]);
 
-  const [passwordState, setPasswordState] = useState(false);
+  const [passwordStateStage1, setPasswordStateStage1] = useState(false);
+  const [passwordStateStage2, setPasswordStateStage2] = useState(false);
+  const [passwordStateStage3, setPasswordStateStage3] = useState(false);
+
+  const passwordObj = {
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  };
+
+  const [passwordChange, setPasswordChange] = useState(passwordObj);
+
+  const handleChange = (e) => {
+    setPasswordChange((prevPass) => {
+      return {
+        ...prevPass,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleOldPassword = (e) => {
+    e.preventDefault();
+    setPasswordStateStage1(false);
+    setPasswordStateStage2(true);
+    // make sure it exists in the database before proceeding later
+  };
+  const handleNewPassword = (e) => {
+    e.preventDefault();
+    setPasswordStateStage2(false);
+    setPasswordStateStage3(true);
+  };
+
+  const handleConfirmNewPassword = async(e) => {
+    e.preventDefault();
+    // confirm passwords match here
+
+    
+console.log(passwordChange)
+    try {
+      const response = await axios.put('/profile', {...passwordChange}, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json', 
+          Authorization: `Bearer ${userInfo?.accessToken}`
+        }
+      })
+      console.log(response.data)
+    } catch (err) {
+      console.log(err)
+      
+    }
+    setPasswordChange(passwordObj)
+    setPasswordStateStage3(false)
+  };
 
   return (
     <>
-    <SecondaryHeader>Personal</SecondaryHeader>
+      <SecondaryHeader>Personal</SecondaryHeader>
       <section className="bg-black flex flex-col pb-10 ">
-    
         {/* use svg in the profile pic */}
         <section className="flex flex-col bg-gray-950 items-center m-4 mt-1 p-2">
           <div
@@ -82,7 +136,7 @@ const PersonalInfo = () => {
 
           <p>email: {user?.email} </p>
 
-          <div onClick={() => setPasswordState(true)} className=" w-full">
+          <div onClick={() => setPasswordStateStage1(true)} className=" w-full">
             <ProfileButton>
               <div className="flex  gap-2 items-center">
                 <FaCreditCard />
@@ -90,11 +144,60 @@ const PersonalInfo = () => {
               </div>
             </ProfileButton>
           </div>
-          <Modal isOpen={passwordState} onClick={() => setPasswordState(false)}>
-            <CustomForm>
-              <CustomInputBox>Enter old password</CustomInputBox>
-              <CustomInputBox>Enter new password</CustomInputBox>
-              <CustomInputBox>Confirm new password</CustomInputBox>
+          <Modal
+            isOpen={passwordStateStage1}
+            onClick={() => {
+              setPasswordStateStage1(false);
+            }}
+          >
+            <CustomForm onSubmit={(e) => handleOldPassword(e)}>
+              <CustomInputBox
+                name={"oldPassword"}
+                value={passwordChange.oldPassword}
+                onChange={(e) => handleChange(e)}
+                type={"text"}
+                id={"oldPassword"}
+              >
+                Enter old password
+              </CustomInputBox>
+              <SubmitButton>Next</SubmitButton>
+            </CustomForm>
+          </Modal>
+          <Modal
+            isOpen={passwordStateStage2}
+            onClick={() => {
+              setPasswordStateStage2(false);
+            }}
+          >
+            <CustomForm onSubmit={(e) => handleNewPassword(e)}>
+              <CustomInputBox
+                name={"newPassword"}
+                value={passwordChange.newPassword}
+                onChange={(e) => handleChange(e)}
+                type={"password"}
+                id={"newPassword"}
+              >
+                Enter new password
+              </CustomInputBox>
+              <SubmitButton>Next</SubmitButton>
+            </CustomForm>
+          </Modal>
+          <Modal
+            isOpen={passwordStateStage3}
+            onClick={() => {
+              setPasswordStateStage3(false);
+            }}
+          >
+            <CustomForm onSubmit={(e) => handleConfirmNewPassword(e)}>
+              <CustomInputBox
+                name={"confirmNewPassword"}
+                value={passwordChange.confirmNewPassword}
+                onChange={(e) => handleChange(e)}
+                type={"password"}
+                id={"confirmNewPassword"}
+              >
+                Confirm new password
+              </CustomInputBox>
               <SubmitButton>Set new password</SubmitButton>
             </CustomForm>
           </Modal>
