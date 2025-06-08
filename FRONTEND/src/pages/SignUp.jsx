@@ -11,6 +11,7 @@ import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../features/users/userSlice";
+import UserAgreement from "../components/UserAgreement";
 const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
 const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
 const tenant_role = import.meta.env.VITE_TENANT_ROLE_CONSTANT;
@@ -147,10 +148,7 @@ const SignUp = () => {
               <span className="text-blue-400 underline">
                 <button onClick={openModal}>User Agreement</button>
                 <Modal isOpen={showModal} onClick={() => closeModal()}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed
-                  illum quidem, a numquam eum rerum laudantium. Maiores
-                  perferendis quidem est. Inventore aspernatur ullam optio
-                  dignissimos deleniti voluptatem iste consequuntur eum.
+                <UserAgreement />
                 </Modal>
               </span>
             </label>

@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import CarouselImage from "../components/CarouselImage";
 import ListText from "../components/ListText";
-import { FaAngleLeft, FaMap, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";import ImagesPage from "./ImagesPage";
+import { FaAngleLeft, FaMap, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import ImagesPage from "./ImagesPage";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
@@ -13,7 +14,7 @@ const IndividualHouse = () => {
   console.log(id);
   const userInfo = useSelector(selectCurrentUser);
 
- useEffect(() => {
+  useEffect(() => {
     const handleProfileData = async () => {
       try {
         const response = await fetch(`${apiBaseUrl}/houses/${id}`, {
@@ -26,7 +27,6 @@ const IndividualHouse = () => {
         });
 
         const data = await response.json();
-        console.log(data.shortLists);
         setData(data);
       } catch (err) {
         console.log("error", err);
@@ -36,15 +36,21 @@ const IndividualHouse = () => {
     handleProfileData();
   }, [userInfo?.accessToken, id]);
 
-  
   console.log(data);
 
   const [showImages, setShowImages] = useState(false);
 
-  const createdAt = data?.createdAt 
-  if(!createdAt) console.log('no created at')
-  const updatedStatusAt = data?.updatedStatusAt 
-  if(!updatedStatusAt) console.log('no created at')
+  const createdAt = data?.createdAt;
+  if (!createdAt) return;
+  const updatedStatusAt = data?.updatedStatusAt;
+  if (!updatedStatusAt) return;
+  const amenities = data?.amenities;
+  if (!amenities) return;
+
+  const f_2 = new Intl.DateTimeFormat(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   return (
     <>
@@ -94,60 +100,28 @@ const IndividualHouse = () => {
             <p>Location: {data?.area}</p>
             <p>Price: {data?.pricing}</p>
 
-            <p>
-              Posted on:
-              {data?.createdAt}
-            </p>
+            <p>Posted on: {f_2.format(new Date(createdAt.toString()))}</p>
 
-            <p>last verified on: {data?.updatedStatusAt} </p>
+            <p>
+              last updated on:{" "}
+              {f_2.format(new Date(updatedStatusAt.toString()))}{" "}
+            </p>
             <p>Status: {data?.status}</p>
             {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
             <div className="flex flex-col gap-2">
               <p className="m-4 mb-1 text-base">Amenities</p>
               <div className="flex flex-col p-3 rounded-xl gap-1 bg-gray-800/40">
-                {/* {data?.amenities.map(amenity => <div className="">{amenity}</div>)} */}
-                <p>
-                  <span className="text-base text-gray-400 ">Lorem</span> ipsum.
-                </p>
-                <p>
-                  <span className="text-base text-gray-400 ">Maxime</span> qui!
-                </p>
-                <p>
-                  <span className="text-base text-gray-400 ">Quaerat</span>{" "}
-                  consequatur.
-                </p>
-                <p>
-                  <span className="text-base text-gray-400 ">Natus</span>{" "}
-                  itaque!
-                </p>
-                <p>
-                  <span className="text-base text-gray-400 ">Natus</span>{" "}
-                  praesentium
-                </p>
-                <p>
-                  {" "}
-                  <span className="text-base text-gray-400 ">
-                    Laudantium
-                  </span>{" "}
-                  sunt.
-                </p>
-                <p>
-                  {" "}
-                  <span className="text-base text-gray-400 ">Ullam</span> eius?
-                </p>
-                <p>
-                  {" "}
-                  <span className="text-base text-gray-400 ">Eos</span>{" "}
-                  sapiente!
-                </p>
-                <p>
-                  <span className="text-base text-gray-400 ">Maiores</span> aut.
-                </p>
-                <p>
-                  {" "}
-                  <span className="text-base text-gray-400 ">Quis</span>{" "}
-                  tempore.
-                </p>
+                {Object.keys(amenities).map((amenity, i) => {
+                  console.log(i, amenity, Object.values(amenities)[i]);
+                  return (
+                    <div className="text-base flex items-center justify-between">
+                      {amenity}{" "}
+                      <span className="text-[0.9rem]">
+                        {Object.values(amenities)[i] ? "yes" : "no"}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>

@@ -7,14 +7,14 @@ const Modal = ({ isOpen, onClick, children }) => {
       className={`bg-black/50 fixed inset-0 flex flex-col justify-end 
     transition-opacity duration-300 ${
       isOpen
-        ? "opacity-100 pointer-events-auto"
+        ? "opacity-100 pointer-events-auto z-40"
         : "opacity-0 pointer-events-none"
     }
     `}
     >
       <div
         className={`
-       text-white text-[.9rem] border-t-1  min-h-[90%] bg-black rounded-t-4xl
+       text-white text-[.9rem]  mb-auto mt-auto  
       p-4 pl-6 pr-6 transition-transform duration-300  ${
         isOpen ? "translate-y-0" : "translate-y-full"
       }

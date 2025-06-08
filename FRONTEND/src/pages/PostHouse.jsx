@@ -108,6 +108,7 @@ const PostHouse = () => {
     form.append("landLord", currentUser?._id);
     form.append("numOfHouses", inputData?.numOfHouses);
     form.append("coords", JSON.stringify(coords));
+    form.append("amenities", JSON.stringify(amenities));
     images.forEach((file) =>
       form.append(
         "images",
@@ -145,7 +146,6 @@ const PostHouse = () => {
       };
     });
   };
-  
 
   return (
     <section className="pb-10">

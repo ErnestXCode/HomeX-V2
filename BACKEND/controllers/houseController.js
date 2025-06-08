@@ -67,6 +67,7 @@ const createHouse = async (req, res) => {
       images: imageIds,
       landLord: verifiedUser._id,
       coords: JSON.parse(content.coords),
+      amenities: JSON.parse(content.amenities),
       updatedStatusAt: globalDate,
     };
 
