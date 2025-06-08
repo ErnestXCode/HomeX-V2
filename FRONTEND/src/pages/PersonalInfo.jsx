@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../features/users/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import ViewButton from "../components/ViewButton";
@@ -106,6 +106,22 @@ console.log(passwordChange)
     setPasswordStateStage3(false)
   };
 
+  const dispatch = useDispatch()
+
+  const handleLogout = async () => {
+    const response = await axios.post('/logout', {}, {
+      withCredentials: true, 
+      headers: {
+        'Content-Type': 'application/json', 
+        Authorization: `Bearer ${userInfo?.accessToken}`
+      }
+    })
+
+    console.log(response.data)
+    dispatch(signInSuccess(null))
+  }
+  console.log(userInfo)
+
   return (
     <>
       <SecondaryHeader>Personal</SecondaryHeader>
@@ -130,11 +146,11 @@ console.log(passwordChange)
           </section>
         </section>
         <section className="flex flex-col ">
-          <p>name: {user?.name} </p>
+          <ProfileButton><span className="font-semibold text-gray-300">Name: </span> {user?.name} </ProfileButton>
 
-          <p>Phone number: {user?.phoneNumber}</p>
+          <ProfileButton><span className="font-semibold text-gray-300">Phone number: </span> {user?.phoneNumber}</ProfileButton>
 
-          <p>email: {user?.email} </p>
+          <ProfileButton><span className="font-semibold text-gray-300">Email: </span> {user?.email} </ProfileButton>
 
           <div onClick={() => setPasswordStateStage1(true)} className=" w-full">
             <ProfileButton>
@@ -201,10 +217,12 @@ console.log(passwordChange)
               <SubmitButton>Set new password</SubmitButton>
             </CustomForm>
           </Modal>
+            <section className="flex flex-col gap-3 p-4">
 
-          <button>Log out</button>
-          <button>delete Account</button>
+          <button onClick={handleLogout} className="w-full bg-blue-600 p-1.5  rounded-2xl">Log out</button>
+          <button className="w-full bg-gray-700 text-white p-1.5  rounded-2xl">delete Account</button>
         </section>
+            </section>
       </section>
       <BottomNav />
     </>

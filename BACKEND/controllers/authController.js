@@ -77,17 +77,21 @@ const logOutUser = async (req, res) => {
   const refreshToken = req.cookies?.jwt;
   if (!refreshToken) return res.sendStatus(204); // no content
   // find user in db with the refreshToken and clear cookie if user is not found pia
-  const foundUser = await User.findOne({ refreshToken });
+  const foundUser = await User.findOne({ refreshToken }).exec();
+
   if (!foundUser) return res.sendStatus(204);
+
+  console.log("founduser", foundUser);
+
   const newArray = foundUser.refreshToken.filter(
     (token) => token !== refreshToken
   );
-  await foundUser.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     foundUser._id,
     { refreshToken: newArray },
     { new: true }
   );
-  // cookie is not clearing
+
   res
     .clearCookie("jwt", {
       httpOnly: true,
