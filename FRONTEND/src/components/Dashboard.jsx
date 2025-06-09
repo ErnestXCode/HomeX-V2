@@ -7,6 +7,19 @@ import SubmitButton from "./SubmitButton";
 import ViewButton from "./ViewButton";
 import BottomNav from "./BottomNav";
 import { selectCurrentUser } from "../features/users/userSlice";
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  CartesianAxis,
+  YAxis,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 import { useSelector } from "react-redux";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -91,6 +104,55 @@ const Dashboard = () => {
     AllLandLords = AllUsers.filter((user) => user?.isLandlord === true)?.length;
   }
 
+  console.log(AllUsers);
+
+  const dummydata = [
+    {
+      roles: 3,
+      name: "nester",
+    },
+    {
+      roles: 2,
+      name: "kama",
+    },
+    {
+      roles: 1,
+      name: "john",
+    },
+    {
+      roles: 6,
+      name: "john",
+    },
+    {
+      roles: 10,
+      name: "john",
+    },
+    {
+      roles: 11,
+      name: "john",
+    },
+    {
+      roles: 5,
+      name: "john",
+    },
+    {
+      roles: 1,
+      name: "john",
+    },
+    {
+      roles: 13,
+      name: "john",
+    },
+    {
+      roles: 1,
+      name: "john",
+    },
+    {
+      roles: 3,
+      name: "ksos",
+    },
+  ];
+
   const userOverall = (
     <>
       <h2 className="font-semibold m-2 mt-4 text-center">
@@ -101,6 +163,20 @@ const Dashboard = () => {
         <div>Tenants : {AllTenants}</div>
         <div> Landlords :{AllLandLords}</div>
       </div>
+        <div>DUMMY DATA</div>
+        <div className="w-full p-1 pr-8 h-64">
+             <ResponsiveContainer height={"100%"} width={"100%"}>
+               <BarChart width={48} height={48} data={dummydata}>
+                 <Bar dataKey="roles" fill="#00f" />
+                 <CartesianGrid stroke="#333" strokeOpacity={"50%"} />
+                 <YAxis />
+                 <XAxis />
+                 <Tooltip />
+                 <Legend />
+               </BarChart>
+             </ResponsiveContainer>
+           </div>
+
       <h2 className="font-semibold m-2 mt-4 text-center">Create an Admin</h2>
       <CustomForm>
         <CustomInputBox>Create Admin</CustomInputBox>

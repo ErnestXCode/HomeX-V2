@@ -34,8 +34,6 @@ const Listings = () => {
   const handleFilter = async (area) => {
     try {
       setListState(area);
-      queryClient.invalidateQueries("houses");
-      console.log("fucker clicked");
     } catch (err) {
       console.log(err);
     }
@@ -71,6 +69,7 @@ const Listings = () => {
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage) {
           fetchNextPage();
+          queryClient.invalidateQueries("houses");
         }
       },
       { threshold: 0, rootMargin: "2000px" }
@@ -100,15 +99,14 @@ const Listings = () => {
   };
 
   const f = new Intl.NumberFormat(undefined, {
-    style: 'currency',
+    style: "currency",
     currency: "KSH",
   });
 
   const f_2 = new Intl.DateTimeFormat(undefined, {
-    dateStyle: 'medium', 
-    timeStyle: 'short',
-   
-  })
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   return (
     <main className="">
@@ -137,9 +135,7 @@ const Listings = () => {
               <div
                 key={item._id}
                 className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
-          // onClick={() => navigate(`house/${item._id}`)} 
-          
-
+                // onClick={() => navigate(`house/${item._id}`)}
               >
                 <section className="">
                   <CarouselImage item={item} />
@@ -147,20 +143,25 @@ const Listings = () => {
                 <section className="flex justify-between mt-4">
                   <section>
                     <ListText content={item?.area}></ListText>
-                    <ListText content={f.format(item?.pricing)}>
-                     
-                    </ListText>
+                    <ListText content={f.format(item?.pricing)}></ListText>
                     <ListText content={item?.numOfHouses}>
                       <span className="font-semibold text-gray-400">
                         Rooms available:{" "}
                       </span>{" "}
                     </ListText>
                   </section>
-              <p className={`flex items-center h-fit pt-1.5 pb-1.5 pr-4 pl-4 text-center rounded-2xl  ${item?.status === 'possibly_taken' ? 'bg-yellow-400/50' : item?.status === 'taken' ? 'bg-red-700/50' : 'bg-green-600/50'}`}>
+                  <p
+                    className={`flex items-center h-fit pt-1.5 pb-1.5 pr-4 pl-4 text-center rounded-2xl  ${
+                      item?.status === "possibly_taken"
+                        ? "bg-yellow-400/50"
+                        : item?.status === "taken"
+                        ? "bg-red-700/50"
+                        : "bg-green-600/50"
+                    }`}
+                  >
                     {item?.status}
-              </p>
+                  </p>
                   {/* <section className="flex justify-between m-3"> */}
-                 
                 </section>
 
                 {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}

@@ -7,6 +7,7 @@ const { Readable } = require("stream");
 const { getGridFSBucket, getGFS } = require("../config/db");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
+const { landlord } = require("../config/roles_list");
 
 const createHouse = async (req, res) => {
   const content = req.body;
@@ -73,7 +74,7 @@ const createHouse = async (req, res) => {
 
     const newHouse = await new House(data);
 
-    console.log(newHouse.coords)
+    console.log(newHouse.coords);
 
     await newHouse.save();
 
@@ -156,20 +157,24 @@ const getShortLists = async (req, res) => {
   try {
     const page = parseInt(req.query?.page) || 1;
     const limit = parseInt(req.query?.limit) || 10;
+    console.log("page", page);
     const housesArray = req.user.shortLists;
     if (!housesArray) return res.sendStatus(204);
-
-    // const houses = await House.find()
-    //       .sort({ createdAt: -1 })
-    //       .skip((page - 1) * limit)
-    //       .limit(limit);
 
     const allShortListsData = await Promise.all(
       housesArray.map(async (houseId) => await House.findById(houseId))
     );
-    console.log("allshortListsData", allShortListsData.length);
-    // const houses = allShortListsData.sort({ createdAt: -1 })
-    res.status(200).json(allShortListsData.reverse());
+
+    const start = (page - 1) * limit;
+    const end = start + limit;
+
+    const paginatedHouses = allShortListsData.slice(start, end);
+
+    res.status(200).json({
+      data: paginatedHouses,
+      hasMore: page * limit < allShortListsData.length,
+      nextPage: page + 1,
+    });
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
@@ -238,12 +243,28 @@ const getAllHouses = async (req, res) => {
 const getLAndlordsHouses = async (req, res) => {
   const user = req.user;
   const userId = user?._id;
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 2;
+
   const landLordListings = await House.aggregate([
     { $match: { landLord: userId } },
     { $sort: { createdAt: -1 } },
   ]);
-  console.log("landLordListings", landLordListings);
-  res.json(landLordListings).status(200);
+
+  const start = (page - 1) * limit;
+  const end = start + limit;
+
+  const paginatedPosts = landLordListings.slice(start, end);
+
+  const total = landLordListings.length;
+
+  res
+    .json({
+      data: paginatedPosts,
+      hasMore: page * limit < total,
+      nextPage: page + 1,
+    })
+    .status(200);
 };
 
 const updateHouse = async (req, res) => {

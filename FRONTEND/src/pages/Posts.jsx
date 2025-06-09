@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useState } from "react";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import { QueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useEffect } from "react";
 import CarouselImage from "../components/CarouselImage";
@@ -52,48 +52,49 @@ const Posts = () => {
 
   const loadMoreRef = useRef();
 
-  const [data, setData] = useState(null);
+  const { data, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useInfiniteQuery({
+      queryKey: ["landlordPosts"],
+      getNextPageParam: (lastPage) => {
+        return lastPage.hasMore ? lastPage.nextPage : undefined;
+      },
+      queryFn: async ({ pageParam = 1 }) => {
+        try {
+          const res = await fetch(
+            `${apiBaseUrl}/landlordHouses?page=${pageParam}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.accessToken}`,
+              },
+              credentials: "include",
+            }
+          );
+          const data = await res.json();
+          return data;
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    });
 
   useEffect(() => {
-    console.log("userInfo shortlists");
-    console.log(userInfo);
-    const fetchShortLists = async () => {
-      try {
-        const res = await fetch(`${apiBaseUrl}/landlordHouses`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo.accessToken}`,
-          },
-          credentials: "include",
-        });
-        setData(await res.json());
-      } catch (err) {
-        console.log(err);
-      }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 0, rootMargin: "2000px" }
+    );
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+    return () => {
+      if (loadMoreRef.current) observer.unobserve(loadMoreRef.current);
     };
-    fetchShortLists();
-  }, []);
-
-  console.log(data);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       if (entries[0].isIntersecting && hasNextPage) {
-  //         fetchNextPage();
-  //       }
-  //     },
-  //     { threshold: 0, rootMargin: "500px" }
-  //     // check how to make it better
-  //   );
-  //   if (loadMoreRef.current) {
-  //     observer.observe(loadMoreRef.current);
-  //   }
-  //   return () => {
-  //     if (loadMoreRef.current) observer.unobserve(loadMoreRef.current);
-  //   };
-  // });
+  });
 
   // const HouseData = HouseQueryData?.data?.data;
 
@@ -129,63 +130,72 @@ const Posts = () => {
   return (
     <main className="">
       <section className="bg-black">
-
         <Suspense fallback={<ListingsPlaceholder />}>
           {/* <DataList data={HouseData} /> */}
 
           <div className="ml-3 mr-3">
-            {data?.map((item) => (
-              <div
-                key={item?._id}
-                className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
-              >
-                <section className="">
-                  <CarouselImage item={item} />
-                </section>
+            {data?.pages.map((group, i) => {
+              return (
+                <div key={i}>
+                  {group?.data.map((item) => {
+                    return (
+                      <div
+                        key={item?._id}
+                        className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
+                      >
+                        <section className="">
+                          <CarouselImage item={item} />
+                        </section>
 
-                <ListText content={item?.area}>Location: </ListText>
-                <ListText content={item?.pricing}>Price: </ListText>
-                <ListText content={item?.landMarks}>Landmarks: </ListText>
+                        <ListText content={item?.area}>Location: </ListText>
+                        <ListText content={item?.pricing}>Price: </ListText>
+                        <ListText content={item?.landMarks}>
+                          Landmarks:{" "}
+                        </ListText>
 
-                {/* <section className="flex justify-between m-3"> */}
-                <div className="flex flex-col items-end gap-2  m-1 mt-2">
-                  <div
-                    onClick={() => navigate(`../house/${item._id}`)}
-                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                  >
-                    <FaStreetView />
-                    <p>View</p>
-                  </div>
-                  <div
-                    // onClick set status to vacant
-                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                  >
-                    <FaTicketAlt />
-                    <Link to={`/verify-vacancy/${item?._id}`}>
-                      Verify vacancy
-                    </Link>
-                  </div>
-                  <div
-                    // onClick set status to taken
-                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                  >
-                    <FaBookDead />
-                    <div onClick={() => handleTaken(item._id)}>
-                      Mark as taken
-                    </div>
-                  </div>
+                        {/* <section className="flex justify-between m-3"> */}
+                        <div className="flex flex-col items-end gap-2  m-1 mt-2">
+                          <div
+                            onClick={() => navigate(`../house/${item._id}`)}
+                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
+                          >
+                            <FaStreetView />
+                            <p>View</p>
+                          </div>
+                          <div
+                            // onClick set status to vacant
+                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
+                          >
+                            <FaTicketAlt />
+                            <Link to={`/verify-vacancy/${item?._id}`}>
+                              Verify vacancy
+                            </Link>
+                          </div>
+                          <div
+                            // onClick set status to taken
+                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
+                          >
+                            <FaBookDead />
+                            <div onClick={() => handleTaken(item._id)}>
+                              Mark as taken
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* make it so a landlord is the only guy who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
+                      </div>
+                    );
+                  })}
                 </div>
-
-                {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div
             ref={loadMoreRef}
             className="bg-black text-white font-semibold mb-39"
           >
-            {/* {isFetchingNextPage && <InitialLoader notFullPage={true} />} */}
+            {isFetchingNextPage && <InitialLoader notFullPage={true} />}
           </div>
         </Suspense>
 

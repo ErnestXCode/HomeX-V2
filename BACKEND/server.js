@@ -30,12 +30,12 @@ const corsOptions = {
   credentials: true,
 }; 
 // can add an authorized token
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :date[web] :type', {  stream: accessLogStream})) 
+// const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
+// app.use(morgan(':method :url :status :res[content-length] - :response-time ms :date[web] :type', {  stream: accessLogStream})) 
 
-morgan.token('type', (req, res) => {
-  return req.headers.authorization || req.headers.Authorization
-})
+// morgan.token('type', (req, res) => {
+//   return req.headers.authorization || req.headers.Authorization
+// })
 
 app.use(compression());
 // app.use(helmet())   inafanya sijui si same origin so inakata for now

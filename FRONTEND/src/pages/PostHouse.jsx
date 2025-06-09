@@ -205,7 +205,7 @@ const PostHouse = () => {
           num of houses
         </CustomInputBox>
         <label htmlFor="">Amenities</label>
-        <div className="flex flex-col w-50 gap-2">
+        <div className="flex flex-col gap-1">
           {Object.keys(amenities).map((amenity) => (
             <CustomCheckBox
               onChange={(e) => handleCheckBoxChange(e)}
