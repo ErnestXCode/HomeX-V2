@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 // import { useSelector } from "react-redux";
@@ -13,6 +13,15 @@ import BottomNav from "../components/BottomNav";
 import CustomForm from "../components/CustomForm";
 import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
+import {
+  FaDog,
+  FaImages,
+  FaLightbulb,
+  FaShower,
+  FaToilet,
+  FaWater,
+  FaWifi,
+} from "react-icons/fa";
 
 const PostHouse = () => {
   const navigate = useNavigate();
@@ -22,9 +31,9 @@ const PostHouse = () => {
 
   const areaRef = useRef();
 
-  useEffect(() => {
-    areaRef?.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   // areaRef?.current.focus();
+  // }, []);
 
   const amenitiesObj = {
     wifi: false,
@@ -56,9 +65,13 @@ const PostHouse = () => {
   };
 
   const [coords, setCoords] = useState(null);
+  const uploadRef = useRef();
+
+  const activateFileInput = () => {
+    uploadRef.current.click();
+  };
 
   const handleimagesChange = async (e) => {
-    e.preventDefault();
     if (e.target?.files?.length <= 3) {
       const files = Array.from(e.target.files);
       const compressedFiles = await Promise.all(
@@ -89,19 +102,24 @@ const PostHouse = () => {
       navigator.geolocation.getCurrentPosition(success, error, {
         enableHighAccuracy: true,
       });
-
-      console.log(coords);
     } else {
       throw new Error("limit of 3 exceeded");
     }
   };
+  // console.log('files', URL.createObjectURL(images[0]))
 
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
+
+    if (step !== 2) {
+      setStep((prev) => prev + 1);
+      return;
+    }
 
     const form = new FormData();
 
@@ -118,10 +136,10 @@ const PostHouse = () => {
       )
     );
     try {
-      const response = await axios.post(`/houses`, form, {
+      await axios.post(`/houses`, form, {
         withCredentials: true,
       });
-      console.log(response);
+
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -149,78 +167,118 @@ const PostHouse = () => {
     });
   };
 
+  const AmenitiesArray = [
+    <FaWifi />,
+    <FaWater />,
+    <FaToilet />,
+    <FaShower />,
+    <FaDog />,
+    <FaLightbulb />,
+  ];
+
+  console.log("inputData", inputData);
+
   return (
     <section className="pb-10">
       <SecondaryHeader>Create</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
-        <CustomInputBox
-          id={"area"}
-          inputRef={areaRef}
-          value={inputData?.area}
-          name={"area"}
-          type={"text"}
-          onChange={(e) => handleChange(e)}
-        >
-          Location
-        </CustomInputBox>
+        {step === 0 ? (
+          <>
+            <CustomInputBox
+              id={"area"}
+              inputRef={areaRef}
+              value={inputData?.area}
+              name={"area"}
+              type={"text"}
+              onChange={(e) => handleChange(e)}
+            >
+              Location
+            </CustomInputBox>
+            <CustomInputBox
+              id={"pricing"}
+              name={"pricing"}
+              value={inputData?.pricing}
+              type={"number"}
+              onChange={(e) => handleChange(e)}
+            >
+              Average Rent
+            </CustomInputBox>
+            {/* add a minimum and a maximum for these two*/}
+            <CustomInputBox
+              id={"numOfHouses"}
+              name={"numOfHouses"}
+              value={inputData?.numOfHouses}
+              type={"number"}
+              onChange={(e) => handleChange(e)}
+              // put a maximum amount of rooms a landlord can post or something
+            >
+              Number of houses available
+            </CustomInputBox>{" "}
+          </>
+        ) : step === 1 ? (
+          <>
+            <input
+              type="file"
+              onChange={handleimagesChange}
+              className="hidden pointer-events-none"
+              accept="image/*"
+              multiple
+              name=""
+              id=""
+              ref={uploadRef}
+            />
 
-        {/* style images input better */}
-        {images[0] ? (
-          <div>
-            <img
-              className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
-              src={URL.createObjectURL(images[0])}
-            />{" "}
-            {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
-          </div>
+            <div className="flex items-center flex-col gap-5">
+              <label htmlFor="" className="">
+                Upload Images
+              </label>
+              <div
+                onClick={activateFileInput}
+                className="text-base bg-gray-800 p-4 rounded-full "
+              >
+                <FaImages />
+              </div>
+            </div>
+            {images[0] && (
+              <div>
+                <img
+                  className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
+                  src={URL.createObjectURL(images[0])}
+                />{" "}
+                {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
+              </div>
+            )}
+          </>
         ) : (
-          <CustomInputBox
-            id={"images"}
-            name={"images"}
-            type={"file"}
-            isFileInput={true}
-            onChange={(e) => handleimagesChange(e)}
-          >
-            Images
-          </CustomInputBox>
+          <>
+            <label htmlFor="" className="text-center">
+              Amenities
+            </label>
+            <div className="flex flex-col gap-2 p-3 ml-5">
+              {Object.keys(amenities).map((amenity, i) => (
+                <CustomCheckBox
+                  key={i}
+                  onChange={(e) => handleCheckBoxChange(e)}
+                  id={amenity}
+                  name={amenity}
+                  value={amenity}
+                  type={"checkbox"}
+                >
+                  <div className="flex items-center gap-3">
+                    {AmenitiesArray[i]}
+                    {amenity}
+                  </div>
+                </CustomCheckBox>
+              ))}
+            </div>
+          </>
         )}
 
-        <CustomInputBox
-          id={"pricing"}
-          name={"pricing"}
-          value={inputData?.pricing}
-          type={"number"}
-          onChange={(e) => handleChange(e)}
-        >
-          Pricing
-        </CustomInputBox>
-        <CustomInputBox
-          id={"numOfHouses"}
-          name={"numOfHouses"}
-          value={inputData?.numOfHouses}
-          type={"number"}
-          onChange={(e) => handleChange(e)}
-          // put a maximum amount of rooms a landlord can post or something
-        >
-          num of houses
-        </CustomInputBox>
-        <label htmlFor="">Amenities</label>
-        <div className="flex flex-col gap-1">
-          {Object.keys(amenities).map((amenity) => (
-            <CustomCheckBox
-              onChange={(e) => handleCheckBoxChange(e)}
-              id={amenity}
-              name={amenity}
-              value={amenity}
-              type={"checkbox"}
-            >
-              {amenity}
-            </CustomCheckBox>
-          ))}
-        </div>
         {/* i dont think we will need landmarks when we have maps */}
         <div className="mt-3">
-          <SubmitButton isDisabled={loading}>Create</SubmitButton>
+          <SubmitButton isDisabled={loading}>
+            {step === 2 ? "Create" : "Next"}
+          </SubmitButton>
         </div>
       </CustomForm>
       <BottomNav />

@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const loginUser = async (req, res) => {
+     
   // const cookies = req.cookies;
   const { email, password } = req.body;
   const cookies = req.cookies;

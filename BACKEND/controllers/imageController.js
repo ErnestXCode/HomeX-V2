@@ -3,6 +3,8 @@ const { getGridFSBucket } = require("../config/db");
 const { ObjectId } = require("mongodb");
 
 const getImageByFilename = async (req, res) => {
+ 
+
   try {
     const fileId = new ObjectId(req.params.filename);
 
@@ -18,6 +20,7 @@ const getImageByFilename = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Server error" });
   }
+
 };
 
 module.exports = getImageByFilename;

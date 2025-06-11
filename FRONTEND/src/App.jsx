@@ -7,6 +7,7 @@ const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
 );
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
+const Unauthorized = lazy(() => import("./pages/Unauthorized"));
 const ImagesPage = lazy(() => import("./pages/ImagesPage"));
 const Trials = lazy(() => import("./pages/Trials"));
 const Posts = lazy(() => import("./pages/Posts")); // tengeneza apa inaanza na small letter
@@ -14,7 +15,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
 const PostHouse = lazy(() => import("./pages/PostHouse"));
-const PostHouseNext = lazy(() => import("./pages/PostHouseNext"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
@@ -49,7 +49,7 @@ function App() {
             <Route path="donate" element={<Donations />}></Route>
             <Route path="signup" element={<SignUp />}></Route>
             <Route path="help" element={<Help />}></Route>
-            <Route path="unauthorized" element={<NotFound />}></Route>
+            <Route path="unauthorized" element={<Unauthorized />}></Route>
 
             {/* protected routes */}
             <Route element={<PersistLogin />}>
@@ -71,7 +71,6 @@ function App() {
                 }
               >
                 <Route path="post-house" element={<PostHouse />}></Route>
-                <Route path="post-house-2" element={<PostHouseNext />}></Route>
                 <Route path="landlord-posts" element={<Posts />}></Route>
                 <Route path="verify-vacancy/:id" element={<VerifyStatus />}></Route>
               </Route>

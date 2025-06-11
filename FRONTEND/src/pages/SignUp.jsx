@@ -11,27 +11,32 @@ import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../features/users/userSlice";
-import UserAgreement from "../components/UserAgreement";
 const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
 const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
-const tenant_role = import.meta.env.VITE_TENANT_ROLE_CONSTANT;
 
 const SignUp = () => {
-  const navigate = useNavigate();
-  const nameRef = useRef();
-  const [showModal, setShowModal] = useState(false);
+  // navigate and dispatch initialize
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // input ref initializer
+  const nameRef = useRef();
+
+  // useEffect(() => {
+  //   nameRef.current?.focus();
+  // }, []);
+
+  // modal specify where its for exactly
+  const [showUserAgreementModal, setShowUserAgreementModal] = useState(false);
   const openModal = () => {
-    setShowModal(true);
+    setShowUserAgreementModal(true);
   };
   const closeModal = () => {
-    setShowModal(false);
+    setShowUserAgreementModal(false);
   };
 
-  useEffect(() => {
-    nameRef.current?.focus();
-  }, []);
-
+  // input state
   const inputDict = {
     name: "",
     email: "",
@@ -39,7 +44,7 @@ const SignUp = () => {
     password: "",
   };
   const [inputData, setInputData] = useState(inputDict);
-  const [isLandlord, setIsLandLord] = useState(false);
+  const [isLandlord, setIsLandLord] = useState(null);
 
   const handleChange = (e) => {
     setInputData((prevData) => {
@@ -50,14 +55,24 @@ const SignUp = () => {
       };
     });
   };
+  // use radio
   const handleCheckBoxChange = (e) => {
     setIsLandLord(e.target.checked);
   };
 
-  const dispatch = useDispatch();
+  // submit, name properly
+  const [submitState, setSubmitState] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isLandlord) setSubmitState(1);
+
+    if (submitState === 0) {
+      setSubmitState(1);
+      return;
+    }
+    // make sure number is okay and email as well after sending in backend or frontend
 
     try {
       const newUser = await axios.post(
@@ -66,11 +81,12 @@ const SignUp = () => {
           ...inputData,
           roles: isLandlord && {
             landlord: landLord_role,
+            // get rid of admin in production
             admin: admin_role,
           },
         }),
         {
-          // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad
+          // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad '/users'
           headers: {
             "Content-Type": "application/json",
           },
@@ -98,10 +114,12 @@ const SignUp = () => {
   const handleContinueToSignup = () => {
     setShowForm(true);
   };
-
   const handleCheckBoxChangeUser = (e) => {
     setAgreed(e.target.checked);
   };
+
+  console.log(isLandlord);
+
   return (
     <>
       <section className="">
@@ -109,45 +127,62 @@ const SignUp = () => {
           <SecondaryHeader>Register</SecondaryHeader>
           {showForm ? (
             <CustomForm onSubmit={(e) => handleSubmit(e)}>
-              <CustomInputBox
-                id={"name"}
-                inputRef={nameRef}
-                name={"name"}
-                value={inputData.name}
-                type={"text"}
-                onChange={(e) => handleChange(e)}
-              >
-                Name
-              </CustomInputBox>
-              <CustomInputBox
-                id={"email"}
-                name={"email"}
-                value={inputData?.email}
-                type={"email"}
-                onChange={(e) => handleChange(e)}
-              >
-                Email
-              </CustomInputBox>
-              <CustomInputBox
-                id={"phoneNumber"}
-                name={"phoneNumber"}
-                value={inputData?.phoneNumber}
-                type={"text"}
-                onChange={(e) => handleChange(e)}
-              >
-                Phone number
-              </CustomInputBox>
-              <CustomInputBox
-                id={"password"}
-                name={"password"}
-                value={inputData?.password}
-                type={"password"}
-                onChange={(e) => handleChange(e)}
-              >
-                Password
-              </CustomInputBox>
+              {submitState === 0 ? (
+                <>
+                  <CustomInputBox
+                    id={"name"}
+                    inputRef={nameRef}
+                    name={"name"}
+                    value={inputData.name}
+                    type={"text"}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    Name
+                  </CustomInputBox>
+                  <CustomInputBox
+                    id={"email"}
+                    name={"email"}
+                    value={inputData?.email}
+                    type={"email"}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    Email
+                  </CustomInputBox>
+                  <CustomInputBox
+                    id={"password"}
+                    name={"password"}
+                    value={inputData?.password}
+                    type={"password"}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    Password
+                  </CustomInputBox>
+                  <SubmitButton>
+                    {isLandlord ? "Next" : "Register"}
+                  </SubmitButton>{" "}
+                </>
+              ) : (
+                <>
+                  <CustomInputBox
+                    id={"phoneNumber"}
+                    name={"phoneNumber"}
+                    value={inputData?.phoneNumber}
+                    type={"number"}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    Phone number
+                  </CustomInputBox>
+                  <ul className="p-4 pl-10 list-disc">
+                    <li>Phone number must have an active Whatsapp account</li>
+                    <li>
+                      Phone number should be available most of the time for
+                      calls
+                    </li>
+                  </ul>
+                  <SubmitButton>Register</SubmitButton>
+                </>
+              )}
 
-              <SubmitButton>Register</SubmitButton>
               <p className="font-serif text-center text-[.8rem]">
                 Already have an account?{" "}
                 <Link
@@ -164,15 +199,31 @@ const SignUp = () => {
               isOpen={showModalTwo}
               onClick={() => handleModalAndForm()}
             >
-              <section className="flex items-center gap-4 mb-4 mt-2">
-                <CustomCheckBox
-                  name="isLandlord"
-                  value={isLandlord}
-                  onChange={(e) => handleCheckBoxChange(e)}
-                  id="isLandlord"
-                >
-                  Are you a Landlord ?{" "}
-                </CustomCheckBox>
+              <div className="text-center text-base mb-3">
+                Are You a landlord ?
+              </div>
+              <section className="mb-4 mt-2 bg-gray-900 p-2 pt-3 pb-3 rounded-2xl">
+                <section className="w-full flex items-end justify-around">
+                  <CustomCheckBox
+                    radioBtn={true}
+                    name="isLandlord"
+                    value={isLandlord}
+                    onChange={(e) => handleCheckBoxChange(e)}
+                    id="isLandlord"
+                    disableFullWidth={true}
+                  >
+                    Yes{" "}
+                  </CustomCheckBox>
+
+                  <CustomCheckBox
+                    radioBtn={true}
+                    onChange={() => setIsLandLord(false)}
+                    name="isLandlord"
+                    disableFullWidth={true}
+                  >
+                    No{" "}
+                  </CustomCheckBox>
+                </section>
               </section>
               <section className="flex justify-around items-center gap-2">
                 <CustomCheckBox
@@ -185,38 +236,49 @@ const SignUp = () => {
                     I have read and agree to accept{" "}
                     <span className="text-blue-400 underline">
                       <button onClick={openModal}>User Agreement</button>
-                      <Modal isOpen={showModal} onClick={() => closeModal()}>
-                        <div className="bg-gray-950 text-white border-t-1 rounded-3xl p-3">
-                          <div>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Est reiciendis in ullam doloribus ratione eius
-                            itaque excepturi molestiae. Ratione animi libero,
-                            voluptates suscipit enim nulla incidunt blanditiis
-                            eos exercitationem doloremque. Illum maxime porro,
-                            facere nihil exercitationem, facilis qui vel at
-                            quaerat totam numquam, pariatur voluptate quas modi
-                            nulla beatae ea. Ad molestiae earum ipsum nam odio
-                            quibusdam dolores quo eaque? Nesciunt, ver minus
-                            aliquid delectus dolore explicabo corrupti fugiat
-                            non adipisci magnam quo natus recusandae fugit
-                            voluptate consequatur maxime doloremque, culpa
-                            cumque blanditiis! Cupiditate minima at saepe illum
-                            quod.
-                          </div>
-                          <button
-                            onClick={() => setAgreed(true)}
-                            className="w-full bg-blue-600 text-white p-2 mt-4 rounded-2xl"
+                      {showUserAgreementModal && (
+                        <div className="pt-50">
+                          <Modal
+                            isOpen={showUserAgreementModal}
+                            onClick={() => closeModal()}
                           >
-                            Agree
-                          </button>
+                            <div className="bg-gray-950 text-white border-t-1 rounded-3xl p-3 ">
+                              <div>
+                                Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Est reiciendis in ullam
+                                doloribus ratione eius itaque excepturi
+                                molestiae. Ratione animi libero, voluptates
+                                suscipit enim nulla incidunt blanditiis eos
+                                exercitationem doloremque. Illum maxime porro,
+                                facere nihil exercitationem, facilis qui vel at
+                                quaerat totam numquam, pariatur voluptate quas
+                                modi nulla beatae ea. Ad molestiae earum ipsum
+                                nam odio quibusdam dolores quo eaque? Nesciunt,
+                                ver minus aliquid delectus dolore explicabo
+                                corrupti fugiat non adipisci magnam quo natus
+                                recusandae fugit voluptate consequatur maxime
+                                doloremque, culpa cumque blanditiis! Cupiditate
+                                minima at saepe illum quod.
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setAgreed(true);
+                                  setShowUserAgreementModal(false);
+                                }}
+                                className="w-full bg-blue-600 text-white p-2 mt-4 rounded-2xl"
+                              >
+                                Agree
+                              </button>
+                            </div>
+                          </Modal>
                         </div>
-                      </Modal>
+                      )}
                     </span>
                   </label>
                 </CustomCheckBox>
               </section>
               <button
-                disabled={!agreed}
+                disabled={isLandlord === null || !agreed}
                 className={`w-full p-2 bg-blue-600 mt-4 rounded-2xl disabled:bg-blue-600/50 disbaled:text-white/50`}
                 onClick={handleContinueToSignup}
               >

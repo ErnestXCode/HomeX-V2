@@ -27,7 +27,7 @@ const CustomInputBox = ({
         onChange={onChange}
         type={type}
         id={id}
-        className="bg-gray-700 text-slate-50 p-2 pl-3 m-4 mb-0 mt-0 rounded-2xl text-[.9rem]"
+        className="bg-gray-900 text-slate-50 p-2 pl-3 m-4 mb-0 mt-0 rounded-2xl text-[.9rem] focus:outine-none focus:ring-2 focus:ring-white focus:border-white"
       />
     </>
   );

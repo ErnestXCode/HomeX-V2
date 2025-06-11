@@ -27,6 +27,7 @@ const Footer = lazy(() => import("../components/Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const RecentlyLiked = () => {
+  console.time('liked')
   const navigate = useNavigate();
   const userInfo = useSelector(selectCurrentUser);
 
@@ -36,7 +37,7 @@ const RecentlyLiked = () => {
     useInfiniteQuery({
       queryKey: ["shortlist"],
       getNextPageParam: (lastPage) => {
-        console.log("lastPage", lastPage);
+        
         return lastPage.hasMore ? lastPage.nextPage : undefined;
       },
       queryFn: async ({ pageParam = 1 }) => {
@@ -74,6 +75,9 @@ const RecentlyLiked = () => {
       if (loadMoreRef.current) observer.unobserve(loadMoreRef.current);
     };
   }, [loadMoreRef?.current]);
+
+  console.timeEnd('liked')
+
 
   return (
     <main className="">

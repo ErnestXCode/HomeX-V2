@@ -26,6 +26,7 @@ const getArea = async (req, res) => {
   }
 };
 const getAllAreas = async (req, res) => {
+  
   try {
     const areas = await Area.find();
     res.status(200).json(areas);

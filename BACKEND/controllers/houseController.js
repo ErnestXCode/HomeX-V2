@@ -11,7 +11,8 @@ const { landlord } = require("../config/roles_list");
 
 const createHouse = async (req, res) => {
   const content = req.body;
-  console.log(content);
+  
+
   // if (
   //   !content.area ||
   //   !content.pricing ||
@@ -57,6 +58,7 @@ const createHouse = async (req, res) => {
         // console.log("error", file, err);
         res.status(500).json("failed to upload image", file, err);
       }
+
     }
 
     // const imagePaths = req.files.map((file) => file.filename);
@@ -74,35 +76,32 @@ const createHouse = async (req, res) => {
 
     const newHouse = await new House(data);
 
-    console.log(newHouse.coords);
+    // console.log(newHouse.coords);
 
     await newHouse.save();
 
     try {
       const d = globalDate;
-      const date = d.getDate();
-      const hour = d.getHours();
       const min = d.getMinutes();
 
       // ${hour} ${date}
       // this wil run every month on the day this house was created i want every week or something
       cron.schedule(`${min + 1} * * * *`, async () => {
         const Id = newHouse._id;
-        const updatedStatusHouse = await House.findByIdAndUpdate(
+        await House.findByIdAndUpdate(
           Id,
           { status: "possibly_taken" },
           { new: true }
         );
-        console.log("updatedHouse", updatedStatusHouse);
       });
     } catch (err) {
       console.log("error kwa cron", err);
       res.status(500).json("shida kwa cron");
     }
 
-    return res.status(200).json(newHouse);
+    res.status(200).json("success creating house");
   } catch (err) {
-    return res.status(400).json("Could not create House");
+    res.status(400).json("Could not create House");
   }
 };
 
@@ -137,7 +136,7 @@ const updateHouseStatus = async (req, res) => {
       { new: true }
     );
   });
-  console.log(house);
+
   res.json("success updating house").status(201);
 };
 
@@ -217,23 +216,6 @@ const getAllHouses = async (req, res) => {
       hasMore: page * limit < total,
       nextPage: page + 1,
     });
-    // console.time();
-    // const houses = await House.aggregate([
-
-    //   { $group: { _id: "$landLord", avgPrice: { $avg: '$pricing' } } },
-
-    //   // {$out: 'newCollection'} for storing in new collection
-
-    //   // {$project :{area: 1, priceType: {$type: '$pricing'}}}
-
-    //   // { $group: { _id: "$landLord", count: { $sum: 1 } } },
-    //   // {$match: {pricing: {$gte: 300}}},
-    //   // // {$group: {_id: '$area'}},
-    //   // // {$count: 'documentsCountedByMe'}
-    // ]);
-    // console.timeEnd();
-
-    // res.json(houses);
   } catch (error) {
     console.log("error getting all houses", error);
     res.status(400).json(error);
@@ -273,13 +255,7 @@ const updateHouse = async (req, res) => {
     return res.status(400).json({ error: "invalid request, provide an id" });
 
   const content = req.body;
-  if (
-    !content.image ||
-    !content.area ||
-    !content.pricing ||
-    !content.landMarks ||
-    !content.landLord
-  )
+  if (!content.image || !content.area || !content.pricing || !content.landLord)
     return res.status(400).json({ error: "All inputs are mandatory" });
   try {
     const updatedHouse = await House.findByIdAndUpdate(id, content, {

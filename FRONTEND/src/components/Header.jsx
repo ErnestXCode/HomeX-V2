@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { openSideNav, toggleBrowseListings } from "../features/stylings/styleSlice";
 import { useDispatch } from "react-redux";
 import SideNav from "./SideNav";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaCog, FaCogs, FaFilter, FaSearch, FaSearchDollar, FaSearchengin, FaSearchLocation, FaSearchMinus } from "react-icons/fa";
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -17,6 +17,11 @@ const Header = () => {
           <Link onClick={() => dispatch(toggleBrowseListings())} to="/">Home<span
           className="text-blue-500">X</span></Link>
         </p>
+        <section className="flex items-center gap-4">
+
+        <button className="text-white/70">
+          {/* <FaCogs /> filter */}
+        </button>
         <button
         onClick={() => dispatch(openSideNav())}
           className="text-base pr-4"
@@ -25,6 +30,7 @@ const Header = () => {
           <FaBars />
           {/* hamburger haifanyi hii side ya althomepage i wonder why */}
         </button>
+        </section>
       </section>
     </header>
     <SideNav />

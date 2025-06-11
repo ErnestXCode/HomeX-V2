@@ -7,20 +7,26 @@ const CustomCheckBox = ({
   id,
   value,
   onChange,
+  disableFullWidth,
+  defaultChecked,
+  radioBtn,
   children,
 }) => {
   return (
     <div
-      className="text-[.8rem] w-[100%] flex items-center gap-3
-    "
+      className={`text-[.8rem] flex items-center gap-3 ${
+        disableFullWidth ? "" : "w-full"
+      }}
+    `}
     >
       <input
         name={name}
         value={value}
         onChange={onChange}
+        checked={defaultChecked}
         id={id}
         // required for user agreement
-        type="checkbox"
+        type={radioBtn ? "radio" : "checkbox"}
         className="appearance-none w-3 h-3 rounded-full border-blue-500 border-1 text-white cursor-pointer
             checked:bg-blue-500"
       />

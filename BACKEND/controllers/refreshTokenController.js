@@ -1,10 +1,11 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const handleRefreshToken = async (req, res) => {
+
   const refreshToken = req.cookies?.jwt;
-  console.log("cookies", req.cookies);
+ 
   if (!refreshToken) return res.json("ii kitu si iitikie sasa").status(401); // unauthorized
   res.clearCookie("jwt", {
     sameSite: "Lax",
@@ -13,11 +14,9 @@ const handleRefreshToken = async (req, res) => {
     maxAge: 2 * 24 * 60 * 60 * 1000,
   });
 
-  
-
   // const user = await User.findById(new mongoose.Types.ObjectId('6844a8f2e467484e53846034'));
-  const user = await User.findOne({refreshToken}).exec()
-  console.log('user', user, 'refresh', refreshToken)
+  const user = await User.findOne({ refreshToken }).exec();
+  
   // refreshToken is an array and were looking for a stringp
   if (!user) {
     jwt.verify(
@@ -25,13 +24,17 @@ const handleRefreshToken = async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET,
       async (err, decoded) => {
         if (err) return res.sendStatus(403);
-        const hackedUser = await User.findOne({email : decoded.email}).exec()
-        if(!hackedUser) console.log('ni kama im hacked user')
-        const UpdatedHackedUser = await User.findByIdAndUpdate(hackedUser._id, {refreshToken : [] }, {new : true})
-        if(!UpdatedHackedUser) console.log('ni kama im hakuna updated one')
-          console.log(UpdatedHackedUser)
+        const hackedUser = await User.findOne({ email: decoded.email }).exec();
+        if (!hackedUser) console.log("ni kama im hacked user");
+        const UpdatedHackedUser = await User.findByIdAndUpdate(
+          hackedUser._id,
+          { refreshToken: [] },
+          { new: true }
+        );
+        if (!UpdatedHackedUser) console.log("ni kama im hakuna updated one");
+        console.log(UpdatedHackedUser);
       }
-    )
+    );
   }
 
   const userId = user?._id;
@@ -60,10 +63,14 @@ const handleRefreshToken = async (req, res) => {
   const newArray = [...newRefreshTokenArray, newRefreshToken];
 
   // bado sijatoa refreshToken ilikua inatumika
-  const result = await User.findByIdAndUpdate(userId, {
-    refreshToken: newArray,
-  }, {new: true});
-  console.log(result);
+  const result = await User.findByIdAndUpdate(
+    userId,
+    {
+      refreshToken: newArray,
+    },
+    { new: true }
+  );
+  
 
   const roles = Object.values(user.roles).filter(Boolean);
   const shortLists = user.shortLists;
@@ -78,7 +85,7 @@ const handleRefreshToken = async (req, res) => {
     })
     .json({ roles, accessToken, shortLists })
     .status(200);
-  
+ 
 };
 
 module.exports = { handleRefreshToken };

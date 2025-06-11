@@ -16,9 +16,6 @@ const houseSchema = mongoose.Schema(
       required: [true, "pricing is required"],
       index: true,
     },
-    landMarks: {
-      type: String,
-    },
     landLord: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

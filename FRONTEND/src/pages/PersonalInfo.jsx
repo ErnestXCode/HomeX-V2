@@ -4,7 +4,7 @@ import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 import ViewButton from "../components/ViewButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaAngleRight,
   FaCreditCard,
@@ -83,74 +83,81 @@ const PersonalInfo = () => {
     setPasswordStateStage3(true);
   };
 
-  const handleConfirmNewPassword = async(e) => {
+  const handleConfirmNewPassword = async (e) => {
     e.preventDefault();
     // confirm passwords match here
 
-    
-console.log(passwordChange)
+    console.log(passwordChange);
     try {
-      const response = await axios.put('/profile', {...passwordChange}, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json', 
-          Authorization: `Bearer ${userInfo?.accessToken}`
+      const response = await axios.put(
+        "/profile",
+        { ...passwordChange },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.accessToken}`,
+          },
         }
-      })
-      console.log(response.data)
+      );
+      console.log(response.data);
     } catch (err) {
-      console.log(err)
-      
+      console.log(err);
     }
-    setPasswordChange(passwordObj)
-    setPasswordStateStage3(false)
+    setPasswordChange(passwordObj);
+    setPasswordStateStage3(false);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const response = await axios.post('/logout', {}, {
-      withCredentials: true, 
-      headers: {
-        'Content-Type': 'application/json', 
-        Authorization: `Bearer ${userInfo?.accessToken}`
-      }
-    })
-
-    console.log(response.data)
-    dispatch(signInSuccess(null))
-  }
-  console.log(userInfo)
+    try {
+      await axios.post(
+        "/logout",
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.accessToken}`,
+          },
+        }
+      );
+      // navigate("/");
+      dispatch(signInSuccess(null));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+    // const secureEmail = (email) => {
+  //   const emailDomain = email.split(".")[1];
+  //   const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
+  //   return hiddenEmailBody;
+  // };
 
   return (
     <>
       <SecondaryHeader>Personal</SecondaryHeader>
-      <section className="bg-black flex flex-col pb-10 ">
+      <section className="bg-black flex flex-col pb-10 mt-10">
         {/* use svg in the profile pic */}
-        <section className="flex flex-col bg-gray-950 items-center m-4 mt-1 p-2">
-          <div
-            // src={profilePic}
-            alt=""
-            width={40}
-            className="rounded-full size-20 bg-gray-600  m-2"
-          ></div>
-          <section className=" mt-3 flex-1 ">
-            <p className=" mb-4 font-semibold">{user?.name}</p>
 
-            {/* <p className="text-blue-400 font-semibold ">
-              Phone number:{" "}
-              <span className="text-white font-normal font-serif ">
-                {user?.phoneNumber}
-              </span>
-            </p> */}
-          </section>
-        </section>
         <section className="flex flex-col ">
-          <ProfileButton><span className="font-semibold text-gray-300">Name: </span> {user?.name} </ProfileButton>
+          <ProfileButton>
+            <span className="font-semibold text-gray-300">Name: </span>{" "}
+            {user?.name}{" "}
+          </ProfileButton>
 
-          <ProfileButton><span className="font-semibold text-gray-300">Phone number: </span> {user?.phoneNumber}</ProfileButton>
+          <ProfileButton>
+            <span className="font-semibold text-gray-300">Phone number: </span>{" "}
+            {user?.phoneNumber}
+          </ProfileButton>
 
-          <ProfileButton><span className="font-semibold text-gray-300">Email: </span> {user?.email} </ProfileButton>
+          <ProfileButton>
+            <span className="font-semibold text-gray-300">Email: </span>{" "}
+            {user?.email}{" "}
+          </ProfileButton>
 
           <div onClick={() => setPasswordStateStage1(true)} className=" w-full">
             <ProfileButton>
@@ -217,12 +224,18 @@ console.log(passwordChange)
               <SubmitButton>Set new password</SubmitButton>
             </CustomForm>
           </Modal>
-            <section className="flex flex-col gap-3 p-4">
-
-          <button onClick={handleLogout} className="w-full bg-blue-600 p-1.5  rounded-2xl">Log out</button>
-          <button className="w-full bg-gray-700 text-white p-1.5  rounded-2xl">delete Account</button>
+          <section className="flex flex-col gap-3 p-4">
+            <button
+              onClick={handleLogout}
+              className="w-full bg-blue-600 p-1.5  rounded-2xl"
+            >
+              Log out
+            </button>
+            <button className="w-full bg-gray-700 text-white p-1.5  rounded-2xl">
+              delete Account
+            </button>
+          </section>
         </section>
-            </section>
       </section>
       <BottomNav />
     </>

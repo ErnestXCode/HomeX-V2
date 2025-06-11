@@ -66,15 +66,12 @@ const addShortLists = async (req, res) => {
   if (shortlistArray.includes(shortList)) return res.json("duplicate");
 
   const shortListsArray = user.shortLists;
-  console.log("shortlistArray", shortListsArray);
 
   user.shortLists = [...shortListsArray, shortList];
-  console.log("user again ", user);
 
-  const result = await user.save();
+  await user.save();
 
-  console.log(result);
-  res.status(200).json(result);
+  res.status(200).json("successful");
 };
 
 const getAllUsers = async (req, res) => {
@@ -87,25 +84,26 @@ const getAllUsers = async (req, res) => {
 };
 
 const getCurrentUserProfile = async (req, res) => {
+
   try {
     const profile = req.user;
     res.status(200).json(profile);
   } catch (err) {
     res.status(404).json({ message: "User not found", err });
   }
+ 
 };
 
 const updateUser = async (req, res) => {
+    
   try {
     const content = req.user;
     const id = content._id;
     const { name, oldPassword, newPassword } = req.body;
-    console.log("oldPassword, newPassword", oldPassword, newPassword);
     let password = null;
 
     if (oldPassword) {
       const foundUser = await bcrypt.compare(oldPassword, content.password);
-      console.log(foundUser);
       if (!foundUser) {
         console.log("no match found for password");
         return res.json("no match found for password");
@@ -121,17 +119,18 @@ const updateUser = async (req, res) => {
       password: password || content.password,
     };
 
-    console.log(updates);
     const result = await User.findByIdAndUpdate(
       id,
       { ...updates },
       { new: true }
     );
-    console.log(result);
+    
     res.status(200).json("updated succesfully");
   } catch (err) {
     res.status(404).json({ message: "Failed to update user", err });
   }
+  
+
 };
 
 const deleteUser = async (req, res) => {

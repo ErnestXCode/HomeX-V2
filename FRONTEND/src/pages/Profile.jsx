@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
 import RecentlyLiked from "./RecentlyLiked";
 import Posts from "./Posts";
@@ -26,48 +26,28 @@ import CustomForm from "../components/CustomForm";
 import CustomInputBox from "../components/CustomInputBox";
 import SecondaryHeader from "../components/SecondaryHeader";
 import axios from "../api/axios";
+import {
+  selectCurrentProfile,
+  addProfilePic,
+} from "../features/stylings/styleSlice";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
+  console.time('profile')
+  
+  const userProfile = useSelector(selectCurrentProfile);
+  const [scr, setScr] = useState(userProfile);
+
+  // useEffect(() => {
+  //   const image = JSON.parse(localStorage.getItem("profileImg"));
+  //   if (image) setScr(scr);
+  // }, [scr]);
+
   const userInfo = useSelector(selectCurrentUser);
 
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  const handleLogout = async () => {
-    try {
-      const res = await fetch(`${apiBaseUrl}/logout`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-      await res.json();
-      // dispatch(signInSuccess(null));
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
-  // const handleDelete = async () => {
-  //   try {
-  //     const res = await fetch(`${apiBaseUrl}/profile`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${userInfo?.accessToken}`,
-  //       },
-  //       credentials: "include",
-  //     });
-  //     await res.json();
-  //     // dispatch(signInSuccess(null));
-  //     navigate("/");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   const [usernameState, setUsernameState] = useState(false);
   useEffect(() => {
     const handleProfileData = async () => {
@@ -83,7 +63,7 @@ const Profile = () => {
 
         const data = await response.json();
         console.log(data.shortLists);
-        setName('')
+        setName("");
         setUser(data);
       } catch (err) {
         console.log("error", err);
@@ -93,11 +73,6 @@ const Profile = () => {
     handleProfileData();
   }, [userInfo?.accessToken, usernameState]);
 
-  // const secureEmail = (email) => {
-  //   const emailDomain = email.split(".")[1];
-  //   const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
-  //   return hiddenEmailBody;
-  // };
 
   // const [visibilityState, setVisibilityState] = useState(true);
   const visibilityRef = useRef();
@@ -137,12 +112,38 @@ const Profile = () => {
       );
       const data = response.data;
       console.group(data);
-      setUsernameState(false)
-      
+      setUsernameState(false);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const profileRef = useRef();
+  const dispatch = useDispatch();
+
+  const handleProfileImage = () => {
+    profileRef.current.click();
+  };
+
+  const handleProfileImageChange = (e) => {
+    setScr(e.target.files[0]);
+    dispatch(addProfilePic(scr));
+  };
+
+  const [showProfileImg, setShowProfileImg] = useState(false);
+  const handleShowImage = () => {
+    if (!scr) return;
+
+    setShowProfileImg(true);
+    // dispatch(addProfilePic(scr));
+  };
+
+  const showMoreImage = (url) => {
+    window.open(url, "_blank");
+  };
+
+  const imageRef = useRef();
+  console.timeEnd('profile')
 
   return (
     <>
@@ -153,16 +154,65 @@ const Profile = () => {
           "items-center p-4 flex flex-col  justify-center gap-3 transition-opacity duration-500"
         }
       >
-        <section className=" bg-gray-700 p-10 rounded-full relative">
-          <div className="absolute bottom-0 right-0 bg-gray-500 p-2 rounded-full">
-            <FaCamera />
-          </div>
-        </section>
+        <input
+          type="file"
+          onChange={handleProfileImageChange}
+          className="hidden pointer-events-none"
+          accept="image/*"
+          name=""
+          id=""
+          ref={profileRef}
+        />
+        {!scr ? (
+          <section className=" bg-gray-800 p-10 rounded-full relative ">
+            <div
+              onClick={handleProfileImage}
+              className="absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full"
+            >
+              <FaCamera />
+            </div>
+          </section>
+        ) : (
+          <>
+            <div className="h-20 w-20 rounded-full relative">
+              <img
+                onClick={handleShowImage}
+                src={URL.createObjectURL(scr)}
+                alt=""
+                className="w-full h-full rounded-full object-cover"
+              />
+              <div
+                onClick={handleProfileImage}
+                className="absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full"
+              >
+                <FaCamera />
+              </div>
+            </div>
+
+            <Modal
+              isOpen={showProfileImg}
+              onClick={() => setShowProfileImg(false)}
+            >
+              
+                <img
+                  onClick={() => showMoreImage(URL.createObjectURL(scr))}
+                  className="w-full h-64 object-cover"
+                  src={URL.createObjectURL(scr)}
+                />
+            
+            </Modal>
+          </>
+        )}
 
         <section className="flex items-center gap-3">
           <p>{user?.name}</p>
-          <section className="text-white/70">
-            <div onClick={() => setUsernameState(true)}>
+          <section className="text-white/70 flex">
+            <div
+              onClick={() => {
+                setUsernameState(true);
+                imageRef.current.focus();
+              }}
+            >
               <div className="flex  gap-2 items-center">
                 <FaPenAlt />
               </div>
@@ -173,6 +223,7 @@ const Profile = () => {
             >
               <CustomForm onSubmit={(e) => handleSubmit(e)}>
                 <CustomInputBox
+                  inputRef={imageRef}
                   name={"name"}
                   value={name}
                   onChange={(e) => handleChange(e)}
@@ -190,19 +241,25 @@ const Profile = () => {
       <nav className="sticky top-0 bg-black z-30 p-2">
         <ul className="flex items-center justify-around p-2">
           <li
-            className="cursor-pointer"
+            className={`cursor-pointer text-white/50 transition-all duration-300 ${
+              profileState === "info" && "text-white/100 font-semibold"
+            }`}
             onClick={() => setProfileState("info")}
           >
             Info
           </li>
           <li
-            className="cursor-pointer"
+            className={`cursor-pointer text-white/50 transition-all duration-300 ${
+              profileState === "shortlist" && "text-white/100 font-semibold"
+            }`}
             onClick={() => setProfileState("shortlist")}
           >
             Shortlists
           </li>
           <li
-            className="cursor-pointer"
+            className={`cursor-pointer text-white/50 transition-all duration-300 ${
+              profileState === "posts" && "text-white/100 font-semibold"
+            }`}
             onClick={() => setProfileState("posts")}
           >
             Posts
@@ -258,11 +315,6 @@ const Profile = () => {
                   Help
                 </div>
               </ProfileButton>
-              {/* modal or link */}
-
-              {/* <ViewButton white={true} onClick={() => handleDelete()}>
-              Delete Account
-            </ViewButton> */}
             </section>
           </section>
           <BottomNav />

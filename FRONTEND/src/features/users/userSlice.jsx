@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: {}
+  currentUser: {},
+  profile: 'null',
 };
 
 const userSlice = createSlice({
@@ -14,9 +15,12 @@ const userSlice = createSlice({
     logOutUser: (state) => {
       state.currentUser = null;
     },
+   
   },
 });
 
 export const { signInSuccess, logOutUser } = userSlice.actions;
+// export const selectCurrentProfile = (state) => state.user.profile; // Corrected selector
 export const selectCurrentUser = (state) => state.user.currentUser; // Corrected selector
+// export const selectCurrentProfile = (state) => state.user.currentUser; // Corrected selector
 export default userSlice.reducer;
