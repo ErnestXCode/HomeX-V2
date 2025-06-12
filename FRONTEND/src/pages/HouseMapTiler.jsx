@@ -2,7 +2,7 @@ import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const HouseMapTiler = ({coords}) => {
+const HouseMapTiler = ({}) => {
   const center = { lat: 0.480933615528359, lng: 35.29814997853885 };
   const zoom = 9;
 
