@@ -18,7 +18,7 @@ const ROLES_LIST = require("../config/roles_list");
 const router = express.Router();
 
 router.route("/houses").get(getAllHouses).post(
-  // handleAuth,
+  handleAuth,
   // verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
   upload.array("images", 3),
   createHouse

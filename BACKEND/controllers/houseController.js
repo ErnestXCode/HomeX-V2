@@ -22,9 +22,9 @@ const createHouse = async (req, res) => {
   //   return res.status(400).json({ error: "All inputs are mandatory" });
   // }
   try {
-    const refreshToken = req.cookies?.jwt;
+    // const refreshToken = req.cookies?.jwt;
 
-    const verifiedUser = await User.findOne({ refreshToken }).exec();
+    const verifiedUser = req.user
 
     if (!verifiedUser) return res.status(400).json("user not authorized");
     if (!req.files) return res.status(400).json("image required");
