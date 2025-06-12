@@ -137,6 +137,9 @@ const PostHouse = () => {
     );
     try {
       await axios.post(`/houses`, form, {
+        headers: {
+          Authorization: `Bearer ${currentUser?.accessToken}`,
+        },
         withCredentials: true,
       });
 
