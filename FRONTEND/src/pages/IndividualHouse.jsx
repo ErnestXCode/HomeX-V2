@@ -153,7 +153,7 @@ const handleWhatsappRedirect = (phone) => {
           </section>
           <div className="text-base flex flex-1 items-end justify-center p-4 sticky bottom-0">
             <button className="bg-gray-800 p-2 rounded-xl w-20 flex justify-center items-center gap-2">
-              <FaMap />
+             <Link to='/map'> <FaMap /></Link>
             </button>
           </div>
         </div>

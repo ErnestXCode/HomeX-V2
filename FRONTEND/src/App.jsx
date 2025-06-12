@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import InitialLoader from "./components/InitialLoader";
 import VerifyStatus from "./components/VerifyStatus";
+import HouseMapTiler from "./pages/HouseMapTiler";
 // import Posts from "./pages/Posts";
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
@@ -49,6 +50,7 @@ function App() {
             <Route path="donate" element={<Donations />}></Route>
             <Route path="signup" element={<SignUp />}></Route>
             <Route path="help" element={<Help />}></Route>
+            <Route path="map" element={<HouseMapTiler />}></Route>
             <Route path="unauthorized" element={<Unauthorized />}></Route>
 
             {/* protected routes */}
