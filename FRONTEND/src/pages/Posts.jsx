@@ -23,6 +23,7 @@ import {
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import SecondaryHeader from "../components/SecondaryHeader";
+import HouseCards from "../components/HouseCards";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
 const Footer = lazy(() => import("../components/Footer"));
@@ -107,102 +108,25 @@ const Posts = () => {
   //   }
   // };
 
-  const handleTaken = async (id) => {
-    // make an api call
-    try {
-      const res = await fetch(`${apiBaseUrl}/verify?id=${id}`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo?.accessToken}`,
-        },
-      });
-
-      const data = await res.json();
-      console.log(data);
-      navigate(-1);
-    } catch (err) {
-      console.log("error", err);
-    }
-  };
-
   return (
-    <main className="">
-      <section className="bg-black">
-        <Suspense fallback={<ListingsPlaceholder />}>
-          {/* <DataList data={HouseData} /> */}
+    <>
+      <HouseCards
+        data={data}
+        posts={true}
+        apiBaseUrl={apiBaseUrl}
+        userInfo={userInfo}
+      />
+      <div
+        ref={loadMoreRef}
+        className="bg-black text-white font-semibold mb-39"
+      >
+        {isFetchingNextPage && <InitialLoader notFullPage={true} />}
+      </div>
 
-          <div className="ml-3 mr-3">
-            {data?.pages.map((group, i) => {
-              return (
-                <div key={i}>
-                  {group?.data.map((item) => {
-                    return (
-                      <div
-                        key={item?._id}
-                        className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
-                      >
-                        <section className="">
-                          <CarouselImage item={item} />
-                        </section>
+      <Footer />
 
-                        <ListText content={item?.area}>Location: </ListText>
-                        <ListText content={item?.pricing}>Price: </ListText>
-                        <ListText content={item?.landMarks}>
-                          Landmarks:{" "}
-                        </ListText>
-
-                        {/* <section className="flex justify-between m-3"> */}
-                        <div className="flex flex-col items-end gap-2  m-1 mt-2">
-                          <div
-                            onClick={() => navigate(`../house/${item._id}`)}
-                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                          >
-                            <FaStreetView />
-                            <p>View</p>
-                          </div>
-                          <div
-                            // onClick set status to vacant
-                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                          >
-                            <FaTicketAlt />
-                            <Link to={`/verify-vacancy/${item?._id}`}>
-                              Verify vacancy
-                            </Link>
-                          </div>
-                          <div
-                            // onClick set status to taken
-                            className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                          >
-                            <FaBookDead />
-                            <div onClick={() => handleTaken(item._id)}>
-                              Mark as taken
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* make it so a landlord is the only guy who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-
-          <div
-            ref={loadMoreRef}
-            className="bg-black text-white font-semibold mb-39"
-          >
-            {isFetchingNextPage && <InitialLoader notFullPage={true} />}
-          </div>
-        </Suspense>
-
-        <Footer />
-      </section>
       <BottomNav />
-    </main>
+    </>
   );
 };
 

@@ -55,8 +55,11 @@ const IndividualHouse = () => {
   });
 
   const handleWhatsappRedirect = (phone) => {
-    window.open(`https://wa.me/${phone}`);
-  };
+  const cleanedPhone = phone.replace(/\D/g, ''); // Only digits
+  const message = encodeURIComponent("Hello, I'd like to chat with you.");
+  window.open(`https://wa.me/${cleanedPhone}?text=${message}`, '_blank', 'noopener,noreferrer');
+};
+
 
   return (
     <>

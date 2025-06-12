@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
-import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import ViewButton from "../components/ViewButton";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FaAngleRight,
-  FaCreditCard,
-  FaDigitalTachograph,
-  FaHeart,
-  FaMoneyBillAlt,
-  FaPenAlt,
-  FaTeamspeak,
-  FaUser,
-} from "react-icons/fa";
+import { FaCreditCard } from "react-icons/fa";
 import ProfileButton from "../components/ProfileButtons";
 import Modal from "../components/Modal";
 import CustomForm from "../components/CustomForm";
@@ -110,8 +98,6 @@ const PersonalInfo = () => {
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -131,11 +117,15 @@ const PersonalInfo = () => {
       console.log(err);
     }
   };
-    // const secureEmail = (email) => {
-  //   const emailDomain = email.split(".")[1];
-  //   const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
-  //   return hiddenEmailBody;
-  // };
+  const secureEmail = (email) => {
+    // if (!phone) {
+    const emailDomain = email.split(".")[1];
+    const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
+    return hiddenEmailBody;
+    // }
+    // const first_three = phone.slice(0, 4)
+    // return phone number, i dont like i am doing this in the frontend
+  };
 
   return (
     <>
@@ -156,7 +146,7 @@ const PersonalInfo = () => {
 
           <ProfileButton>
             <span className="font-semibold text-gray-300">Email: </span>{" "}
-            {user?.email}{" "}
+            {secureEmail(user?.email)}{" "}
           </ProfileButton>
 
           <div onClick={() => setPasswordStateStage1(true)} className=" w-full">

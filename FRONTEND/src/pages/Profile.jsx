@@ -10,15 +10,12 @@ import Posts from "./Posts";
 
 import ProfileButton from "../components/ProfileButtons";
 import {
-  FaBookmark,
   FaCamera,
-  FaCreditCard,
   FaDigitalTachograph,
   FaHandsHelping,
   FaMoneyBillAlt,
   FaPenAlt,
   FaTeamspeak,
-  FaToolbox,
   FaUser,
 } from "react-icons/fa";
 import Modal from "../components/Modal";
@@ -34,15 +31,9 @@ import {
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
-  console.time('profile')
-  
   const userProfile = useSelector(selectCurrentProfile);
-  const [scr, setScr] = useState(userProfile);
-
-  // useEffect(() => {
-  //   const image = JSON.parse(localStorage.getItem("profileImg"));
-  //   if (image) setScr(scr);
-  // }, [scr]);
+  const [profileImg, setProfileImg] = useState(userProfile);
+  const [profileIsVisible, setProfileIsVisible] = useState(true);
 
   const userInfo = useSelector(selectCurrentUser);
 
@@ -73,21 +64,20 @@ const Profile = () => {
     handleProfileData();
   }, [userInfo?.accessToken, usernameState]);
 
-
   // const [visibilityState, setVisibilityState] = useState(true);
   const visibilityRef = useRef();
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     if (!entries[0].isIntersecting) {
-  //       setVisibilityState(false);
-  //       console.log("intersecting");
-  //     } else {
-  //       setVisibilityState(true);
-  //     }
-  //   });
-  //   observer.observe(visibilityRef.current);
-  // });
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) {
+        setProfileIsVisible(false);
+        console.log("intersecting");
+      } else {
+        setProfileIsVisible(true);
+      }
+    });
+    observer.observe(visibilityRef.current);
+  });
   const [profileState, setProfileState] = useState("info");
   const [name, setName] = useState("");
 
@@ -126,16 +116,16 @@ const Profile = () => {
   };
 
   const handleProfileImageChange = (e) => {
-    setScr(e.target.files[0]);
-    dispatch(addProfilePic(scr));
+    setProfileImg(e.target.files[0]);
+    dispatch(addProfilePic(profileImg));
   };
 
   const [showProfileImg, setShowProfileImg] = useState(false);
   const handleShowImage = () => {
-    if (!scr) return;
+    if (!profileImg) return;
 
     setShowProfileImg(true);
-    // dispatch(addProfilePic(scr));
+    // dispatch(addProfilePic(profileImg));
   };
 
   const showMoreImage = (url) => {
@@ -143,16 +133,16 @@ const Profile = () => {
   };
 
   const imageRef = useRef();
-  console.timeEnd('profile')
 
   return (
     <>
       {" "}
       <SecondaryHeader>{profileState}</SecondaryHeader>
+      <div ref={visibilityRef} className="bg-white size-5 rounded-full"></div>
       <section
-        className={
-          "items-center p-4 flex flex-col  justify-center gap-3 transition-opacity duration-500"
-        }
+        className={`  items-center p-4 flex flex-col  justify-center gap-3 transition-all ${
+          !profileIsVisible && "duration-700  fixed z-40 top-10 right-0"
+        } `}
       >
         <input
           type="file"
@@ -163,27 +153,40 @@ const Profile = () => {
           id=""
           ref={profileRef}
         />
-        {!scr ? (
-          <section className=" bg-gray-800 p-10 rounded-full relative ">
+        {!profileImg ? (
+          //
+          <section
+            className={`bg-gray-800  rounded-full relative ${
+              profileIsVisible ? "p-10" : "size-10"
+            }`}
+          >
             <div
               onClick={handleProfileImage}
-              className="absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full"
+              className={`absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full ${
+                !profileIsVisible && "opacity-0 pointer-events-none"
+              }`}
             >
               <FaCamera />
             </div>
           </section>
         ) : (
           <>
-            <div className="h-20 w-20 rounded-full relative">
+            <div
+              className={`rounded-full relative ${
+                profileIsVisible ? "h-20 w-20 " : "h-10 w-10"
+              }`}
+            >
               <img
                 onClick={handleShowImage}
-                src={URL.createObjectURL(scr)}
+                src={URL.createObjectURL(profileImg)}
                 alt=""
                 className="w-full h-full rounded-full object-cover"
               />
               <div
                 onClick={handleProfileImage}
-                className="absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full"
+                className={`absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full ${
+                  !profileIsVisible && "opacity-0 pointer-events-none"
+                }`}
               >
                 <FaCamera />
               </div>
@@ -193,18 +196,21 @@ const Profile = () => {
               isOpen={showProfileImg}
               onClick={() => setShowProfileImg(false)}
             >
-              
-                <img
-                  onClick={() => showMoreImage(URL.createObjectURL(scr))}
-                  className="w-full h-64 object-cover"
-                  src={URL.createObjectURL(scr)}
-                />
-            
+              <img
+                onClick={() => showMoreImage(URL.createObjectURL(profileImg))}
+                className="w-full h-64 object-cover"
+                src={URL.createObjectURL(profileImg)}
+              />
             </Modal>
           </>
         )}
 
-        <section className="flex items-center gap-3">
+        {/* flex */}
+        <section
+          className={`flex items-center gap-3 ${
+            !profileIsVisible && "opacity-0 pointer-events-none"
+          }`}
+        >
           <p>{user?.name}</p>
           <section className="text-white/70 flex">
             <div

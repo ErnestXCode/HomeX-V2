@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CustomInputBox from "../components/CustomInputBox";
@@ -11,21 +11,25 @@ import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../features/users/userSlice";
+import { useEffect } from "react";
 const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
 const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
 
 const SignUp = () => {
-  // navigate and dispatch initialize
 
+  // states and vars
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // input ref initializer
   const nameRef = useRef();
+  
+  const [submitState, setSubmitState] = useState(0);
+  const [showForm, setShowForm] = useState(false);
+  const [showModalTwo, setShowModalTwo] = useState(true);
+  const [agreed, setAgreed] = useState(false);
 
-  // useEffect(() => {
-  //   nameRef.current?.focus();
-  // }, []);
+  useEffect(() => {
+    if (showForm) nameRef.current?.focus();
+  }, [showForm]);
 
   // modal specify where its for exactly
   const [showUserAgreementModal, setShowUserAgreementModal] = useState(false);
@@ -61,7 +65,6 @@ const SignUp = () => {
   };
 
   // submit, name properly
-  const [submitState, setSubmitState] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -101,10 +104,6 @@ const SignUp = () => {
       console.error("Error:", err.message);
     }
   };
-
-  const [showForm, setShowForm] = useState(false);
-  const [showModalTwo, setShowModalTwo] = useState(true);
-  const [agreed, setAgreed] = useState(false);
 
   const handleModalAndForm = () => {
     setShowModalTwo(false);
@@ -164,6 +163,7 @@ const SignUp = () => {
               ) : (
                 <>
                   <CustomInputBox
+                    inputRef={nameRef}
                     id={"phoneNumber"}
                     name={"phoneNumber"}
                     value={inputData?.phoneNumber}

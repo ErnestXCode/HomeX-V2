@@ -13,21 +13,17 @@ import InitialLoader from "../components/InitialLoader";
 import ListingsPlaceholder from "../components/ListingsPlaceholder";
 import FilterButton from "../components//FilterButton";
 import axios from "../api/axios";
-import {
-  FaBookmark,
-  FaDumpster,
-  FaRemoveFormat,
-  FaStreetView,
-} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
-import SecondaryHeader from "../components/SecondaryHeader";
+
+import HouseCards from "../components/HouseCards";
+import { FaDumpster } from "react-icons/fa";
 
 const Footer = lazy(() => import("../components/Footer"));
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const RecentlyLiked = () => {
-  console.time('liked')
+  console.time("liked");
   const navigate = useNavigate();
   const userInfo = useSelector(selectCurrentUser);
 
@@ -37,7 +33,6 @@ const RecentlyLiked = () => {
     useInfiniteQuery({
       queryKey: ["shortlist"],
       getNextPageParam: (lastPage) => {
-        
         return lastPage.hasMore ? lastPage.nextPage : undefined;
       },
       queryFn: async ({ pageParam = 1 }) => {
@@ -76,65 +71,23 @@ const RecentlyLiked = () => {
     };
   }, [loadMoreRef?.current]);
 
-  console.timeEnd('liked')
-
+  console.timeEnd("liked");
 
   return (
-    <main className="">
-      <section className="bg-black">
-        <Suspense fallback={<ListingsPlaceholder />}>
-          {/* <DataList data={HouseData} /> */}
-          <div className="ml-3 mr-3">
-            {data?.pages.map((group, i) => {
-              return (
-                <div key={i}>
-                  {group.data.map((item) => (
-                    <div
-                      key={item?._id}
-                      className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
-                    >
-                      <section className="">
-                        <CarouselImage item={item} />
-                      </section>
+    <>
+     
+      <HouseCards data={data} shortlist={true}/>
+      <div
+        ref={loadMoreRef}
+        className="bg-black text-white font-semibold mb-39"
+      >
+        {isFetchingNextPage && <InitialLoader notFullPage={true} />}
+      </div>
 
-                      <ListText content={item?.area}>Location: </ListText>
-                      <ListText content={item?.pricing}>Price: </ListText>
-                      <ListText content={item?.landMarks}>Landmarks: </ListText>
+      <Footer />
 
-                      {/* <section className="flex justify-between m-3"> */}
-                      <div className="flex flex-col items-end gap-2  m-1 mt-2">
-                        <button
-                          onClick={() => navigate(`../house/${item._id}`)}
-                          className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800"
-                        >
-                          <FaStreetView />
-                          <p>View</p>
-                        </button>
-                        <button className="flex items-center  p-2 gap-2 w-25 justify-end rounded-xl active:bg-gray-800">
-                          <FaDumpster />
-                          <p>Remove</p>
-                        </button>
-                      </div>
-
-                      {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-          <div
-            ref={loadMoreRef}
-            className="bg-black text-white font-semibold mb-39"
-          >
-            {isFetchingNextPage && <InitialLoader notFullPage={true} />}
-          </div>
-        </Suspense>
-
-        <Footer />
-      </section>
       <BottomNav />
-    </main>
+    </>
   );
 };
 

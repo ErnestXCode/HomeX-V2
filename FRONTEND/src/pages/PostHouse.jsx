@@ -22,6 +22,7 @@ import {
   FaWater,
   FaWifi,
 } from "react-icons/fa";
+import { useEffect } from "react";
 
 const PostHouse = () => {
   const navigate = useNavigate();
@@ -30,10 +31,12 @@ const PostHouse = () => {
   if (!currentUser) navigate("/signup");
 
   const areaRef = useRef();
+  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(0);
 
-  // useEffect(() => {
-  //   // areaRef?.current.focus();
-  // }, []);
+  useEffect(() => {
+    if (step === 0) areaRef?.current.focus();
+  }, [step]);
 
   const amenitiesObj = {
     wifi: false,
@@ -107,9 +110,6 @@ const PostHouse = () => {
     }
   };
   // console.log('files', URL.createObjectURL(images[0]))
-
-  const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
