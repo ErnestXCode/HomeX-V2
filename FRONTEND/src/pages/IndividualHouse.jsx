@@ -46,8 +46,6 @@ const IndividualHouse = () => {
   if (!updatedStatusAt) return;
   const amenities = data?.amenities;
   if (!amenities) return;
-  const phoneNumber = data?.landLord?.phoneNumber;
-  if (!phoneNumber) return;
 
   const f_2 = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -55,11 +53,14 @@ const IndividualHouse = () => {
   });
 
   const handleWhatsappRedirect = (phone) => {
-  const cleanedPhone = phone.replace(/\D/g, ''); // Only digits
-  const message = encodeURIComponent("Hello, I'd like to chat with you.");
-  window.open(`https://wa.me/${cleanedPhone}?text=${message}`, '_blank', 'noopener,noreferrer');
-};
-
+    const cleanedPhone = phone.replace(/\D/g, ""); // Only digits
+    const message = encodeURIComponent("Hello, I'd like to chat with you.");
+    window.open(
+      `https://wa.me/${cleanedPhone}?text=${message}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
 
   return (
     <>
@@ -89,7 +90,10 @@ const IndividualHouse = () => {
                 <button className="pr-4">
                   {" "}
                   {userInfo ? (
-                    <a className="text-gray-300" href={`tel:${phoneNumber}`}>
+                    <a
+                      className="text-gray-300"
+                      href={`tel:${data?.landLord?.phoneNumber}`}
+                    >
                       <FaPhoneAlt />
                     </a>
                   ) : (
@@ -99,7 +103,9 @@ const IndividualHouse = () => {
                   )}
                 </button>
                 <button
-                  onClick={() => handleWhatsappRedirect(phoneNumber)}
+                  onClick={() =>
+                    handleWhatsappRedirect(data?.landLord?.phoneNumber)
+                  }
                   className="text-[1.15rem] text-green-500"
                 >
                   <FaWhatsapp />
