@@ -52,15 +52,23 @@ const IndividualHouse = () => {
     timeStyle: "short",
   });
 
-  const handleWhatsappRedirect = (phone) => {
-    const cleanedPhone = phone.replace(/\D/g, ""); // Only digits
-    const message = encodeURIComponent("Hello, I'd like to chat with you.");
-    window.open(
-      `https://wa.me/${cleanedPhone}?text=${message}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
+const handleWhatsappRedirect = (phone) => {
+  let cleanedPhone = phone.replace(/\D/g, ''); // Remove non-digits
+
+  // If it starts with 0, replace with 254
+  if (cleanedPhone.startsWith('0')) {
+    cleanedPhone = '254' + cleanedPhone.slice(1);
+  }
+
+  // If it doesn’t start with 254 and isn’t already a full number, warn user
+  if (!cleanedPhone.startsWith('254')) {
+    alert("Please enter a valid Kenyan phone number (starting with 07 or 254)");
+    return;
+  }
+
+  window.open(`https://wa.me/${cleanedPhone}`, '_blank', 'noopener,noreferrer');
+};
+
 
   return (
     <>
