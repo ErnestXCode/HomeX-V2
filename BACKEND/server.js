@@ -45,6 +45,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/ping', (req, res) => {
+  res.status(200).json({ status: 'ok', time: new Date().toISOString() });
+});
+
 app.use("/", require("./routes/houses"));
 app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/images"));
