@@ -138,6 +138,7 @@ const Profile = () => {
     <>
       {" "}
       <SecondaryHeader>{profileState}</SecondaryHeader>
+      {user?.phoneNumber}
       <div ref={visibilityRef} className="bg-white size-5 rounded-full"></div>
       <section
         className={`  items-center p-4 flex flex-col  justify-center gap-3 transition-all ${
