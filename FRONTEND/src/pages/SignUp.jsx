@@ -199,6 +199,7 @@ const SignUp = () => {
               isOpen={showModalTwo}
               onClick={() => handleModalAndForm()}
             >
+          
               <div className="text-center text-base mb-3">
                 Are You a landlord ?
               </div>

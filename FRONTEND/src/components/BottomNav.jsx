@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import NavElements from "./NavElements";
 import {
-
   FaBook,
   FaHome,
+  FaInfoCircle,
   FaPersonBooth,
   FaTools,
 } from "react-icons/fa";
+import { memo } from "react";
 
-
-const BottomNav = () => {
+const BottomNav = memo(() => {
   const user = useSelector(selectCurrentUser);
   return (
     <nav className="bg-black/90 p-2 fixed bottom-0 mt-auto md:hidden w-screen">
@@ -27,8 +27,8 @@ const BottomNav = () => {
         </NavElements>
 
         <NavElements link={"/about-us"}>
-          <FaBook />
-          <p className="text-[0.6rem]">About us</p>
+          <FaInfoCircle />
+          <p className="text-[0.6rem]">About</p>
         </NavElements>
         <NavElements link={user !== null ? "/profile" : "/login"}>
           <FaPersonBooth />
@@ -37,6 +37,6 @@ const BottomNav = () => {
       </ul>
     </nav>
   );
-};
+});
 
 export default BottomNav;

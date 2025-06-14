@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectCurrentUser } from "../features/users/userSlice";
 import { FaAngleLeft, FaAngleRight, FaBookmark } from "react-icons/fa";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const CarouselImage = ({ showMore, item }) => {
+const CarouselImage = memo(({ showMore, item }) => {
   const [index, setIndex] = useState(0);
   const [blueIcon, setBlueIcon] = useState(false);
   const userInfo = useSelector(selectCurrentUser);
@@ -32,14 +32,16 @@ const CarouselImage = ({ showMore, item }) => {
   return (
     <div className="relative">
       <div className="flex overflow-hidden">
-        {item?.images.map((image) => (
+        {item?.images.map((image, idx) => (
           <img
             // make it stop responding to other images outside from listings
+            key={idx}
             onClick={showMore ? null : () => navigate(`house/${item._id}`)}
             className="w-[100%] grow-0 shrink-0 h-64 object-cover rounded-2xl mb-2 transition-transform duration-300 ease-in-out"
             style={{ translate: `${-100 * index}%` }}
             src={`${apiBaseUrl}/images/${image}`}
             alt=""
+            loading="lazy"
             // falback
             // pointerEvents='None'
           />
@@ -61,10 +63,11 @@ const CarouselImage = ({ showMore, item }) => {
           <FaAngleLeft />
         </div>
       )}
-      <div className="flex absolute bottom-2 w-full justify-center gap-1">
+      <div className="flex absolute bottom-3 w-full justify-center gap-1">
         {item?.images?.length > 1 &&
           item?.images.map((_, idx) => (
             <div
+              key={idx}
               className={`h-1.5 w-1.5 rounded-full ${
                 idx === index ? "bg-white" : "bg-white/50"
               }`}
@@ -74,14 +77,14 @@ const CarouselImage = ({ showMore, item }) => {
 
       <button
         onClick={() => handleShortLists(item)}
-        className={`absolute top-5 right-5 text-xl ${
+        className={`absolute top-5 right-5 text-xl  ${
           blueIcon ? "text-blue-600" : "text-black"
-        }`}
+        } `}
       >
         <FaBookmark />
       </button>
     </div>
   );
-};
+});
 
 export default CarouselImage;

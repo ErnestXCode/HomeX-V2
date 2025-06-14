@@ -11,7 +11,6 @@ const { landlord } = require("../config/roles_list");
 
 const createHouse = async (req, res) => {
   const content = req.body;
-  
 
   // if (
   //   !content.area ||
@@ -24,7 +23,7 @@ const createHouse = async (req, res) => {
   try {
     // const refreshToken = req.cookies?.jwt;
 
-    const verifiedUser = req.user
+    const verifiedUser = req.user;
 
     if (!verifiedUser) return res.status(400).json("user not authorized");
     if (!req.files) return res.status(400).json("image required");
@@ -58,7 +57,6 @@ const createHouse = async (req, res) => {
         // console.log("error", file, err);
         res.status(500).json("failed to upload image", file, err);
       }
-
     }
 
     // const imagePaths = req.files.map((file) => file.filename);
@@ -145,7 +143,7 @@ const getHouseById = async (req, res) => {
   if (!id) return res.status(400).json({ error: "No id provided" });
   try {
     const house = await House.findById(id).populate("landLord");
-    console.log('populated_house', house)
+    console.log("populated_house", house);
     res.status(200).json(house);
   } catch (error) {
     console.log("error getting house", error);
@@ -201,11 +199,27 @@ const getAllHouses = async (req, res) => {
 
     const houses =
       area !== "All"
-        ? await House.find({ area })
+        ? await House.find(
+            { area },
+            {
+              landLord: false,
+              amenities: false,
+              updatedStatusAt: false,
+              coords: false,
+            }
+          )
             .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(limit)
-        : await House.find()
+        : await House.find(
+            {},
+            {
+              landLord: false,
+              amenities: false,
+              updatedStatusAt: false,
+              coords: false,
+            }
+          )
             .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(limit);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import { useNavigate, Link } from "react-router-dom";
@@ -8,9 +8,16 @@ import {
   FaDumpster,
   FaTicketAlt,
 } from "react-icons/fa";
+import { selectCurrentUser } from "../features/users/userSlice";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-const HouseCards = ({ data, posts, apiBaseUrl, userInfo, shortlist }) => {
+const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+const HouseCards = memo(({ data, posts, shortlist }) => {
   const navigate = useNavigate();
+
+  const userInfo = useSelector(selectCurrentUser);
 
   const f = new Intl.NumberFormat(undefined, {
     style: "currency",
@@ -36,6 +43,8 @@ const HouseCards = ({ data, posts, apiBaseUrl, userInfo, shortlist }) => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       {data?.pages.map((group, i) => (
@@ -47,7 +56,7 @@ const HouseCards = ({ data, posts, apiBaseUrl, userInfo, shortlist }) => {
               // onClick={() => navigate(`house/${item._id}`)}
             >
               <section className="">
-                <CarouselImage item={item} />
+                <CarouselImage item={item} showBookMark={true} />
               </section>
               <section className="flex justify-between mt-4">
                 <section>
@@ -55,21 +64,20 @@ const HouseCards = ({ data, posts, apiBaseUrl, userInfo, shortlist }) => {
                   <ListText content={f.format(item?.pricing)}></ListText>
                   <ListText content={item?.numOfHouses}>
                     <span className="font-semibold text-gray-400">
-                      Rooms available:{" "}
+                      {t("roomsAvailable")}{" "}
                     </span>{" "}
                   </ListText>
                 </section>
-                <p
-                  className={`flex items-center h-fit pt-1.5 pb-1.5 pr-4 pl-4 text-center rounded-2xl  ${
+
+                <div
+                  className={`h-2 w-2 rounded-full animate-pulse mr-3 mt-2 ${
                     item?.status === "possibly_taken"
-                      ? "bg-yellow-400/50"
+                      ? "bg-yellow-400"
                       : item?.status === "taken"
-                      ? "bg-red-700/50"
-                      : "bg-green-600/50"
+                      ? "bg-red-700"
+                      : "bg-green-600"
                   }`}
-                >
-                  {item?.status}
-                </p>
+                ></div>
                 {/* <section className="flex justify-between m-3"> */}
               </section>
               {posts && (
@@ -111,6 +119,6 @@ const HouseCards = ({ data, posts, apiBaseUrl, userInfo, shortlist }) => {
       ))}
     </>
   );
-};
+});
 
 export default HouseCards;

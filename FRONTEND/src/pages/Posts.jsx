@@ -56,9 +56,6 @@ const Posts = () => {
   const { data, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["landlordPosts"],
-      getNextPageParam: (lastPage) => {
-        return lastPage.hasMore ? lastPage.nextPage : undefined;
-      },
       queryFn: async ({ pageParam = 1 }) => {
         try {
           const res = await fetch(
@@ -78,6 +75,12 @@ const Posts = () => {
           console.log(err);
         }
       },
+      getNextPageParam: (lastPage) => {
+        return lastPage.hasMore ? lastPage.nextPage : undefined;
+      },
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
+      keepPreviousData: true,
     });
 
   useEffect(() => {
@@ -113,8 +116,6 @@ const Posts = () => {
       <HouseCards
         data={data}
         posts={true}
-        apiBaseUrl={apiBaseUrl}
-        userInfo={userInfo}
       />
       <div
         ref={loadMoreRef}
@@ -122,10 +123,6 @@ const Posts = () => {
       >
         {isFetchingNextPage && <InitialLoader notFullPage={true} />}
       </div>
-
-      <Footer />
-
-      <BottomNav />
     </>
   );
 };

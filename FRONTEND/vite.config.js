@@ -16,10 +16,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
+      strategies: 'injectManifest',
       registerType: "autoUpdate",
       workbox: {
         globPatterns: ["**/*.{html,js,css,png,jpg,jpeg,svg}"],
       },
+      srcDir: "src",
+      filename: "custom-sw.js",
       manifest: {
         name: "HomeX",
         short_name: "HomeX",

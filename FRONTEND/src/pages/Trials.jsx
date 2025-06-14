@@ -1,47 +1,104 @@
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  Pie,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Legend,
-  PieChart,
-} from "recharts";
+import { useTranslation } from "react-i18next";
+import axios from "../api/axios";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../features/users/userSlice";
 
 const Trials = () => {
-  const userData = [
-    { name: "nester", age: 20 },
-    { name: "johnte", age: 2 },
-    { name: "johnte", age: 9 },
-    { name: "johnte", age: 10 },
-    { name: "johnte", age: 17 },
-    { name: "johnte", age: 28 },
-  ];
-  return (
-    <div className="h-screen flex gap-2">
-      <div className="w-50 h-50">
-        <ResponsiveContainer height={"100%"} width={"100%"}>
-          <BarChart width={48} height={48} data={userData}>
-            <Bar dataKey="age" fill="#a2f" />
-            <CartesianGrid stroke="#333" strokeOpacity={"50%"} />
-            <YAxis dataKey="age" />
-            <XAxis />
-            <Tooltip />
-            <Legend />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="mt-9">some stuff</div>
+  const { t } = useTranslation();
 
-      <PieChart width={300} height={300}>
-        <Pie data={userData} dataKey="age" fill="#050" />
-        <Tooltip />
-        <Legend />
-      </PieChart>
+  const userInfo = useSelector(selectCurrentUser);
+
+  // const urlBase64ToUint8Array = (base64String) => {
+  //   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  //   const base64 = (base64String + padding)
+  //     .replace(/-/g, "+")
+  //     .replace(/_/g, "/");
+
+  //   const rawData = atob(base64);
+
+  //   const outputArray = new Uint8Array(rawData.length);
+
+  //   for (let i = 0; i < rawData.length; ++i) {
+  //     outputArray[i] = rawData.charCodeAt(i);
+  //   }
+  //   return outputArray;
+  // };
+
+  const publicKey =
+    "BAde7VA6f9OY0ymntvlgviHfBNqUQGWO-q52d_HaXYhEYKPv5uyte8bQBpHjWsttayvnfdpHigsviph_gAlpMp8";
+
+  function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, "+")
+      .replace(/_/g, "/");
+
+    const rawData = atob(base64);
+    return new Uint8Array([...rawData].map((char) => char.charCodeAt(0)));
+  }
+
+  async function subscribeUserToPush() {
+    if (!("serviceWorker" in navigator)) {
+      console.warn("Service workers are not supported.");
+      return;
+    }
+
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") {
+      console.warn("Notification permission denied");
+      return;
+    }
+
+    const registration = await navigator.serviceWorker.ready;
+
+    const existingSubscription =
+      await registration.pushManager.getSubscription();
+    if (existingSubscription) {
+      console.log("Already subscribed:", existingSubscription);
+      return existingSubscription;
+    }
+
+    const convertedKey = urlBase64ToUint8Array(publicKey);
+
+    try {
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: convertedKey,
+      });
+
+      console.log("Push subscription:", subscription);
+      // TODO: Send subscription to your backend to store
+
+      await axios.post("/", JSON.stringify(subscription), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo?.accessToken}`,
+        },
+        withCredentials: true,
+      });
+
+      return subscription;
+    } catch (err) {
+      console.error("Push subscription failed:", err);
+    }
+  }
+
+  return (
+    <div>
+      {t("welcomeMessage")}
+
+      {/* for card status */}
+      <span className="flex items-center gap-2">
+        <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span className="text-white text-sm">Available top right corner</span>
+      </span>
+      <span className="text-xs px-2 py-0.5 rounded-full bg-green-500 text-white">
+        Available
+      </span>
+      <div onClick={subscribeUserToPush} className="bg-blue-500 w-fit p-2 m-2">
+        notifications
+      </div>
     </div>
   );
 };

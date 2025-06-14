@@ -40,6 +40,7 @@ const Listings = () => {
       getNextPageParam: (lastPage) => {
         return lastPage.hasMore ? lastPage.nextPage : undefined;
       },
+      keepPreviousData: true, //new prop added
       queryFn: async ({ pageParam = 1 }) => {
         const { data } = listState
           ? await axios.get(`/houses?page=${pageParam}&area=${listState}`)
@@ -75,10 +76,45 @@ const Listings = () => {
     setListState("All");
   };
 
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+  
+    useEffect(() => {
+      const goOnline = () => setIsOnline(true);
+      const goOffline = () => setIsOnline(false);
+  
+      window.addEventListener("online", goOnline);
+      window.addEventListener("offline", goOffline);
+  
+      return () => {
+        window.removeEventListener("online", goOnline);
+        window.removeEventListener("offline", goOffline);
+      };
+    }, []);
+  
+    if (!isOnline) {
+      return (
+        <div className="h-screen w-full flex flex-col">
+          <Header />
+          <div className="flex flex-col flex-1 justify-center items-center">
+
+          <h1 className="text-2xl mb-4">You're offline</h1>
+          <p className="mb-4">Check your internet connection.</p>
+          <button
+            className="bg-blue-600 px-4 py-2 rounded-lg"
+            onClick={() => window.location.reload()}
+            >
+            Retry
+          </button>
+            </div>
+            <BottomNav />
+        </div>
+      );
+    }
   return (
     <main className="">
       <section className="bg-black">
         <Header />
+
         <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mb-0 mt-0 p-2 sticky top-18 z-1">
           <FilterButton onClick={() => handleReset()}>All</FilterButton>
           {AreaData?.map((area) => {
@@ -101,7 +137,7 @@ const Listings = () => {
           {isFetchingNextPage && <InitialLoader notFullPage={true} />}
         </div>
 
-        <Footer />
+  
       </section>
       <BottomNav />
     </main>

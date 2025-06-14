@@ -8,17 +8,15 @@ const compression = require("compression");
 const helmet = require("helmet");
 // verification of data availability in the controllers -----remember
 const { connectDB, getGFS, getGridFSBucket } = require("./config/db");
-const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
 const cron = require("node-cron");
-// const { setTimeout } = require("timers/promises");
-
-// const { options } = require("./routes/user");
+const webpush = require("web-push");
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 dotenv.config();
 
-const whiteList = [process.env.VITE_URL];
+const whiteList = [process.env.VITE_URL, "http://localhost:4173"];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -30,6 +28,35 @@ const corsOptions = {
   },
   credentials: true,
 };
+
+const publicVapidKey =
+"BAde7VA6f9OY0ymntvlgviHfBNqUQGWO-q52d_HaXYhEYKPv5uyte8bQBpHjWsttayvnfdpHigsviph_gAlpMp8";
+const privateVapidKey = "9i8sGgh-WoGaxPXDS6sCPVlhvHR0nxVgqxRwmJDvVVY";
+// }put in .env
+
+webpush.setVapidDetails(
+  // jua no ya nini
+  "mailto:test@test.com",
+  publicVapidKey,
+  privateVapidKey
+);
+
+// subscribe
+app.post("/subscribe", async (req, res) => {
+  // get push sub obj from client
+  const subscription = req.body;
+
+  res.status(201).json({ message: "successfull" });
+
+  const payload = JSON.stringify({ title: "push test" });
+
+  try {
+    webpush.sendNotification(subscription, payload);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // can add an authorized token
 // const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms :date[web] :type', {  stream: accessLogStream}))
@@ -45,14 +72,35 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/ping', (req, res) => {
-  res.status(200).json({ status: 'ok', time: new Date().toISOString() });
+app.get("/ping", (req, res) => {
+  res.status(200).json({ status: "ok", time: new Date().toISOString() });
 });
 
-app.use("/", require("./routes/houses"));
+
+
+
+app.use('/api/', rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 100, // 100 requests per minute
+  message: 'Too many requests, try again later.'
+}));
+
 app.use("/", require("./routes/areas"));
-app.use("/", require("./routes/images"));
 app.use("/", require("./routes/refresh"));
+app.use("/", require("./routes/houses"));
+app.use("/", require("./routes/images"));
+const x = [];
+
+app.get("/notification", (req, res) => {
+  webpush.sendNotification(x[0], "hello nesters world");
+  res.json("success message sent");
+});
+
+app.post("/subscription", (req, res) => {
+  console.log(req.body);
+  x.push(req.body);
+  res.json("saved to array");
+});
 
 // const limiter = rateLimit(
 //   max: 100,
@@ -73,8 +121,6 @@ app.use("/", require("./routes/user"));
   console.log("gridfsbucket", getGridFSBucket() ? "DEFINED" : "UNDEFINED");
 
   app.listen(PORT, () => {
-    
-
     console.log(`App connected on: http://localhost:${PORT}`);
   });
 })();

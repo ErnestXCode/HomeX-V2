@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import InitialLoader from "./components/InitialLoader";
-import VerifyStatus from "./components/VerifyStatus";
-import HouseMapTiler from "./pages/HouseMapTiler";
-// import Posts from "./pages/Posts";
+import { lazy, Suspense, useEffect } from "react";
+
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
 );
+const InitialLoader = lazy(() => import("./components/InitialLoader"));
+const VerifyStatus = lazy(() => import("./components/VerifyStatus"));
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
+const HouseMapTiler = lazy(() => import("./pages/HouseMapTiler"));
 const Unauthorized = lazy(() => import("./pages/Unauthorized"));
 const ImagesPage = lazy(() => import("./pages/ImagesPage"));
 const Trials = lazy(() => import("./pages/Trials"));
-const Posts = lazy(() => import("./pages/Posts")); // tengeneza apa inaanza na small letter
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
 const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
@@ -24,7 +23,6 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Login = lazy(() => import("./pages/LogIn"));
 const Help = lazy(() => import("./pages/Help"));
 const Admin = lazy(() => import("./pages/Admin"));
-const RecentlyLiked = lazy(() => import("./pages/RecentlyLiked"));
 const PersonalInfo = lazy(() => import("./pages/PersonalInfo"));
 
 const ROLES = {
@@ -60,7 +58,6 @@ function App() {
                   <RequireAuthentication allowedRoles={[ROLES.tenant]} />
                 }
               >
-                <Route path="liked" element={<RecentlyLiked />}></Route>
                 <Route path="profile" element={<Profile />}></Route>
                 <Route path="personal" element={<PersonalInfo />}></Route>
               </Route>
@@ -73,12 +70,18 @@ function App() {
                 }
               >
                 <Route path="post-house" element={<PostHouse />}></Route>
-                <Route path="landlord-posts" element={<Posts />}></Route>
-                <Route path="verify-vacancy/:id" element={<VerifyStatus />}></Route>
+                <Route
+                  path="verify-vacancy/:id"
+                  element={<VerifyStatus />}
+                ></Route>
               </Route>
 
               <Route
-                element={<RequireAuthentication allowedRoles={[ROLES.admin, ROLES.landlord]} />}
+                element={
+                  <RequireAuthentication
+                    allowedRoles={[ROLES.admin, ROLES.landlord]}
+                  />
+                }
               >
                 <Route path="admin" element={<Admin />}></Route>
               </Route>

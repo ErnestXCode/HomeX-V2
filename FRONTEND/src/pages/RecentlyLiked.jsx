@@ -32,9 +32,6 @@ const RecentlyLiked = () => {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: ["shortlist"],
-      getNextPageParam: (lastPage) => {
-        return lastPage.hasMore ? lastPage.nextPage : undefined;
-      },
       queryFn: async ({ pageParam = 1 }) => {
         try {
           const res = await fetch(
@@ -54,6 +51,12 @@ const RecentlyLiked = () => {
           console.log(err);
         }
       },
+      getNextPageParam: (lastPage) => {
+        return lastPage.hasMore ? lastPage.nextPage : undefined;
+      },
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
+      keepPreviousData: true,
       // strictly uses functions not constants
     });
 
@@ -75,18 +78,13 @@ const RecentlyLiked = () => {
 
   return (
     <>
-     
-      <HouseCards data={data} shortlist={true}/>
+      <HouseCards data={data} shortlist={true} />
       <div
         ref={loadMoreRef}
         className="bg-black text-white font-semibold mb-39"
       >
         {isFetchingNextPage && <InitialLoader notFullPage={true} />}
       </div>
-
-      <Footer />
-
-      <BottomNav />
     </>
   );
 };

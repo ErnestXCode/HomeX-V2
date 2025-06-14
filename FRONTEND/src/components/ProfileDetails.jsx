@@ -1,81 +1,22 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
-import BottomNav from "../components/BottomNav";
-import imageCompression from 'browser-image-compression'
-
-const RecentlyLiked = lazy(() => import("./RecentlyLiked"));
-const Posts = lazy(() => import("./Posts"));
-
-import ProfileButton from "../components/ProfileButtons";
-// import ProfileInfoContent from "../components/ProfileInfoContent ";
-
-import SecondaryHeader from "../components/SecondaryHeader";
-import ProfileDetails from "../components/ProfileDetails";
-import ProfileInfoContent from "../components/ProfileInfoContent";
-import { Link } from "react-router-dom";
-import InitialLoader from "../components/InitialLoader";
+import imageCompression from "browser-image-compression";
 import axios from "../api/axios";
 import { FaCamera, FaPenAlt } from "react-icons/fa";
-import CustomInputBox from "../components/CustomInputBox";
-import CustomForm from "../components/CustomForm";
-import Modal from "../components/Modal";
-import SubmitButton from "../components/SubmitButton";
+import Modal from "./Modal";
+import CustomForm from "./CustomForm";
+import CustomInputBox from "./CustomInputBox";
+import SubmitButton from "./SubmitButton";
 
-const apiBaseUrl = import.meta.env.VITE_API_URL;
-
-const Profile = () => {
-  const [profileIsVisible, setProfileIsVisible] = useState(true);
-
-  const userInfo = useSelector(selectCurrentUser);
-
+const ProfileDetails = ({ visibilityRef, profileIsVisible, userName }) => {
+  console.log("profileRendered");
+ 
   const [name, setName] = useState("");
   const [profileImg, setProfileImg] = useState(null);
   const [usernameState, setUsernameState] = useState(false);
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const handleProfileData = async () => {
-      try {
-        const response = await fetch(`${apiBaseUrl}/profile`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.accessToken}`,
-          },
-          credentials: "include",
-        });
-
-        const data = await response.json();
-        console.log(data);
-        setUser(data);
-      } catch (err) {
-        console.log("error", err);
-      }
-    };
-
-    handleProfileData();
-  }, [userInfo?.accessToken, usernameState]);
-
-  // const [visibilityState, setVisibilityState] = useState(true);
-  const visibilityRef = useRef();
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     if (!entries[0]?.isIntersecting) {
-  //       setProfileIsVisible(false);
-  //       console.log("intersecting");
-  //     } else {
-  //       setProfileIsVisible(true);
-  //     }
-  //   });
-  //   observer.observe(visibilityRef?.current);
-  // });
-  const [profileState, setProfileState] = useState("info");
-
-  // why is it working when profile image is not a url
- 
-
+  const userInfo = useSelector(selectCurrentUser);
 
   const profileRef = useRef();
 
@@ -134,21 +75,14 @@ const Profile = () => {
         }
       );
       const data = response.data;
-      console.log(data)
+      console.group(data);
       setUsernameState(false);
     } catch (err) {
       console.log(err);
     }
   };
 
-  
-
   return (
-    <>
-      {" "}
-      <SecondaryHeader>{profileState}</SecondaryHeader>
-      <Link to={"../trials"}>{user?.phoneNumber}</Link>
-       (
     <>
       <div ref={visibilityRef} className="bg-white size-5 rounded-full"></div>
       <section
@@ -224,7 +158,7 @@ const Profile = () => {
             !profileIsVisible && "opacity-0 pointer-events-none"
           }`}
         >
-          <p>{user?.name}</p>
+          <p>{userName}</p>
           <section className="text-white/70 flex">
             <div
               onClick={() => {
@@ -258,49 +192,7 @@ const Profile = () => {
         </section>
       </section>
     </>
-  )
-      <nav className="sticky top-0 bg-black z-30 p-2">
-        <ul className="flex items-center justify-around p-2">
-          <li
-            className={`cursor-pointer text-white/50 transition-all ${
-              profileState === "info" && "text-white/100 font-semibold"
-            }`}
-            onClick={() => setProfileState("info")}
-          >
-            Info
-          </li>
-          <li
-            className={`cursor-pointer text-white/50 transition-all ${
-              profileState === "shortlist" && "text-white/100 font-semibold"
-            }`}
-            onClick={() => setProfileState("shortlist")}
-          >
-            Shortlists
-          </li>
-          <li
-            className={`cursor-pointer text-white/50 transition-all ${
-              profileState === "posts" && "text-white/100 font-semibold"
-            }`}
-            onClick={() => setProfileState("posts")}
-          >
-            Posts
-          </li>
-        </ul>
-      </nav>
-      {profileState === "info" ? (
-        <ProfileInfoContent />
-      ) : profileState === "shortlist" ? (
-        <Suspense fallback={<InitialLoader notFullPage={true} />}>
-          <RecentlyLiked />
-        </Suspense>
-      ) : (
-        <Suspense fallback={<InitialLoader notFullPage={true} />}>
-          <Posts />
-        </Suspense>
-      )}
-      <BottomNav />
-    </>
   );
 };
 
-export default Profile;
+export default ProfileDetails;

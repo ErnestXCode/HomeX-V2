@@ -118,11 +118,11 @@ const PersonalInfo = () => {
     }
   };
   const secureEmail = (email) => {
-    // if (!phone) {
-    const emailDomain = email.split(".")[1];
-    const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
-    return hiddenEmailBody;
-    // }
+    if (email) {
+      const emailDomain = email.split(".")[1];
+      const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
+      return hiddenEmailBody;
+    }
     // const first_three = phone.slice(0, 4)
     // return phone number, i dont like i am doing this in the frontend
   };

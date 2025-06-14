@@ -20,10 +20,13 @@ import {
   FaScroll,
   FaSkullCrossbones,
   FaCross,
+  FaInfoCircle,
+  FaQuestionCircle,
 } from "react-icons/fa";
 import { selectCurrentUser } from "../features/users/userSlice";
+import { memo } from "react";
 
-const SideNav = () => {
+const SideNav = memo(() => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectCurrentUser);
 
@@ -96,7 +99,7 @@ const SideNav = () => {
           onClick={() => dispatch(closeSideNav())}
         >
           <div className="flex items-center gap-2">
-            <FaBook />
+            <FaInfoCircle />
             About us
           </div>
         </NavElements>
@@ -106,13 +109,13 @@ const SideNav = () => {
           onClick={() => dispatch(closeSideNav())}
         >
           <div className="flex items-center gap-2">
-            <FaHandsHelping />
+            <FaQuestionCircle />
             Help
           </div>
         </NavElements>
       </SideNavCard>
     </SideNavLayout>
   );
-};
+});
 
 export default SideNav;

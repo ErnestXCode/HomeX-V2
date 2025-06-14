@@ -4,11 +4,10 @@ import { openSideNav, toggleBrowseListings } from "../features/stylings/styleSli
 import { useDispatch } from "react-redux";
 import SideNav from "./SideNav";
 import { FaBars, FaCog, FaCogs, FaFilter, FaSearch, FaSearchDollar, FaSearchengin, FaSearchLocation, FaSearchMinus } from "react-icons/fa";
+import { memo } from "react";
 
-const Header = () => {
+const Header = memo(() => {
   const dispatch = useDispatch()
-
-
   return (
     <>
     <header className="bg-black text-white sticky top-0 z-20 p-2 ">
@@ -37,6 +36,6 @@ const Header = () => {
 
     </>
   );
-};
+});
 
 export default Header;
