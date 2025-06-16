@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
-import CarouselImage from "../components/CarouselImage";
 import ListText from "../components/ListText";
 import { FaAngleLeft, FaMap, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import ImagesPage from "./ImagesPage";
+import CarouselImage from "../components/CarouselImage";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
@@ -69,7 +69,7 @@ const handleWhatsappRedirect = (phone) => {
   window.open(`https://wa.me/${cleanedPhone}`, '_blank', 'noopener,noreferrer');
 };
 
-
+console.log(data)
   return (
     <>
       {showImages ? (
@@ -88,7 +88,6 @@ const handleWhatsappRedirect = (phone) => {
             <CarouselImage
               showMore={true}
               item={data?.images && data}
-              apiBaseUrl={apiBaseUrl}
             />
           </div>
           <section className="flex  justify-between bg-gray-800 p-2 m-2 rounded-xl">

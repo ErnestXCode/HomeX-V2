@@ -5,8 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   FaBookDead,
   FaBookOpen,
+  FaCheckCircle,
   FaDumpster,
+  FaEdit,
   FaTicketAlt,
+  FaTimesCircle,
 } from "react-icons/fa";
 import { selectCurrentUser } from "../features/users/userSlice";
 import { useSelector } from "react-redux";
@@ -16,6 +19,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const HouseCards = memo(({ data, posts, shortlist }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const userInfo = useSelector(selectCurrentUser);
 
@@ -43,20 +47,26 @@ const HouseCards = memo(({ data, posts, shortlist }) => {
     }
   };
 
-  const { t } = useTranslation();
+  console.log(data);
+  // const d = data?.pages?.data
+  // if(!d) return <div>NO DATA</div>
 
   return (
     <>
       {data?.pages.map((group, i) => (
-        <div key={i} className="ml-3 mr-3">
+        <div key={i} className="ml-3 mr-3 md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-5">
           {group?.data?.map((item) => (
             <div
-              key={item._id}
+              key={item?._id}
               className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
               // onClick={() => navigate(`house/${item._id}`)}
             >
               <section className="">
-                <CarouselImage item={item} showBookMark={true} />
+                <CarouselImage
+                  item={item}
+                  showBookMark={true}
+                  showThumbnails={true}
+                />
               </section>
               <section className="flex justify-between mt-4">
                 <section>
@@ -64,7 +74,8 @@ const HouseCards = memo(({ data, posts, shortlist }) => {
                   <ListText content={f.format(item?.pricing)}></ListText>
                   <ListText content={item?.numOfHouses}>
                     <span className="font-semibold text-gray-400">
-                      {t("roomsAvailable")}{" "}
+                      {/* {t("roomsAvailable")}{" "} */}
+                      {t("RoomsAvailable")}
                     </span>{" "}
                   </ListText>
                 </section>
@@ -86,29 +97,31 @@ const HouseCards = memo(({ data, posts, shortlist }) => {
                     // onClick set status to vacant
                     className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
                   >
-                    <FaTicketAlt />
                     <Link to={`/verify-vacancy/${item?._id}`}>
-                      Verify vacancy
+                      Confirm Vacancy
                     </Link>
+                    <FaCheckCircle />
                   </div>
                   <div
                     // onClick set status to vacant
                     className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
                   >
-                    <FaBookOpen />
-                    <Link to={``}>Update details</Link>
+                    <Link to={``}>{t("EditDetails")}</Link>
+                    <FaEdit />
                   </div>
 
                   <div className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
-                    <FaBookDead />
-                    <div onClick={() => handleTaken(item._id)}>Delete post</div>
+                    <div onClick={() => handleTaken(item?._id)}>
+                      {t("MarkAsTaken")}
+                    </div>
+                    <FaTimesCircle />
                   </div>
                 </div>
               )}
               {shortlist && (
                 <div className="flex items-center gap-3 p-2 justify-end">
-                  <FaDumpster />
                   <p>Remove</p>
+                  <FaDumpster />
                 </div>
               )}
 

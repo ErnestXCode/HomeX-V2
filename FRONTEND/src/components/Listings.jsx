@@ -53,6 +53,8 @@ const Listings = () => {
 
   const loadMoreRef = useRef();
 
+  const loader = loadMoreRef.current;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,11 +66,11 @@ const Listings = () => {
       { threshold: 0, rootMargin: "2000px" }
       // check how to make it better
     );
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    if (loader) {
+      observer.observe(loader);
     }
     return () => {
-      if (loadMoreRef.current) observer.unobserve(loadMoreRef.current);
+      if (loader) observer.unobserve(loader);
     };
   });
 
@@ -76,40 +78,39 @@ const Listings = () => {
     setListState("All");
   };
 
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
-  
-    useEffect(() => {
-      const goOnline = () => setIsOnline(true);
-      const goOffline = () => setIsOnline(false);
-  
-      window.addEventListener("online", goOnline);
-      window.addEventListener("offline", goOffline);
-  
-      return () => {
-        window.removeEventListener("online", goOnline);
-        window.removeEventListener("offline", goOffline);
-      };
-    }, []);
-  
-    if (!isOnline) {
-      return (
-        <div className="h-screen w-full flex flex-col">
-          <Header />
-          <div className="flex flex-col flex-1 justify-center items-center">
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
+
+  if (!isOnline) {
+    return (
+      <div className="h-screen w-full flex flex-col">
+        <Header />
+        <div className="flex flex-col flex-1 justify-center items-center">
           <h1 className="text-2xl mb-4">You're offline</h1>
           <p className="mb-4">Check your internet connection.</p>
           <button
             className="bg-blue-600 px-4 py-2 rounded-lg"
             onClick={() => window.location.reload()}
-            >
+          >
             Retry
           </button>
-            </div>
-            <BottomNav />
         </div>
-      );
-    }
+        <BottomNav />
+      </div>
+    );
+  }
   return (
     <main className="">
       <section className="bg-black">
@@ -134,10 +135,10 @@ const Listings = () => {
           ref={loadMoreRef}
           className="bg-black text-white font-semibold mb-39"
         >
-          {isFetchingNextPage && <InitialLoader notFullPage={true} />}
+          {hasNextPage && isFetchingNextPage && (
+            <InitialLoader notFullPage={true} />
+          )}
         </div>
-
-  
       </section>
       <BottomNav />
     </main>

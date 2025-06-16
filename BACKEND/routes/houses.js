@@ -13,16 +13,28 @@ const {
 const handleAuth = require("../middleware/handleAuth");
 const upload = require("../middleware/handleUploads");
 const verifyRoles = require("../middleware/verifyRoles");
-const ROLES_LIST = require("../config/roles_list");  
+const ROLES_LIST = require("../config/roles_list");
 
 const router = express.Router();
 
-router.route("/houses").get(getAllHouses).post(
-  handleAuth,
-  // verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
-  upload.array("images", 3),
-  createHouse
-);
+router
+  .route("/houses")
+  .get(getAllHouses)
+  .post(
+    handleAuth,
+    // verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
+    upload.fields([
+      {
+        name: "images",
+        maxCount: 4,
+      },
+      {
+        name: "thumbnails",
+        maxCount: 2,
+      },
+    ]),
+    createHouse
+  );
 
 router.route("/shortlists").get(handleAuth, getShortLists);
 router.route("/landlordHouses").get(handleAuth, getLAndlordsHouses);

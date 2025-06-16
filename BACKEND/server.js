@@ -11,7 +11,8 @@ const { connectDB, getGFS, getGridFSBucket } = require("./config/db");
 const morgan = require("morgan");
 const cron = require("node-cron");
 const webpush = require("web-push");
-const rateLimit = require('express-rate-limit');
+const rateLimit = require("express-rate-limit");
+const House = require("./models/houseModel");
 
 const app = express();
 dotenv.config();
@@ -30,7 +31,7 @@ const corsOptions = {
 };
 
 const publicVapidKey =
-"BAde7VA6f9OY0ymntvlgviHfBNqUQGWO-q52d_HaXYhEYKPv5uyte8bQBpHjWsttayvnfdpHigsviph_gAlpMp8";
+  "BAde7VA6f9OY0ymntvlgviHfBNqUQGWO-q52d_HaXYhEYKPv5uyte8bQBpHjWsttayvnfdpHigsviph_gAlpMp8";
 const privateVapidKey = "9i8sGgh-WoGaxPXDS6sCPVlhvHR0nxVgqxRwmJDvVVY";
 // }put in .env
 
@@ -76,14 +77,29 @@ app.get("/ping", (req, res) => {
   res.status(200).json({ status: "ok", time: new Date().toISOString() });
 });
 
+cron.schedule("0 0 * * *", async () => {
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
+  const house = await House.updateMany(
+    {
+      status: "vacant",
+      updatedStatusAt: { $lte: new Date(sevenDaysAgo) },
+    },
+    {
+      status: "possibly_taken",
+    }
+  );
+  console.log(house);
+});
 
-
-app.use('/api/', rateLimit({
-  windowMs: 1 * 60 * 1000,
-  max: 100, // 100 requests per minute
-  message: 'Too many requests, try again later.'
-}));
+app.use(
+  "/api/",
+  rateLimit({
+    windowMs: 1 * 60 * 1000,
+    max: 100, // 100 requests per minute
+    message: "Too many requests, try again later.",
+  })
+);
 
 app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/refresh"));

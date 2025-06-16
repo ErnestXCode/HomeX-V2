@@ -4,9 +4,9 @@ import { selectSidebarState } from "../features/stylings/styleSlice";
 
 const SideNavLayout = ({onClick, children}) => {
     const sideBarState = useSelector(selectSidebarState);
-
+// onClick={onClick} 
   return (
-    <div onClick={onClick} className={`bg-black/50 fixed inset-0 z-30
+    <div className={`bg-black/50 fixed inset-0 z-30
     transition-opacity duration-500  ${
     sideBarState ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
     }

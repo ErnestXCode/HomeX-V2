@@ -12,16 +12,16 @@ import SecondaryHeader from "../components/SecondaryHeader";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../features/users/userSlice";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
 const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
 
 const SignUp = () => {
-
   // states and vars
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const nameRef = useRef();
-  
+
   const [submitState, setSubmitState] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [showModalTwo, setShowModalTwo] = useState(true);
@@ -85,7 +85,7 @@ const SignUp = () => {
           roles: isLandlord && {
             landlord: landLord_role,
             // get rid of admin in production
-            admin: admin_role,
+            // admin: admin_role,
           },
         }),
         {
@@ -119,11 +119,13 @@ const SignUp = () => {
 
   console.log(isLandlord);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <section className="">
         <>
-          <SecondaryHeader>Register</SecondaryHeader>
+          <SecondaryHeader>{t("Register")}</SecondaryHeader>
           {showForm ? (
             <CustomForm onSubmit={(e) => handleSubmit(e)}>
               {submitState === 0 ? (
@@ -179,7 +181,7 @@ const SignUp = () => {
                       calls
                     </li>
                   </ul>
-                  <SubmitButton>Register</SubmitButton>
+                  <SubmitButton>{t("Register")}</SubmitButton>
                 </>
               )}
 
@@ -189,7 +191,7 @@ const SignUp = () => {
                   className="border-b-3 border-blue-600 text-blue-200"
                   to="/login"
                 >
-                  Log In
+                  {t("LogIn")}
                 </Link>
               </p>
             </CustomForm>
@@ -199,7 +201,6 @@ const SignUp = () => {
               isOpen={showModalTwo}
               onClick={() => handleModalAndForm()}
             >
-          
               <div className="text-center text-base mb-3">
                 Are You a landlord ?
               </div>

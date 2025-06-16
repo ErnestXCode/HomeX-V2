@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-
-  signInSuccess,
-} from "../features/users/userSlice";
+import { signInSuccess } from "../features/users/userSlice";
 import WelcomeHero from "../components/WelcomeHero";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import CustomForm from "../components/CustomForm";
 import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -50,53 +48,54 @@ const Login = () => {
         withCredentials: true,
       });
       dispatch(signInSuccess(response.data));
-      console.log(response.data); 
+      console.log(response.data);
       // data.data.accessToken
 
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.error("Error:", err.message);
     }
   };
 
-   const [isOnline, setIsOnline] = useState(navigator.onLine);
-    
-      useEffect(() => {
-        const goOnline = () => setIsOnline(true);
-        const goOffline = () => setIsOnline(false);
-    
-        window.addEventListener("online", goOnline);
-        window.addEventListener("offline", goOffline);
-    
-        return () => {
-          window.removeEventListener("online", goOnline);
-          window.removeEventListener("offline", goOffline);
-        };
-      }, []);
-    
-      if (!isOnline) {
-        return (
-          <div className="h-screen w-full flex flex-col">
-               <SecondaryHeader>Log in</SecondaryHeader>
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-            <div className="flex flex-col flex-1 justify-center items-center">
-  
-            <h1 className="text-2xl mb-4">You're offline</h1>
-            <p className="mb-4">Check your internet connection.</p>
-            <button
-              className="bg-blue-600 px-4 py-2 rounded-lg"
-              onClick={() => window.location.reload()}
-              >
-              Retry
-            </button>
-              </div>
-          </div>
-        );
-      }
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
+
+  const { t } = useTranslation();
+
+  if (!isOnline) {
+    return (
+      <div className="h-screen w-full flex flex-col">
+        <SecondaryHeader>{t("LogIn")}</SecondaryHeader>
+
+        <div className="flex flex-col flex-1 justify-center items-center">
+          <h1 className="text-2xl mb-4">You're offline</h1>
+          <p className="mb-4">Check your internet connection.</p>
+          <button
+            className="bg-blue-600 px-4 py-2 rounded-lg"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
-    <SecondaryHeader>Log in</SecondaryHeader>
+      <SecondaryHeader>{t("LogIn")}</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           id={"email"}
@@ -121,7 +120,7 @@ const Login = () => {
         {/* disabled={loading} */}
         {/* {loading ? "Logging In..." : "Log In"} */}
         <div className="mt-4">
-          <SubmitButton>Log in</SubmitButton>
+          <SubmitButton>{t("LogIn")}</SubmitButton>
         </div>
 
         <p className="font-serif text-center">
@@ -131,7 +130,7 @@ const Login = () => {
             className="border-b-3 border-blue-500 text-blue-200"
             to="/signup"
           >
-            Sign Up
+            {t("Register")}
           </Link>
         </p>
       </CustomForm>

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
@@ -77,11 +77,7 @@ function App() {
               </Route>
 
               <Route
-                element={
-                  <RequireAuthentication
-                    allowedRoles={[ROLES.admin, ROLES.landlord]}
-                  />
-                }
+                element={<RequireAuthentication allowedRoles={[ROLES.admin]} />}
               >
                 <Route path="admin" element={<Admin />}></Route>
               </Route>

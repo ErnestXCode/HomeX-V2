@@ -11,6 +11,10 @@ const houseSchema = mongoose.Schema(
       type: [String],
       required: [true, "image is required"],
     },
+    thumbnails: {
+      type: [String],
+      required: [true, "thumbnail is required"],
+    },
     pricing: {
       type: Number,
       required: [true, "pricing is required"],
@@ -28,6 +32,9 @@ const houseSchema = mongoose.Schema(
       type: String,
       enum: ["taken", "possibly_taken", "vacant"],
       default: "vacant",
+    },
+    placeholderThumbnail: {
+      type: String,
     },
     amenities: {
       wifi: {

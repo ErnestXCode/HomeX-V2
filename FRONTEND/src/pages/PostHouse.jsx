@@ -14,6 +14,7 @@ import CustomForm from "../components/CustomForm";
 import axios from "../api/axios";
 import SecondaryHeader from "../components/SecondaryHeader";
 import {
+  FaCamera,
   FaDog,
   FaImages,
   FaLightbulb,
@@ -23,6 +24,7 @@ import {
   FaWifi,
 } from "react-icons/fa";
 import { useEffect } from "react";
+import EXIF from "exif-js";
 
 const PostHouse = () => {
   const navigate = useNavigate();
@@ -31,6 +33,8 @@ const PostHouse = () => {
   if (!currentUser) navigate("/signup");
 
   const areaRef = useRef();
+  const cameraRef = useRef();
+  const [cameraImage, setCameraImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -74,8 +78,12 @@ const PostHouse = () => {
     uploadRef.current.click();
   };
 
+  const activateCameraInput = () => {
+    cameraRef.current.click();
+  };
+
   const handleimagesChange = async (e) => {
-    if (e.target?.files?.length <= 3) {
+    if (e.target?.files?.length <= 4) {
       const files = Array.from(e.target.files);
       const compressedFiles = await Promise.all(
         files.map((file) => {
@@ -109,14 +117,114 @@ const PostHouse = () => {
       throw new Error("limit of 3 exceeded");
     }
   };
-  // console.log('files', URL.createObjectURL(images[0]))
+
+  function getUserCoords() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (pos) =>
+          resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+        (err) => reject(err)
+      );
+    });
+  }
+
+  function getDistanceInMeters(lat1, lon1, lat2, lon2) {
+    const R = 6371000; // radius of Earth in meters
+    const toRad = (deg) => deg * (Math.PI / 180);
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+  }
+
+  function getGpsFromImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const buffer = e.target.result;
+        EXIF.getData({ src: buffer }, function () {
+          const lat = EXIF.getTag(this, "GPSLatitude");
+          const lon = EXIF.getTag(this, "GPSLongitude");
+          const latRef = EXIF.getTag(this, "GPSLatitudeRef");
+          const lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+
+          if (lat && lon && latRef && lonRef) {
+            const toDecimal = (dms, ref) => {
+              const [d, m, s] = dms;
+              let dec = d + m / 60 + s / 3600;
+              return ref === "S" || ref === "W" ? -dec : dec;
+            };
+
+            resolve({
+              lat: toDecimal(lat, latRef),
+              lon: toDecimal(lon, lonRef),
+            });
+          } else {
+            reject("No GPS data");
+          }
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  const handleCameraChange = async (e) => {
+    const file = e.target.files[0];
+    try {
+      const [imageCoords, userCoords] = await Promise.all([
+        getGpsFromImage(file),
+        getUserCoords(),
+      ]);
+
+      const distance = getDistanceInMeters(
+        imageCoords.lat,
+        imageCoords.lon,
+        userCoords.lat,
+        userCoords.lon
+      );
+
+      if (distance > 100) {
+        alert("Photo location is too far from your current location!");
+      }
+    } catch (err) {
+      alert("Location verification failed: " + err);
+      return;
+    }
+
+    const newImage = imageCompression(file, {
+      maxSizeMB: 0.5,
+      maxWidthOrHeight: 1024, //made it smaller from
+      useWebWorker: true,
+    });
+
+    setCameraImage(newImage);
+
+    const success = (pos) => {
+      const coordinates = {
+        lat: pos.coords.latitude,
+        long: pos.coords.longitude,
+      };
+      console.log(pos);
+      setCoords(coordinates);
+    };
+    const error = (err) => {
+      console.log(err);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, {
+      enableHighAccuracy: true,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
 
-    if (step !== 2) {
+    if (step !== 3) {
       setStep((prev) => prev + 1);
       return;
     }
@@ -129,12 +237,13 @@ const PostHouse = () => {
     form.append("numOfHouses", inputData?.numOfHouses);
     form.append("coords", JSON.stringify(coords));
     form.append("amenities", JSON.stringify(amenities));
-    images.forEach((file) =>
-      form.append(
-        "images",
-        new File([file], Date.now() + "--" + file.name, { type: file.type })
-      )
-    );
+    form.append("thumbnails", images[0]);
+    form.append("thumbnails", images[1]);
+    images.forEach((file) => {
+      console.log(file);
+      form.append("images", file);
+    });
+
     try {
       await axios.post(`/houses`, form, {
         headers: {
@@ -157,6 +266,7 @@ const PostHouse = () => {
     mutationFn: handleSubmit,
     onSuccess: () => {
       queryClient.invalidateQueries("houses");
+      queryClient.invalidateQueries("landlordPosts");
     },
   });
 
@@ -181,41 +291,40 @@ const PostHouse = () => {
 
   console.log("inputData", inputData);
 
-   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  
-    useEffect(() => {
-      const goOnline = () => setIsOnline(true);
-      const goOffline = () => setIsOnline(false);
-  
-      window.addEventListener("online", goOnline);
-      window.addEventListener("offline", goOffline);
-  
-      return () => {
-        window.removeEventListener("online", goOnline);
-        window.removeEventListener("offline", goOffline);
-      };
-    }, []);
-  
-    if (!isOnline) {
-      return (
-        <div className="h-screen w-full flex flex-col">
-               <SecondaryHeader>Create</SecondaryHeader>
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-          <div className="flex flex-col flex-1 justify-center items-center">
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
 
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
+
+  if (!isOnline) {
+    return (
+      <div className="h-screen w-full flex flex-col">
+        <SecondaryHeader>Create</SecondaryHeader>
+
+        <div className="flex flex-col flex-1 justify-center items-center">
           <h1 className="text-2xl mb-4">You're offline</h1>
           <p className="mb-4">Check your internet connection.</p>
           <button
             className="bg-blue-600 px-4 py-2 rounded-lg"
             onClick={() => window.location.reload()}
-            >
+          >
             Retry
           </button>
-            </div>
-            <BottomNav />
         </div>
-      );
-    }
+        <BottomNav />
+      </div>
+    );
+  }
 
   return (
     <section className="pb-10">
@@ -258,6 +367,45 @@ const PostHouse = () => {
           <>
             <input
               type="file"
+              onChange={handleCameraChange}
+              className="hidden pointer-events-none"
+              accept="image/*"
+              multiple
+              name=""
+              capture="environment"
+              id=""
+              ref={cameraRef}
+            />
+
+            <div className="flex items-center flex-col gap-5">
+              <label htmlFor="" className="">
+                Upload an Image
+              </label>
+              <div
+                onClick={activateCameraInput}
+                className="text-base bg-gray-800 p-4 rounded-full "
+              >
+                <FaCamera />
+              </div>
+              <ul className=" w-full list-disc p-2 pl-7 m-0 pb-0 text-[0.7rem]">
+                <li>Turn on GPS</li>
+                <li>Stay within 50 metres of the property</li>
+                <li>Take a picture of the property from outside</li>
+              </ul>
+            </div>
+            {cameraImage && (
+              <div>
+                <img
+                  className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
+                  src={URL.createObjectURL(cameraImage)}
+                />{" "}
+              </div>
+            )}
+          </>
+        ) : step === 2 ? (
+          <>
+            <input
+              type="file"
               onChange={handleimagesChange}
               className="hidden pointer-events-none"
               accept="image/*"
@@ -269,7 +417,7 @@ const PostHouse = () => {
 
             <div className="flex items-center flex-col gap-5">
               <label htmlFor="" className="">
-                Upload Images
+                Upload extra Images
               </label>
               <div
                 onClick={activateFileInput}
@@ -277,6 +425,11 @@ const PostHouse = () => {
               >
                 <FaImages />
               </div>
+              <ul className=" w-full list-disc p-2 pl-7 m-0 pb-0 text-[0.7rem]">
+                <li>Pick upto 3 extra images of the property</li>
+                <li>Images can be either from inside or outside the property</li>
+                <li>Recommended atleast 2 images from inside the property</li>
+              </ul>
             </div>
             {images[0] && (
               <div>
@@ -316,7 +469,7 @@ const PostHouse = () => {
         {/* i dont think we will need landmarks when we have maps */}
         <div className="mt-3">
           <SubmitButton isDisabled={loading}>
-            {step === 2 ? "Create" : "Next"}
+            {step === 3 ? "Create" : "Next"}
           </SubmitButton>
         </div>
       </CustomForm>

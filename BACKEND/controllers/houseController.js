@@ -26,9 +26,12 @@ const createHouse = async (req, res) => {
     const verifiedUser = req.user;
 
     if (!verifiedUser) return res.status(400).json("user not authorized");
-    if (!req.files) return res.status(400).json("image required");
+    if (!req.files.images) return res.status(400).json("image required");
+    if (!req.files.thumbnails)
+      return res.status(400).json("thumbnail required");
+
     const imageIds = [];
-    for (const file of req.files) {
+    for (const file of req.files.images) {
       try {
         const compressedBuffer = await sharp(file.buffer)
           .resize({ width: 1000 })
@@ -55,21 +58,66 @@ const createHouse = async (req, res) => {
         });
       } catch (err) {
         // console.log("error", file, err);
-        res.status(500).json("failed to upload image", file, err);
+        res.status(500).json("failed to upload thumbnail", file, err);
       }
     }
 
-    // const imagePaths = req.files.map((file) => file.filename);
+    const thumbnailIds = [];
+    for (const file of req.files.thumbnails) {
+      try {
+        const compressedBuffer = await sharp(file.buffer)
+          .resize({ width: 500 })
+          .webp({ quality: 75 })
+          .toBuffer();
 
-    const globalDate = new Date();
+        const stream = Readable.from(compressedBuffer);
+
+        const uploadStream = getGridFSBucket().openUploadStream(
+          file.originalname.split(".")[0] + ".webp",
+          {
+            contentType: "image/webp",
+          }
+        );
+
+        await new Promise((resolve, reject) => {
+          stream
+            .pipe(uploadStream)
+            .on("finish", () => {
+              thumbnailIds.push(uploadStream.id.toString());
+              resolve();
+            })
+            .on("error", reject);
+        });
+      } catch (err) {
+        // console.log("error", file, err);
+        res.status(500).json("failed to upload thumbnail", file, err);
+      }
+    }
+
+    const unBlurredThumbnail = req.files.thumbnails[0]
+    const base64String = await sharp(unBlurredThumbnail.buffer)
+          .resize(10).blur()
+          .webp({quality: 20})
+          .toBuffer()
+
+    const base64 = `data:image/webp;base64,${base64String.toString(('base64'))}`
+
+
+
+    // console.log(req.files.thumbnails)
+    // const imagePaths = req.files.images.map((file) => file.filename);
+
+    
 
     const data = {
       ...content,
       images: imageIds,
+      thumbnails: thumbnailIds,
+      placeholderThumbnail: base64,
       landLord: verifiedUser._id,
       coords: JSON.parse(content.coords),
       amenities: JSON.parse(content.amenities),
-      updatedStatusAt: globalDate,
+      updatedStatusAt: new Date(),
     };
 
     const newHouse = await new House(data);
@@ -77,25 +125,6 @@ const createHouse = async (req, res) => {
     // console.log(newHouse.coords);
 
     await newHouse.save();
-
-    try {
-      const d = globalDate;
-      const min = d.getMinutes();
-
-      // ${hour} ${date}
-      // this wil run every month on the day this house was created i want every week or something
-      cron.schedule(`${min + 1} * * * *`, async () => {
-        const Id = newHouse._id;
-        await House.findByIdAndUpdate(
-          Id,
-          { status: "possibly_taken" },
-          { new: true }
-        );
-      });
-    } catch (err) {
-      console.log("error kwa cron", err);
-      res.status(500).json("shida kwa cron");
-    }
 
     res.status(200).json("success creating house");
   } catch (err) {
@@ -112,7 +141,7 @@ const updateHouseStatus = async (req, res) => {
   console.log("body", req.body);
   const { numOfHouses } = req.body;
   if (!numOfHouses) return res.json("hakuna numofhouses").status(400);
-  const house = await House.findByIdAndUpdate(
+  await House.findByIdAndUpdate(
     HouseId,
     {
       status: "vacant",
@@ -122,18 +151,6 @@ const updateHouseStatus = async (req, res) => {
     { new: true }
   );
 
-  const d = new Date();
-  const min = d.getMinutes();
-
-  cron.schedule(`${min + 1} * * * *`, async () => {
-    await House.findByIdAndUpdate(
-      HouseId,
-      {
-        status: "possibly_taken",
-      },
-      { new: true }
-    );
-  });
 
   res.json("success updating house").status(201);
 };
@@ -158,9 +175,10 @@ const getShortLists = async (req, res) => {
     console.log("page", page);
     const housesArray = req.user.shortLists;
     if (!housesArray) return res.sendStatus(204);
+    const revArray = housesArray.reverse()
 
     const allShortListsData = await Promise.all(
-      housesArray.map(async (houseId) => await House.findById(houseId))
+      revArray.map(async (houseId) => await House.findById(houseId))
     );
 
     const start = (page - 1) * limit;

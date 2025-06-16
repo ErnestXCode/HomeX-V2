@@ -10,29 +10,31 @@ import {
   FaTools,
 } from "react-icons/fa";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 
 const BottomNav = memo(() => {
+  const { t } = useTranslation();
   const user = useSelector(selectCurrentUser);
   return (
-    <nav className="bg-black/90 p-2 fixed bottom-0 mt-auto md:hidden w-screen">
+    <nav className="bg-black/90 p-2 fixed bottom-0 mt-auto w-screen">
       <ul className="flex gap-3 justify-around">
         <NavElements link={"/"}>
           <FaHome />
-          <p className="text-[0.6rem]">Home</p>
+          <p className="text-[0.6rem]">{t("Home")}</p>
         </NavElements>
 
         <NavElements link={"/post-house"}>
           <FaTools />
-          <p className="text-[0.6rem]">Create</p>
+          <p className="text-[0.6rem]">{t("Create")}</p>
         </NavElements>
 
         <NavElements link={"/about-us"}>
           <FaInfoCircle />
-          <p className="text-[0.6rem]">About</p>
+          <p className="text-[0.6rem]">{t("About")}</p>
         </NavElements>
         <NavElements link={user !== null ? "/profile" : "/login"}>
           <FaPersonBooth />
-          <p className="text-[0.6rem]">Me</p>
+          <p className="text-[0.6rem]">{t("Me")}</p>
         </NavElements>
       </ul>
     </nav>

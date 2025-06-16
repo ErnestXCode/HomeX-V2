@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { closeSideNav } from "../features/stylings/styleSlice";
@@ -25,10 +25,18 @@ import {
 } from "react-icons/fa";
 import { selectCurrentUser } from "../features/users/userSlice";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
+import Modal from "./Modal";
+import SubmitButton from "./SubmitButton";
+import i18n from "i18next";
 
 const SideNav = memo(() => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {};
 
   return (
     <SideNavLayout onClick={() => dispatch(closeSideNav())}>
@@ -37,15 +45,17 @@ const SideNav = memo(() => {
       </button>
       {userInfo ? (
         <>
-        <SidebarButton link={"/profile"}>Account</SidebarButton>
-        <SidebarButton link={"/profile"} white={true}>Log out</SidebarButton>
+          <SidebarButton link={"/profile"}>{t("Account")}</SidebarButton>
+          <SidebarButton link={"/profile"} white={true}>
+            {t("LogOut")}
+          </SidebarButton>
         </>
       ) : (
         <>
           <SidebarButton white={true} link={"/login"}>
-            Log in
+            {t("LogIn")}
           </SidebarButton>
-          <SidebarButton link={"/signup"}>Register</SidebarButton>
+          <SidebarButton link={"/signup"}> {t("Register")}</SidebarButton>
         </>
       )}
 
@@ -57,19 +67,47 @@ const SideNav = memo(() => {
         >
           <div className="flex items-center gap-2">
             <FaHome />
-            Home
+            {t("Home")}
           </div>
         </NavElements>
-        <NavElements
-          side={true}
-          link={""}
-          onClick={() => dispatch(closeSideNav())}
+
+        <div
+          className="p-2 w-[100%] active:bg-gray-800 rounded-2xl text-[0.8rem]"
+          onClick={() => setShowModal(true)}
         >
           <div className="flex items-center gap-2">
             <FaLanguage />
-            Language
+            {t("Language")}
           </div>
-        </NavElements>
+        </div>
+        <Modal
+          borderTop={false}
+          isOpen={showModal}
+          onClick={() => setShowModal(false)}
+        >
+          <div className="bg-gray-900  flex flex-col p-3 gap-2 rounded-2xl">
+            <button
+              className="bg-blue-700 p-1 mt-1 rounded-xl active:bg-gray-900/50"
+              onClick={() => {
+                i18n.changeLanguage("en");
+                setShowModal(false);
+                closeSideNav();
+              }}
+            >
+              English
+            </button>
+            <button
+              className="bg-blue-700 p-1 mt-1 rounded-xl active:bg-gray-900/50"
+              onClick={() => {
+                i18n.changeLanguage("sw");
+                setShowModal(false);
+                closeSideNav();
+              }}
+            >
+              Kiswahili
+            </button>
+          </div>
+        </Modal>
       </SideNavCard>
 
       <SideNavCard>
@@ -80,7 +118,7 @@ const SideNav = memo(() => {
         >
           <div className="flex items-center gap-2">
             <FaMicrophone />
-            Announcements
+            {t("Announcements")}
           </div>
         </NavElements>
         <NavElements
@@ -90,7 +128,7 @@ const SideNav = memo(() => {
         >
           <div className="flex items-center gap-2">
             <FaHeadphonesAlt />
-            Contact us
+            {t("ContactUs")}
           </div>
         </NavElements>
         <NavElements
@@ -100,7 +138,7 @@ const SideNav = memo(() => {
         >
           <div className="flex items-center gap-2">
             <FaInfoCircle />
-            About us
+            {t("About")}
           </div>
         </NavElements>
         <NavElements
@@ -110,7 +148,7 @@ const SideNav = memo(() => {
         >
           <div className="flex items-center gap-2">
             <FaQuestionCircle />
-            Help
+            {t("Help")}
           </div>
         </NavElements>
       </SideNavCard>
