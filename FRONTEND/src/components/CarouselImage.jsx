@@ -8,7 +8,7 @@ import axios from "../api/axios";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const CarouselImage = memo(({ showMore, item, showThumbnails }) => {
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   const [index, setIndex] = useState(0);
   const [blueIcon, setBlueIcon] = useState(false);
   const userInfo = useSelector(selectCurrentUser);
@@ -44,7 +44,6 @@ const CarouselImage = memo(({ showMore, item, showThumbnails }) => {
     }
   };
 
-
   return (
     <div className="relative">
       <div className="flex overflow-hidden">
@@ -55,10 +54,15 @@ const CarouselImage = memo(({ showMore, item, showThumbnails }) => {
             onClick={showMore ? null : () => navigate(`house/${item?._id}`)}
             className="w-[100%] grow-0 shrink-0 h-64 object-cover rounded-2xl mb-2 transition-transform duration-300 ease-in-out"
             style={{ translate: `${-100 * index}%` }}
-            src={loaded ? `${apiBaseUrl}/images/${image}` : item?.placeholderThumbnail}
+            src={
+              loaded
+                ? `${apiBaseUrl}/images/${image}`
+                : item?.placeholderThumbnail
+            }
             onLoad={() => setLoaded(true)}
-            alt=""
+            alt="House card image"
             loading="lazy"
+            decoding="async"
             // falback
             // pointerEvents='None'
           />

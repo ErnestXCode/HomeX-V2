@@ -10,6 +10,7 @@ const cron = require("node-cron");
 const { landlord } = require("../config/roles_list");
 
 const createHouse = async (req, res) => {
+  console.time("total");
   const content = req.body;
 
   // if (
@@ -31,89 +32,102 @@ const createHouse = async (req, res) => {
       return res.status(400).json("thumbnail required");
 
     const imageIds = [];
-    for (const file of req.files.images) {
-      try {
-        const compressedBuffer = await sharp(file.buffer)
-          .resize({ width: 1000 })
-          .webp({ quality: 70 })
-          .toBuffer();
-
-        const stream = Readable.from(compressedBuffer);
-
-        const uploadStream = getGridFSBucket().openUploadStream(
-          file.originalname.split(".")[0] + ".webp",
-          {
-            contentType: "image/webp",
-          }
-        );
-
-        await new Promise((resolve, reject) => {
-          stream
-            .pipe(uploadStream)
-            .on("finish", () => {
-              imageIds.push(uploadStream.id.toString());
-              resolve();
-            })
-            .on("error", reject);
-        });
-      } catch (err) {
-        // console.log("error", file, err);
-        res.status(500).json("failed to upload thumbnail", file, err);
-      }
-    }
-
     const thumbnailIds = [];
-    for (const file of req.files.thumbnails) {
-      try {
-        const compressedBuffer = await sharp(file.buffer)
-          .resize({ width: 500 })
-          .webp({ quality: 75 })
+    const base64Array = [];
+
+    const imagePromise = Promise.all(
+      req.files.images.map(async (file) => {
+        try {
+          const compressedBuffer = await sharp(file.buffer)
+            .resize({ width: 500 })
+            .webp({ quality: 75 })
+            .toBuffer();
+
+          const stream = Readable.from(compressedBuffer);
+
+          const uploadStream = getGridFSBucket().openUploadStream(
+            file.originalname.split(".")[0] + ".webp",
+            {
+              contentType: "image/webp",
+            }
+          );
+
+          await new Promise((resolve, reject) => {
+            stream
+              .pipe(uploadStream)
+              .on("finish", () => {
+                imageIds.push(uploadStream.id.toString());
+                resolve();
+              })
+              .on("error", reject);
+          });
+        } catch (err) {
+          // console.log("error", file, err);
+          res.status(500).json("failed to upload thumbnail", file, err);
+        }
+      })
+    );
+
+    const thumbnailPromise = Promise.all(
+      req.files.thumbnails.map(async (file) => {
+        try {
+          const compressedBuffer = await sharp(file.buffer)
+            .resize({ width: 500 })
+            .webp({ quality: 75 })
+            .toBuffer();
+
+          const stream = Readable.from(compressedBuffer);
+
+          const uploadStream = getGridFSBucket().openUploadStream(
+            file.originalname.split(".")[0] + ".webp",
+            {
+              contentType: "image/webp",
+            }
+          );
+
+          await new Promise((resolve, reject) => {
+            stream
+              .pipe(uploadStream)
+              .on("finish", () => {
+                thumbnailIds.push(uploadStream.id.toString());
+                resolve();
+              })
+              .on("error", reject);
+          });
+        } catch (err) {
+          // console.log("error", file, err);
+          res.status(500).json("failed to upload thumbnail", file, err);
+        }
+      })
+    );
+    console.time("promises");
+    await Promise.all([
+      imagePromise,
+      thumbnailPromise,
+      (async () => {
+        const unBlurredThumbnail = req.files.thumbnails[0];
+        const base64String = await sharp(unBlurredThumbnail.buffer)
+          .resize(10)
+          .blur()
+          .webp({ quality: 20 })
           .toBuffer();
 
-        const stream = Readable.from(compressedBuffer);
-
-        const uploadStream = getGridFSBucket().openUploadStream(
-          file.originalname.split(".")[0] + ".webp",
-          {
-            contentType: "image/webp",
-          }
-        );
-
-        await new Promise((resolve, reject) => {
-          stream
-            .pipe(uploadStream)
-            .on("finish", () => {
-              thumbnailIds.push(uploadStream.id.toString());
-              resolve();
-            })
-            .on("error", reject);
-        });
-      } catch (err) {
-        // console.log("error", file, err);
-        res.status(500).json("failed to upload thumbnail", file, err);
-      }
-    }
-
-    const unBlurredThumbnail = req.files.thumbnails[0]
-    const base64String = await sharp(unBlurredThumbnail.buffer)
-          .resize(10).blur()
-          .webp({quality: 20})
-          .toBuffer()
-
-    const base64 = `data:image/webp;base64,${base64String.toString(('base64'))}`
-
-
+        const base64 = `data:image/webp;base64,${base64String.toString(
+          "base64"
+        )}`;
+        base64Array.push(base64);
+      })(),
+    ]);
+    console.timeEnd("promises");
 
     // console.log(req.files.thumbnails)
     // const imagePaths = req.files.images.map((file) => file.filename);
-
-    
 
     const data = {
       ...content,
       images: imageIds,
       thumbnails: thumbnailIds,
-      placeholderThumbnail: base64,
+      placeholderThumbnail: base64Array[0],
       landLord: verifiedUser._id,
       coords: JSON.parse(content.coords),
       amenities: JSON.parse(content.amenities),
@@ -130,6 +144,7 @@ const createHouse = async (req, res) => {
   } catch (err) {
     res.status(400).json("Could not create House");
   }
+  console.timeEnd("total");
 };
 
 const updateHouseStatus = async (req, res) => {
@@ -150,7 +165,6 @@ const updateHouseStatus = async (req, res) => {
     },
     { new: true }
   );
-
 
   res.json("success updating house").status(201);
 };
@@ -175,7 +189,7 @@ const getShortLists = async (req, res) => {
     console.log("page", page);
     const housesArray = req.user.shortLists;
     if (!housesArray) return res.sendStatus(204);
-    const revArray = housesArray.reverse()
+    const revArray = housesArray.reverse();
 
     const allShortListsData = await Promise.all(
       revArray.map(async (houseId) => await House.findById(houseId))

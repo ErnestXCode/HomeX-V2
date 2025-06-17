@@ -1,4 +1,4 @@
-const webpush = require('web-push')
+const webpush = require("web-push");
 
 const times_backend = {
   create_house: "2.958s",
@@ -16,5 +16,4 @@ const frontend_lightHouse = {
   help: 96,
 };
 
-
- 
+// Get-ChildItem -Recurse ".\FRONTEND" -Include *.js, *.jsx -File -ErrorAction SilentlyContinue | Where-Object { $_.FullName -notmatch '\\(dist|node_modules)\\'} | Get-Content | Measure-Object -Line

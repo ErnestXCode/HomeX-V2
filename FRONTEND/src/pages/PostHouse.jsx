@@ -83,20 +83,27 @@ const PostHouse = () => {
   };
 
   const handleimagesChange = async (e) => {
+    console.time("images");
     if (e.target?.files?.length <= 4) {
       const files = Array.from(e.target.files);
+      console.time("promiseCompress");
+
       const compressedFiles = await Promise.all(
         files.map((file) => {
-          console.log(file);
           const newImage = imageCompression(file, {
             maxSizeMB: 0.5,
-            maxWidthOrHeight: 1024, //made it smaller from
+            maxWidthOrHeight: 1024,
             useWebWorker: true,
+            fileType: "image/webp",
           });
+
+          console.log("finished processing image, ", file.name);
           return newImage;
         })
       );
+      console.timeEnd("promiseCompress");
       setImages(compressedFiles);
+      console.log(compressedFiles);
 
       const success = (pos) => {
         const coordinates = {
@@ -116,6 +123,7 @@ const PostHouse = () => {
     } else {
       throw new Error("limit of 3 exceeded");
     }
+    console.timeEnd("images");
   };
 
   function getUserCoords() {
@@ -228,6 +236,7 @@ const PostHouse = () => {
       setStep((prev) => prev + 1);
       return;
     }
+    console.time("submit");
 
     const form = new FormData();
 
@@ -240,7 +249,6 @@ const PostHouse = () => {
     form.append("thumbnails", images[0]);
     form.append("thumbnails", images[1]);
     images.forEach((file) => {
-      console.log(file);
       form.append("images", file);
     });
 
@@ -256,6 +264,7 @@ const PostHouse = () => {
     } catch (error) {
       console.log(error);
     }
+    console.timeEnd("submit");
   };
 
   // images[0] && console.log(URL.createObjectURL(images[0]))
@@ -427,7 +436,9 @@ const PostHouse = () => {
               </div>
               <ul className=" w-full list-disc p-2 pl-7 m-0 pb-0 text-[0.7rem]">
                 <li>Pick upto 3 extra images of the property</li>
-                <li>Images can be either from inside or outside the property</li>
+                <li>
+                  Images can be either from inside or outside the property
+                </li>
                 <li>Recommended atleast 2 images from inside the property</li>
               </ul>
             </div>
