@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../features/users/userSlice";
 import WelcomeHero from "../components/WelcomeHero";
@@ -14,6 +14,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { loading } = useSelector((state) => state.user);
+  const location = useLocation();
+  console.log(location);
 
   const emailRef = useRef();
 
@@ -51,7 +53,7 @@ const Login = () => {
       console.log(response.data);
       // data.data.accessToken
 
-      navigate("/");
+      navigate(location.state.from.pathname, { replace: true });
     } catch (err) {
       console.error("Error:", err.message);
     }
@@ -80,13 +82,13 @@ const Login = () => {
         <SecondaryHeader>{t("LogIn")}</SecondaryHeader>
 
         <div className="flex flex-col flex-1 justify-center items-center">
-          <h1 className="text-2xl mb-4">You're offline</h1>
-          <p className="mb-4">Check your internet connection.</p>
+          <h1 className="text-2xl mb-4">{t("YourOffline")}</h1>
+          <p className="mb-4">{t("CheckConnection")}</p>
           <button
             className="bg-blue-600 px-4 py-2 rounded-lg"
             onClick={() => window.location.reload()}
           >
-            Retry
+            {t("Retry")}
           </button>
         </div>
       </div>
@@ -105,7 +107,7 @@ const Login = () => {
           type={"text"} // correct later
           onChange={(e) => handleChange(e)}
         >
-          Email
+          {t("Email")}
         </CustomInputBox>
         <CustomInputBox
           id={"password"}
@@ -114,7 +116,7 @@ const Login = () => {
           type={"password"}
           onChange={(e) => handleChange(e)}
         >
-          Password
+          {t("Password")}
         </CustomInputBox>
 
         {/* disabled={loading} */}
@@ -125,7 +127,7 @@ const Login = () => {
 
         <p className="font-serif text-center">
           {" "}
-          Don't have an account?{" "}
+          {t("NotRegistered")}{" "}
           <Link
             className="border-b-3 border-blue-500 text-blue-200"
             to="/signup"

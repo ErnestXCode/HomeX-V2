@@ -7,6 +7,7 @@ import {
   FaHome,
   FaInfoCircle,
   FaPersonBooth,
+  FaQuestionCircle,
   FaTools,
 } from "react-icons/fa";
 import { memo } from "react";
@@ -28,9 +29,9 @@ const BottomNav = memo(() => {
           <p className="text-[0.6rem]">{t("Create")}</p>
         </NavElements>
 
-        <NavElements link={"/about-us"}>
-          <FaInfoCircle />
-          <p className="text-[0.6rem]">{t("About")}</p>
+        <NavElements link={"/help"}>
+          <FaQuestionCircle />
+          <p className="text-[0.6rem]">{t("Help")}</p>
         </NavElements>
         <NavElements link={user !== null ? "/profile" : "/login"}>
           <FaPersonBooth />

@@ -13,6 +13,9 @@ const cron = require("node-cron");
 const webpush = require("web-push");
 const rateLimit = require("express-rate-limit");
 const House = require("./models/houseModel");
+const redisClient = require("./config/redisConfig");
+
+// have url for production
 
 const app = express();
 dotenv.config();
@@ -126,11 +129,17 @@ app.post("/subscription", (req, res) => {
 // app.use('/', limiter)
 
 app.use("/", require("./routes/auth"));
+
 app.use("/", require("./routes/user"));
 
 (async () => {
   await connectDB();
-
+  try {
+    await redisClient.connect();
+    console.log("Redis initiated Successfully");
+  } catch (err) {
+    console.log("Error Connecting to Redis ", err);
+  }
   const PORT = process.env.PORT || 5000;
 
   console.log("gfs", getGFS() ? "DEFINED" : "UNDEFINED");

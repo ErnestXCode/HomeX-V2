@@ -16,16 +16,17 @@ import ProfileInfoContent from "../components/ProfileInfoContent";
 import { Link } from "react-router-dom";
 import InitialLoader from "../components/InitialLoader";
 import axios from "../api/axios";
-import { FaCamera, FaPenAlt } from "react-icons/fa";
+import { FaCamera, FaEdit, FaPenAlt, FaUser } from "react-icons/fa";
 import CustomInputBox from "../components/CustomInputBox";
 import CustomForm from "../components/CustomForm";
 import Modal from "../components/Modal";
 import SubmitButton from "../components/SubmitButton";
+import { t } from "i18next";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
-  const [profileIsVisible, setProfileIsVisible] = useState(true);
+  const [profileIsVisible, setProfileIsVisible] = useState(false);
 
   const userInfo = useSelector(selectCurrentUser);
 
@@ -63,10 +64,10 @@ const Profile = () => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0]?.isIntersecting) {
-        setProfileIsVisible(false);
+        setProfileIsVisible(true);
         console.log("intersecting");
       } else {
-        setProfileIsVisible(true);
+        setProfileIsVisible(false);
       }
     });
     observer.observe(visibilityRef?.current);
@@ -138,17 +139,39 @@ const Profile = () => {
       console.log(err);
     }
   };
-
+console.log(showProfileImg)
   return (
     <>
       {" "}
       <SecondaryHeader>{profileState}</SecondaryHeader>
       <>
         <div ref={visibilityRef} className=""></div>
+        <div className='z-60'>
+
+          <Modal
+                // isOpen={showProfileImg}
+                // onClick={() => setShowProfileImg(false)}
+                // Profile={true}
+              >
+                <div className="bg-gray-950 flex flex-col justify-center items-center gap-3 p-4 rounded-2xl">
+                  <img
+                    className="w-50 h-50 object-cover rounded-full"
+                    src={profileImg}
+                  />
+                  <section className="flex  items-center gap-2">
+                    <p>{user?.name}</p>
+                  </section>
+                </div>
+              </Modal>
+              </div>
         <section
-          className={`  items-center p-4 flex flex-col  justify-center gap-3 transition-all duration-300  ${
-            !profileIsVisible && " fixed z-40 top-10 right-0"
-          } `}
+          className={`   p-4 flex flex-col items-center justify-center gap-3 sticky top-15
+            transition-transform duration-500
+            ${profileIsVisible && "z-70 scale-y-25 scale-x-15 translate-x-5/12 translate-y-[-70px]"}
+            
+            
+            `}
+            // complex stuff in there up 
         >
           <input
             type="file"
@@ -161,26 +184,34 @@ const Profile = () => {
           />
           {profileImg === null ? (
             //
-            <section
-              className={`bg-gray-800  rounded-full relative ${
-                profileIsVisible ? "p-10" : "size-10"
-              }`}
+            <div
+              className={`bg-gray-900 p-4 h-20 w-20 flex flex-col items-center rounded-full relative transition-all duration-500
+
+          ${profileIsVisible && "translate-x-40"}
+          `}
             >
+              <FaUser
+                className="h-full w-full text-gray-500 *:
+            
+            
+            "
+              />
               <div
                 onClick={handleProfileImage}
-                className={`absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full duration-300  ${
-                  !profileIsVisible && "opacity-0 pointer-events-none"
-                }`}
+                className={`absolute bottom-0 right-0 bg-gray-900 p-2 rounded-full transition-opacity duration-500
+                  ${profileIsVisible && "opacity-0"}
+
+              `}
               >
-                <FaCamera />
+                <FaCamera className=" " />
               </div>
-            </section>
+            </div>
           ) : (
             <>
               <div
-                className={`rounded-full relative ${
-                  profileIsVisible ? "h-20 w-20 " : "h-10 w-10"
-                }`}
+                className={`bg-gray-900 size-20 mt-8  rounded-full relative transition-all duration-500
+
+          ${profileIsVisible && "scale-x-300 scale-y-180"}`}
               >
                 <img
                   onClick={handleShowImage}
@@ -190,33 +221,24 @@ const Profile = () => {
                 />
                 <div
                   onClick={handleProfileImage}
-                  className={`absolute bottom-0 right-0 bg-gray-700 p-2 rounded-full duration-300  ${
-                    !profileIsVisible && "opacity-0 pointer-events-none"
-                  }`}
+                  className={`absolute bottom-0 right-0 bg-gray-900 p-2 rounded-full transition-opacity duration-500
+                  ${profileIsVisible && "opacity-0 pointer-events-none"}
+
+              `}
                 >
-                  <FaCamera />
+                  <FaCamera className=" " />
                 </div>
               </div>
 
-              <Modal
-                isOpen={showProfileImg}
-                onClick={() => setShowProfileImg(false)}
-              >
-                <img
-                  onClick={() => showMoreImage(profileImg)}
-                  className="w-full h-64 object-cover"
-                  src={profileImg}
-                  // src={profileImg}
-                />
-              </Modal>
+            
             </>
           )}
 
           {/* flex */}
           <section
-            className={`flex items-center gap-3 ${
-              !profileIsVisible && "opacity-0 pointer-events-none"
-            }`}
+            className={`flex items-center gap-3 
+              ${profileIsVisible && "opacity-0 pointer-events-none"}
+            `}
           >
             <p>{user?.name}</p>
             <section className="text-white/70 flex">
@@ -243,9 +265,9 @@ const Profile = () => {
                     type={"text"}
                     id={"name"}
                   >
-                    Enter new username
+                    {t("EnterNewUsername")}
                   </CustomInputBox>
-                  <SubmitButton>Set new username</SubmitButton>
+                  <SubmitButton>{t("SetNewUsername")}</SubmitButton>
                 </CustomForm>
               </Modal>
             </section>
@@ -268,7 +290,7 @@ const Profile = () => {
             }`}
             onClick={() => setProfileState("shortlist")}
           >
-            Shortlists
+            {t("Shortlists")}
           </li>
           <li
             className={`cursor-pointer text-white/50 transition-all ${
@@ -276,7 +298,7 @@ const Profile = () => {
             }`}
             onClick={() => setProfileState("posts")}
           >
-            Posts
+            {t("Posts")}
           </li>
         </ul>
       </nav>
@@ -291,7 +313,6 @@ const Profile = () => {
           <Posts />
         </Suspense>
       )}
-      <BottomNav />
     </>
   );
 };

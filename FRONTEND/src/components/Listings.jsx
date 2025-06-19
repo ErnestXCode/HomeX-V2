@@ -107,7 +107,7 @@ const Listings = () => {
             Retry
           </button>
         </div>
-        <BottomNav />
+        {/* <BottomNav /> */}
       </div>
     );
   }
@@ -140,7 +140,7 @@ const Listings = () => {
           )}
         </div>
       </section>
-      <BottomNav />
+      {/* <BottomNav /> */}
     </main>
   );
 };

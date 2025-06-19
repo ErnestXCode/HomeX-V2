@@ -1,4 +1,7 @@
+const redisClient = require("../config/redisConfig");
 const Area = require("../models/areaModel");
+
+// have url for production
 
 const createArea = async (req, res) => {
   const content = req.body;
@@ -26,9 +29,20 @@ const getArea = async (req, res) => {
   }
 };
 const getAllAreas = async (req, res) => {
-  
   try {
     const areas = await Area.find();
+    console.log("areas started");
+    try {
+      const cachedAreas = await redisClient.get("areas");
+      if (cachedAreas !== null) {
+        return res.json(JSON.parse(cachedAreas));
+      }
+
+      await redisClient.set("areas", JSON.stringify(areas));
+    } catch (error) {
+      console.log(error);
+    }
+
     res.status(200).json(areas);
   } catch (error) {
     console.log("error getting all areas", error);

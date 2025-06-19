@@ -4,8 +4,10 @@ import CustomForm from "../components/CustomForm";
 import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import SecondaryHeader from "../components/SecondaryHeader";
+import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {
+  const { t } = useTranslation();
   const nameRef = useRef();
   const inputDict = {
     name: "",
@@ -35,7 +37,7 @@ const ContactUs = () => {
   }, []);
   return (
     <>
-      <SecondaryHeader>Contact us</SecondaryHeader>
+      <SecondaryHeader>{t("ContactUs")}</SecondaryHeader>
       <CustomForm onSubmit={(e) => handleSubmit(e)}>
         <CustomInputBox
           ref={nameRef}
@@ -47,7 +49,7 @@ const ContactUs = () => {
           id="name"
           className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
         >
-          Name
+          {t("Name")}
         </CustomInputBox>
 
         <CustomInputBox
@@ -60,7 +62,7 @@ const ContactUs = () => {
           autoComplete="off"
           className="bg-gray-700 text-slate-50 p-2 pl-3 font-normal rounded-2xl mb-3 border-2 border-blue-600"
         >
-          Email
+          {t("Email")}
         </CustomInputBox>
 
         <label className="m-5 mt-3 mb-0 font-normal" htmlFor="message">

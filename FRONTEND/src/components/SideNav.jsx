@@ -36,19 +36,20 @@ const SideNav = memo(() => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
 
-  const handleModal = () => {};
 
   return (
     <SideNavLayout onClick={() => dispatch(closeSideNav())}>
+      {/* look if were rebdering unneseccarily coz of function */}
       <button onClick={() => dispatch(closeSideNav())} className="ml-auto p-2">
         <FaCrosshairs />
       </button>
       {userInfo ? (
         <>
           <SidebarButton link={"/profile"}>{t("Account")}</SidebarButton>
-          <SidebarButton link={"/profile"} white={true}>
+          {/* add an onclick to closesidenav */}
+          {/* <SidebarButton link={"/profile"} white={true}>
             {t("LogOut")}
-          </SidebarButton>
+          </SidebarButton> */}
         </>
       ) : (
         <>
@@ -113,7 +114,7 @@ const SideNav = memo(() => {
       <SideNavCard>
         <NavElements
           side={true}
-          link={""}
+          link={"/announcements"}
           onClick={() => dispatch(closeSideNav())}
         >
           <div className="flex items-center gap-2">

@@ -8,6 +8,7 @@ const {
 } = require("../controllers/areaController");
 const handleAuth = require("../middleware/handleAuth");
 const verifyRoles = require("../middleware/verifyRoles");
+const handleRedis = require("../middleware/handleRedis");
 const ROLES_LIST = require("../config/roles_list");
 
 const router = express.Router();

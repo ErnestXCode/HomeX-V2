@@ -15,7 +15,7 @@ const Modal = ({borderTop, isOpen, onClick, children }) => {
     >
       <div
         className={`
-          text-white text-[.9rem]
+          text-white text-[.9rem] 
           p-4 pl-6 pr-6 transition-transform duration-300 fixed w-full top-[10%]   ${
             isOpen ? "translate-y-0" : "translate-y-full"
           }

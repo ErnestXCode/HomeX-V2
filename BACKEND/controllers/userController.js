@@ -87,6 +87,7 @@ const getCurrentUserProfile = async (req, res) => {
 
   try {
     const profile = req.user;
+    // would redis work differently for diff users?
     res.status(200).json(profile);
   } catch (err) {
     res.status(404).json({ message: "User not found", err });
@@ -119,7 +120,7 @@ const updateUser = async (req, res) => {
       password: password || content.password,
     };
 
-    const result = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       id,
       { ...updates },
       { new: true }

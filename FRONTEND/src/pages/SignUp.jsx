@@ -99,7 +99,7 @@ const SignUp = () => {
 
       dispatch(signInSuccess(newUser.data));
 
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (err) {
       console.error("Error:", err.message);
     }
@@ -138,7 +138,7 @@ const SignUp = () => {
                     type={"text"}
                     onChange={(e) => handleChange(e)}
                   >
-                    Name
+                    {t("Name")}
                   </CustomInputBox>
                   <CustomInputBox
                     id={"email"}
@@ -147,7 +147,7 @@ const SignUp = () => {
                     type={"email"}
                     onChange={(e) => handleChange(e)}
                   >
-                    Email
+                    {t("Email")}
                   </CustomInputBox>
                   <CustomInputBox
                     id={"password"}
@@ -156,7 +156,7 @@ const SignUp = () => {
                     type={"password"}
                     onChange={(e) => handleChange(e)}
                   >
-                    Password
+                    {t("Password")}
                   </CustomInputBox>
                   <SubmitButton>
                     {isLandlord ? "Next" : "Register"}
@@ -172,21 +172,18 @@ const SignUp = () => {
                     type={"number"}
                     onChange={(e) => handleChange(e)}
                   >
-                    Phone number
+                    {t("PhoneNumber")}
                   </CustomInputBox>
                   <ul className="p-4 pl-10 list-disc">
-                    <li>Phone number must have an active Whatsapp account</li>
-                    <li>
-                      Phone number should be available most of the time for
-                      calls
-                    </li>
+                    <li></li>
+                    <li></li>
                   </ul>
                   <SubmitButton>{t("Register")}</SubmitButton>
                 </>
               )}
 
               <p className="font-serif text-center text-[.8rem]">
-                Already have an account?{" "}
+                {t("AlreadyRegistered")}{" "}
                 <Link
                   className="border-b-3 border-blue-600 text-blue-200"
                   to="/login"
@@ -202,7 +199,7 @@ const SignUp = () => {
               onClick={() => handleModalAndForm()}
             >
               <div className="text-center text-base mb-3">
-                Are You a landlord ?
+                {t("AreYouLandlord")}
               </div>
               <section className="mb-4 mt-2 bg-gray-900 p-2 pt-3 pb-3 rounded-2xl">
                 <section className="w-full flex items-end justify-around">
@@ -214,7 +211,7 @@ const SignUp = () => {
                     id="isLandlord"
                     disableFullWidth={true}
                   >
-                    Yes{" "}
+                    {t("Yes")}{" "}
                   </CustomCheckBox>
 
                   <CustomCheckBox
@@ -223,7 +220,7 @@ const SignUp = () => {
                     name="isLandlord"
                     disableFullWidth={true}
                   >
-                    No{" "}
+                    {t("No")}{" "}
                   </CustomCheckBox>
                 </section>
               </section>
@@ -235,9 +232,9 @@ const SignUp = () => {
                   onChange={(e) => handleCheckBoxChangeUser(e)}
                 >
                   <label htmlFor="radio" className="text-[.65rem]">
-                    I have read and agree to accept{" "}
+                    {t("AgreeUserAgreement")}{" "}
                     <span className="text-blue-400 underline">
-                      <button onClick={openModal}>User Agreement</button>
+                      <button onClick={openModal}>{t("UserAgreement")}</button>
                       {showUserAgreementModal && (
                         <div className="pt-50">
                           <Modal
@@ -269,7 +266,7 @@ const SignUp = () => {
                                 }}
                                 className="w-full bg-blue-600 text-white p-2 mt-4 rounded-2xl"
                               >
-                                Agree
+                                {t("Agree")}
                               </button>
                             </div>
                           </Modal>
@@ -284,7 +281,7 @@ const SignUp = () => {
                 className={`w-full p-2 bg-blue-600 mt-4 rounded-2xl disabled:bg-blue-600/50 disbaled:text-white/50`}
                 onClick={handleContinueToSignup}
               >
-                Continue
+                {t("Continue")}
               </button>
             </Modal>
           )}

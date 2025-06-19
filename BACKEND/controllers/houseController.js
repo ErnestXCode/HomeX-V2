@@ -296,16 +296,49 @@ const getLAndlordsHouses = async (req, res) => {
     .status(200);
 };
 
+const deleteShortlist = async (req, res) => {
+  const { id } = req.query;
+
+  const user = req.user;
+
+  const userId = user._id;
+
+  try {
+    const shortlistArray = user.shortLists;
+
+    const updatedShortlistArray = shortlistArray.filter(
+      (shortlist) => shortlist.toString() !== id
+    );
+
+    await User.findByIdAndUpdate(userId, {
+      ...user,
+      shortLists: updatedShortlistArray,
+    });
+    res.status(200).json("successfully deleted shortlist");
+  } catch (err) {
+    console.log(err);
+    res.json("error deleting shortlist", err);
+  }
+};
+
 const updateHouse = async (req, res) => {
+  console.log("started updating");
   const { id } = req.params;
   if (!id)
     return res.status(400).json({ error: "invalid request, provide an id" });
 
   const content = req.body;
-  if (!content.image || !content.area || !content.pricing || !content.landLord)
-    return res.status(400).json({ error: "All inputs are mandatory" });
+  console.log("content", content);
+
+  const updatedCont = {
+    ...content,
+    status: "vacant",
+    updatedStatusAt: new Date(),
+    amenities: JSON.parse(content.amenities),
+  };
+
   try {
-    const updatedHouse = await House.findByIdAndUpdate(id, content, {
+    const updatedHouse = await House.findByIdAndUpdate(id, updatedCont, {
       new: true,
     });
     res.status(200).json(updatedHouse);
@@ -350,4 +383,5 @@ module.exports = {
   getLAndlordsHouses,
   updateHouseStatus,
   markAsTaken,
+  deleteShortlist,
 };

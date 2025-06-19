@@ -9,6 +9,7 @@ const {
   getShortLists,
   getLAndlordsHouses,
   updateHouseStatus,
+  deleteShortlist,
 } = require("../controllers/houseController");
 const handleAuth = require("../middleware/handleAuth");
 const upload = require("../middleware/handleUploads");
@@ -36,7 +37,10 @@ router
     createHouse
   );
 
-router.route("/shortlists").get(handleAuth, getShortLists);
+router
+  .route("/shortlists")
+  .get(handleAuth, getShortLists)
+  .delete(handleAuth, deleteShortlist);
 router.route("/landlordHouses").get(handleAuth, getLAndlordsHouses);
 router
   .route("/verify")

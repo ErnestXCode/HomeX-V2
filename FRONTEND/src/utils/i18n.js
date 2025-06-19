@@ -17,6 +17,16 @@ const resources = {
       Version: "Version",
       Donate: "Donate",
       PersonalInfo: "Personal Information",
+      Personal: "Personal",
+      changePassword: "Change Password",
+      Next: "Next",
+      EnterOldPwd: "Enter old password",
+      EnterNewPwd: "Enter new password",
+      ConfirmNewPwd: "Confirm new password",
+      SetNewPwd: "Set new password",
+      EnterNewUsername: "Enter new username",
+      SetNewUsername: "Set new username",
+      DeleteAccount: "Delete account",
       ContactUs: "Contact us",
       Help: "Help",
       Shortlists: "Shortlists",
@@ -27,6 +37,38 @@ const resources = {
       Register: "Register",
       Language: "Language",
       Announcements: "Announcements",
+      UploadImage: "Upload an Image",
+      TurnOnGps: "Turn on GPS",
+      AllowedDistance: "Stay within 50 metres of the property",
+      TakePictureOutside: "Take a picture of the property from outside",
+      UploadExtraImages: "Upload extra Images",
+      ExtrasAllowed: "Pick upto 3 extra images of the property",
+      FromWhereExtrasTaken:
+        "Images can be either from inside or outside the property",
+      RecommendedAmtOfExtras:
+        "Recommended atleast 2 images from inside the property",
+      and: "and",
+      more: "more",
+      Amenities: "Amenities",
+      Name: "Name",
+      Email: "Email",
+      Password: "Password",
+      PhoneNumber: "Phone number",
+      MustHaveWhatsapp: "Phone number must have an active Whatsapp account",
+      MustBeActive:
+        "Phone number should be available most of the time for calls",
+      AlreadyRegistered: "Already have an account?",
+      AreYouLandlord: "Are You a landlord ?",
+      Yes: "Yes",
+      No: "No",
+      AgreeUserAgreement: "I have read and agree to accept",
+      UserAgreement: "User Agreement",
+      Agree: "Agree",
+      Continue: "Continue",
+      YourOffline: "You're offline",
+      CheckConnection: "Check your internet connection.",
+      Retry: "Retry",
+      NotRegistered: "Don't have an account?",
     },
   },
   sw: {
@@ -67,23 +109,5 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const times_backend = {
-  create_house: "2.958s",
-  refresh: "387.93ms",
-};
-const frontend_lightHouse = {
-  profile: 93,
-  home: 78,
-  about: 96,
-  contact: 95,
-  create: 67,
-  login: 94,
-  signup: 93,
-  personal: 67,
-  help: 96,
-  admin: 41,
-};
-
-console.log(times_backend, frontend_lightHouse);
 
 export default i18n;

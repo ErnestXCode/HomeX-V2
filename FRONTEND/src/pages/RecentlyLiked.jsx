@@ -5,11 +5,9 @@ import { QueryClient } from "@tanstack/react-query";
 
 const RecentlyLiked = () => {
 
-  const queryClient = new QueryClient();
+
   
-  useEffect(() => {
-    queryClient.invalidateQueries("shortlist");
-  }, []);
+ 
 
   return (
     <>

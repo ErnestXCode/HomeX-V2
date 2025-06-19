@@ -3,13 +3,29 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import ListText from "../components/ListText";
-import { FaAngleLeft, FaMap, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import {
+  FaAngleLeft,
+  FaCheckCircle,
+  FaDog,
+  FaLightbulb,
+  FaMap,
+  FaPhoneAlt,
+  FaShower,
+  FaTimes,
+  FaTimesCircle,
+  FaToilet,
+  FaWater,
+  FaWhatsapp,
+  FaWifi,
+} from "react-icons/fa";
 import ImagesPage from "./ImagesPage";
 import CarouselImage from "../components/CarouselImage";
+import { useTranslation } from "react-i18next";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
   const [data, setData] = useState(null);
+  const { t } = useTranslation();
   const { id } = useParams();
   console.log(id);
   const userInfo = useSelector(selectCurrentUser);
@@ -52,24 +68,43 @@ const IndividualHouse = () => {
     timeStyle: "short",
   });
 
-const handleWhatsappRedirect = (phone) => {
-  let cleanedPhone = phone.replace(/\D/g, ''); // Remove non-digits
+  const handleWhatsappRedirect = (phone) => {
+    let cleanedPhone = phone.replace(/\D/g, ""); // Remove non-digits
 
-  // If it starts with 0, replace with 254
-  if (cleanedPhone.startsWith('0')) {
-    cleanedPhone = '254' + cleanedPhone.slice(1);
-  }
+    // If it starts with 0, replace with 254
+    if (cleanedPhone.startsWith("0")) {
+      cleanedPhone = "254" + cleanedPhone.slice(1);
+    }
 
-  // If it doesn’t start with 254 and isn’t already a full number, warn user
-  if (!cleanedPhone.startsWith('254')) {
-    alert("Please enter a valid Kenyan phone number (starting with 07 or 254)");
-    return;
-  }
+    // If it doesn’t start with 254 and isn’t already a full number, warn user
+    if (!cleanedPhone.startsWith("254")) {
+      alert(
+        "Please enter a valid Kenyan phone number (starting with 07 or 254)"
+      );
+      return;
+    }
 
-  window.open(`https://wa.me/${cleanedPhone}`, '_blank', 'noopener,noreferrer');
-};
+    window.open(
+      `https://wa.me/${cleanedPhone}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+  const AmenitiesArray = [
+    <FaWifi />,
+    <FaWater />,
+    <FaToilet />,
+    <FaShower />,
+    <FaDog />,
+    <FaLightbulb />,
+  ];
 
-console.log(data)
+  console.log(data);
+
+  const f = new Intl.NumberFormat(undefined, {
+    style: "currency",
+    currency: "KSH",
+  });
   return (
     <>
       {showImages ? (
@@ -85,74 +120,137 @@ console.log(data)
             </Link>
           </button>
           <div onClick={() => setShowImages(true)}>
-            <CarouselImage
-              showMore={true}
-              item={data?.images && data}
-            />
+            <CarouselImage showMore={true} item={data?.images && data} />
           </div>
-          <section className="flex  justify-between bg-gray-800 p-2 m-2 rounded-xl">
-            <ListText content={data?.landLord?.name}>Hosted by </ListText>
-            <section className="flex justify-center">
-              <section className="flex items-center text-base justify-around w-20 ">
-                <button className="pr-4">
-                  {" "}
-                  {userInfo ? (
-                    <a
-                      className="text-gray-300"
-                      href={`tel:${data?.landLord?.phoneNumber}`}
-                    >
-                      <FaPhoneAlt />
-                    </a>
-                  ) : (
-                    <Link className="text-gray-300" to={"/login"}>
-                      <FaPhoneAlt />
-                    </Link>
-                  )}
-                </button>
-                <button
-                  onClick={() =>
-                    handleWhatsappRedirect(data?.landLord?.phoneNumber)
-                  }
-                  className="text-[1.15rem] text-green-500"
-                >
-                  <FaWhatsapp />
-                </button>
+          <section>
+            <p className="m-2 pl-4 text-[0.9rem] mt-3">Host</p>
+
+            <section className="flex  justify-between bg-gray-950 p-2 m-2 rounded-xl">
+              <ListText content={data?.landLord?.name}>Hosted by </ListText>
+              <section className="flex justify-center">
+                <section className="flex items-center text-base justify-around w-20 ">
+                  <button className="pr-4">
+                    {" "}
+                    {userInfo ? (
+                      <a
+                        className="text-gray-300"
+                        href={`tel:${data?.landLord?.phoneNumber}`}
+                      >
+                        <FaPhoneAlt />
+                      </a>
+                    ) : (
+                      <Link className="text-gray-300" to={"/login"}>
+                        <FaPhoneAlt />
+                      </Link>
+                    )}
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleWhatsappRedirect(data?.landLord?.phoneNumber)
+                    }
+                    className="text-[1.15rem] text-green-500"
+                  >
+                    <FaWhatsapp />
+                  </button>
+                </section>
               </section>
             </section>
           </section>
           {/* image of the landlord or something */}
-          <section className="flex flex-col p-3 gap-1">
-            <p>Location: {data?.area}</p>
-            <p>Price: {data?.pricing}</p>
+          <section>
+            <p className="m-2 pl-4 text-[0.9rem] mt-3">Details</p>
 
-            <p>Posted on: {f_2.format(new Date(createdAt.toString()))}</p>
+            <section className="flex flex-col p-3 pt-0 gap-3">
+              <section className="flex flex-col bg-gray-950 p-3 rounded-xl gap-3">
+                <div className="flex items-center justify-between">
+                  <p>Location</p> <p>{data?.area}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p>Average Rent</p>{" "}
+                  <p className="font-semibold">{f.format(data?.pricing)}</p>
+                </div>
 
-            <p>
-              last updated on:{" "}
-              {f_2.format(new Date(updatedStatusAt.toString()))}{" "}
-            </p>
-            <p>Status: {data?.status}</p>
-            {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
-            <div className="flex flex-col gap-2">
-              <p className="m-4 mb-1 text-base">Amenities</p>
-              <div className="flex flex-col p-3 rounded-xl gap-1 bg-gray-800/40">
-                {Object.keys(amenities).map((amenity, i) => {
-                  console.log(i, amenity, Object.values(amenities)[i]);
-                  return (
-                    <div className=" flex items-center justify-between">
-                      {amenity}{" "}
-                      <span className="text-[0.9rem]">
-                        {Object.values(amenities)[i] ? "yes" : "no"}
-                      </span>
-                    </div>
-                  );
-                })}
+                <section className="flex gap-2">
+                  <p>Status:</p>
+                  <section className="flex gap-2">
+                    <p>{data?.status}</p>
+                    <div
+                      className={`h-2 w-2 rounded-full animate-pulse mt-2 ${
+                        data?.status === "possibly_taken"
+                          ? "bg-yellow-400"
+                          : data?.status === "taken"
+                          ? "bg-red-700"
+                          : "bg-green-600"
+                      }`}
+                    ></div>
+                  </section>
+                </section>
+              </section>
+              {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
+              <section className="">
+                <p className="m-2 text-[0.9rem] mt-3">Timestamps</p>
+                <section className="bg-gray-950 p-2 flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <p>Listed on</p>{" "}
+                    <p>{f_2.format(new Date(createdAt.toString()))}</p>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <p>Last updated on </p>
+                    <p
+                      className={`${
+                        data?.status === "vacant"
+                          ? "text-green-500"
+                          : data?.status === 'taken' ? "text-red-500" : 'text-yellow-500'
+            
+                      }`}
+                    >
+                      {f_2.format(new Date(updatedStatusAt.toString()))}{" "}
+                    </p>
+                  </div>
+                  {/* <ul className="text-[0.7rem] list-disc flex flex-col ml-auto mr-auto gap-1 mt-2">
+                    <li>
+                      Green date, status was updated within a week
+                    </li>
+                    <li>
+                      Yellow date, status was updated more than a week ago
+                    </li>
+                  </ul> */}
+                </section>
+              </section>
+              <div className="flex flex-col gap-2">
+                <p className="m-2 text-[0.9rem] mt-3">{t("Amenities")}</p>
+                <div className="flex flex-col p-3 rounded-xl gap-1 bg-gray-950">
+                  {Object.keys(amenities).map((amenity, i) => {
+                    return (
+                      <div className=" flex items-center justify-between">
+                        <div className="flex  items-center gap-2">
+                          {AmenitiesArray[i]}
+                          <p>{amenity} </p>
+                        </div>
+                        <span className="text-[0.9rem]">
+                          {Object.values(amenities)[i] ? (
+                            <FaCheckCircle className="text-green-500" />
+                          ) : (
+                            <FaTimesCircle className="text-red-500" />
+                          )}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            </section>
           </section>
           <div className="text-base flex flex-1 items-end justify-center p-4 sticky bottom-0">
-            <button className="bg-gray-800 p-2 rounded-xl w-20 flex justify-center items-center gap-2">
-             <Link to='/map'> <FaMap /></Link>
+            <button>
+              <Link
+                to="/map"
+                className="bg-gray-900 p-2 rounded-xl w-20 flex justify-center items-center gap-2"
+              >
+                {" "}
+                <FaMap />
+              </Link>
             </button>
           </div>
         </div>

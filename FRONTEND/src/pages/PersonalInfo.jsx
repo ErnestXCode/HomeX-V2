@@ -10,10 +10,12 @@ import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import SecondaryHeader from "../components/SecondaryHeader";
 import axios from "../api/axios";
+import { useTranslation } from "react-i18next";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const PersonalInfo = () => {
   const userInfo = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
   const [user, setUser] = useState();
   useEffect(() => {
     const handleProfileData = async () => {
@@ -129,23 +131,25 @@ const PersonalInfo = () => {
 
   return (
     <>
-      <SecondaryHeader>Personal</SecondaryHeader>
+      <SecondaryHeader>{t("Personal")}</SecondaryHeader>
       <section className="bg-black flex flex-col pb-10 mt-10">
         {/* use svg in the profile pic */}
 
         <section className="flex flex-col ">
           <ProfileButton>
-            <span className="font-semibold text-gray-300">Name: </span>{" "}
+            <span className="font-semibold text-gray-300">{t("Name")}: </span>{" "}
             {user?.name}{" "}
           </ProfileButton>
 
           <ProfileButton>
-            <span className="font-semibold text-gray-300">Phone number: </span>{" "}
+            <span className="font-semibold text-gray-300">
+              {t("PhoneNumber")}:{" "}
+            </span>{" "}
             {user?.phoneNumber}
           </ProfileButton>
 
           <ProfileButton>
-            <span className="font-semibold text-gray-300">Email: </span>{" "}
+            <span className="font-semibold text-gray-300">{t("Email")}: </span>{" "}
             {secureEmail(user?.email)}{" "}
           </ProfileButton>
 
@@ -153,7 +157,7 @@ const PersonalInfo = () => {
             <ProfileButton>
               <div className="flex  gap-2 items-center">
                 <FaCreditCard />
-                Change Password
+                {t("changePassword")}
               </div>
             </ProfileButton>
           </div>
@@ -171,9 +175,9 @@ const PersonalInfo = () => {
                 type={"text"}
                 id={"oldPassword"}
               >
-                Enter old password
+                {t("Next")}
               </CustomInputBox>
-              <SubmitButton>Next</SubmitButton>
+              <SubmitButton>{t("EnterOldPwd")}</SubmitButton>
             </CustomForm>
           </Modal>
           <Modal
@@ -190,9 +194,9 @@ const PersonalInfo = () => {
                 type={"password"}
                 id={"newPassword"}
               >
-                Enter new password
+                {t("EnterNewPwd")}
               </CustomInputBox>
-              <SubmitButton>Next</SubmitButton>
+              <SubmitButton>{t("Next")}</SubmitButton>
             </CustomForm>
           </Modal>
           <Modal
@@ -209,9 +213,9 @@ const PersonalInfo = () => {
                 type={"password"}
                 id={"confirmNewPassword"}
               >
-                Confirm new password
+                {t("ConfirmNewPwd")}
               </CustomInputBox>
-              <SubmitButton>Set new password</SubmitButton>
+              <SubmitButton>{t("SetNewPwd")}</SubmitButton>
             </CustomForm>
           </Modal>
           <section className="flex flex-col gap-3 p-4">
@@ -219,10 +223,10 @@ const PersonalInfo = () => {
               onClick={handleLogout}
               className="w-full bg-blue-600 p-1.5  rounded-2xl"
             >
-              Log out
+              {t("LogOut")}
             </button>
             <button className="w-full bg-gray-700 text-white p-1.5  rounded-2xl">
-              delete Account
+              {t("DeleteAccount")}
             </button>
           </section>
         </section>

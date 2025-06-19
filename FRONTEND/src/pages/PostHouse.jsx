@@ -25,10 +25,73 @@ import {
 } from "react-icons/fa";
 import { useEffect } from "react";
 import EXIF from "exif-js";
+import { useTranslation } from "react-i18next";
+
+function compressImageCustom(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // calculate new dimensions while maintaining aspect ratio
+      let width = img.width;
+      let height = img.height;
+      if (width > 1024 || height > 1024) {
+        if (width > height) {
+          height = Math.round((1024 / width) * height);
+          width = 1024;
+        } else {
+          width = Math.round((1024 / height) * width);
+          height = 1024;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const compress = () => {
+        const maxSize = 0.5 * 1024 * 1024;
+        let quality = 0.8;
+
+        canvas.toBlob(
+          (blob) => {
+            // check file size and adjust quality if needed
+
+            if (blob.size <= maxSize) {
+              // adjust quality
+              const compressedFile = new File([blob], file.name, {
+                type: "image/webp",
+              });
+              resolve(compressedFile);
+            } else if (quality > 0.1) {
+              quality -= 0.2;
+              compress();
+            } else {
+              const compressedFile = new File([blob], file.name, {
+                type: "image/webp",
+              });
+              resolve(compressedFile);
+            }
+
+            // convert blob to file
+          },
+          "image/webp",
+          quality
+        );
+      };
+      compress();
+    };
+    img.onerror = () => reject(new Error("Failed to load image"));
+  });
+}
 
 const PostHouse = () => {
   const navigate = useNavigate();
   // const [err] = useState("");
+  const { t } = useTranslation();
   const currentUser = useSelector(selectCurrentUser);
   if (!currentUser) navigate("/signup");
 
@@ -89,21 +152,16 @@ const PostHouse = () => {
       console.time("promiseCompress");
 
       const compressedFiles = await Promise.all(
+        // make it faster tho
         files.map((file) => {
-          const newImage = imageCompression(file, {
-            maxSizeMB: 0.5,
-            maxWidthOrHeight: 1024,
-            useWebWorker: true,
-            fileType: "image/webp",
-          });
+          const compressedImage = compressImageCustom(file);
 
           console.log("finished processing image, ", file.name);
-          return newImage;
+          return compressedImage;
         })
       );
       console.timeEnd("promiseCompress");
       setImages(compressedFiles);
-      console.log(compressedFiles);
 
       const success = (pos) => {
         const coordinates = {
@@ -152,8 +210,11 @@ const PostHouse = () => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => {
+        console.log(e, "e yetu");
         const buffer = e.target.result;
         EXIF.getData({ src: buffer }, function () {
+          const metadata = EXIF.getAllTags(this);
+          console.log("imeingia huku", metadata);
           const lat = EXIF.getTag(this, "GPSLatitude");
           const lon = EXIF.getTag(this, "GPSLongitude");
           const latRef = EXIF.getTag(this, "GPSLatitudeRef");
@@ -178,6 +239,28 @@ const PostHouse = () => {
       reader.readAsArrayBuffer(file);
     });
   }
+  //   const getGpsFromImage = (file) => {
+  //   const reader = new FileReader();
+
+  //   reader.onload = function (e) {
+  //     const img = new Image();
+  //     img.onload = function () {
+  //       EXIF.getData(img, function () {
+  //         const allTags = EXIF.getAllTags(this);
+  //         console.log('All EXIF tags:', allTags);
+
+  //         if (allTags.GPSLatitude && allTags.GPSLongitude) {
+  //           console.log('GPS:', allTags.GPSLatitude, allTags.GPSLongitude);
+  //         } else {
+  //           console.log('No GPS data found');
+  //         }
+  //       });
+  //     };
+  //     img.src = e.target.result;
+  //   };
+
+  //   reader.readAsDataURL(file);
+  // };
 
   const handleCameraChange = async (e) => {
     const file = e.target.files[0];
@@ -236,10 +319,9 @@ const PostHouse = () => {
       setStep((prev) => prev + 1);
       return;
     }
-    console.time("submit");
 
     const form = new FormData();
-
+    console.time("form");
     form.append("area", inputData?.area);
     form.append("pricing", inputData?.pricing);
     form.append("landLord", currentUser?._id);
@@ -251,7 +333,9 @@ const PostHouse = () => {
     images.forEach((file) => {
       form.append("images", file);
     });
+    console.timeEnd("form");
 
+    console.time("submit");
     try {
       await axios.post(`/houses`, form, {
         headers: {
@@ -349,7 +433,7 @@ const PostHouse = () => {
               type={"text"}
               onChange={(e) => handleChange(e)}
             >
-              Location
+              {t("Location")}
             </CustomInputBox>
             <CustomInputBox
               id={"pricing"}
@@ -358,7 +442,7 @@ const PostHouse = () => {
               type={"number"}
               onChange={(e) => handleChange(e)}
             >
-              Average Rent
+              {t("AverageRent")}
             </CustomInputBox>
             {/* add a minimum and a maximum for these two*/}
             <CustomInputBox
@@ -369,7 +453,7 @@ const PostHouse = () => {
               onChange={(e) => handleChange(e)}
               // put a maximum amount of rooms a landlord can post or something
             >
-              Number of houses available
+              {t("RoomsAvailable")}
             </CustomInputBox>{" "}
           </>
         ) : step === 1 ? (
@@ -388,7 +472,7 @@ const PostHouse = () => {
 
             <div className="flex items-center flex-col gap-5">
               <label htmlFor="" className="">
-                Upload an Image
+                {t("UploadImage")}
               </label>
               <div
                 onClick={activateCameraInput}
@@ -397,9 +481,12 @@ const PostHouse = () => {
                 <FaCamera />
               </div>
               <ul className=" w-full list-disc p-2 pl-7 m-0 pb-0 text-[0.7rem]">
-                <li>Turn on GPS</li>
-                <li>Stay within 50 metres of the property</li>
-                <li>Take a picture of the property from outside</li>
+                <p className="text-center font-bold">
+                  SKIP , THIS FEATURE IS INCOMPLETE
+                </p>
+                <li>{t("TurnOnGps")}</li>
+                <li>{t("AllowedDistance")}</li>
+                <li>{t("TakePictureOutside")}</li>
               </ul>
             </div>
             {cameraImage && (
@@ -426,7 +513,7 @@ const PostHouse = () => {
 
             <div className="flex items-center flex-col gap-5">
               <label htmlFor="" className="">
-                Upload extra Images
+                {t("UploadExtraImages")}
               </label>
               <div
                 onClick={activateFileInput}
@@ -435,11 +522,9 @@ const PostHouse = () => {
                 <FaImages />
               </div>
               <ul className=" w-full list-disc p-2 pl-7 m-0 pb-0 text-[0.7rem]">
-                <li>Pick upto 3 extra images of the property</li>
-                <li>
-                  Images can be either from inside or outside the property
-                </li>
-                <li>Recommended atleast 2 images from inside the property</li>
+                <li>{t("ExtrasAllowed")}</li>
+                <li>{t("FromWhereExtrasTaken")}</li>
+                <li>{t("RecommendedAmtOfExtras")}</li>
               </ul>
             </div>
             {images[0] && (
@@ -447,15 +532,20 @@ const PostHouse = () => {
                 <img
                   className="w-[50%] h-32 object-cover rounded-2xl mb-2 m-2 mr-auto ml-auto"
                   src={URL.createObjectURL(images[0])}
+                  onLoad={null} //placeholder image
                 />{" "}
-                {images.length - 1 !== 0 && <p>and {images.length - 1} more</p>}
+                {images.length - 1 !== 0 && (
+                  <p>
+                    {t("and")} {images.length - 1} {t("more")}
+                  </p>
+                )}
               </div>
             )}
           </>
         ) : (
           <>
             <label htmlFor="" className="text-center">
-              Amenities
+              {t("Amenities")}
             </label>
             <div className="flex flex-col gap-2 p-3 ml-5">
               {Object.keys(amenities).map((amenity, i) => (
@@ -484,7 +574,6 @@ const PostHouse = () => {
           </SubmitButton>
         </div>
       </CustomForm>
-      <BottomNav />
     </section>
   );
 };

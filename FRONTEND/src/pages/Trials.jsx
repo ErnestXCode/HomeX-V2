@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "../api/axios";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { FaCamera, FaPenAlt, FaUser } from "react-icons/fa";
 
 const Trials = () => {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const userInfo = useSelector(selectCurrentUser);
+  const someFunc = () => {
+    navigate("/about-us", {
+      // replace: true
+    });
+  };
+
+  const [moveProfile, setMoveProfile] = useState(false);
 
   // const urlBase64ToUint8Array = (base64String) => {
   //   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -96,9 +105,50 @@ const Trials = () => {
       <span className="text-xs px-2 py-0.5 rounded-full bg-green-500 text-white">
         Available
       </span>
-      <div onClick={subscribeUserToPush} className="bg-blue-500 w-fit p-2 m-2">
+      <div
+        onClick={subscribeUserToPush}
+        className="bg-blue-500 w-fit p-2 m-2 mb-9"
+        >
         notifications
       </div>
+
+      <Link
+        className="cursor-pointer p-3 bg-red-700 m-3 "
+        to="/about-us"
+        // state={}
+        // reloadDocument
+        // not that useful
+
+        // replace
+        // inasahau page ilikua na io link....useful for login and signup
+        // replaces previous link, back two pages
+      >
+        About
+      </Link>
+      <div className="flex flex-col gap-3 p-5">
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "red" : "blue",
+            };
+          }}
+          to="/trials"
+        >
+          Home
+        </NavLink>
+        <NavLink to="/about-us">About</NavLink>
+        <NavLink to="/contact-us">Contact Us</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
+        <h1 onClick={someFunc} className="text-lg text-center p-1 bg-red-800 ">
+          Usenavigate
+        </h1>
+        {/* <Navigate to='/' />  */}
+        {/* inakuredirect automatically, usefulll */}
+       
+      </div>
+      <button onClick={() => setMoveProfile(prev => !prev)} className="bg-yellow-700 p-1 m-1 active:scale-1 transition-transform duration-300">
+        Transition
+      </button>
     </div>
   );
 };

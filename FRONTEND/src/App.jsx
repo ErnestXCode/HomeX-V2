@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import EditHouse from "./pages/EditHouse";
+const Announcements = lazy(() => import("./pages/Announcements"));
 
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
@@ -7,6 +9,7 @@ const RequireAuthentication = lazy(() =>
 const InitialLoader = lazy(() => import("./components/InitialLoader"));
 const VerifyStatus = lazy(() => import("./components/VerifyStatus"));
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
+const RootLayout = lazy(() => import("./components/RootLayout"));
 const HouseMapTiler = lazy(() => import("./pages/HouseMapTiler"));
 const Unauthorized = lazy(() => import("./pages/Unauthorized"));
 const ImagesPage = lazy(() => import("./pages/ImagesPage"));
@@ -38,8 +41,13 @@ function App() {
         <Suspense fallback={<InitialLoader fullscreen={true} />}>
           <Routes>
             {/* public routes */}
-            <Route index element={<Home />}></Route>
-            <Route path="trials" element={<Trials />}></Route>
+            <Route element={<RootLayout />}>
+              <Route index element={<Home />}></Route>
+              <Route path="trials" element={<Trials />}></Route>
+              <Route path="help" element={<Help />}></Route>
+            </Route>
+
+            <Route path="announcements" element={<Announcements />}></Route>
             <Route path="house/:id" element={<IndividualHouse />}></Route>
             <Route path="images/:id" element={<ImagesPage />}></Route>
             <Route path="login" element={<Login />}></Route>
@@ -47,7 +55,6 @@ function App() {
             <Route path="contact-us" element={<ContactUs />}></Route>
             <Route path="donate" element={<Donations />}></Route>
             <Route path="signup" element={<SignUp />}></Route>
-            <Route path="help" element={<Help />}></Route>
             <Route path="map" element={<HouseMapTiler />}></Route>
             <Route path="unauthorized" element={<Unauthorized />}></Route>
 
@@ -58,7 +65,9 @@ function App() {
                   <RequireAuthentication allowedRoles={[ROLES.tenant]} />
                 }
               >
-                <Route path="profile" element={<Profile />}></Route>
+                <Route element={<RootLayout />}>
+                  <Route path="profile" element={<Profile />}></Route>
+                </Route>
                 <Route path="personal" element={<PersonalInfo />}></Route>
               </Route>
 
@@ -69,7 +78,10 @@ function App() {
                   />
                 }
               >
-                <Route path="post-house" element={<PostHouse />}></Route>
+                <Route element={<RootLayout />}>
+                  <Route path="post-house" element={<PostHouse />}></Route>
+                  <Route path="edit-house/:id" element={<EditHouse />}></Route>
+                </Route>
                 <Route
                   path="verify-vacancy/:id"
                   element={<VerifyStatus />}
