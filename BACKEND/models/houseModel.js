@@ -36,6 +36,7 @@ const houseSchema = mongoose.Schema(
     placeholderThumbnail: {
       type: String,
     },
+    // type eg bedsitters
     amenities: {
       wifi: {
         type: Boolean,
@@ -48,7 +49,10 @@ const houseSchema = mongoose.Schema(
       bathroom: {
         type: Boolean,
         default: false,
+        // shared or private
       },
+      // laundry facilities 
+      
       shower: {
         type: Boolean,
         default: false,
@@ -56,6 +60,7 @@ const houseSchema = mongoose.Schema(
       security: {
         type: Boolean,
         default: false,
+        // cctv cameras
       },
       electricity: {
         type: Boolean,

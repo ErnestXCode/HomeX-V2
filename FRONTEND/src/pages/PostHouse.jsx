@@ -26,6 +26,22 @@ import {
 import { useEffect } from "react";
 import EXIF from "exif-js";
 import { useTranslation } from "react-i18next";
+// import {motion } from 'framer-motion'
+
+// const containerVariants = {
+//   hidden: {
+//     opacity: 0, 
+//     x: '100vw'
+//   }, 
+//   visible: {
+//     opacity: 1, 
+//     x: 0, 
+//     transition: {
+//       type: 'spring', 
+//       delay: 0.5
+//     }
+//   }
+// }
 
 function compressImageCustom(file) {
   return new Promise((resolve, reject) => {
@@ -420,9 +436,13 @@ const PostHouse = () => {
   }
 
   return (
-    <section className="pb-10">
+    <section className="pb-10"
+  
+    >
       <SecondaryHeader>Create</SecondaryHeader>
-      <CustomForm onSubmit={(e) => handleSubmit(e)}>
+      <CustomForm onSubmit={(e) => handleSubmit(e)}
+        
+        >
         {step === 0 ? (
           <>
             <CustomInputBox

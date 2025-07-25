@@ -111,6 +111,7 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                   item={item}
                   showBookMark={!posts && !shortlists ? true : false}
                   showThumbnails={true}
+                  userShortlists={userInfo?.shortLists}
                 />
               </section>
               <section className="flex justify-between mt-4">

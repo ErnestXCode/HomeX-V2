@@ -4,8 +4,7 @@ import axios from "../api/axios";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { FaCamera, FaPenAlt, FaUser } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 const Trials = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -108,7 +107,7 @@ const Trials = () => {
       <div
         onClick={subscribeUserToPush}
         className="bg-blue-500 w-fit p-2 m-2 mb-9"
-        >
+      >
         notifications
       </div>
 
@@ -125,30 +124,23 @@ const Trials = () => {
       >
         About
       </Link>
-      <div className="flex flex-col gap-3 p-5">
-        <NavLink
-          style={({ isActive }) => {
-            return {
-              color: isActive ? "red" : "blue",
-            };
-          }}
-          to="/trials"
-        >
-          Home
-        </NavLink>
-        <NavLink to="/about-us">About</NavLink>
-        <NavLink to="/contact-us">Contact Us</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
-        <h1 onClick={someFunc} className="text-lg text-center p-1 bg-red-800 ">
-          Usenavigate
-        </h1>
-        {/* <Navigate to='/' />  */}
-        {/* inakuredirect automatically, usefulll */}
-       
-      </div>
-      <button onClick={() => setMoveProfile(prev => !prev)} className="bg-yellow-700 p-1 m-1 active:scale-1 transition-transform duration-300">
+      {/* <Navigate to='/' />  */}
+      {/* inakuredirect automatically, usefulll */}
+
+      <motion.button
+        animate={{
+          scale: "1.5",
+          rotate: 180
+        }}
+        onClick={() => setMoveProfile((prev) => !prev)}
+        className="bg-yellow-700 p-1 m-1 active:scale-1 transition-transform duration-300"
+      >
         Transition
-      </button>
+      </motion.button>
+      <motion.h2 animate={{ fontSize: "20px", color: "red", x: "200px" }}>
+        FRMAER MOTION STUFF
+      </motion.h2>
+      
     </div>
   );
 };

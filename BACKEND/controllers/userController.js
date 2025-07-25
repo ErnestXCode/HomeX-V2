@@ -49,7 +49,7 @@ const createUser = async (req, res) => {
         maxAge: 2 * 24 * 60 * 60 * 1000,
       })
       .status(200)
-      .json({ roles, accessToken });
+      .json({ roles, accessToken, shortLists: [] });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Could not create user", err });
@@ -87,6 +87,7 @@ const getCurrentUserProfile = async (req, res) => {
 
   try {
     const profile = req.user;
+    console.log(profile)
     // would redis work differently for diff users?
     res.status(200).json(profile);
   } catch (err) {
