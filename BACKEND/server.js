@@ -20,7 +20,11 @@ const redisClient = require("./config/redisConfig");
 const app = express();
 dotenv.config();
 
-const whiteList = [process.env.VITE_URL, "http://localhost:4173"];
+const whiteList = [
+  process.env.VITE_URL,
+  "http://localhost:4173",
+  "https://home-x-v2-38ye-nesters-projects-0b5aae41.vercel.app/",
+];
 
 const corsOptions = {
   origin: (origin, callback) => {

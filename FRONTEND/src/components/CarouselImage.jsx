@@ -19,11 +19,11 @@ const CarouselImage = ({
   const [blueIcon, setBlueIcon] = useState(false);
   const userInfo = useSelector(selectCurrentUser);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (userShortlists.includes(item._id)) {
-      setBlueIcon(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userShortlists.includes(item._id)) {
+  //     setBlueIcon(true);
+  //   }
+  // }, []);
 
   const handleShortLists = async (house) => {
     setBlueIcon((prevState) => !prevState);
