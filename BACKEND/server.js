@@ -14,6 +14,8 @@ const webpush = require("web-push");
 const rateLimit = require("express-rate-limit");
 const House = require("./models/houseModel");
 const redisClient = require("./config/redisConfig");
+const axios = require('axios')
+const moment = require('moment')
 
 // have url for production
 
@@ -23,7 +25,6 @@ dotenv.config();
 const whiteList = [
   process.env.VITE_URL,
   "http://localhost:4173",
-  "https://home-x-v2-38ye-nesters-projects-0b5aae41.vercel.app/",
 ];
 
 const corsOptions = {
@@ -108,11 +109,69 @@ app.use(
   })
 );
 
+
+
+async function getAccessToken() {
+  const auth = Buffer.from(`${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`).toString('base64');
+  const { data } = await axios.get(`${process.env.STK_URL}/oauth/v1/generate?grant_type=client_credentials`, {
+    headers: { Authorization: `Basic ${auth}` }
+  });
+  return data.access_token;
+}
+
+app.post('/stkpush', async (req, res) => {
+  console.log('stkpush')
+  try {
+    const { phone } = req.body;
+    const amount = 250;
+    const token = await getAccessToken();
+    console.log('token', token)
+    const timestamp = moment().format('YYYYMMDDHHmmss');
+    const password = Buffer.from(process.env.SHORTCODE + process.env.PASSKEY + timestamp).toString('base64');
+
+    const payload = {
+      BusinessShortCode: process.env.SHORTCODE,
+      Password: password,
+      Timestamp: timestamp,
+      TransactionType: 'CustomerPayBillOnline',
+      Amount: amount,
+      PartyA: phone,
+      PartyB: process.env.SHORTCODE,
+      PhoneNumber: phone,
+      CallBackURL: process.env.CALLBACK_URL,
+      AccountReference: 'Fixed250',
+      TransactionDesc: 'Access content'
+    };
+    console.log('started axios in stk')
+    const { data } = await axios.post(`${process.env.STK_URL}/mpesa/stkpush/v1/processrequest`, payload, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    console.log('finished axios in stk', data)
+
+
+    res.json({ message: 'STK push sent', data });
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    res.status(500).json({ error: 'Payment initiation failed' });
+  }
+});
+
+app.post('/callback', (req, res) => {
+  console.log('callback')
+  const cb = req.body.Body.stkCallback;
+  console.log('Callback:', JSON.stringify(cb, null, 2));
+  // If cb.ResultCode === 0 → grant access
+  res.sendStatus(200);
+});
+
+
 app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/refresh"));
 app.use("/", require("./routes/houses"));
 app.use("/", require("./routes/images"));
-const x = [];
+app.use("/", require("./routes/token"));
+app.use("/", require("./routes/tokenCallback"));
+
 
 app.get("/notification", (req, res) => {
   webpush.sendNotification(x[0], "hello nesters world");

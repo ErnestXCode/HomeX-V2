@@ -9,6 +9,7 @@ import {
   FaDog,
   FaLightbulb,
   FaMap,
+  FaPaypal,
   FaPhoneAlt,
   FaShower,
   FaTimes,
@@ -129,6 +130,9 @@ const IndividualHouse = () => {
               <ListText content={data?.landLord?.name}>Hosted by </ListText>
               <section className="flex justify-center">
                 <section className="flex items-center text-base justify-around w-20 ">
+                  <button type="" className="pr-4 text-blue-600">
+                    <FaPaypal />
+                  </button>
                   <button className="pr-4">
                     {" "}
                     {userInfo ? (

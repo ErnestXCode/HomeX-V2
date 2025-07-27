@@ -123,11 +123,40 @@ const createHouse = async (req, res) => {
     // console.log(req.files.thumbnails)
     // const imagePaths = req.files.images.map((file) => file.filename);
 
+    const typeData = JSON.parse(content.typeData);
+
+    const units = {
+      bedSitter: Object.keys(typeData).includes("Bedsitter")
+        ? {
+            minRent: Object.values(typeData.Bedsitter)[0],
+            maxRent: Object.values(typeData.Bedsitter)[1],
+            unitsVacant: Object.values(typeData.Bedsitter)[2],
+          }
+        : null,
+      oneBR: Object.keys(typeData).includes("1 Bedroom")
+        ? {
+            minRent: Object.values(typeData["1 Bedroom"])[0],
+            maxRent: Object.values(typeData["1 Bedroom"])[1],
+            unitsVacant: Object.values(typeData["1 Bedroom"])[2],
+          }
+        : null,
+      twoBr: Object.keys(typeData).includes("2 Bedroom")
+        ? {
+            minRent: Object.values(typeData["2 Bedroom"])[0],
+            maxRent: Object.values(typeData["2 Bedroom"])[1],
+            unitsVacant: Object.values(typeData["2 Bedroom"])[2],
+          }
+        : null,
+    };
+
+    console.log(units);
+
     const data = {
       ...content,
       images: imageIds,
       thumbnails: thumbnailIds,
       placeholderThumbnail: base64Array[0],
+      units: units,
       landLord: verifiedUser._id,
       coords: JSON.parse(content.coords),
       amenities: JSON.parse(content.amenities),

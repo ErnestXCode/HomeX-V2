@@ -114,24 +114,59 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                   userShortlists={userInfo?.shortLists}
                 />
               </section>
-              <section className="flex justify-between mt-4">
+              <section className="mt-4 relative">
                 <section>
-                  <p className="pl-1  text-[0.95rem] text-gray-200">
-                    {item?.area}
-                  </p>
+                  <section className="text-sm text-gray-100 space-y-2">
+                    {/* Plot Name */}
+                    <section>
+                      <h2 className="text-lg font-semibold text-white">
+                        Sunrise Court
+                      </h2>
+                      <p className="text-[0.7rem] text-gray-400 mt-0 ">
+                        {item?.area}, {item?.units?.bedSitter?.minRent}
+                      </p>
+                    </section>
+
+                    {/* Unit Overview */}
+                    <div className="grid gap-2 text-[0.85rem]">
+                      {[
+                        { type: "Bedsitter", range: "Ksh 5k–6k", vacant: 3 },
+                        { type: "1 Bedroom", range: "Ksh 8k–10k", vacant: 1 },
+                        { type: "2 Bedroom", range: "Ksh 13k–15k", vacant: 2 },
+                      ].map((unit, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-between border-b border-white/10 pb-1"
+                        >
+                          <div className="text-blue-400 font-medium">
+                            {unit.type}
+                          </div>
+                          <div className="text-gray-300 text-right">
+                            <span>{unit.range}</span>
+                            <span className="ml-2 text-xs text-gray-400">
+                              ({unit.vacant} vacant)
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* 
                   <p className="pl-1 font-semibold pt-1.5">
                     {f.format(item?.pricing)}
                   </p>
                   <ListText content={item?.numOfHouses}>
                     <span className="font-semibold text-gray-400">
-                      {/* {t("roomsAvailable")}{" "} */}
+                      {/* {t("roomsAvailable")}{" "} }
                       {t("RoomsAvailable")}:
                     </span>{" "}
-                  </ListText>
+                  </ListText> 
+                  */}
                 </section>
 
                 <div
-                  className={`h-2 w-2 rounded-full animate-pulse mr-3 mt-2 ${
+                  className={`h-2 w-2 rounded-full animate-pulse ml-auto absolute top-2 right-0 ${
                     item?.status === "possibly_taken"
                       ? "bg-yellow-400"
                       : item?.status === "taken"

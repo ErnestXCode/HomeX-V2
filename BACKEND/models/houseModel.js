@@ -24,6 +24,38 @@ const houseSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    units: {
+      bedSitter: {
+        minRent: Number,
+        maxRent: Number,
+        deposit: Number,
+        vacancyStatus: {
+          type: String,
+          enum: ["vacant", "taken", "possibly_taken"],
+        },
+        unitsVacant: Number,
+      },
+      oneBR: {
+        minRent: Number,
+        maxRent: Number,
+        deposit: Number,
+        vacancyStatus: {
+          type: String,
+          enum: ["vacant", "taken", "possibly_taken"],
+        },
+        unitsVacant: Number,
+      },
+      twoBR: {
+        minRent: Number,
+        maxRent: Number,
+        deposit: Number,
+        vacancyStatus: {
+          type: String,
+          enum: ["vacant", "taken", "possibly_taken"],
+        },
+        unitsVacant: Number,
+      },
+    },
     numOfHouses: {
       type: Number,
       required: [true, "number of houses required"],

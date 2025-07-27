@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "redis" : "wsl -u root"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "redis": "wsl -u root"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +34,7 @@
     "helmet": "^8.1.0",
     "homex": "file:",
     "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
     "mongo-sanitize": "^1.1.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
