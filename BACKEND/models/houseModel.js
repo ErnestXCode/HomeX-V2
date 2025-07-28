@@ -15,11 +15,6 @@ const houseSchema = mongoose.Schema(
       type: [String],
       required: [true, "thumbnail is required"],
     },
-    pricing: {
-      type: Number,
-      required: [true, "pricing is required"],
-      index: true,
-    },
     landLord: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -55,10 +50,6 @@ const houseSchema = mongoose.Schema(
         },
         unitsVacant: Number,
       },
-    },
-    numOfHouses: {
-      type: Number,
-      required: [true, "number of houses required"],
     },
     status: {
       type: String,

@@ -149,7 +149,7 @@ const createHouse = async (req, res) => {
         : null,
     };
 
-    console.log(units);
+   
 
     const data = {
       ...content,
@@ -162,6 +162,7 @@ const createHouse = async (req, res) => {
       amenities: JSON.parse(content.amenities),
       updatedStatusAt: new Date(),
     };
+    console.log(data.units)
 
     const newHouse = await new House(data);
 
@@ -253,39 +254,45 @@ const markAsTaken = async (req, res) => {
 
 const getAllHouses = async (req, res) => {
   try {
-    const page = parseInt(req.query?.page) || 1;
-    const limit = parseInt(req.query?.limit) || 10;
-    const area = req.query?.area;
-    const pricing = req.query?.price;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const area = req.query.area;
+    const price = req.query.price;
 
-    const houses =
-      area !== "All"
-        ? await House.find(
-            { area },
-            {
-              landLord: false,
-              amenities: false,
-              updatedStatusAt: false,
-              coords: false,
-            }
-          )
-            .sort({ createdAt: -1 })
-            .skip((page - 1) * limit)
-            .limit(limit)
-        : await House.find(
-            {},
-            {
-              landLord: false,
-              amenities: false,
-              updatedStatusAt: false,
-              coords: false,
-            }
-          )
-            .sort({ createdAt: -1 })
-            .skip((page - 1) * limit)
-            .limit(limit);
+    console.log(area, price)
 
-    const total = await House.countDocuments();
+    // Base query object
+    const query = {};
+
+    // Apply area filter if provided and not "All"
+    if (area && area !== "All") {
+      query.area = area;
+    }
+
+    // Apply pricing filter if price range is provided
+    if (price) {
+      const [minStr, maxStr] = price.split("-");
+      const min = parseInt(minStr);
+      const max = parseInt(maxStr);
+
+      query.pricing = {};
+      if (!isNaN(min)) query.pricing.$gte = min;
+      if (!isNaN(max)) query.pricing.$lte = max;
+    }
+
+    // Fetch filtered and paginated data
+    const houses = await House.find(query, {
+      landLord: false,
+      amenities: false,
+      updatedStatusAt: false,
+      coords: false,
+    })
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    // Count total documents matching query
+    const total = await House.countDocuments(query);
 
     res.status(200).json({
       data: houses,
@@ -293,10 +300,11 @@ const getAllHouses = async (req, res) => {
       nextPage: page + 1,
     });
   } catch (error) {
-    console.log("error getting all houses", error);
-    res.status(400).json(error);
+    console.log("Error getting all houses:", error);
+    res.status(400).json({ error: "Failed to fetch houses" });
   }
 };
+
 
 const getLAndlordsHouses = async (req, res) => {
   const user = req.user;

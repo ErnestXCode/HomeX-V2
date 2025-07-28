@@ -8,6 +8,9 @@ import InitialLoader from "./InitialLoader";
 import FilterButton from "./FilterButton";
 import axios from "../api/axios";
 import HouseCards from "./HouseCards";
+import { FaExchangeAlt, FaFilter, FaSlidersH, FaSort } from "react-icons/fa";
+import { MdCompareArrows } from "react-icons/md";
+
 const Footer = lazy(() => import("./Footer"));
 
 const Listings = () => {
@@ -115,8 +118,9 @@ const Listings = () => {
     <main className="">
       <section className="bg-black">
         <Header />
+<section className="flex sticky top-18 z-1">
 
-        <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mb-0 mt-0 p-2 sticky top-18 z-1">
+        <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mb-0 mt-0 p-2 w-80">
           <FilterButton onClick={() => handleReset()}>All</FilterButton>
           {AreaData?.map((area) => {
             return (
@@ -129,6 +133,10 @@ const Listings = () => {
             );
           })}
         </section>
+        <button>
+          <FaExchangeAlt />
+        </button>
+</section>
 
         <HouseCards data={data} />
         <div

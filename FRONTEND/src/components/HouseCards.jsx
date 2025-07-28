@@ -19,6 +19,12 @@ import axios from "../api/axios";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
+const f = (value) => {
+  if (value >= 1000000) return `${(value / 1000000).toFixed(0)}M`;
+  if (value >= 1000) return `${(value / 1000).toFixed(0)}K`;
+  return `${value}`;
+};
+
 const HouseCards = memo(({ data, posts, shortlists }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -26,10 +32,8 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
   const userInfo = useSelector(selectCurrentUser);
   console.log(userInfo);
 
-  const f = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: "KSH",
-  });
+
+
 
   const handleTaken = async (id) => {
     try {
@@ -89,6 +93,8 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
     },
   });
 
+  
+
   return (
     <>
       {data?.pages.map((group, i) => (
@@ -129,40 +135,38 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
 
                     {/* Unit Overview */}
                     <div className="grid gap-2 text-[0.85rem]">
-                      {[
-                        { type: "Bedsitter", range: "Ksh 5k–6k", vacant: 3 },
-                        { type: "1 Bedroom", range: "Ksh 8k–10k", vacant: 1 },
-                        { type: "2 Bedroom", range: "Ksh 13k–15k", vacant: 2 },
-                      ].map((unit, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center justify-between border-b border-white/10 pb-1"
-                        >
-                          <div className="text-blue-400 font-medium">
-                            {unit.type}
-                          </div>
-                          <div className="text-gray-300 text-right">
-                            <span>{unit.range}</span>
-                            <span className="ml-2 text-xs text-gray-400">
-                              ({unit.vacant} vacant)
-                            </span>
-                          </div>
-                        </div>
-                      ))}
+                      {Object.entries(item?.units || {})
+                        .filter(([_, val]) => val !== null)
+                        .map(([unitKey, unitValue]) => {
+                          const labelMap = {
+                            bedSitter: "Bedsitter",
+                            oneBR: "1 Bedroom",
+                            twoBr: "2 Bedroom",
+                          };
+
+                          return (
+                            <div
+                              key={unitKey}
+                              className="flex items-center justify-between border-b border-white/10 pb-1"
+                            >
+                              <div className="text-blue-400 font-medium">
+                                {labelMap[unitKey] || unitKey}
+                              </div>
+                              <div className="text-gray-300 text-right">
+                                <span>
+                                  Ksh {f(unitValue?.minRent)} -{" "}
+                                  {f(unitValue?.maxRent)}
+                                </span>
+                                <span className="ml-2 text-xs text-gray-400">
+                                  ({unitValue?.unitsVacant} vacant)
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
                     </div>
                   </section>
 
-                  {/* 
-                  <p className="pl-1 font-semibold pt-1.5">
-                    {f.format(item?.pricing)}
-                  </p>
-                  <ListText content={item?.numOfHouses}>
-                    <span className="font-semibold text-gray-400">
-                      {/* {t("roomsAvailable")}{" "} }
-                      {t("RoomsAvailable")}:
-                    </span>{" "}
-                  </ListText> 
-                  */}
                 </section>
 
                 <div

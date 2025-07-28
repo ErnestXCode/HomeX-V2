@@ -128,7 +128,7 @@ app.post('/stkpush', async (req, res) => {
     console.log('token', token)
     const timestamp = moment().format('YYYYMMDDHHmmss');
     const password = Buffer.from(process.env.SHORTCODE + process.env.PASSKEY + timestamp).toString('base64');
-
+    
     const payload = {
       BusinessShortCode: process.env.SHORTCODE,
       Password: password,
@@ -142,14 +142,18 @@ app.post('/stkpush', async (req, res) => {
       AccountReference: 'Fixed250',
       TransactionDesc: 'Access content'
     };
-    console.log('started axios in stk')
-    const { data } = await axios.post(`${process.env.STK_URL}/mpesa/stkpush/v1/processrequest`, payload, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    console.log('finished axios in stk', data)
-
-
-    res.json({ message: 'STK push sent', data });
+     
+    try {
+  console.log('started axios in stk');
+  const response = await axios.post(`${process.env.STK_URL}/mpesa/stkpush/v1/processrequest`, payload, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  console.log('finished axios in stk', response?.data);
+  res.json({ message: 'STK push sent', data: response.data });
+} catch (error) {
+  console.error('AXIOS ERROR:', error.response?.data || error.message);
+  res.status(500).json({ error: error.response?.data || 'Unknown error' });
+}
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.status(500).json({ error: 'Payment initiation failed' });
@@ -158,6 +162,7 @@ app.post('/stkpush', async (req, res) => {
 
 app.post('/callback', (req, res) => {
   console.log('callback')
+  console.log(req.body)
   const cb = req.body.Body.stkCallback;
   console.log('Callback:', JSON.stringify(cb, null, 2));
   // If cb.ResultCode === 0 → grant access
@@ -169,8 +174,7 @@ app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/refresh"));
 app.use("/", require("./routes/houses"));
 app.use("/", require("./routes/images"));
-app.use("/", require("./routes/token"));
-app.use("/", require("./routes/tokenCallback"));
+
 
 
 app.get("/notification", (req, res) => {

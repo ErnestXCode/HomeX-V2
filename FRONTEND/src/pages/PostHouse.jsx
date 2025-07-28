@@ -30,14 +30,14 @@ import { useTranslation } from "react-i18next";
 
 // const containerVariants = {
 //   hidden: {
-//     opacity: 0, 
+//     opacity: 0,
 //     x: '100vw'
-//   }, 
+//   },
 //   visible: {
-//     opacity: 1, 
-//     x: 0, 
+//     opacity: 1,
+//     x: 0,
 //     transition: {
-//       type: 'spring', 
+//       type: 'spring',
 //       delay: 0.5
 //     }
 //   }
@@ -45,7 +45,6 @@ import { useTranslation } from "react-i18next";
 
 import Select from "react-select";
 import { Dialog } from "@headlessui/react";
-
 
 const houseTypeOptions = [
   { value: "Bedsitter", label: "Bedsitter" },
@@ -115,18 +114,17 @@ function compressImageCustom(file) {
   });
 }
 
-
 const PostHouse = () => {
   const navigate = useNavigate();
   // const [err] = useState("");
   const { t } = useTranslation();
   const currentUser = useSelector(selectCurrentUser);
-  if(currentUser) console.log('uyu msee ni ka ako', currentUser)
+  if (currentUser) console.log("uyu msee ni ka ako", currentUser);
   const [selectedTypes, setSelectedTypes] = useState([]);
-   const [modalOpen, setModalOpen] = useState(false);
-   const [stepIndex, setStepIndex] = useState(0);
-   const [typeDetails, setTypeDetails] = useState({});
-   const [formData, setFormData] = useState({ min: "", max: "", units: "" });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [typeDetails, setTypeDetails] = useState({});
+  const [formData, setFormData] = useState({ min: "", max: "", units: "" });
   if (!currentUser) navigate("/signup");
 
   const areaRef = useRef();
@@ -357,10 +355,10 @@ const PostHouse = () => {
     const form = new FormData();
     console.time("form");
     form.append("area", inputData?.area);
-    form.append("pricing", inputData?.pricing);
+
     form.append("typeData", JSON.stringify(typeDetails));
     // form.append("landLord", currentUser?._id);
-    form.append("numOfHouses", inputData?.numOfHouses);
+
     form.append("coords", JSON.stringify(coords));
     form.append("amenities", JSON.stringify(amenities));
     form.append("thumbnails", images[0]);
@@ -454,49 +452,43 @@ const PostHouse = () => {
     );
   }
 
-    const handleTypeChange = (selected) => {
-      setSelectedTypes(selected || []);
-    };
-  
-    const openModal = () => {
-      if (selectedTypes.length > 0) {
-        setModalOpen(true);
-        setStepIndex(0);
-      }
-    };
-  
-    const handleContinue = () => {
-      const currentType = selectedTypes[stepIndex]?.value;
-      if (currentType) {
-        setTypeDetails((prev) => ({
-          ...prev,
-          [currentType]: { ...formData },
-        }));
-      }
-      setFormData({ min: "", max: "", units: "" });
+  const handleTypeChange = (selected) => {
+    setSelectedTypes(selected || []);
+  };
 
-  
-      if (stepIndex + 1 < selectedTypes.length) {
-        setStepIndex(stepIndex + 1);
-      } else {
-        setModalOpen(false);
-        console.log("All entries:", typeDetails); // Final data here
-      }
-    };
-  
-    const currentLabel = selectedTypes[stepIndex]?.label;
-  
-    console.log('currentUser', currentUser)
-   
+  const openModal = () => {
+    if (selectedTypes.length > 0) {
+      setModalOpen(true);
+      setStepIndex(0);
+    }
+  };
+
+  const handleContinue = () => {
+    const currentType = selectedTypes[stepIndex]?.value;
+    if (currentType) {
+      setTypeDetails((prev) => ({
+        ...prev,
+        [currentType]: { ...formData },
+      }));
+    }
+    setFormData({ min: "", max: "", units: "" });
+
+    if (stepIndex + 1 < selectedTypes.length) {
+      setStepIndex(stepIndex + 1);
+    } else {
+      setModalOpen(false);
+      console.log("All entries:", typeDetails); // Final data here
+    }
+  };
+
+  const currentLabel = selectedTypes[stepIndex]?.label;
+
+  console.log("currentUser", currentUser);
 
   return (
-    <section className="pb-10"
-  
-    >
+    <section className="pb-10">
       <SecondaryHeader>Create</SecondaryHeader>
-      <CustomForm onSubmit={(e) => handleSubmit(e)}
-        
-        >
+      <CustomForm onSubmit={(e) => handleSubmit(e)}>
         {step === 0 ? (
           <>
             <CustomInputBox
@@ -509,87 +501,81 @@ const PostHouse = () => {
             >
               {t("Location")}
             </CustomInputBox>
-             <CustomInputBox
-              id={"pricing"}
-              name={"pricing"}
-              value={inputData?.pricing}
-              type={"number"}
-              onChange={(e) => handleChange(e)}
-            >
-              {t("AverageRent")}
-            </CustomInputBox>
-            {/* add a minimum and a maximum for these two*/}
-            <CustomInputBox
-              id={"numOfHouses"}
-              name={"numOfHouses"}
-              value={inputData?.numOfHouses}
-              type={"number"}
-              onChange={(e) => handleChange(e)}
-              // put a maximum amount of rooms a landlord can post or something
-            >
-              {t("RoomsAvailable")}
-            </CustomInputBox>{" "}
-             <div className="p-4 max-w-md mx-auto">
-        <label className="block text-white mb-2">Select House Types</label>
-        <Select
-          isMulti
-          options={houseTypeOptions}
-          value={selectedTypes}
-          onChange={handleTypeChange}
-          className="mb-4 text-black"
-        />
-  
-        <section
-          onClick={openModal}
-          disabled={selectedTypes.length === 0}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Next
-        </section>
-  
-        <Dialog open={modalOpen} onClose={() => setModalOpen(false)} className="relative z-50">
-          <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
-          <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="bg-white rounded p-6 w-full max-w-sm">
-              <Dialog.Title className="text-lg font-bold mb-4 text-black">
-                {`Enter Details for ${currentLabel}`}
-              </Dialog.Title>
-  
-              <div className="space-y-3 text-black">
-                <input
-                  type="number"
-                  placeholder="Minimum Rent"
-                  value={formData.min}
-                  onChange={(e) => setFormData({ ...formData, min: e.target.value })}
-                  className="w-full px-3 py-2 border rounded"
-                />
-                <input
-                  type="number"
-                  placeholder="Maximum Rent"
-                  value={formData.max}
-                  onChange={(e) => setFormData({ ...formData, max: e.target.value })}
-                  className="w-full px-3 py-2 border rounded"
-                />
-                <input
-                  type="number"
-                  placeholder="Units Available"
-                  value={formData.units}
-                  onChange={(e) => setFormData({ ...formData, units: e.target.value })}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-  
-              <button
-                onClick={handleContinue}
-                className="mt-5 w-full bg-blue-600 text-white py-2 rounded"
+
+            <div className="p-4 max-w-md mx-auto">
+              <label className="block text-white mb-2">
+                Select House Types
+              </label>
+              <Select
+                isMulti
+                options={houseTypeOptions}
+                value={selectedTypes}
+                onChange={handleTypeChange}
+                className="mb-4 text-black"
+              />
+
+              <section
+                onClick={openModal}
+                disabled={selectedTypes.length === 0}
+                className="bg-blue-600 text-white px-4 py-2 rounded text-center"
               >
-                {stepIndex + 1 === selectedTypes.length ? "Finish" : "Continue"}
-              </button>
-            </Dialog.Panel>
-          </div>
-        </Dialog>
-      </div>
-            
+                Next
+              </section>
+
+              <Dialog
+                open={modalOpen}
+                onClose={() => setModalOpen(false)}
+                className="relative z-50"
+              >
+                <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
+                <div className="fixed inset-0 flex items-center justify-center p-4">
+                  <Dialog.Panel className="bg-gray-950 text-white rounded-2xl p-6 w-full max-w-sm">
+                    <Dialog.Title className="text-lg font-bold mb-4 ">
+                      {`Enter Details for ${currentLabel}`}
+                    </Dialog.Title>
+
+                    <div className="space-y-3 placeholder:text-white">
+                      <input
+                        type="number"
+                        placeholder="Minimum Rent"
+                        value={formData.min}
+                        onChange={(e) =>
+                          setFormData({ ...formData, min: e.target.value })
+                        }
+                        className="w-full px-3 py-2 border rounded"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Maximum Rent"
+                        value={formData.max}
+                        onChange={(e) =>
+                          setFormData({ ...formData, max: e.target.value })
+                        }
+                        className="w-full px-3 py-2 border rounded"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Units Available"
+                        value={formData.units}
+                        onChange={(e) =>
+                          setFormData({ ...formData, units: e.target.value })
+                        }
+                        className="w-full px-3 py-2 border rounded"
+                      />
+                    </div>
+
+                    <button
+                      onClick={handleContinue}
+                      className="mt-5 w-full bg-blue-600 text-white py-2 rounded"
+                    >
+                      {stepIndex + 1 === selectedTypes.length
+                        ? "Finish"
+                        : "Continue"}
+                    </button>
+                  </Dialog.Panel>
+                </div>
+              </Dialog>
+            </div>
           </>
         ) : step === 1 ? (
           <>
