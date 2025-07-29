@@ -204,7 +204,6 @@ const getHouseById = async (req, res) => {
   if (!id) return res.status(400).json({ error: "No id provided" });
   try {
     const house = await House.findById(id).populate("landLord");
-    console.log("populated_house", house);
     res.status(200).json(house);
   } catch (error) {
     console.log("error getting house", error);

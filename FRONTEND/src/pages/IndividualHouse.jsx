@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../features/users/userSlice";
@@ -21,14 +21,23 @@ import {
 } from "react-icons/fa";
 import ImagesPage from "./ImagesPage";
 import CarouselImage from "../components/CarouselImage";
+import Modal from "../components/Modal";
+import CustomInputBox from "../components/CustomInputBox";
+import SubmitButton from "../components/SubmitButton";
+import CustomForm from "../components/CustomForm";
 import { useTranslation } from "react-i18next";
+import axios from "../api/axios";
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const IndividualHouse = () => {
   const [data, setData] = useState(null);
   const { t } = useTranslation();
   const { id } = useParams();
-  console.log(id);
+  const [mpesaModalIsOpen, setMpesaModalIsOpen] = useState(false);
+  const [mpesaNumber, setMpesaNumber] = useState('');
+  const mpesaRef = useRef();
+  const [paidHouseType, setPaidHouseType] = useState(null);
+
   const userInfo = useSelector(selectCurrentUser);
 
   useEffect(() => {
@@ -106,6 +115,36 @@ const IndividualHouse = () => {
     style: "currency",
     currency: "KSH",
   });
+
+  const handlePayment = async () => {
+    try {
+      await axios.post(
+        "/stkpush",
+        { phone: mpesaNumber, houseId: id, unitType: paidHouseType },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
+    setMpesaModalIsOpen(false);
+  };
+
+  const openMpesaModal = (unitKey) => {
+    setMpesaModalIsOpen(true);
+    mpesaRef.current.focus();
+    setPaidHouseType(unitKey);
+  };
+  console.log(paidHouseType);
+
+  const handleMpesaChange = (e) => {
+    setMpesaNumber(e.target.value);
+  };
+
   return (
     <>
       {showImages ? (
@@ -130,9 +169,25 @@ const IndividualHouse = () => {
               <ListText content={data?.landLord?.name}>Hosted by </ListText>
               <section className="flex justify-center">
                 <section className="flex items-center text-base justify-around w-20 ">
-                  <button type="" className="pr-4 text-blue-600">
-                    <FaPaypal />
-                  </button>
+                  <section>
+                    <Modal
+                      isOpen={mpesaModalIsOpen}
+                      onClick={() => setMpesaModalIsOpen(false)}
+                    >
+                      <CustomForm onSubmit={handlePayment}>
+                        <CustomInputBox
+                          inputRef={mpesaRef}
+                          value={mpesaNumber}
+                          onChange={handleMpesaChange}
+                          id="mpesa"
+                        >
+                          Mpesa Number
+                        </CustomInputBox>
+                        <SubmitButton>Pay</SubmitButton>
+                      </CustomForm>
+                    </Modal>
+                  </section>
+            
                   <button className="pr-4">
                     {" "}
                     {userInfo ? (
@@ -167,14 +222,13 @@ const IndividualHouse = () => {
             <section className="flex flex-col p-3 pt-0 gap-3">
               <section className="flex flex-col bg-gray-950 p-3 rounded-xl gap-3">
                 <div className="flex items-center justify-between">
-                  <p>Location</p> <p>{data?.area}</p>
+                  <p>Name</p> <p>Sunrise Court</p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p>Average Rent</p>{" "}
-                  <p className="font-semibold">{f.format(data?.pricing)}</p>
+                  <p>Location</p> <p>{data?.area}</p>
                 </div>
 
-                <section className="flex gap-2">
+                {/* <section className="flex gap-2">
                   <p>Status:</p>
                   <section className="flex gap-2">
                     <p>{data?.status}</p>
@@ -188,8 +242,45 @@ const IndividualHouse = () => {
                       }`}
                     ></div>
                   </section>
+                </section> */}
+              </section>
+              <section className="">
+                <p className="m-2 text-[0.9rem] mt-3">House Types</p>
+                <section className="bg-gray-950 p-2 flex flex-col gap-2">
+                  <div className="grid gap-2 text-[0.85rem] ">
+                    {Object.entries(data?.units || {})
+                      .filter(([_, val]) => val !== null)
+                      .map(([unitKey, unitValue]) => {
+                        const labelMap = {
+                          bedSitter: "Bedsitter",
+                          oneBR: "1 Bedroom",
+                          twoBr: "2 Bedroom",
+                        };
+
+                        return (
+                          <div
+                            key={unitKey}
+                            onClick={() => openMpesaModal(unitKey)}
+                            className="flex items-center justify-between border-b border-white/10 pb-1 active:bg-gray-900"
+                          >
+                            <div className="text-blue-400 font-medium">
+                              {labelMap[unitKey] || unitKey}
+                            </div>
+                            <div className="text-gray-300 text-right">
+                              <span>
+                                Ksh {unitValue?.minRent} - {unitValue?.maxRent}
+                              </span>
+                              <span className="ml-2 text-xs text-gray-400">
+                                ({unitValue?.unitsVacant} vacant)
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </section>
               </section>
+
               {/* <ListText content={data?.landLord?.email}>Email: </ListText> */}
               <section className="">
                 <p className="m-2 text-[0.9rem] mt-3">Timestamps</p>
@@ -205,8 +296,9 @@ const IndividualHouse = () => {
                       className={`${
                         data?.status === "vacant"
                           ? "text-green-500"
-                          : data?.status === 'taken' ? "text-red-500" : 'text-yellow-500'
-            
+                          : data?.status === "taken"
+                          ? "text-red-500"
+                          : "text-yellow-500"
                       }`}
                     >
                       {f_2.format(new Date(updatedStatusAt.toString()))}{" "}
