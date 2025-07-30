@@ -2,13 +2,14 @@ const axios = require("axios");
 const Payment = require("../models/payModel");
 const moment = require("moment");
 const User = require("../models/userModel");
+const mpesa = require('../config/mpesaConfig')
 
 async function getAccessToken() {
   const auth = Buffer.from(
-    `${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`
+    `${mpesa.consumerKey}:${mpesa.consumerSecret}`
   ).toString("base64");
   const { data } = await axios.get(
-    `${process.env.STK_URL}/oauth/v1/generate?grant_type=client_credentials`,
+    `${mpesa.baseUrl}/oauth/v1/generate?grant_type=client_credentials`,
     {
       headers: { Authorization: `Basic ${auth}` },
     }
@@ -26,25 +27,25 @@ const createToken = async (req, res) => {
     const token = await getAccessToken();
     const timestamp = moment().format("YYYYMMDDHHmmss");
     const password = Buffer.from(
-      process.env.SHORTCODE + process.env.PASSKEY + timestamp
+      mpesa.shortCode + mpesa.passkey + timestamp
     ).toString("base64");
 
     const payload = {
-      BusinessShortCode: process.env.SHORTCODE,
+      BusinessShortCode: mpesa.shortCode,
       Password: password,
       Timestamp: timestamp,
       TransactionType: "CustomerPayBillOnline",
       Amount: amount,
       PartyA: 254712345678,
-      PartyB: process.env.SHORTCODE,
+      PartyB: mpesa.shortCode,
       PhoneNumber: 254712345678,
-      CallBackURL: process.env.CALLBACK_URL,
+      CallBackURL: mpesa.callbackUrl,
       AccountReference: "Fixed250",
       TransactionDesc: "Access content",
     };
 
     const response = await axios.post(
-      `${process.env.STK_URL}/mpesa/stkpush/v1/processrequest`,
+      `${mpesa.baseUrl}/mpesa/stkpush/v1/processrequest`,
       payload,
       { headers: { Authorization: `Bearer ${token}` } }
     );
