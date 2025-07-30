@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const houseSchema = mongoose.Schema(
   {
+    plotName: {
+      type: String,
+      required: [true, "Plot name is required"],
+    },
     area: {
       type: String,
       required: [true, "area is required"],

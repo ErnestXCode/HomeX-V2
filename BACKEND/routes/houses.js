@@ -10,6 +10,7 @@ const {
   getLAndlordsHouses,
   updateHouseStatus,
   deleteShortlist,
+  getPurchases,
 } = require("../controllers/houseController");
 const handleAuth = require("../middleware/handleAuth");
 const upload = require("../middleware/handleUploads");
@@ -41,7 +42,11 @@ router
   .route("/shortlists")
   .get(handleAuth, getShortLists)
   .delete(handleAuth, deleteShortlist);
+
+router.route("/purchases").get(handleAuth, getPurchases);
+
 router.route("/landlordHouses").get(handleAuth, getLAndlordsHouses);
+
 router
   .route("/verify")
   .post(handleAuth, updateHouseStatus)

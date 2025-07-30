@@ -127,14 +127,14 @@ const PostHouse = () => {
   const [formData, setFormData] = useState({ min: "", max: "", units: "" });
   if (!currentUser) navigate("/signup");
 
-  const areaRef = useRef();
+  const plotNameRef = useRef();
   const cameraRef = useRef();
   const [cameraImage, setCameraImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (step === 0) areaRef?.current.focus();
+    if (step === 0) plotNameRef?.current.focus();
   }, [step]);
 
   const amenitiesObj = {
@@ -152,6 +152,7 @@ const PostHouse = () => {
     area: "",
     pricing: "",
     numOfHouses: "",
+    plotName: ''
   };
   const [images, setImages] = useState([]);
 
@@ -355,6 +356,7 @@ const PostHouse = () => {
     const form = new FormData();
     console.time("form");
     form.append("area", inputData?.area);
+    form.append("plotName", inputData?.plotName);
 
     form.append("typeData", JSON.stringify(typeDetails));
     // form.append("landLord", currentUser?._id);
@@ -492,8 +494,17 @@ const PostHouse = () => {
         {step === 0 ? (
           <>
             <CustomInputBox
+              id={"plotName"}
+              inputRef={plotNameRef}
+              value={inputData?.plotName}
+              name={"plotName"}
+              type={"text"}
+              onChange={(e) => handleChange(e)}
+            >
+              Plot Name
+            </CustomInputBox>
+            <CustomInputBox
               id={"area"}
-              inputRef={areaRef}
               value={inputData?.area}
               name={"area"}
               type={"text"}

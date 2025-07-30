@@ -1,8 +1,8 @@
-const express = require('express')
-const callbackController = require('../controllers/tokenCallback')
+const express = require("express");
+const callbackController = require("../controllers/tokenCallback");
 
-const router = express.Router()
+const router = express.Router();
 
-router.route('/callback', callbackController)
+router.route("/callback").post(callbackController);
 
-module.exports = router
+module.exports = router;

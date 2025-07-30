@@ -126,7 +126,7 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                     {/* Plot Name */}
                     <section>
                       <h2 className="text-lg font-semibold text-white">
-                        Sunrise Court
+                        {item?.plotName}
                       </h2>
                       <p className="text-[0.7rem] text-gray-400 mt-0 ">
                         {item?.area}, {item?.units?.bedSitter?.minRent}

@@ -1,27 +1,72 @@
 const axios = require("axios");
+const Payment = require("../models/payModel");
+const moment = require("moment");
+const User = require("../models/userModel");
 
-const createToken = async (req, res, next) => {
-  const secret = "2u8Kx4nWvI8mQVbXcNGsbJISY6yAqSAqk31qQbAGJAxwR2xUDRUkUc4DQryuRYn4";
-  const consumer = "Cn7uYrUrO0GwOnGseymp6R2rT5RF9vjw6jPr9Q9xggHL9h10";
-  const auth = new Buffer.from(`${consumer}:${secret}`).toString("base64");
+async function getAccessToken() {
+  const auth = Buffer.from(
+    `${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`
+  ).toString("base64");
+  const { data } = await axios.get(
+    `${process.env.STK_URL}/oauth/v1/generate?grant_type=client_credentials`,
+    {
+      headers: { Authorization: `Basic ${auth}` },
+    }
+  );
+  return data.access_token;
+}
 
-  await axios
-    .get(
-      "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials",
-      {
-        headers: {
-          Authorization: `Basic ${auth}`,
-        },
-      }
-    )
-    .then((data) => {
-      console.log(data.data);
-      next();
-    })
-    .catch((err) => console.log("error in mpesa ", err));
+const createToken = async (req, res) => {
+  try {
+    const { phone, houseId, unitType } = req.body;
+    const userId = req.user._id;
+
+    const amount = 250;
+
+    const token = await getAccessToken();
+    const timestamp = moment().format("YYYYMMDDHHmmss");
+    const password = Buffer.from(
+      process.env.SHORTCODE + process.env.PASSKEY + timestamp
+    ).toString("base64");
+
+    const payload = {
+      BusinessShortCode: process.env.SHORTCODE,
+      Password: password,
+      Timestamp: timestamp,
+      TransactionType: "CustomerPayBillOnline",
+      Amount: amount,
+      PartyA: 254712345678,
+      PartyB: process.env.SHORTCODE,
+      PhoneNumber: 254712345678,
+      CallBackURL: process.env.CALLBACK_URL,
+      AccountReference: "Fixed250",
+      TransactionDesc: "Access content",
+    };
+
+    const response = await axios.post(
+      `${process.env.STK_URL}/mpesa/stkpush/v1/processrequest`,
+      payload,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    const checkoutRequestId = response.data.CheckoutRequestID;
+
+    // Save to DB
+    await Payment.create({
+      checkoutRequestId,
+      phone,
+      userId,
+      houseId,
+      unitType,
+      amount,
+    });
+    console.log("finished", response.data);
+
+    res.json({ message: "STK push sent", data: response.data });
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    res.status(500).json({ error: "Payment initiation failed" });
+  }
 };
-
-
-
 
 module.exports = createToken;

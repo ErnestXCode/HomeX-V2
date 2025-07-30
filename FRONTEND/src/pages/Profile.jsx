@@ -16,12 +16,23 @@ import ProfileInfoContent from "../components/ProfileInfoContent";
 import { Link } from "react-router-dom";
 import InitialLoader from "../components/InitialLoader";
 import axios from "../api/axios";
-import { FaCamera, FaEdit, FaPenAlt, FaUser } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaCamera,
+  FaEdit,
+  FaInfo,
+  FaInfoCircle,
+  FaPenAlt,
+  FaProductHunt,
+  FaTools,
+  FaUser,
+} from "react-icons/fa";
 import CustomInputBox from "../components/CustomInputBox";
 import CustomForm from "../components/CustomForm";
 import Modal from "../components/Modal";
 import SubmitButton from "../components/SubmitButton";
 import { t } from "i18next";
+import PurchasedListings from "./PurchasedListings";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -139,39 +150,41 @@ const Profile = () => {
       console.log(err);
     }
   };
-console.log(showProfileImg)
+  console.log(showProfileImg);
   return (
     <>
       {" "}
       <SecondaryHeader>{profileState}</SecondaryHeader>
       <>
         <div ref={visibilityRef} className=""></div>
-        <div className='z-60'>
-
+        <div className="z-60">
           <Modal
-                // isOpen={showProfileImg}
-                // onClick={() => setShowProfileImg(false)}
-                // Profile={true}
-              >
-                <div className="bg-gray-950 flex flex-col justify-center items-center gap-3 p-4 rounded-2xl">
-                  <img
-                    className="w-50 h-50 object-cover rounded-full"
-                    src={profileImg}
-                  />
-                  <section className="flex  items-center gap-2">
-                    <p>{user?.name}</p>
-                  </section>
-                </div>
-              </Modal>
-              </div>
+          // isOpen={showProfileImg}
+          // onClick={() => setShowProfileImg(false)}
+          // Profile={true}
+          >
+            <div className="bg-gray-950 flex flex-col justify-center items-center gap-3 p-4 rounded-2xl">
+              <img
+                className="w-50 h-50 object-cover rounded-full"
+                src={profileImg}
+              />
+              <section className="flex  items-center gap-2">
+                <p>{user?.name}</p>
+              </section>
+            </div>
+          </Modal>
+        </div>
         <section
           className={`   p-4 flex flex-col items-center justify-center gap-3 sticky top-15
             transition-transform duration-500
-            ${profileIsVisible && "z-70 scale-y-25 scale-x-15 translate-x-5/12 translate-y-[-70px]"}
+            ${
+              profileIsVisible &&
+              "z-70 scale-y-25 scale-x-15 translate-x-5/12 translate-y-[-70px]"
+            }
             
             
             `}
-            // complex stuff in there up 
+          // complex stuff in there up
         >
           <input
             type="file"
@@ -229,8 +242,6 @@ console.log(showProfileImg)
                   <FaCamera className=" " />
                 </div>
               </div>
-
-            
             </>
           )}
 
@@ -282,7 +293,9 @@ console.log(showProfileImg)
             }`}
             onClick={() => setProfileState("info")}
           >
-            Info
+            <section className="flex items-center gap-1 ">
+              <FaInfoCircle size={12} /> <p>Info</p>
+            </section>
           </li>
           <li
             className={`cursor-pointer text-white/50 transition-all ${
@@ -290,7 +303,9 @@ console.log(showProfileImg)
             }`}
             onClick={() => setProfileState("shortlist")}
           >
-            {t("Shortlists")}
+            <section className="flex items-center gap-1 ">
+              <FaBookmark size={12} /> <p>Shortlists</p>
+            </section>
           </li>
           <li
             className={`cursor-pointer text-white/50 transition-all ${
@@ -298,7 +313,19 @@ console.log(showProfileImg)
             }`}
             onClick={() => setProfileState("posts")}
           >
-            {t("Posts")}
+            <section className="flex items-center gap-1">
+              <FaTools size={12} /> <p>Posts</p>
+            </section>
+          </li>
+          <li
+            className={`cursor-pointer text-white/50 transition-all ${
+              profileState === "purchases" && "text-white/100 font-semibold"
+            }`}
+            onClick={() => setProfileState("purchases")}
+          >
+            <section className="flex items-center gap-1 ">
+              <FaProductHunt size={12} /> <p>Purchases</p>
+            </section>
           </li>
         </ul>
       </nav>
@@ -308,9 +335,13 @@ console.log(showProfileImg)
         <Suspense fallback={<InitialLoader notFullPage={true} />}>
           <RecentlyLiked />
         </Suspense>
-      ) : (
+      ) : profileState === "posts" ? (
         <Suspense fallback={<InitialLoader notFullPage={true} />}>
           <Posts />
+        </Suspense>
+      ) : (
+        <Suspense fallback={<InitialLoader notFullPage={true} />}>
+          <PurchasedListings />
         </Suspense>
       )}
     </>

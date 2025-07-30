@@ -120,7 +120,7 @@ const Listings = () => {
         <Header />
 <section className="flex sticky top-18 z-1">
 
-        <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mb-0 mt-0 p-2 w-80">
+        <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mr-auto mb-0 mt-0 p-2 w-80">
           <FilterButton onClick={() => handleReset()}>All</FilterButton>
           {AreaData?.map((area) => {
             return (
@@ -133,7 +133,7 @@ const Listings = () => {
             );
           })}
         </section>
-        <button>
+        <button className="p-4 mr-2.5">
           <FaExchangeAlt />
         </button>
 </section>

@@ -124,6 +124,8 @@ const IndividualHouse = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.accessToken}`,
+
           },
         }
       );
@@ -188,7 +190,7 @@ const IndividualHouse = () => {
                     </Modal>
                   </section>
             
-                  <button className="pr-4">
+                  {/* <button className="pr-4">
                     {" "}
                     {userInfo ? (
                       <a
@@ -202,15 +204,15 @@ const IndividualHouse = () => {
                         <FaPhoneAlt />
                       </Link>
                     )}
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     onClick={() =>
                       handleWhatsappRedirect(data?.landLord?.phoneNumber)
                     }
                     className="text-[1.15rem] text-green-500"
                   >
                     <FaWhatsapp />
-                  </button>
+                  </button> */}
                 </section>
               </section>
             </section>
@@ -328,7 +330,7 @@ const IndividualHouse = () => {
                           {Object.values(amenities)[i] ? (
                             <FaCheckCircle className="text-green-500" />
                           ) : (
-                            <FaTimesCircle className="text-red-500" />
+                            <FaTimesCircle className="text-gray-500" />
                           )}
                         </span>
                       </div>

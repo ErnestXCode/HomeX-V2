@@ -240,6 +240,34 @@ const getShortLists = async (req, res) => {
   }
 };
 
+const getPurchases = async (req, res) => {
+  try {
+    const page = parseInt(req.query?.page) || 1;
+    const limit = parseInt(req.query?.limit) || 10;
+    const housesArray = req.user.purchases;
+    if (!housesArray) return res.sendStatus(204);
+    const revArray = housesArray.reverse();
+
+    const allPurchasesData = await Promise.all(
+      revArray.map(async (houseId) => await House.findById(houseId))
+    );
+
+    const start = (page - 1) * limit;
+    const end = start + limit;
+
+    const paginatedHouses = allPurchasesData.slice(start, end);
+
+    res.status(200).json({
+      data: paginatedHouses,
+      hasMore: page * limit < allPurchasesData.length,
+      nextPage: page + 1,
+    });
+  } catch (error) {
+    console.log("error getting all houses", error);
+    res.status(400).json(error);
+  }
+};
+
 const markAsTaken = async (req, res) => {
   const { id } = req.query;
   const takenHouse = await House.findByIdAndUpdate(
@@ -269,15 +297,15 @@ const getAllHouses = async (req, res) => {
     }
 
     // Apply pricing filter if price range is provided
-    if (price) {
-      const [minStr, maxStr] = price.split("-");
-      const min = parseInt(minStr);
-      const max = parseInt(maxStr);
+    // if (price) {
+    //   const [minStr, maxStr] = price.split("-");
+    //   const min = parseInt(minStr);
+    //   const max = parseInt(maxStr);
 
-      query.pricing = {};
-      if (!isNaN(min)) query.pricing.$gte = min;
-      if (!isNaN(max)) query.pricing.$lte = max;
-    }
+    //   query.pricing = {};
+    //   if (!isNaN(min)) query.pricing.$gte = min;
+    //   if (!isNaN(max)) query.pricing.$lte = max;
+    // }
 
     // Fetch filtered and paginated data
     const houses = await House.find(query, {
@@ -331,6 +359,7 @@ const getLAndlordsHouses = async (req, res) => {
     })
     .status(200);
 };
+
 
 const deleteShortlist = async (req, res) => {
   const { id } = req.query;
@@ -420,4 +449,5 @@ module.exports = {
   updateHouseStatus,
   markAsTaken,
   deleteShortlist,
+  getPurchases
 };

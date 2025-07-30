@@ -29,18 +29,20 @@ const userSchema = mongoose.Schema(
       landlord: Number,
       admin: Number,
     },
-    refreshToken: [String], 
+    refreshToken: [String],
     shortLists: {
-      type: [mongoose.Schema.Types.ObjectId], 
-      ref: 'House'
-    }
-   
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "House",
+    },
+    purchases: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "House",
+    },
   },
   {
     timestamps: true,
   }
 );
-
 
 const User = mongoose.model("User", userSchema);
 
