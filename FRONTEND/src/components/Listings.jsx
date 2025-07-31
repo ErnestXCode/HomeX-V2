@@ -17,6 +17,8 @@ const Listings = () => {
   const queryClient = new QueryClient();
 
   const [listState, setListState] = useState("All");
+  const [priceFilter, setPriceFilter] = useState(false);
+  const [priceState, setPriceState] = useState(undefined);
 
   useEffect(() => {
     console.log("stuff");
@@ -24,7 +26,16 @@ const Listings = () => {
 
   const handleFilter = async (area) => {
     try {
+      setPriceState(undefined);
       setListState(area);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handlePriceFilter = async (price) => {
+    try {
+      setListState("All");
+      setPriceState(price);
     } catch (err) {
       console.log(err);
     }
@@ -39,14 +50,16 @@ const Listings = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["houses", listState],
+      queryKey: ["houses", listState, priceState],
       getNextPageParam: (lastPage) => {
         return lastPage.hasMore ? lastPage.nextPage : undefined;
       },
       keepPreviousData: true, //new prop added
       queryFn: async ({ pageParam = 1 }) => {
         const { data } = listState
-          ? await axios.get(`/houses?page=${pageParam}&area=${listState}`)
+          ? await axios.get(
+              `/houses?page=${pageParam}&area=${listState}&price=${priceState}`
+            )
           : await axios.get(`/houses?page=${pageParam}`);
 
         // list state is not updating in this place
@@ -114,29 +127,50 @@ const Listings = () => {
       </div>
     );
   }
+
+  const rentRangeArray = [
+    "3,000 - 4,000 ",
+    "4,000 - 5,000 ",
+    "5,000 - 6,000 ",
+    "6,000 - 7,000 ",
+  ];
+
   return (
     <main className="">
       <section className="bg-black">
         <Header />
-<section className="flex sticky top-18 z-1">
-
-        <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mr-auto mb-0 mt-0 p-2 w-80">
-          <FilterButton onClick={() => handleReset()}>All</FilterButton>
-          {AreaData?.map((area) => {
-            return (
-              <FilterButton
-                onClick={() => handleFilter(area?.area)}
-                key={area?._id}
-              >
-                {area?.area}
-              </FilterButton>
-            );
-          })}
+        <section className="flex sticky top-18 z-1">
+          <section className=" overflow-x-auto no-scrollbar flex gap-3 m-3 mr-auto mb-0 mt-0 p-2 w-80">
+            <FilterButton onClick={() => handleReset()}>All</FilterButton>
+            {!priceFilter
+              ? AreaData?.map((area) => {
+                  return (
+                    <FilterButton
+                      onClick={() => handleFilter(area?.area)}
+                      key={area?._id}
+                    >
+                      {area?.area}
+                    </FilterButton>
+                  );
+                })
+              : rentRangeArray.map((priceRange) => {
+                  return (
+                    <FilterButton
+                      onClick={() => handlePriceFilter(priceRange)}
+                      key={priceRange}
+                    >
+                      {priceRange}
+                    </FilterButton>
+                  );
+                })}
+          </section>
+          <button
+            className="p-4 mr-2.5"
+            onClick={() => setPriceFilter((prevState) => !prevState)}
+          >
+            <FaExchangeAlt />
+          </button>
         </section>
-        <button className="p-4 mr-2.5">
-          <FaExchangeAlt />
-        </button>
-</section>
 
         <HouseCards data={data} />
         <div

@@ -149,8 +149,6 @@ const createHouse = async (req, res) => {
         : null,
     };
 
-   
-
     const data = {
       ...content,
       images: imageIds,
@@ -162,7 +160,7 @@ const createHouse = async (req, res) => {
       amenities: JSON.parse(content.amenities),
       updatedStatusAt: new Date(),
     };
-    console.log(data.units)
+    console.log(data.units);
 
     const newHouse = await new House(data);
 
@@ -286,15 +284,31 @@ const getAllHouses = async (req, res) => {
     const area = req.query.area;
     const price = req.query.price;
 
-    console.log(area, price)
+    console.log(area, price);
 
     // Base query object
     const query = {};
 
     // Apply area filter if provided and not "All"
-    if (area && area !== "All") {
+    if (area && area !== "All" && area !== null && area !== undefined) {
       query.area = area;
     }
+    if (price) {
+     const [min, max] = price.split("-").map(p =>
+  Number(p.replace(/,/g, "").trim())
+);
+
+
+      if (!isNaN(min) && !isNaN(max)) {
+        query.$or = [
+          { "units.bedSitter.minRent": { $gte: min, $lte: max } },
+          { "units.oneBR.minRent": { $gte: min, $lte: max } },
+          { "units.twoBR.minRent": { $gte: min, $lte: max } },
+        ];
+      }
+    }
+
+    console.log("query", query);
 
     // Apply pricing filter if price range is provided
     // if (price) {
@@ -332,7 +346,6 @@ const getAllHouses = async (req, res) => {
   }
 };
 
-
 const getLAndlordsHouses = async (req, res) => {
   const user = req.user;
   const userId = user?._id;
@@ -359,7 +372,6 @@ const getLAndlordsHouses = async (req, res) => {
     })
     .status(200);
 };
-
 
 const deleteShortlist = async (req, res) => {
   const { id } = req.query;
@@ -449,5 +461,5 @@ module.exports = {
   updateHouseStatus,
   markAsTaken,
   deleteShortlist,
-  getPurchases
+  getPurchases,
 };
