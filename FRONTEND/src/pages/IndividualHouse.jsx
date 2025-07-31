@@ -256,7 +256,7 @@ const IndividualHouse = () => {
                         const labelMap = {
                           bedSitter: "Bedsitter",
                           oneBR: "1 Bedroom",
-                          twoBr: "2 Bedroom",
+                          twoBR: "2 Bedroom",
                         };
                         console.log(unitKey, unitValue)
 

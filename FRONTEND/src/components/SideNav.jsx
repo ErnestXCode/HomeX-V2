@@ -86,7 +86,7 @@ const SideNav = memo(() => {
           isOpen={showModal}
           onClick={() => setShowModal(false)}
         >
-          <div className="bg-gray-900  flex flex-col p-3 gap-2 rounded-2xl">
+          <div className="bg-gray-900  flex flex-col p-3 gap-2 rounded-2xl  text-[0.8rem]">
             <button
               className="bg-blue-700 p-1 mt-1 rounded-xl active:bg-gray-900/50"
               onClick={() => {
