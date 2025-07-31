@@ -28,30 +28,18 @@ const houseSchema = mongoose.Schema(
         minRent: Number,
         maxRent: Number,
         deposit: Number,
-        vacancyStatus: {
-          type: String,
-          enum: ["vacant", "taken", "possibly_taken"],
-        },
         unitsVacant: Number,
       },
       oneBR: {
         minRent: Number,
         maxRent: Number,
         deposit: Number,
-        vacancyStatus: {
-          type: String,
-          enum: ["vacant", "taken", "possibly_taken"],
-        },
         unitsVacant: Number,
       },
       twoBR: {
         minRent: Number,
         maxRent: Number,
         deposit: Number,
-        vacancyStatus: {
-          type: String,
-          enum: ["vacant", "taken", "possibly_taken"],
-        },
         unitsVacant: Number,
       },
     },

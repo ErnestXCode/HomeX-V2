@@ -129,7 +129,7 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                         {item?.plotName}
                       </h2>
                       <p className="text-[0.7rem] text-gray-400 mt-0 ">
-                        {item?.area}, {item?.units?.bedSitter?.minRent}
+                        {item?.area}
                       </p>
                     </section>
 
@@ -141,7 +141,7 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                           const labelMap = {
                             bedSitter: "Bedsitter",
                             oneBR: "1 Bedroom",
-                            twoBr: "2 Bedroom",
+                            twoBR: "2 Bedroom",
                           };
 
                           return (

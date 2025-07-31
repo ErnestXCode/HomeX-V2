@@ -140,7 +140,7 @@ const createHouse = async (req, res) => {
             unitsVacant: Object.values(typeData["1 Bedroom"])[2],
           }
         : null,
-      twoBr: Object.keys(typeData).includes("2 Bedroom")
+      twoBR: Object.keys(typeData).includes("2 Bedroom")
         ? {
             minRent: Object.values(typeData["2 Bedroom"])[0],
             maxRent: Object.values(typeData["2 Bedroom"])[1],
@@ -163,6 +163,8 @@ const createHouse = async (req, res) => {
     console.log(data.units);
 
     const newHouse = await new House(data);
+
+    console.log(newHouse.units)
 
     // console.log(newHouse.coords);
 

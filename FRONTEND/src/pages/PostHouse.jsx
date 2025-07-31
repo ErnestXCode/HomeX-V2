@@ -50,7 +50,6 @@ const houseTypeOptions = [
   { value: "Bedsitter", label: "Bedsitter" },
   { value: "1 Bedroom", label: "1 Bedroom" },
   { value: "2 Bedroom", label: "2 Bedroom" },
-  { value: "3 Bedroom", label: "3 Bedroom" },
 ];
 
 function compressImageCustom(file) {

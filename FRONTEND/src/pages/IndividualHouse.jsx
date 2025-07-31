@@ -258,6 +258,7 @@ const IndividualHouse = () => {
                           oneBR: "1 Bedroom",
                           twoBr: "2 Bedroom",
                         };
+                        console.log(unitKey, unitValue)
 
                         return (
                           <div
