@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser, signInSuccess } from "../features/users/userSlice";
 import BottomNav from "../components/BottomNav";
-import { FaCreditCard } from "react-icons/fa";
+import { FaCreditCard, FaUserCircle, FaShieldAlt, FaGlobe, FaBell } from "react-icons/fa";
 import ProfileButton from "../components/ProfileButtons";
 import Modal from "../components/Modal";
 import CustomForm from "../components/CustomForm";
@@ -17,10 +17,20 @@ const PersonalInfo = () => {
   const userInfo = useSelector(selectCurrentUser);
   const { t } = useTranslation();
   const [user, setUser] = useState();
+  const dispatch = useDispatch();
+
+  const [passwordStage, setPasswordStage] = useState(null);
+  const passwordObj = {
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  };
+  const [passwordChange, setPasswordChange] = useState(passwordObj);
+
   useEffect(() => {
-    const handleProfileData = async () => {
+    const fetchProfile = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/profile`, {
+        const res = await fetch(`${apiBaseUrl}/profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -28,208 +38,117 @@ const PersonalInfo = () => {
           },
           credentials: "include",
         });
-
-        const data = await response.json();
-        console.log(data.shortLists);
+        const data = await res.json();
         setUser(data);
       } catch (err) {
         console.log("error", err);
       }
     };
-
-    handleProfileData();
+    fetchProfile();
   }, [userInfo?.accessToken]);
 
-  const [passwordStateStage1, setPasswordStateStage1] = useState(false);
-  const [passwordStateStage2, setPasswordStateStage2] = useState(false);
-  const [passwordStateStage3, setPasswordStateStage3] = useState(false);
-
-  const passwordObj = {
-    oldPassword: "",
-    newPassword: "",
-    confirmNewPassword: "",
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordChange((prev) => ({ ...prev, [name]: value }));
   };
 
-  const [passwordChange, setPasswordChange] = useState(passwordObj);
-
-  const handleChange = (e) => {
-    setPasswordChange((prevPass) => {
-      return {
-        ...prevPass,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
-
-  const handleOldPassword = (e) => {
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    setPasswordStateStage1(false);
-    setPasswordStateStage2(true);
-    // make sure it exists in the database before proceeding later
-  };
-  const handleNewPassword = (e) => {
-    e.preventDefault();
-    setPasswordStateStage2(false);
-    setPasswordStateStage3(true);
-  };
-
-  const handleConfirmNewPassword = async (e) => {
-    e.preventDefault();
-    // confirm passwords match here
-
-    console.log(passwordChange);
-    try {
-      const response = await axios.put(
-        "/profile",
-        { ...passwordChange },
-        {
+    if (passwordStage === 2 && passwordChange.newPassword !== passwordChange.confirmNewPassword) return;
+    if (passwordStage === 2) {
+      try {
+        await axios.put("/profile", passwordChange, {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${userInfo?.accessToken}`,
           },
-        }
-      );
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      setPasswordChange(passwordObj);
     }
-    setPasswordChange(passwordObj);
-    setPasswordStateStage3(false);
+    setPasswordStage(null);
   };
 
-  const dispatch = useDispatch();
+  const secureEmail = (email) => {
+    if (!email) return "";
+    const [local, domain] = email.split("@");
+    return local.slice(0, 2) + "****@" + domain;
+  };
 
   const handleLogout = async () => {
     try {
-      await axios.post(
-        "/logout",
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.accessToken}`,
-          },
-        }
-      );
-      // navigate("/");
+      await axios.post("/logout", {}, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${userInfo?.accessToken}` },
+      });
       dispatch(signInSuccess(null));
     } catch (err) {
       console.log(err);
     }
   };
-  const secureEmail = (email) => {
-    if (email) {
-      const emailDomain = email.split(".")[1];
-      const hiddenEmailBody = email.slice(0, 3) + "****." + emailDomain;
-      return hiddenEmailBody;
-    }
-    // const first_three = phone.slice(0, 4)
-    // return phone number, i dont like i am doing this in the frontend
-  };
 
   return (
     <>
-      <SecondaryHeader>{t("Personal")}</SecondaryHeader>
-      <section className="bg-black flex flex-col pb-10 mt-10">
-        {/* use svg in the profile pic */}
+      <SecondaryHeader>{t("Personal Info")}</SecondaryHeader>
+      <section className="bg-black  text-white flex flex-col gap-6 p-6 min-h-screen mt-6">
+        {/* <div className="flex flex-col items-center">
+          <FaUserCircle className="text-6xl text-blue-500 mb-2" />
+          <h2 className="text-xl font-semibold">{user?.name || "User"}</h2>
+          <p className="text-gray-400 text-sm">Joined: {user?.createdAt?.slice(0, 10)}</p>
+        </div> */}
 
-        <section className="flex flex-col ">
-          <ProfileButton>
-            <span className="font-semibold text-gray-300">{t("Name")}: </span>{" "}
-            {user?.name}{" "}
-          </ProfileButton>
+        <div className="space-y-2">
+          <ProfileButton><span className="font-semibold text-gray-300">Phone: </span>{user?.phoneNumber}</ProfileButton>
+          <ProfileButton><span className="font-semibold text-gray-300">Email: </span>{secureEmail(user?.email)}</ProfileButton>
+          <ProfileButton>{t("Privacy Settings")}</ProfileButton>
+          <ProfileButton>{t("Language & Region")}</ProfileButton>
+          <ProfileButton>{t("Notification Preferences")}</ProfileButton>
+        </div>
 
-          <ProfileButton>
-            <span className="font-semibold text-gray-300">
-              {t("PhoneNumber")}:{" "}
-            </span>{" "}
-            {user?.phoneNumber}
-          </ProfileButton>
+        <div>
+          <button onClick={() => setPasswordStage(0)} className="bg-blue-600 w-full rounded-xl p-2 mb-2">{t("Change Password")}</button>
+          <button onClick={handleLogout} className="bg-red-600 w-full rounded-xl p-2 mb-2">{t("Log Out")}</button>
+          <button className="bg-gray-700 w-full rounded-xl p-2">{t("Delete Account")}</button>
+        </div>
 
-          <ProfileButton>
-            <span className="font-semibold text-gray-300">{t("Email")}: </span>{" "}
-            {secureEmail(user?.email)}{" "}
-          </ProfileButton>
-
-          <div onClick={() => setPasswordStateStage1(true)} className=" w-full">
-            <ProfileButton>
-              <div className="flex  gap-2 items-center">
-                <FaCreditCard />
-                {t("changePassword")}
-              </div>
-            </ProfileButton>
-          </div>
-          <Modal
-            isOpen={passwordStateStage1}
-            onClick={() => {
-              setPasswordStateStage1(false);
-            }}
-          >
-            <CustomForm onSubmit={(e) => handleOldPassword(e)}>
+        {/* Password Modal */}
+        <Modal isOpen={passwordStage !== null} onClick={() => setPasswordStage(null)}>
+          <CustomForm onSubmit={handlePasswordSubmit}>
+            {passwordStage === 0 && (
               <CustomInputBox
-                name={"oldPassword"}
+                name="oldPassword"
                 value={passwordChange.oldPassword}
-                onChange={(e) => handleChange(e)}
-                type={"text"}
-                id={"oldPassword"}
-              >
-                {t("Next")}
-              </CustomInputBox>
-              <SubmitButton>{t("EnterOldPwd")}</SubmitButton>
-            </CustomForm>
-          </Modal>
-          <Modal
-            isOpen={passwordStateStage2}
-            onClick={() => {
-              setPasswordStateStage2(false);
-            }}
-          >
-            <CustomForm onSubmit={(e) => handleNewPassword(e)}>
+                onChange={handlePasswordChange}
+                type="password"
+                id="oldPassword"
+              >{t("Old Password")}</CustomInputBox>
+            )}
+            {passwordStage === 1 && (
               <CustomInputBox
-                name={"newPassword"}
+                name="newPassword"
                 value={passwordChange.newPassword}
-                onChange={(e) => handleChange(e)}
-                type={"password"}
-                id={"newPassword"}
-              >
-                {t("EnterNewPwd")}
-              </CustomInputBox>
-              <SubmitButton>{t("Next")}</SubmitButton>
-            </CustomForm>
-          </Modal>
-          <Modal
-            isOpen={passwordStateStage3}
-            onClick={() => {
-              setPasswordStateStage3(false);
-            }}
-          >
-            <CustomForm onSubmit={(e) => handleConfirmNewPassword(e)}>
+                onChange={handlePasswordChange}
+                type="password"
+                id="newPassword"
+              >{t("New Password")}</CustomInputBox>
+            )}
+            {passwordStage === 2 && (
               <CustomInputBox
-                name={"confirmNewPassword"}
+                name="confirmNewPassword"
                 value={passwordChange.confirmNewPassword}
-                onChange={(e) => handleChange(e)}
-                type={"password"}
-                id={"confirmNewPassword"}
-              >
-                {t("ConfirmNewPwd")}
-              </CustomInputBox>
-              <SubmitButton>{t("SetNewPwd")}</SubmitButton>
-            </CustomForm>
-          </Modal>
-          <section className="flex flex-col gap-3 p-4">
-            <button
-              onClick={handleLogout}
-              className="w-full bg-blue-600 p-1.5  rounded-2xl"
-            >
-              {t("LogOut")}
-            </button>
-            <button className="w-full bg-gray-700 text-white p-1.5  rounded-2xl">
-              {t("DeleteAccount")}
-            </button>
-          </section>
-        </section>
+                onChange={handlePasswordChange}
+                type="password"
+                id="confirmNewPassword"
+              >{t("Confirm Password")}</CustomInputBox>
+            )}
+            <SubmitButton onClick={() => setPasswordStage(passwordStage + 1)}>
+              {passwordStage === 2 ? t("Submit") : t("Next")}
+            </SubmitButton>
+          </CustomForm>
+        </Modal>
       </section>
       <BottomNav />
     </>

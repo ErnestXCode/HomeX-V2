@@ -5,40 +5,60 @@ import CustomInputBox from "../components/CustomInputBox";
 import SubmitButton from "../components/SubmitButton";
 import SecondaryHeader from "../components/SecondaryHeader";
 import { useTranslation } from "react-i18next";
+import emailjs from "@emailjs/browser";
 
 const ContactUs = () => {
   const { t } = useTranslation();
   const nameRef = useRef();
-  const inputDict = {
+  const navigate = useNavigate();
+
+  const [inputData, setInputData] = useState({
     name: "",
     email: "",
     message: "",
-  };
-  const navigate = useNavigate();
-  const [inputData, setInputData] = useState(inputDict);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // do something
-    console.log(inputData.message);
-    navigate("/");
-  };
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputData((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    });
+    setInputData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_5hs4i26",       // ✅ your Service ID
+        "template_1maciu4",      // ✅ your Template ID
+        {
+          from_name: inputData.name,
+          reply_to: inputData.email,
+          message: inputData.message,
+        },
+        "f2ZFzPg9nvkUFnjIX"       // ✅ your Public Key
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        setInputData({ name: "", email: "", message: "" });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Failed to send message:", error);
+        alert("Something went wrong. Try again.");
+      });
   };
 
   useEffect(() => {
     nameRef.current?.focus();
   }, []);
+
   return (
     <>
       <SecondaryHeader>{t("ContactUs")}</SecondaryHeader>
-      <CustomForm onSubmit={(e) => handleSubmit(e)}>
+      <CustomForm onSubmit={handleSubmit}>
         <CustomInputBox
           ref={nameRef}
           name="name"
@@ -74,7 +94,6 @@ const ContactUs = () => {
           value={inputData.message}
           required
           onChange={handleChange}
-          type="text"
           id="message"
           className="bg-gray-700 m-3 mb-4 text-slate-50 p-2 pl-3 font-normal rounded-3xl"
         />
