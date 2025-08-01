@@ -20,7 +20,7 @@ const createUser = async (req, res) => {
     const payload = { email };
 
     const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: "2d",
+      expiresIn: "7d",
     });
 
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
         httpOnly: true,
         sameSite: "Lax",
         secure: process.env.NODE_ENV !== "development",
-        maxAge: 2 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .status(201)
       .json({ roles, accessToken, shortLists: [] });
