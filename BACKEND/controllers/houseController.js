@@ -164,7 +164,7 @@ const createHouse = async (req, res) => {
 
     const newHouse = await new House(data);
 
-    console.log(newHouse.units)
+    console.log(newHouse.units);
 
     // console.log(newHouse.coords);
 
@@ -296,10 +296,9 @@ const getAllHouses = async (req, res) => {
       query.area = area;
     }
     if (price) {
-     const [min, max] = price.split("-").map(p =>
-  Number(p.replace(/,/g, "").trim())
-);
-
+      const [min, max] = price
+        .split("-")
+        .map((p) => Number(p.replace(/,/g, "").trim()));
 
       if (!isNaN(min) && !isNaN(max)) {
         query.$or = [
@@ -402,26 +401,57 @@ const deleteShortlist = async (req, res) => {
 
 const updateHouse = async (req, res) => {
   console.log("started updating");
-  console.log(req.user, req.body)
+
   const { id } = req.params;
-  
+  console.log(id);
+
   if (!id)
     return res.status(400).json({ error: "invalid request, provide an id" });
 
   const content = req.body;
-  console.log("content", content);
+
+  const typeData = JSON.parse(content.typeData);
+
+  const units = {
+    bedSitter: Object.keys(typeData).includes("Bedsitter")
+      ? {
+          minRent: Object.values(typeData.Bedsitter)[0],
+          maxRent: Object.values(typeData.Bedsitter)[1],
+          unitsVacant: Object.values(typeData.Bedsitter)[2],
+        }
+      : null,
+    oneBR: Object.keys(typeData).includes("1 Bedroom")
+      ? {
+          minRent: Object.values(typeData["1 Bedroom"])[0],
+          maxRent: Object.values(typeData["1 Bedroom"])[1],
+          unitsVacant: Object.values(typeData["1 Bedroom"])[2],
+        }
+      : null,
+    twoBR: Object.keys(typeData).includes("2 Bedroom")
+      ? {
+          minRent: Object.values(typeData["2 Bedroom"])[0],
+          maxRent: Object.values(typeData["2 Bedroom"])[1],
+          unitsVacant: Object.values(typeData["2 Bedroom"])[2],
+        }
+      : null,
+  };
 
   const updatedCont = {
     ...content,
+    units: units,
+    amenities: JSON.parse(content.amenities),
     status: "vacant",
     updatedStatusAt: new Date(),
-    amenities: JSON.parse(content.amenities),
   };
 
   try {
-    const updatedHouse = await House.findByIdAndUpdate(id, updatedCont, {
-      new: true,
-    });
+    const updatedHouse = await House.findByIdAndUpdate(
+      new ObjectId(id),
+      updatedCont,
+      {
+        new: true,
+      }
+    );
     res.status(200).json(updatedHouse);
   } catch (error) {
     console.log("error updating house", error);
