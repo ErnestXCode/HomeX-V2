@@ -14,7 +14,6 @@ const PurchasedListings = () => {
       <ProfileInfScroll
         backendRoute={"purchases"}
         queryName={"purchases"}
-        showShortlists={true}
       />
     </>
   );

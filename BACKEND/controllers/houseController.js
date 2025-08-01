@@ -446,7 +446,7 @@ const updateHouse = async (req, res) => {
 
   try {
     const updatedHouse = await House.findByIdAndUpdate(
-      new ObjectId(id),
+      new mongoose.Types.ObjectId(id),
       updatedCont,
       {
         new: true,

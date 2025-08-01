@@ -6,6 +6,7 @@ import {
   FaCheckCircle,
   FaDumpster,
   FaEdit,
+  FaPen,
   FaTimesCircle,
 } from "react-icons/fa";
 import { selectCurrentUser } from "../features/users/userSlice";
@@ -155,28 +156,23 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                 <div className="flex flex-col items-end gap-2  m-1 mt-2">
                   <div className="flex items-center p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
                     <Link to={`/verify-vacancy/${item?._id}`}>
-                      Confirm Vacancy
+                      Update Listing
                     </Link>
-                    <FaCheckCircle />
-                  </div>
-
-                  <div className="flex items-center p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
-                    <Link to={`/edit-house/${item?._id}`}>
-                      {t("EditDetails")}
-                    </Link>
-                    <FaEdit />
+                    <FaPen size={12} />
                   </div>
                 </div>
               )}
 
               {/* Shortlist Controls */}
               {shortlists && (
-                <div
-                  className="flex items-center gap-3 p-2 justify-end"
-                  onClick={() => removeShortlist(item?._id)}
-                >
-                  <p>Remove</p>
-                  <FaDumpster />
+                <div className="flex flex-col items-end gap-2  m-1 mt-2">
+                  <div
+                    className="flex items-center p-2 gap-2 w-fit rounded-xl active:bg-gray-800"
+                    onClick={() => removeShortlist(item?._id)}
+                  >
+                    <p>Remove</p>
+                    <FaTimesCircle size={12}/>
+                  </div>
                 </div>
               )}
             </div>
