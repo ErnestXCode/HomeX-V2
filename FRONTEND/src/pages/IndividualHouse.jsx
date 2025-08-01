@@ -34,7 +34,7 @@ const IndividualHouse = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const [mpesaModalIsOpen, setMpesaModalIsOpen] = useState(false);
-  const [mpesaNumber, setMpesaNumber] = useState('');
+  const [mpesaNumber, setMpesaNumber] = useState("");
   const mpesaRef = useRef();
   const [paidHouseType, setPaidHouseType] = useState(null);
 
@@ -125,7 +125,6 @@ const IndividualHouse = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${userInfo?.accessToken}`,
-
           },
         }
       );
@@ -189,7 +188,7 @@ const IndividualHouse = () => {
                       </CustomForm>
                     </Modal>
                   </section>
-            
+
                   {/* <button className="pr-4">
                     {" "}
                     {userInfo ? (
@@ -258,7 +257,7 @@ const IndividualHouse = () => {
                           oneBR: "1 Bedroom",
                           twoBR: "2 Bedroom",
                         };
-                        console.log(unitKey, unitValue)
+                        console.log(unitKey, unitValue);
 
                         return (
                           <div
@@ -343,13 +342,13 @@ const IndividualHouse = () => {
           </section>
           <div className="text-base flex flex-1 items-end justify-center p-4 sticky bottom-0">
             <button>
-              <Link
-                to="/map"
+              <a
+                href={data?.googleMapsUrl}
                 className="bg-gray-900 p-2 rounded-xl w-20 flex justify-center items-center gap-2"
               >
                 {" "}
                 <FaMap />
-              </Link>
+              </a>
             </button>
           </div>
         </div>

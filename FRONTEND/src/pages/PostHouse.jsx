@@ -151,7 +151,8 @@ const PostHouse = () => {
     area: "",
     pricing: "",
     numOfHouses: "",
-    plotName: ''
+    googleMapsUrl: "",
+    plotName: "",
   };
   const [images, setImages] = useState([]);
 
@@ -356,6 +357,7 @@ const PostHouse = () => {
     console.time("form");
     form.append("area", inputData?.area);
     form.append("plotName", inputData?.plotName);
+    form.append("googleMapsUrl", inputData?.googleMapsUrl);
 
     form.append("typeData", JSON.stringify(typeDetails));
     // form.append("landLord", currentUser?._id);
@@ -510,6 +512,15 @@ const PostHouse = () => {
               onChange={(e) => handleChange(e)}
             >
               {t("Location")}
+            </CustomInputBox>
+            <CustomInputBox
+              id={"googleMapsUrl"}
+              value={inputData?.googleMapsUrl}
+              name={"googleMapsUrl"}
+              type={"googleMapsUrl"}
+              onChange={(e) => handleChange(e)}
+            >
+              Map URL
             </CustomInputBox>
 
             <div className="p-4 max-w-md mx-auto">

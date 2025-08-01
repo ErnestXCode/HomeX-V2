@@ -11,6 +11,10 @@ const houseSchema = mongoose.Schema(
       required: [true, "area is required"],
       index: true,
     },
+    googleMapsUrl: {
+      type: String, 
+      required: [true, 'Map URL is required'], 
+    },
     images: {
       type: [String],
       required: [true, "image is required"],
