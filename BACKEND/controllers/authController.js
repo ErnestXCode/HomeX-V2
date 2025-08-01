@@ -3,106 +3,120 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const loginUser = async (req, res) => {
-     
-  // const cookies = req.cookies;
-  const { email, password } = req.body;
-  const cookies = req.cookies;
+  try {
+    const { email, password } = req.body;
+    const cookies = req.cookies;
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "All Credentials Are Mandatory" });
-  }
-
-  const foundUser = await User.findOne({ email });
-  if (!foundUser) return res.status(400).json({ error: "User Does Not Exist" });
-
-  const verifiedPassword = await bcrypt.compare(password, foundUser.password);
-  if (!verifiedPassword)
-    return res.status(400).json({ error: "invalid credentials" });
-
-  const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "2d",
-  });
-  const newRefreshToken = jwt.sign(
-    { email },
-    process.env.REFRESH_TOKEN_SECRET,
-    {
-      expiresIn: "2d",
-    }
-  );
-
-  // i wonder after how long i shoud require them to log back in , security is important but id rather not annoy customers
-
-  let newRefreshTokenArray = !cookies?.jwt
-    ? foundUser.refreshToken
-    : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
-
-  if (cookies?.jwt) {
-    const refreshToken = cookies.jwt;
-    const foundToken = await User.findOne({ refreshToken });
-    if (!foundToken) {
-      console.log("attempted refresh token reuse at login");
-      newRefreshTokenArray = [];
+    if (!email || !password) {
+      return res.status(400).json({ error: "All credentials are mandatory" });
     }
 
-    res.cookie("jwt", "", {
-      httpOnly: true,
+    const foundUser = await User.findOne({ email });
+    if (!foundUser) {
+      return res.status(400).json({ error: "User does not exist" });
+    }
 
-      secure: process.env.NODE_ENV !== "development",
+    const verifiedPassword = await bcrypt.compare(password, foundUser.password);
+    if (!verifiedPassword) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    const payload = {
+      id: foundUser._id,
+      email: foundUser.email,
+      roles: foundUser.roles,
+    };
+
+    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "15m",
     });
-  }
 
-  const newArray = [...newRefreshTokenArray, newRefreshToken];
-  await User.findByIdAndUpdate(
-    foundUser._id,
-    { refreshToken: newArray },
-    {
-      new: true,
+    const newRefreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+      expiresIn: "2d",
+    });
+
+    let newRefreshTokenArray = !cookies?.jwt
+      ? foundUser.refreshToken
+      : foundUser.refreshToken.filter((token) => token !== cookies.jwt);
+
+    if (cookies?.jwt) {
+      const refreshToken = cookies.jwt;
+      const foundTokenUser = await User.findOne({ refreshToken: { $in: [refreshToken] } });
+
+      if (!foundTokenUser) {
+        console.log("⚠️ Refresh token reuse detected at login");
+        newRefreshTokenArray = []; // Token stolen or reused
+      }
+
+      // Clear old cookie
+      res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "Lax",
+        secure: process.env.NODE_ENV !== "development",
+      });
     }
-  );
 
-  const roles = Object.values(foundUser.roles).filter(Boolean);
-  const shortLists = foundUser.shortLists;
-  res
-    .cookie("jwt", newRefreshToken, {
+    // Save the new refresh token
+    const updatedUser = await User.findByIdAndUpdate(
+      foundUser._id,
+      { refreshToken: [...newRefreshTokenArray, newRefreshToken] },
+      { new: true }
+    );
+
+    res.cookie("jwt", newRefreshToken, {
       httpOnly: true,
       sameSite: "Lax",
       secure: process.env.NODE_ENV !== "development",
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-    })
-    .status(200)
-    .json({ roles, accessToken, shortLists });
+      maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+    });
+
+    res.status(200).json({
+      roles: Object.values(updatedUser.roles).filter(Boolean),
+      accessToken,
+      shortLists: updatedUser.shortLists,
+    });
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 const logOutUser = async (req, res) => {
-  // delete accessToken on client side
-  const refreshToken = req.cookies?.jwt;
-  if (!refreshToken) return res.sendStatus(204); // no content
-  // find user in db with the refreshToken and clear cookie if user is not found pia
-  const foundUser = await User.findOne({ refreshToken }).exec();
+  try {
+    const refreshToken = req.cookies?.jwt;
+    if (!refreshToken) return res.sendStatus(204); // No content
 
-  if (!foundUser) return res.sendStatus(204);
+    const foundUser = await User.findOne({ refreshToken: { $in: [refreshToken] } }).exec();
+    if (!foundUser) {
+      res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "Lax",
+        secure: process.env.NODE_ENV !== "development",
+      });
+      return res.sendStatus(204);
+    }
 
-  console.log("founduser", foundUser);
+    const updatedTokens = foundUser.refreshToken.filter(
+      (token) => token !== refreshToken
+    );
 
-  const newArray = foundUser.refreshToken.filter(
-    (token) => token !== refreshToken
-  );
-  await User.findByIdAndUpdate(
-    foundUser._id,
-    { refreshToken: newArray },
-    { new: true }
-  );
+    await User.findByIdAndUpdate(
+      foundUser._id,
+      { refreshToken: updatedTokens },
+      { new: true }
+    );
 
-  res
-    .clearCookie("jwt", {
+    res.clearCookie("jwt", {
       httpOnly: true,
-      // look what samesite: 'Lax', does maybe its important
       sameSite: "Lax",
       secure: process.env.NODE_ENV !== "development",
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-    })
-    .status(200)
-    .json({ message: "Logged Out Successfully" });
+    });
+
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error("Logout error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 module.exports = { loginUser, logOutUser };

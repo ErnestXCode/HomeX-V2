@@ -1,46 +1,43 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/userModel");
-const { validationResult } = require("express-validator");
 
 const createUser = async (req, res) => {
-  // const result = validationResult()
+  const { name, email, phoneNumber, password } = req.body;
 
-  const content = req.body;
-  const { name, email, phoneNumber, password } = content;
-
-  if (!name || !email || !phoneNumber || !password)
+  if (!name || !email || !phoneNumber || !password) {
     return res.status(400).json({ error: "All inputs are mandatory" });
+  }
 
   try {
-    // look for duplicate and retiurn something 409 conflict
     const duplicateUser = await User.findOne({ email });
-    if (duplicateUser) return res.json("user already exists").status(409); //look for the appropriate status for conflict
+    if (duplicateUser) {
+      return res.status(409).json({ error: "User already exists" });
+    }
 
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt());
 
-    // if (!roles) return res.json("invalid or no roles").status(409);
+    const payload = { email };
 
-    const refreshToken = jwt.sign({ email }, process.env.REFRESH_TOKEN_SECRET, {
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: "2d",
     });
-    const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "2d",
+
+    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "15m",
     });
 
-    // can add roles later if i feel like it
-
-    const userCreated = await new User({
-      ...content,
+    const newUser = new User({
+      name,
+      email,
+      phoneNumber,
       password: hashedPassword,
       refreshToken,
     });
-    const createdUser = await userCreated.save();
-    console.log("createdUser", createdUser);
 
-    const roles = Object.values(userCreated.roles).filter(Boolean);
+    const createdUser = await newUser.save();
+    const roles = Object.values(createdUser.roles).filter(Boolean);
+
     res
       .cookie("jwt", refreshToken, {
         httpOnly: true,
@@ -48,117 +45,109 @@ const createUser = async (req, res) => {
         secure: process.env.NODE_ENV !== "development",
         maxAge: 2 * 24 * 60 * 60 * 1000,
       })
-      .status(200)
+      .status(201)
       .json({ roles, accessToken, shortLists: [] });
   } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: "Could not create user", err });
+    console.error("User creation failed:", err);
+    res.status(500).json({ error: "User creation failed", err });
   }
 };
 
 const addShortLists = async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (!user) return res.sendStatus(401);
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) return res.sendStatus(401);
 
-  const shortList = req.body.houseId;
-  if (!shortList) return res.sendStatus(204);
-  const shortlistArray = user.shortLists;
-  if (shortlistArray.includes(shortList)) return res.json("duplicate");
+    const shortList = req.body.houseId;
+    if (!shortList) return res.sendStatus(204);
 
-  const shortListsArray = user.shortLists;
+    if (user.shortLists.includes(shortList)) {
+      return res.status(409).json({ message: "Already shortlisted" });
+    }
 
-  user.shortLists = [...shortListsArray, shortList];
+    user.shortLists.push(shortList);
+    await user.save();
 
-  await user.save();
-
-  res.status(200).json("successful");
+    res.status(200).json({ message: "Shortlist updated successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update shortlist", err });
+  }
 };
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, { password: false });
-    res.status(201).json(users);
+    const users = await User.find({}, { password: 0, refreshToken: 0 });
+    res.status(200).json(users);
   } catch (err) {
-    res.json({ message: "Failed to get all users", err });
+    res.status(500).json({ error: "Failed to get all users", err });
   }
 };
 
 const getCurrentUserProfile = async (req, res) => {
-
   try {
     const profile = req.user;
-    console.log(profile)
-    // would redis work differently for diff users?
     res.status(200).json(profile);
   } catch (err) {
-    res.status(404).json({ message: "User not found", err });
+    res.status(404).json({ error: "User not found", err });
   }
- 
 };
 
 const updateUser = async (req, res) => {
-    
   try {
-    const content = req.user;
-    const id = content._id;
     const { name, oldPassword, newPassword } = req.body;
-    let password = null;
+    const currentUser = await User.findById(req.user._id);
+    if (!currentUser) return res.status(404).json({ error: "User not found" });
 
-    if (oldPassword) {
-      const foundUser = await bcrypt.compare(oldPassword, content.password);
-      if (!foundUser) {
-        console.log("no match found for password");
-        return res.json("no match found for password");
+    let updatedPassword = currentUser.password;
+
+    if (oldPassword && newPassword) {
+      const isMatch = await bcrypt.compare(oldPassword, currentUser.password);
+      if (!isMatch) {
+        return res.status(403).json({ error: "Old password incorrect" });
       }
 
-      // change password after veryifing existence
-      const salt = await bcrypt.genSalt();
-      password = await bcrypt.hash(newPassword, salt);
+      updatedPassword = await bcrypt.hash(newPassword, await bcrypt.genSalt());
     }
 
-    const updates = {
-      name: name || content.name,
-      password: password || content.password,
-    };
+    currentUser.name = name || currentUser.name;
+    currentUser.password = updatedPassword;
 
-    await User.findByIdAndUpdate(
-      id,
-      { ...updates },
-      { new: true }
-    );
-    
-    res.status(200).json("updated succesfully");
+    await currentUser.save();
+    res.status(200).json({ message: "User updated successfully" });
   } catch (err) {
-    res.status(404).json({ message: "Failed to update user", err });
+    res.status(500).json({ error: "Failed to update user", err });
   }
-  
-
 };
 
 const deleteUser = async (req, res) => {
   try {
-    const id = req.user._id;
-    const roles = req.user.roles;
-    // make sure you cant delete an admin
+    const { _id, roles } = req.user;
 
-    await User.findByIdAndDelete(id, { new: true });
+    if (roles?.Admin) {
+      return res.status(403).json({ error: "Admins cannot delete themselves" });
+    }
+
+    await User.findByIdAndDelete(_id);
+
     res.clearCookie("jwt", {
       httpOnly: true,
+      sameSite: "Lax",
       secure: process.env.NODE_ENV !== "development",
     });
-    res.status(200).json("deleted succesfully");
+
+    res.status(200).json({ message: "Account deleted successfully" });
   } catch (err) {
-    res.status(403).json({ message: "Failed to delete user", err });
+    res.status(500).json({ error: "Failed to delete user", err });
   }
 };
 
 const deleteUserbyAdmin = async (req, res) => {
   try {
     const { id } = req.params;
-    await User.findByIdAndDelete(id, { new: true }); // remember to remove visibility of password
-    res.status(200).json("deleted succesfully");
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "User deleted by admin successfully" });
   } catch (err) {
-    res.status(403).json({ message: "Failed to delete user", err });
+    res.status(500).json({ error: "Failed to delete user by admin", err });
   }
 };
 
