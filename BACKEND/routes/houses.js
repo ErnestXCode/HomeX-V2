@@ -57,8 +57,8 @@ router
   .get(getHouseById)
   .put(
     handleAuth,
-    verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
     updateHouse
+    // verifyRoles(ROLES_LIST.admin, ROLES_LIST.landlord),
   )
   .delete(
     handleAuth,

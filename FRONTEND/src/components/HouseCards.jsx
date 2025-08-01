@@ -3,18 +3,15 @@ import CarouselImage from "./CarouselImage";
 import ListText from "./ListText";
 import { useNavigate, Link } from "react-router-dom";
 import {
-  FaBookDead,
-  FaBookOpen,
   FaCheckCircle,
   FaDumpster,
   FaEdit,
-  FaTicketAlt,
   FaTimesCircle,
 } from "react-icons/fa";
 import { selectCurrentUser } from "../features/users/userSlice";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "../api/axios";
 
 const apiBaseUrl = import.meta.env.VITE_API_URL;
@@ -28,72 +25,53 @@ const f = (value) => {
 const HouseCards = memo(({ data, posts, shortlists }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const userInfo = useSelector(selectCurrentUser);
-  console.log(userInfo);
 
-
-
+  // ---------------- HANDLE MUTATIONS ----------------
 
   const handleTaken = async (id) => {
-    try {
-      // usemutation somehow
-      const res = await fetch(`${apiBaseUrl}/verify?id=${id}`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo?.accessToken}`,
-        },
-      });
-
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log("error", err);
-    }
+    const res = await fetch(`${apiBaseUrl}/verify?id=${id}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo?.accessToken}`,
+      },
+    });
+    return res.json();
   };
 
   const handleRemoveShortlist = async (id) => {
-    try {
-      // usemutation somehow
-      const res = await fetch(`${apiBaseUrl}/shortlists?id=${id}`, {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo?.accessToken}`,
-        },
-      });
-
-      const data = await res.json();
-      console.log("data ", data);
-    } catch (err) {
-      console.log("error", err);
-    }
+    const res = await fetch(`${apiBaseUrl}/shortlists?id=${id}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo?.accessToken}`,
+      },
+    });
+    return res.json();
   };
 
-  const queryClient = new QueryClient();
-
-  useMutation({
-    mutationFn: handleRemoveShortlist,
-    onSuccess: () => {
-      queryClient.invalidateQueries("shortlist");
-    },
-  });
-
-  useMutation({
+  const { mutate: markAsTaken } = useMutation({
     mutationFn: handleTaken,
     onSuccess: () => {
-      queryClient.invalidateQueries("houses");
-
-      // not updating for some reason
-      queryClient.invalidateQueries("landlordPosts");
-      queryClient.invalidateQueries("shortlist");
+      queryClient.invalidateQueries(["houses"]);
+      queryClient.invalidateQueries(["landlordPosts"]);
+      queryClient.invalidateQueries(["shortlist"]);
     },
   });
 
-  
+  const { mutate: removeShortlist } = useMutation({
+    mutationFn: handleRemoveShortlist,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["shortlist"]);
+    },
+  });
+
+  // ---------------- RENDER ----------------
 
   return (
     <>
@@ -106,67 +84,59 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
             <div
               key={item?._id}
               className="bg-gray-800/50 mt-3 p-3 rounded-2xl mb-10"
-              // onClick={
-              //   !posts && !shortlists
-              //     ? () => navigate(`house/${item._id}`)
-              //     : null
-              // }
             >
-              <section className="">
+              <section>
                 <CarouselImage
                   item={item}
-                  showBookMark={!posts && !shortlists ? true : false}
+                  showBookMark={!posts && !shortlists}
                   showThumbnails={true}
                   userShortlists={userInfo?.shortLists}
                 />
               </section>
+
               <section className="mt-4 relative">
-                <section>
-                  <section className="text-sm text-gray-100 space-y-2">
-                    {/* Plot Name */}
-                    <section>
-                      <h2 className="text-lg font-semibold text-white">
-                        {item?.plotName}
-                      </h2>
-                      <p className="text-[0.7rem] text-gray-400 mt-0 ">
-                        {item?.area}
-                      </p>
-                    </section>
-
-                    {/* Unit Overview */}
-                    <div className="grid gap-2 text-[0.85rem]">
-                      {Object.entries(item?.units || {})
-                        .filter(([_, val]) => val !== null)
-                        .map(([unitKey, unitValue]) => {
-                          const labelMap = {
-                            bedSitter: "Bedsitter",
-                            oneBR: "1 Bedroom",
-                            twoBR: "2 Bedroom",
-                          };
-
-                          return (
-                            <div
-                              key={unitKey}
-                              className="flex items-center justify-between border-b border-white/10 pb-1"
-                            >
-                              <div className="text-blue-400 font-medium">
-                                {labelMap[unitKey] || unitKey}
-                              </div>
-                              <div className="text-gray-300 text-right">
-                                <span>
-                                  Ksh {f(unitValue?.minRent)} -{" "}
-                                  {f(unitValue?.maxRent)}
-                                </span>
-                                <span className="ml-2 text-xs text-gray-400">
-                                  ({unitValue?.unitsVacant} vacant)
-                                </span>
-                              </div>
-                            </div>
-                          );
-                        })}
-                    </div>
+                <section className="text-sm text-gray-100 space-y-2">
+                  {/* Plot Name */}
+                  <section>
+                    <h2 className="text-lg font-semibold text-white">
+                      {item?.plotName}
+                    </h2>
+                    <p className="text-[0.7rem] text-gray-400 mt-0 ">
+                      {item?.area}
+                    </p>
                   </section>
 
+                  {/* Unit Overview */}
+                  <div className="grid gap-2 text-[0.85rem]">
+                    {Object.entries(item?.units || {})
+                      .filter(([_, val]) => val !== null)
+                      .map(([unitKey, unitValue]) => {
+                        const labelMap = {
+                          bedSitter: "Bedsitter",
+                          oneBR: "1 Bedroom",
+                          twoBR: "2 Bedroom",
+                        };
+                        return (
+                          <div
+                            key={unitKey}
+                            className="flex items-center justify-between border-b border-white/10 pb-1"
+                          >
+                            <div className="text-blue-400 font-medium">
+                              {labelMap[unitKey] || unitKey}
+                            </div>
+                            <div className="text-gray-300 text-right">
+                              <span>
+                                Ksh {f(unitValue?.minRent)} -{" "}
+                                {f(unitValue?.maxRent)}
+                              </span>
+                              <span className="ml-2 text-xs text-gray-400">
+                                ({unitValue?.unitsVacant} vacant)
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </section>
 
                 <div
@@ -178,30 +148,19 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                       : "bg-green-600"
                   }`}
                 ></div>
-                {/* <section className="flex justify-between m-3"> */}
               </section>
+
+              {/* Landlord Controls */}
               {posts && (
                 <div className="flex flex-col items-end gap-2  m-1 mt-2">
-                  <div
-                    // onClick set status to vacant
-                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                  >
+                  <div className="flex items-center p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
                     <Link to={`/verify-vacancy/${item?._id}`}>
                       Confirm Vacancy
                     </Link>
                     <FaCheckCircle />
                   </div>
 
-                  <div className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
-                    <div onClick={() => handleTaken(item?._id)}>
-                      {t("MarkAsTaken")}
-                    </div>
-                    <FaTimesCircle />
-                  </div>
-                  <div
-                    // onClick set status to vacant
-                    className="flex items-center  p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800"
-                  >
+                  <div className="flex items-center p-2 gap-2 w-fit justify-end rounded-xl active:bg-gray-800">
                     <Link to={`/edit-house/${item?._id}`}>
                       {t("EditDetails")}
                     </Link>
@@ -209,17 +168,17 @@ const HouseCards = memo(({ data, posts, shortlists }) => {
                   </div>
                 </div>
               )}
+
+              {/* Shortlist Controls */}
               {shortlists && (
                 <div
                   className="flex items-center gap-3 p-2 justify-end"
-                  onClick={() => handleRemoveShortlist(item?._id)}
+                  onClick={() => removeShortlist(item?._id)}
                 >
                   <p>Remove</p>
                   <FaDumpster />
                 </div>
               )}
-
-              {/* make it so a landlord is the only gay who can delete his house, and make it not in the istings, make that in the personal info of a landlord */}
             </div>
           ))}
         </div>

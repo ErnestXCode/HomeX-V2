@@ -402,7 +402,9 @@ const deleteShortlist = async (req, res) => {
 
 const updateHouse = async (req, res) => {
   console.log("started updating");
+  console.log(req.user, req.body)
   const { id } = req.params;
+  
   if (!id)
     return res.status(400).json({ error: "invalid request, provide an id" });
 

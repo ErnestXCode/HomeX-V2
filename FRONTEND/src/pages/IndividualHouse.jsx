@@ -264,7 +264,7 @@ const IndividualHouse = () => {
                           <div
                             key={unitKey}
                             onClick={() => openMpesaModal(unitKey)}
-                            className="flex items-center justify-between border-b border-white/10 pb-1 active:bg-gray-900"
+                            className="flex items-center justify-between border-b border-white/10  p-1 rounded-xl pb-1 active:bg-gray-900 "
                           >
                             <div className="text-blue-400 font-medium">
                               {labelMap[unitKey] || unitKey}

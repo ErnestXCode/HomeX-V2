@@ -46,6 +46,7 @@ const Profile = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [user, setUser] = useState(null);
 
+ 
   useEffect(() => {
     const handleProfileData = async () => {
       try {
@@ -301,7 +302,7 @@ const Profile = () => {
             className={`cursor-pointer text-white/50 transition-all ${
               profileState === "shortlist" && "text-white/100 font-semibold"
             }`}
-            onClick={() => setProfileState("shortlist")}
+            onClick={async () => setProfileState("shortlist")}
           >
             <section className="flex items-center gap-1 ">
               <FaBookmark size={12} /> <p>Shortlists</p>
