@@ -49,7 +49,7 @@ const handleRefreshToken = async (req, res) => {
       };
 
       const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "15m", // shorter access lifespan
+        expiresIn: "1m", // shorter access lifespan
       });
 
       const newRefreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {

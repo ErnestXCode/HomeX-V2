@@ -84,7 +84,7 @@ const SignUp = () => {
           ...inputData,
           roles: isLandlord && {
             landlord: landLord_role,
-            // get rid of admin in production
+            
             // admin: admin_role,
           },
         }),

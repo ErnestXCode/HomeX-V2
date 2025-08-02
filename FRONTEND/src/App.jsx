@@ -45,6 +45,8 @@ function App() {
               <Route index element={<Home />}></Route>
               <Route path="trials" element={<Trials />}></Route>
               <Route path="help" element={<Help />}></Route>
+              <Route path="admin" element={<Admin />}></Route>
+              {/* toa admin hapa */}
             </Route>
 
             <Route path="announcements" element={<Announcements />}></Route>
@@ -89,9 +91,11 @@ function App() {
               </Route>
 
               <Route
-                element={<RequireAuthentication allowedRoles={[ROLES.admin]} />}
+                element={
+                  <RequireAuthentication allowedRoles={[ROLES.tenant]} />
+                }
               >
-                <Route path="admin" element={<Admin />}></Route>
+                {/* <Route path="admin" element={<Admin />}></Route> */}
               </Route>
             </Route>
 

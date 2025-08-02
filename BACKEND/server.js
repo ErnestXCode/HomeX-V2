@@ -17,6 +17,9 @@ const redisClient = require("./config/redisConfig");
 const axios = require("axios");
 const moment = require("moment");
 const { ObjectId } = require("mongodb");
+const User = require("./models/userModel");
+const Area = require("./models/areaModel");
+const Payment = require("./models/payModel");
 
 // have url for production
 
@@ -107,8 +110,87 @@ cron.schedule("0 0 * * *", async () => {
 //   })
 // );
 
+app.get("/summary", async (req, res) => {
+  try {
+    const [userCount, houseCount, areaCount, payments] = await Promise.all([
+      User.countDocuments(),
+      House.countDocuments(),
+      Area.countDocuments(),
+      Payment.find({ status: "success" }),
+    ]);
 
+    const landlords = await User.countDocuments({
+      "roles.landlord": { $exists: true },
+    });
+    const tenants = await User.countDocuments({
+      "roles.tenant": { $exists: true },
+    });
+    const admins = await User.countDocuments({
+      "roles.admin": { $exists: true },
+    });
 
+    const totalRevenue = payments.reduce(
+      (acc, payment) => acc + payment.amount,
+      0
+    );
+
+    res.json({
+      users: userCount,
+      houses: houseCount,
+      areas: areaCount,
+      landlords,
+      admins,
+      tenants,
+      revenue: totalRevenue,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: "Dashboard summary failed", details: err.message });
+  }
+});
+
+// Role distribution for charting
+app.get("/role-distribution", async (req, res) => {
+  try {
+    const allUsers = await User.find({});
+    const distribution = {
+      tenant: 0,
+      landlord: 0,
+      admin: 0,
+    };
+    allUsers.forEach((u) => {
+      if (u.roles.tenant) distribution.tenant++;
+      if (u.roles.landlord) distribution.landlord++;
+      if (u.roles.admin) distribution.admin++;
+    });
+    res.json(distribution);
+  } catch (err) {
+    res.status(500).json({ error: "Could not fetch role distribution" });
+  }
+});
+
+app.get("/houses-by-area", async (req, res) => {
+  try {
+    const pipeline = [
+      {
+        $group: {
+          _id: "$area",
+          totalHouses: { $sum: 1 },
+          totalVacant: {
+            $sum: {
+              $cond: [{ $eq: ["$status", "vacant"] }, 1, 0],
+            },
+          },
+        },
+      },
+    ];
+    const stats = await House.aggregate(pipeline);
+    res.json(stats);
+  } catch (err) {
+    res.status(500).json({ error: "Aggregation failed" });
+  }
+});
 
 app.use("/", require("./routes/areas"));
 app.use("/", require("./routes/refresh"));

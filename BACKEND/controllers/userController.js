@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 const createUser = async (req, res) => {
-  const { name, email, phoneNumber, password } = req.body;
+  const content = req.body;
+  const { name, email, phoneNumber, password } = content;
+  const userRoles = content.roles;
 
   if (!name || !email || !phoneNumber || !password) {
     return res.status(400).json({ error: "All inputs are mandatory" });
@@ -24,11 +26,12 @@ const createUser = async (req, res) => {
     });
 
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "15m",
+      expiresIn: "1m",
     });
 
     const newUser = new User({
       name,
+      roles: userRoles,
       email,
       phoneNumber,
       password: hashedPassword,
@@ -36,6 +39,7 @@ const createUser = async (req, res) => {
     });
 
     const createdUser = await newUser.save();
+    console.log(createdUser);
     const roles = Object.values(createdUser.roles).filter(Boolean);
 
     res

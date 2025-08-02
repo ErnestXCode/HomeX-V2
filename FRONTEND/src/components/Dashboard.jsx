@@ -1,245 +1,415 @@
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useState } from "react";
-import CustomForm from "./CustomForm";
-import CustomInputBox from "./CustomInputBox";
-import SubmitButton from "./SubmitButton";
-import ViewButton from "./ViewButton";
-import BottomNav from "./BottomNav";
-import { selectCurrentUser } from "../features/users/userSlice";
+import React, { useRef, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  PieChart,
-  Pie,
-  Tooltip,
-  Legend,
   BarChart,
   Bar,
+  PieChart,
+  Pie,
+  Cell,
   XAxis,
-  CartesianAxis,
   YAxis,
+  Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
+  Legend,
 } from "recharts";
-import { useSelector } from "react-redux";
-const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CustomInputBox from "./CustomInputBox";
+import Modal from "./Modal";
+import SubmitButton from "./SubmitButton";
+import BottomNav from "./BottomNav";
+import CustomForm from "./CustomForm";
+import CustomCheckBox from "./CustomCheckBox";
+import axios from "../api/axios";
+import SecondaryHeader from "./SecondaryHeader";
+import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { signInSuccess } from "../features/users/userSlice";
+const landLord_role = import.meta.env.VITE_LANDLORD_ROLE_CONSTANT;
+const admin_role = import.meta.env.VITE_ADMIN_ROLE_CONSTANT;
+
+const COLORS = ["#60a5fa", "#38bdf8", "#0ea5e9"];
 
 const Dashboard = () => {
-  const UserData = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => await axios.get(`${apiBaseUrl}/users`),
-  });
-  const HouseData = useQuery({
-    queryKey: ["houses"],
-    queryFn: async () => await axios.get(`${apiBaseUrl}/houses`),
-  });
-  // console.log('housedata', HouseData?.data?.data)
+  const queryClient = useQueryClient();
+  const [areaName, setAreaName] = useState("");
+  const [editingAreaId, setEditingAreaId] = useState(null);
+  const [editedName, setEditedName] = useState("");
+  const { t } = useTranslation();
 
-  const AllHouses = HouseData?.data?.data;
-  const AllUsers = UserData?.data?.data;
-  const numOfAllUsers = AllUsers?.length;
-  // const numOfAllHouses = AllHouses?.length;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const nameRef = useRef();
 
-  const [area, setArea] = useState("");
-  const handleChange = (e) => {
-    setArea(e.target?.value);
+  const inputDict = {
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
   };
+  const [inputData, setInputData] = useState(inputDict);
 
-  const userInfo = useSelector(selectCurrentUser);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(
-        `${apiBaseUrl}/areas`,
-        { area },
-        {
-          withCredentials: true,
-          headers: {
-            Authrization: `Bearer ${userInfo.accessToken}`,
-          },
-        }
-      );
-      const data = res?.data;
-      console.log("successful", data);
-    } catch (err) {
-      console.log("Error", err);
-    }
-    setArea("");
-  };
-  const queryClient = new QueryClient();
-
-  const sumn = useMutation({
-    mutationFn: handleSubmit,
-    onSuccess: () => queryClient.invalidateQueries("areas"),
+  const { data: summary, isLoading: loadingSummary } = useQuery({
+    queryKey: ["summary"],
+    queryFn: async () => {
+      const res = await axios.get(`/summary`, { withCredentials: true });
+      return res.data;
+    },
   });
-  const { data } = useQuery({
+
+  const { data: roles, isLoading: loadingRoles } = useQuery({
+    queryKey: ["roles"],
+    queryFn: async () => {
+      const res = await axios.get(`/role-distribution`, {
+        withCredentials: true,
+      });
+      return res.data;
+    },
+  });
+
+  const { data: housesByArea, isLoading: loadingHouses } = useQuery({
+    queryKey: ["housesByArea"],
+    queryFn: async () => {
+      const res = await axios.get(`/houses-by-area`, { withCredentials: true });
+      return res.data;
+    },
+  });
+
+  const { data: allAreas, isLoading: loadingAreas } = useQuery({
     queryKey: ["areas"],
-    queryFn: async () => await axios.get(`${apiBaseUrl}/areas`),
+    queryFn: async () => {
+      const res = await axios.get(`/areas`, { withCredentials: true });
+      return res.data;
+    },
   });
-  const AllAreas = data?.data.map((area) => (
-    <div
-      className="flex items-center justify-between mt-1 p-1 pb-2 border-b border-gray-500"
-      key={area?._id}
-    >
-      <p>{area?.area}</p>
-      <ViewButton>Delete</ViewButton>
-    </div>
-  ));
 
-  const [display, setDisplay] = useState("displayUsers");
+  const createArea = useMutation({
+    mutationFn: async (newArea) => {
+      return await axios.post(`/areas`, newArea, { withCredentials: true });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["areas"]);
+      setAreaName("");
+    },
+    onError: (err) => {
+      alert(
+        "Error creating area: " + err?.response?.data?.message || err.message
+      );
+    },
+  });
 
-  const displayUsers = () => {
-    setDisplay("displayUsers");
-  };
+  const deleteArea = useMutation({
+    mutationFn: async (id) => {
+      return await axios.delete(`/areas/${id}`, { withCredentials: true });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["areas"]);
+    },
+  });
 
-  const displayAreas = () => {
-    setDisplay("displayAreas");
-  };
-  const displayHouses = () => {
-    setDisplay("displayHouses");
-  };
-  let AllTenants = 0;
-  let AllLandLords = 0;
-  if (AllUsers) {
-    AllTenants = AllUsers.filter((user) => user?.isLandlord === false)?.length;
-    AllLandLords = AllUsers.filter((user) => user?.isLandlord === true)?.length;
+  const updateArea = useMutation({
+    mutationFn: async ({ id, area }) => {
+      return await axios.patch(
+        `/areas/${id}`,
+        { area },
+        { withCredentials: true }
+      );
+    },
+    onSuccess: () => {
+      setEditingAreaId(null);
+      queryClient.invalidateQueries(["areas"]);
+    },
+  });
+
+  const transformedRoles = Array.isArray(roles)
+    ? roles
+    : roles && typeof roles === "object"
+    ? Object.entries(roles).map(([role, count]) => ({ role, count }))
+    : [];
+
+  if (loadingSummary || loadingRoles || loadingHouses || loadingAreas) {
+    return (
+      <div className="text-white text-center p-4">Loading dashboard...</div>
+    );
   }
 
-  console.log(AllUsers);
+  const handleChange = (e) => {
+    setInputData((prevData) => {
+      const { name, value } = e.target;
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
+  };
+  // use radio
 
-  const dummydata = [
-    {
-      roles: 3,
-      name: "nester",
-    },
-    {
-      roles: 2,
-      name: "kama",
-    },
-    {
-      roles: 1,
-      name: "john",
-    },
-    {
-      roles: 6,
-      name: "john",
-    },
-    {
-      roles: 10,
-      name: "john",
-    },
-    {
-      roles: 11,
-      name: "john",
-    },
-    {
-      roles: 5,
-      name: "john",
-    },
-    {
-      roles: 1,
-      name: "john",
-    },
-    {
-      roles: 13,
-      name: "john",
-    },
-    {
-      roles: 1,
-      name: "john",
-    },
-    {
-      roles: 3,
-      name: "ksos",
-    },
-  ];
+  // submit, name properly
 
-  const userOverall = (
-    <>
-      <h2 className="font-semibold m-2 mt-4 text-center">
-        Number of Users, tenants and Landlords
-      </h2>
-      <div className="bg-gray-900 m-2 p-3 rounded-2xl bottom-b-1 flex items-center justify-around w-full">
-        <div> Users : {numOfAllUsers}</div>
-        <div>Tenants : {AllTenants}</div>
-        <div> Landlords :{AllLandLords}</div>
-      </div>
-        <div>DUMMY DATA</div>
-        <div className="w-full p-1 pr-8 h-64">
-             <ResponsiveContainer height={"100%"} width={"100%"}>
-               <BarChart width={48} height={48} data={dummydata}>
-                 <Bar dataKey="roles" fill="#00f" />
-                 <CartesianGrid stroke="#333" strokeOpacity={"50%"} />
-                 <YAxis />
-                 <XAxis />
-                 <Tooltip />
-                 <Legend />
-               </BarChart>
-             </ResponsiveContainer>
-           </div>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // make sure number is okay and email as well after sending in backend or frontend
 
-      <h2 className="font-semibold m-2 mt-4 text-center">Create an Admin</h2>
-      <CustomForm>
-        <CustomInputBox>Create Admin</CustomInputBox>
-        <div className="p-3">
-          <SubmitButton>Create</SubmitButton>
-        </div>
-      </CustomForm>
-    </>
-  );
+    try {
+      const newUser = await axios.post(
+        "/users",
+        JSON.stringify({
+          ...inputData,
+          roles: {
+            landlord: landLord_role,
+            admin: admin_role,
+          },
+        }),
+        {
+          // put constant like axios post into constant variables maybe even dotenv, look up if it will be bad '/users'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-  const areaOverall = (
-    <>
-      <h2 className="font-semibold m-2 mt-4 text-center">
-        Area CRUD Operations
-      </h2>
+      dispatch(signInSuccess(newUser.data));
+      console.log(newUser)
 
-      <CustomForm onSubmit={(e) => handleSubmit(e)}>
-        <CustomInputBox
-          name={"area"}
-          value={area}
-          onChange={(e) => handleChange(e)}
-          type={"text"}
-          id={"area"}
-        >
-          Add area
-        </CustomInputBox>
-        <div className="p-3">
-          <SubmitButton>Create</SubmitButton>
-        </div>
-      </CustomForm>
-      <div className="m-2 p-2">{AllAreas}</div>
-    </>
-  );
-
-  const houseOverall = <>HouseData should be here</>;
-
-  const displayOverall =
-    display === "displayUsers"
-      ? userOverall
-      : display === "displayAreas"
-      ? areaOverall
-      : houseOverall;
+    } catch (err) {
+      console.error("Error:", err.message);
+    }
+  };
 
   return (
-    <>
-      <h1 className="font-bold text-2xl text-center m-2">Dashboard</h1>
-      <nav>
-        <ul className="flex justify-around items-center">
-          <li>
-            <button onClick={displayAreas}>Areas</button>
-          </li>
-          <li>
-            <button onClick={displayUsers}>Users</button>
-          </li>
-          <li>
-            <button onClick={displayHouses}>Houses</button>
-          </li>
-        </ul>
-      </nav>
+    <div className="min-h-screen bg-gray-900 text-white p-4 space-y-8">
+      <h1 className="text-2xl font-bold text-center text-blue-400">
+        Admin Dashboard
+      </h1>
 
-      {displayOverall}
-      <BottomNav />
-    </>
+      {/* Summary Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Users: {summary.users}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Tenants: {summary.tenants}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Landlords: {summary.landlords}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Admins: {summary.admins}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Houses: {summary.houses}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Areas: {summary.areas}
+        </div>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow">
+          Revenue: KES {summary.totalRevenue}
+        </div>
+      </div>
+
+      {/* Role Distribution */}
+      <div className="w-full h-96 bg-gray-800 rounded-2xl shadow p-4">
+        <h2 className="text-center font-semibold text-blue-300 mb-2">
+          User Role Distribution
+        </h2>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={transformedRoles}
+              dataKey="count"
+              nameKey="role"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              label
+            >
+              {transformedRoles.map((_, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip
+              contentStyle={{ backgroundColor: "#1f2937", color: "white" }}
+            />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Houses by Area */}
+      <div className="w-full h-96 bg-gray-800 rounded-2xl shadow p-4">
+        <h2 className="text-center font-semibold text-blue-300 mb-2">
+          Houses by Area
+        </h2>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={housesByArea}>
+            <XAxis dataKey="area" stroke="#ccc" />
+            <YAxis stroke="#ccc" />
+            <Tooltip
+              contentStyle={{ backgroundColor: "#1f2937", color: "white" }}
+            />
+            <Legend />
+            <Bar dataKey="totalHouses" fill="#3b82f6" name="Total Houses" />
+            <Bar dataKey="vacantHouses" fill="#0ea5e9" name="Vacant Houses" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Area Management */}
+      <div className="bg-gray-800 p-4 rounded-2xl shadow">
+        <h2 className="text-center font-semibold text-blue-300 mb-4">
+          Manage Areas
+        </h2>
+        {/* Create */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (areaName.trim()) createArea.mutate({ area: areaName.trim() });
+          }}
+          className="flex flex-col sm:flex-row gap-2 items-center justify-center"
+        >
+          <input
+            type="text"
+            placeholder="Enter area name"
+            value={areaName}
+            onChange={(e) => setAreaName(e.target.value)}
+            className="bg-gray-700 text-white p-2 rounded w-full sm:w-1/2 focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold"
+          >
+            Add Area
+          </button>
+        </form>
+
+        {/* Area List */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+          {allAreas?.map((area) => (
+            <div
+              key={area._id}
+              className="bg-gray-700 p-3 rounded flex items-center justify-between"
+            >
+              {editingAreaId === area._id ? (
+                <div className="flex-grow mr-2 flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={(e) => setEditedName(e.target.value)}
+                    className="bg-gray-800 text-white p-1 px-2 rounded w-full"
+                  />
+                  <button
+                    onClick={() =>
+                      updateArea.mutate({ id: area._id, area: editedName })
+                    }
+                    className="bg-green-600 hover:bg-green-700 px-2 py-1 rounded text-white"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingAreaId(null)}
+                    className="bg-gray-500 hover:bg-gray-600 px-2 py-1 rounded text-white"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <span className="text-white">{area.area}</span>
+                  <div className="space-x-2">
+                    <button
+                      onClick={() => {
+                        setEditingAreaId(area._id);
+                        setEditedName(area.area);
+                      }}
+                      className="bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded text-white"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (confirm("Delete this area?")) {
+                          deleteArea.mutate(area._id);
+                        }
+                      }}
+                      className="bg-red-600 hover:bg-red-700 px-2 py-1 rounded text-white"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+      <>
+        <section className="">
+          <>
+            <SecondaryHeader>Create Admin</SecondaryHeader>
+            {
+              <CustomForm onSubmit={(e) => handleSubmit(e)}>
+                {
+                  <>
+                    <CustomInputBox
+                      id={"name"}
+                      inputRef={nameRef}
+                      name={"name"}
+                      value={inputData.name}
+                      type={"text"}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      {t("Name")}
+                    </CustomInputBox>
+                    <CustomInputBox
+                      id={"email"}
+                      name={"email"}
+                      value={inputData?.email}
+                      type={"email"}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      {t("Email")}
+                    </CustomInputBox>
+                    <CustomInputBox
+                      id={"password"}
+                      name={"password"}
+                      value={inputData?.password}
+                      type={"password"}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      {t("Password")}
+                    </CustomInputBox>
+                    <CustomInputBox
+                      inputRef={nameRef}
+                      id={"phoneNumber"}
+                      name={"phoneNumber"}
+                      value={inputData?.phoneNumber}
+                      type={"number"}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      {t("PhoneNumber")}
+                    </CustomInputBox>
+                    <SubmitButton>Create </SubmitButton>{" "}
+                  </>
+                }
+
+                <p className="font-serif text-center text-[.8rem]">
+                  {t("AlreadyRegistered")}{" "}
+                  <Link
+                    className="border-b-3 border-blue-600 text-blue-200"
+                    to="/login"
+                  >
+                    {t("LogIn")}
+                  </Link>
+                </p>
+              </CustomForm>
+            }
+            <BottomNav />
+          </>
+        </section>
+      </>
+    </div>
   );
 };
 
