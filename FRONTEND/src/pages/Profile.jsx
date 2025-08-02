@@ -46,7 +46,6 @@ const Profile = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [user, setUser] = useState(null);
 
- 
   useEffect(() => {
     const handleProfileData = async () => {
       try {

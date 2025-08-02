@@ -50,7 +50,7 @@ const Login = () => {
         withCredentials: true,
       });
       dispatch(signInSuccess(response.data));
-      console.log(response.data);
+      console.log(response);
       // data.data.accessToken
 
       navigate(location.state.from.pathname, { replace: true });
