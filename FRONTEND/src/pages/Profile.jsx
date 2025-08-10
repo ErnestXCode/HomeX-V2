@@ -13,7 +13,7 @@ import ProfileButton from "../components/ProfileButtons";
 import SecondaryHeader from "../components/SecondaryHeader";
 import ProfileDetails from "../components/ProfileDetails";
 import ProfileInfoContent from "../components/ProfileInfoContent";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import InitialLoader from "../components/InitialLoader";
 import axios from "../api/axios";
 import {
@@ -33,11 +33,14 @@ import Modal from "../components/Modal";
 import SubmitButton from "../components/SubmitButton";
 import { t } from "i18next";
 import PurchasedListings from "./PurchasedListings";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const apiBaseUrl = import.meta.env.VITE_API_URL;
+// const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const [profileIsVisible, setProfileIsVisible] = useState(false);
+  const location = useLocation()
+  console.log(location)
 
   const userInfo = useSelector(selectCurrentUser);
 
@@ -45,29 +48,20 @@ const Profile = () => {
   const [profileImg, setProfileImg] = useState(null);
   const [usernameState, setUsernameState] = useState(false);
   const [user, setUser] = useState(null);
+  const axiosPrivate = useAxiosPrivate(); // ✅ Use your hook
 
   useEffect(() => {
     const handleProfileData = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/profile`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.accessToken}`,
-          },
-          credentials: "include",
-        });
-
-        const data = await response.json();
-        console.log(data);
+        const { data } = await axiosPrivate.get("/profile");
         setUser(data);
       } catch (err) {
-        console.log("error", err);
+        console.log("Error fetching profile:", err);
       }
     };
 
     handleProfileData();
-  }, [userInfo?.accessToken, usernameState]);
+  }, [axiosPrivate, usernameState]); // ✅ n
 
   // const [visibilityState, setVisibilityState] = useState(true);
   const visibilityRef = useRef();
@@ -118,9 +112,7 @@ const Profile = () => {
     // dispatch(addProfilePic(profileImg));
   };
 
-  const showMoreImage = (url) => {
-    window.open(url, "_blank");
-  };
+
 
   const userNameRef = useRef();
 

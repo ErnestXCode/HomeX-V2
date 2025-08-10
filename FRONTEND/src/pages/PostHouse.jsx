@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 // import { useSelector } from "react-redux";
 // import { selectCurrentUser } from "../features/users/userSlice";
@@ -115,6 +115,7 @@ function compressImageCustom(file) {
 
 const PostHouse = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   // const [err] = useState("");
   const { t } = useTranslation();
   const currentUser = useSelector(selectCurrentUser);
@@ -295,6 +296,7 @@ const PostHouse = () => {
   //   reader.readAsDataURL(file);
   // };
 
+console.log(location)
   const handleCameraChange = async (e) => {
     const file = e.target.files[0];
     try {
@@ -342,6 +344,7 @@ const PostHouse = () => {
       enableHighAccuracy: true,
     });
   };
+  console.log('currentUser', currentUser)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

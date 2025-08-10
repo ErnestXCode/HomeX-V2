@@ -33,7 +33,7 @@ const BottomNav = memo(() => {
           <FaQuestionCircle />
           <p className="text-[0.6rem]">{t("Help")}</p>
         </NavElements>
-        <NavElements link={user !== null ? "/profile" : "/login"}>
+        <NavElements link={"/profile"}>
           <FaPersonBooth />
           <p className="text-[0.6rem]">{t("Me")}</p>
         </NavElements>

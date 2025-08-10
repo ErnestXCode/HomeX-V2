@@ -7,16 +7,15 @@ const useRefreshToken = () => {
 
   const refresh = async () => {
     try {
-      const { data } = await axios.get("/refresh", {
-        withCredentials: true,
-      });
-
+      const { data } = await axios.get("/refresh", { withCredentials: true });
       const { roles, accessToken, shortLists } = data;
 
       dispatch(signInSuccess({ roles, accessToken, shortLists }));
+
+      return accessToken; // return it so useAxiosPrivate can retry
     } catch (err) {
       console.error("Error refreshing token:", err);
-      throw err; // Important for PersistLogin to detect failure
+      throw err;
     }
   };
 

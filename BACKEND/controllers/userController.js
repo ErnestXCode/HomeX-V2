@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const ROLES_LIST = require('../config/roles_list')
 
 const createUser = async (req, res) => {
   const content = req.body;
@@ -29,9 +30,11 @@ const createUser = async (req, res) => {
       expiresIn: "1m",
     });
 
+    console.log('roles', ROLES_LIST)
+
     const newUser = new User({
       name,
-      roles: userRoles,
+      roles: { tenant: ROLES_LIST.tenant, ...userRoles }, 
       email,
       phoneNumber,
       password: hashedPassword,

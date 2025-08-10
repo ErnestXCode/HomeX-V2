@@ -92,7 +92,7 @@ function App() {
 
               <Route
                 element={
-                  <RequireAuthentication allowedRoles={[ROLES.tenant]} />
+                  <RequireAuthentication allowedRoles={[ROLES.admin]} />
                 }
               >
                 {/* <Route path="admin" element={<Admin />}></Route> */}

@@ -1,9 +1,11 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const dotenv = require("dotenv");
 const compression = require("compression");
 const helmet = require("helmet");
 // verification of data availability in the controllers -----remember
@@ -21,10 +23,13 @@ const User = require("./models/userModel");
 const Area = require("./models/areaModel");
 const Payment = require("./models/payModel");
 
-// have url for production
+// make sure .env is loaded first
 
 const app = express();
-dotenv.config();
+const ROLES_LIST = require("./config/roles_list");
+
+
+console.log(ROLES_LIST)
 
 const whiteList = [process.env.VITE_URL, "http://localhost:4173"];
 
