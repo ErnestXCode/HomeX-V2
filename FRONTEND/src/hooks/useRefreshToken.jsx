@@ -4,12 +4,12 @@ import { signInSuccess } from "../features/users/userSlice";
 
 const useRefreshToken = () => {
   const dispatch = useDispatch();
-
+  console.log('called refresh')
   const refresh = async () => {
     try {
       const { data } = await axios.get("/refresh", { withCredentials: true });
       const { roles, accessToken, shortLists } = data;
-
+      console.log('data from refresh', data)
       dispatch(signInSuccess({ roles, accessToken, shortLists }));
 
       return accessToken; // return it so useAxiosPrivate can retry

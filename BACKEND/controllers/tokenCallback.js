@@ -2,56 +2,65 @@ const Payment = require("../models/payModel");
 const House = require("../models/houseModel");
 const User = require("../models/userModel");
 
+
 const callbackController = async (req, res) => {
-    console.log('callback started')
-  const cb = req.body.Body.stkCallback;
+  console.log("callback started");
 
-  if (cb.ResultCode === 0) {
-    const items = cb.CallbackMetadata.Item;
-    const phone = items.find((i) => i.Name === "PhoneNumber")?.Value;
-    const amount = items.find((i) => i.Name === "Amount")?.Value;
-    const mpesaReceipt = items.find(
-      (i) => i.Name === "MpesaReceiptNumber"
-    )?.Value;
-    const checkoutRequestId = cb.CheckoutRequestID;
+  // ⬇️ C2B sends data differently, adjust parsing
+  const cb = req.body; 
+  console.log(cb);
 
-    // Step 1: Find the payment record
-    const payment = await Payment.findOne({ checkoutRequestId });
+  // For C2B, Safaricom sends ResultCode only in B2C/STK — 
+  // here we check TransID presence to confirm success
+  const resultType = cb.TransID ? "success" : "failed";
+
+  if (resultType === "success") {
+    const phone = cb.MSISDN;
+    const amount = cb.TransAmount;
+    const mpesaReceipt = cb.TransID;
+    const transactionId = cb.TransID; // store as our internal transactionId
+
+    // Step 1: Find the payment record (pending)
+    const payment = await Payment.findOne({
+      phone,
+      status: "pending",
+    });
 
     if (!payment) {
       console.error("Payment not found in DB");
       return res.sendStatus(400);
     }
 
-    // Step 2: Update the house
+    // Step 2: Update the house availability
     const house = await House.findById(payment.houseId);
     const unit = house.units[payment.unitType];
     unit.unitsVacant -= 1;
 
     house.units[payment.unitType] = unit;
-    const housePaid = await house.save();
-    console.log(housePaid)
+    await house.save();
 
-    // Step 3: Update the payment status
+    // Step 3: Update payment record
     payment.status = "success";
     payment.mpesaReceipt = mpesaReceipt;
-    const housePay = await payment.save();
+    payment.transactionId = transactionId;
+    await payment.save();
 
-    const purchaser = await User.findById(payment.userId)
-    purchaser.purchases = [...purchaser.purchases, payment.houseId]
-    const userPay = await purchaser.save()
-
-    console.log(housePay, userPay)
-
+    // Step 4: Update user purchases
+    const purchaser = await User.findById(payment.userId);
+    purchaser.purchases = [...purchaser.purchases, payment.houseId];
+    await purchaser.save();
 
     console.log("✅ Payment successful and unit updated");
     return res.sendStatus(200);
   } else {
-    console.log("❌ Payment Failed:", cb.ResultDesc);
+    console.log("❌ Payment Failed");
 
-    // Optionally: update payment status to failed
-    const checkoutRequestId = cb.CheckoutRequestID;
-    await Payment.findOneAndUpdate({ checkoutRequestId }, { status: "failed" });
+    // Mark payment as failed if matching pending one found
+    const payment = await Payment.findOne({ phone: cb.MSISDN, status: "pending" });
+    if (payment) {
+      payment.status = "failed";
+      await payment.save();
+    }
 
     return res.sendStatus(200);
   }

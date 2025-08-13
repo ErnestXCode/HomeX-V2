@@ -7,6 +7,7 @@ import { selectCurrentUser } from "../features/users/userSlice";
 const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
   const userInfo = useSelector(selectCurrentUser);
+  console.log('refresh axiosprivate accesstoken', userInfo?.accessToken)
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(

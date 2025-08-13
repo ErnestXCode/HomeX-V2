@@ -116,11 +116,31 @@ const IndividualHouse = () => {
     currency: "KSH",
   });
 
+  // const handlePayment = async () => {
+  //   try {
+  //     await axios.post(
+  //       "/stkpush",
+  //       { phone: mpesaNumber, houseId: id, unitType: paidHouseType },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${userInfo?.accessToken}`,
+  //         },
+  //       }
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+
+  //   setMpesaModalIsOpen(false);
+  // };
+
   const handlePayment = async () => {
     try {
-      await axios.post(
-        "/stkpush",
-        { phone: mpesaNumber, houseId: id, unitType: paidHouseType },
+      // Changed endpoint from /stkpush to /c2b/initiate to match hybrid C2B backend
+      const res = await axios.post(
+        "/c2b/initiate",
+        { houseId: id, unitType: paidHouseType }, // Removed phone — not needed for C2B hybrid
         {
           headers: {
             "Content-Type": "application/json",
@@ -128,6 +148,16 @@ const IndividualHouse = () => {
           },
         }
       );
+
+      // Backend should respond with tillNumber, amount, reference
+      const { tillNumber, amount, reference } = res.data;
+
+      // Construct tel: URI to trigger M-Pesa SIM menu with pre-filled data
+      // NOTE: This works on devices with SIM Toolkit support
+      window.location.href =
+        `tel:*150*2*1*${tillNumber}*${amount}*${reference}%23`
+          .replace(/\*/g, "%2A") // encode * as %2A
+          .replace(/#/g, "%23"); // encode # as %23
     } catch (error) {
       console.log(error);
     }
@@ -176,14 +206,15 @@ const IndividualHouse = () => {
                       onClick={() => setMpesaModalIsOpen(false)}
                     >
                       <CustomForm onSubmit={handlePayment}>
-                        <CustomInputBox
-                          inputRef={mpesaRef}
-                          value={mpesaNumber}
-                          onChange={handleMpesaChange}
-                          id="mpesa"
-                        >
-                          Mpesa Number
-                        </CustomInputBox>
+                        {/* Mpesa Number input removed for C2B hybrid — backend handles tillNumber */}
+                        {/* <CustomInputBox
+    inputRef={mpesaRef}
+    value={mpesaNumber}
+    onChange={handleMpesaChange}
+    id="mpesa"
+  >
+    Mpesa Number
+  </CustomInputBox> */}
                         <SubmitButton>Pay</SubmitButton>
                       </CustomForm>
                     </Modal>

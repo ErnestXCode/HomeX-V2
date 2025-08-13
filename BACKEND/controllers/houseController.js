@@ -10,17 +10,12 @@ const cron = require("node-cron");
 const { landlord } = require("../config/roles_list");
 
 const createHouse = async (req, res) => {
+  console.log('started')
   console.time("total");
   const content = req.body;
+  console.log('content', content)
 
-  // if (
-  //   !content.area ||
-  //   !content.pricing ||
-  //   !content.landMarks ||
-  //   !content.landLord
-  // ) {
-  //   return res.status(400).json({ error: "All inputs are mandatory" });
-  // }
+
   try {
     // const refreshToken = req.cookies?.jwt;
 
@@ -160,11 +155,10 @@ const createHouse = async (req, res) => {
       amenities: JSON.parse(content.amenities),
       updatedStatusAt: new Date(),
     };
-    console.log(data.units);
+    console.log('data: ', data);
 
     const newHouse = await new House(data);
 
-    console.log(newHouse.units);
 
     // console.log(newHouse.coords);
 

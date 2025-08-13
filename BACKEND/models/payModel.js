@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema({
-  checkoutRequestId: { type: String, required: true, unique: true },
+  // ⬇️ STK Push-specific ID removed, replaced with generic transactionId
+  transactionId: { type: String, unique: true }, // Safaricom sends this in C2B callback (MpesaReceiptNumber can also serve)
+  
   phone: { type: String, required: true },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
