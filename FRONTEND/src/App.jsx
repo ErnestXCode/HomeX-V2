@@ -1,12 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import EditHouse from "./pages/EditHouse";
+// import EditHouse from "./pages/EditHouse";
+import IndividualHouse from "./pages/IndividualHouse";
+import InitialLoader from "./components/InitialLoader";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import PostHouse from "./pages/PostHouse";
 const Announcements = lazy(() => import("./pages/Announcements"));
 
 const RequireAuthentication = lazy(() =>
   import("./components/RequireAuthentication")
 );
-const InitialLoader = lazy(() => import("./components/InitialLoader"));
+// const InitialLoader = lazy(() => import("./components/InitialLoader"));
 const VerifyStatus = lazy(() => import("./components/VerifyStatus"));
 const PersistLogin = lazy(() => import("./components/PersistLogin"));
 const RootLayout = lazy(() => import("./components/RootLayout"));
@@ -15,15 +21,15 @@ const Unauthorized = lazy(() => import("./pages/Unauthorized"));
 const ImagesPage = lazy(() => import("./pages/ImagesPage"));
 const Trials = lazy(() => import("./pages/Trials"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const Home = lazy(() => import("./pages/Home"));
-const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
-const PostHouse = lazy(() => import("./pages/PostHouse"));
+const EditHouse = lazy(() => import("./pages/EditHouse"));
+// const IndividualHouse = lazy(() => import("./pages/IndividualHouse"));
+// const PostHouse = lazy(() => import("./pages/PostHouse"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Donations = lazy(() => import("./pages/Donations"));
-const Profile = lazy(() => import("./pages/Profile"));
-const Login = lazy(() => import("./pages/LogIn"));
+// const Profile = lazy(() => import("./pages/Profile"));
+// const Login = lazy(() => import("./pages/LogIn"));
 const Help = lazy(() => import("./pages/Help"));
 const Admin = lazy(() => import("./pages/Admin"));
 const PersonalInfo = lazy(() => import("./pages/PersonalInfo"));
